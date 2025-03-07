@@ -30,7 +30,7 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "bun@1.1.45",
+  "packageManager": "bun@1.2.4",
   "scripts": {
     "build": "turbo run build",
     "build:cli": "turbo --filter=create-tnt-app build",
@@ -42,8 +42,9 @@
     "dev:cli": "turbo --filter=create-tnt-app dev",
     "dev:web": "turbo --filter=web dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "turbo format && prettier --write '*.{cjs,json}' --ignore-unknown --no-error-on-unmatched-pattern",
     "typecheck": "turbo run check-types",
+    "clean": "turbo clean && rm -rf node_modules",
     "shadcn": "bun run --filter=web shadcn"
   },
   "workspaces": [
