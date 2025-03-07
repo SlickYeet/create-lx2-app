@@ -1,0 +1,64 @@
+{
+  "name": "create-tnt-app",
+  "version": "0.1.0",
+  "description": "Create web application with the TNT-Powered stack",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/slickyeet/create-tnt-app",
+    "directory": "cli"
+  },
+  "keywords": [
+    "create-tnt-app",
+    "tnt-stack",
+    "typescript",
+    "next.js",
+    "tailwind"
+  ],
+  "type": "module",
+  "exports": "./dist/index.js",
+  "bin": {
+    "create-t3-app": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "template",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    ".yarnrc.yml",
+    "package.json"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "start": "node dist/index.js",
+    "dev": "tsup --watch",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier '**/*.{cjs,mjs,ts,tsx,md,json}' --ignore-path ../.gitignore --ignore-unknown --no-error-on-unmatched-pattern --write",
+    "typecheck": "tsc",
+    "clean": "rm -rf dist .turbo node_modules"
+  },
+  "dependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "fs-extra": "^11.3.0",
+    "inquirer": "^12.4.2"
+  },
+  "devDependencies": {
+    "@prisma/client": "^6.4.1",
+    "@types/fs-extra": "^11.0.4",
+    "next": "^15.2.1",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "prisma": "^6.4.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.11",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2"
+  }
+}

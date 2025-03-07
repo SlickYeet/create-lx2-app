@@ -1,8 +1,9 @@
+// @ts-nocheck - We're using CommonJS here, so we can't use TypeScript
+
 /** @type {import("eslint").Linter.Config} */
 const config = {
   root: true,
   parser: "@typescript-eslint/parser",
-  plugins: ["import"],
   extends: [
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked",

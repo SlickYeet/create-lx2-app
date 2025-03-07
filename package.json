@@ -1,5 +1,5 @@
 {
-  "name": "create-tnt-app",
+  "name": "root",
   "version": "0.0.0",
   "description": "Build modern web applications with todat's most popular tools",
   "author": {
@@ -48,6 +48,7 @@
     "shadcn": "bun run --filter=web shadcn"
   },
   "workspaces": [
+    "cli",
     "web",
     "packages/*"
   ],
