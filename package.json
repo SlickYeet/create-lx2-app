@@ -1,25 +1,67 @@
 {
   "name": "create-tnt-app",
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types",
-    "shadcn": "bun run --filter=web shadcn"
+  "version": "0.0.0",
+  "description": "Build modern web applications with todat's most popular tools",
+  "author": {
+    "name": "Lasse Lammers",
+    "emial": "lasse@famlam.ca",
+    "url": "https://lasse.famlam.ca"
   },
-  "devDependencies": {
-    "prettier": "^3.5.0",
-    "turbo": "^2.4.4",
-    "typescript": "5.7.3"
+  "maintainers": [
+    {
+      "name": "Lasse Lammers",
+      "emial": "lasse@famlam.ca",
+      "url": "https://lasse.famlam.ca"
+    }
+  ],
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/slickyeet/create-tnt-app"
   },
+  "keywords": [
+    "create-tnt-app",
+    "tnt-stack",
+    "typescript",
+    "next.js",
+    "tailwind"
+  ],
   "engines": {
     "node": ">=18"
   },
   "packageManager": "bun@1.1.45",
+  "scripts": {
+    "build": "turbo run build",
+    "build:cli": "turbo --filter=create-tnt-app build",
+    "build:web": "turbo --filter=web build",
+    "start": "turbo start",
+    "start:cli": "turbo --filter=create-tnt-app start",
+    "start:web": "turbo --filter=web start",
+    "dev": "turbo dev",
+    "dev:cli": "turbo --filter=create-tnt-app dev",
+    "dev:web": "turbo --filter=web dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "typecheck": "turbo run check-types",
+    "shadcn": "bun run --filter=web shadcn"
+  },
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@types/eslint": "^9.6.1",
+    "@typescript-eslint/eslint-plugin": "^8.26.0",
+    "@typescript-eslint/parser": "^8.26.0",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-isaacscript": "^4.0.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-react": "^7.37.4",
+    "prettier": "^3.5.3",
+    "turbo": "^2.4.4",
+    "typescript": "^5.8.2"
+  }
 }

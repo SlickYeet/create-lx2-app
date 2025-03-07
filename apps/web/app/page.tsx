@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col gap-y-2 items-center justify-center h-screen">
+    <div className="flex h-screen flex-col items-center justify-center gap-y-2">
       <h1>Welcome to the homepage!</h1>
       <Button asChild>
         <Link href="/docs">Get started</Link>
