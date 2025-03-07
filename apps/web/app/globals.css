@@ -233,17 +233,3 @@
 ::-moz-selection {
   @apply bg-accent text-accent-foreground;
 }
-
-/* MDX Styles */
-h1 {
-  @apply my-6 text-4xl font-bold;
-}
-h2 {
-  @apply my-4 text-3xl font-bold;
-}
-h3 {
-  @apply my-2 font-medium;
-}
-p {
-  @apply text-muted-foreground mb-6 text-xl;
-}
