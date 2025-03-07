@@ -9,6 +9,7 @@ const config = {
   semi: false,
   trailingComma: "all",
   tabWidth: 2,
+  proseWrap: "always",
 }
 
 export default config

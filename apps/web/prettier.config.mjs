@@ -18,9 +18,9 @@ const config = {
       },
     },
   ],
-  importOrder: ["<THIRD_PARTY_MODULES>", "", "^@/", "^[.][.]/", "^[.]/"],
+  importOrder: ["<THIRD_PARTY_MODULES>", "", "^@/", "", "^[.][.]/", "^[.]/"],
   importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
-  importOrderTypeScriptVersion: "^5",
+  importOrderTypeScriptVersion: "5.0.0",
 }
 
 export default config
