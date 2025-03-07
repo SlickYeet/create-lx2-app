@@ -1,14 +1,15 @@
-import Link from "next/link"
-
-import { Button } from "@/components/ui/button"
+import { CTA } from "@/components/home/cta"
+import { Features } from "@/components/home/features"
+import { Hero } from "@/components/home/hero"
+import { Usage } from "@/components/home/usage"
 
 export default function HomePage() {
   return (
-    <div className="flex h-screen flex-col items-center justify-center gap-y-2">
-      <h1>Welcome to the homepage!</h1>
-      <Button asChild>
-        <Link href="/docs">Get started</Link>
-      </Button>
+    <div className="flex min-h-screen flex-col">
+      <Hero />
+      <Features />
+      <Usage />
+      <CTA />
     </div>
   )
 }
