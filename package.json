@@ -48,7 +48,7 @@
     "shadcn": "bun run --filter=web shadcn"
   },
   "workspaces": [
-    "apps/*",
+    "web",
     "packages/*"
   ],
   "dependencies": {
