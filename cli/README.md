@@ -29,9 +29,8 @@ Simply run `npm create tnt-app@latest` to get started!
 - <a href="#getting-started">Getting Started</a>
 - <a href="#features">Features</a>
 - <a href="#documentation">Documentation</a>
-- <a href="#contributing">Contributing</a>
 - <a href="#credits">Credits</a>
-- <a href="#license">License</a>
+- <a href="#contributing">Contributing</a>
 
 <h2 id="whats-included">📦 What's Included</h2>
 
@@ -85,12 +84,6 @@ For more information, visit the [docs](https://tnt.famlam.ca/docs/installation).
 
 Full documentation is available at [tnt.famlam.ca](https://tnt.famlam.ca/docs)
 (coming soon).
-
-<h2 id="contributing">🤝 Contributing</h2>
-
-We welcome contributions! If you'd like to contribute to the development of the
-TNT-Powered CLI, feel free to submit issues or pull requests. Please check our
-[contributing guidelines](../CONTRIBUTING.md) for more details.
 
 <h2 id="credits">❤️ Credits</h2>
 
