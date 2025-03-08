@@ -34,8 +34,6 @@ Simply run `npm create tnt-app@latest` to get started!
 
 <h2 id="whats-included">📦 What's Included</h2>
 
----
-
 TNT-Powered installs **TypeScript, Next.js, Tailwind CSS**, along with:
 
 - ✅ **Payload CMS** - A powerful headless CMS
@@ -47,8 +45,6 @@ TNT-Powered installs **TypeScript, Next.js, Tailwind CSS**, along with:
 - ✅ **And many more coming soon...**
 
 <h2 id="getting-started">🚀 Getting Started</h2>
-
----
 
 To create a new project, run the following command:
 
@@ -80,20 +76,14 @@ For more information, visit the [docs](https://tnt.famlam.ca/docs/installation).
 
 <h2 id="features">🛠 Features</h2>
 
----
-
 - 🎯 **Easy to Use** - Interactive CLI for selecting tools
 - 📦 **Preconfigured Setup** - Comes ready with modern web dev tools
 - 🚀 **Extendable** - More packages coming soon!
-
----
 
 <h2 id="documentation">📖 Documentation</h2>
 
 Full documentation is available at [tnt.famlam.ca](https://tnt.famlam.ca/docs)
 (coming soon).
-
----
 
 <h2 id="credits">❤️ Credits</h2>
 
@@ -101,8 +91,6 @@ Huge thanks to [Theo]() and the [T3 Stack]() for their amazing work. TNT-Powered
 builds on the principles of create-t3-app, bringing even more flexibility.
 
 If you like this project, giving it a ⭐ on GitHub!
-
----
 
 <h2 id="contributors">Contributors</h2>
 
@@ -131,8 +119,9 @@ so you understand the branching strategy and local development environment.
 [contribute-image]: https://img.shields.io/badge/PRs-welcome-blue.svg
 [contribute-url]:
   https://github.com/SlickYeet/create-tnt-app/blob/main/CONTRIBUTING.md
-[npm-image]: https://img.shields.io/npm/v/tnt-app?color=0b7285&logoColor=0b7285
-[npm-url]: https://www.npmjs.com/package/tnt-app
+[npm-image]:
+  https://img.shields.io/npm/v/create-tnt-app?color=0b7285&logoColor=0b7285
+[npm-url]: https://www.npmjs.com/package/create-tnt-app
 [license-image]:
   https://img.shields.io/github/license/SlickYeet/create-tnt-app?color=red
 [license-url]: https://github.com/SlickYeet/create-tnt-app/blob/main/LICENSE
