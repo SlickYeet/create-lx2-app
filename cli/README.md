@@ -29,6 +29,7 @@ Simply run `npm create tnt-app@latest` to get started!
 - <a href="#getting-started">Getting Started</a>
 - <a href="#features">Features</a>
 - <a href="#documentation">Documentation</a>
+- <a href="#contributing">Contributing</a>
 - <a href="#credits">Credits</a>
 - <a href="#license">License</a>
 
@@ -85,6 +86,12 @@ For more information, visit the [docs](https://tnt.famlam.ca/docs/installation).
 Full documentation is available at [tnt.famlam.ca](https://tnt.famlam.ca/docs)
 (coming soon).
 
+<h2 id="contributing">🤝 Contributing</h2>
+
+We welcome contributions! If you'd like to contribute to the development of the
+TNT-Powered CLI, feel free to submit issues or pull requests. Please check our
+[contributing guidelines](../CONTRIBUTING.md) for more details.
+
 <h2 id="credits">❤️ Credits</h2>
 
 Huge thanks to [Theo]() and the [T3 Stack]() for their amazing work. TNT-Powered
@@ -92,7 +99,7 @@ builds on the principles of create-t3-app, bringing even more flexibility.
 
 If you like this project, giving it a ⭐ on GitHub!
 
-<h2 id="contributors">Contributors</h2>
+<h2 id="contributing">Contributing</h2>
 
 We 💖 contributors! Feel free to contribute to this project but **please read
 the [Contributing Guidelines](CONTRIBUTING.md) before opening an issue or PR**

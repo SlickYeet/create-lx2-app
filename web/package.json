@@ -34,8 +34,6 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
