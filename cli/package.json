@@ -42,16 +42,25 @@
     "clean": "rm -rf dist .turbo node_modules"
   },
   "dependencies": {
+    "@clack/core": "^0.4.1",
+    "@clack/prompts": "^0.10.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
+    "execa": "^9.5.2",
     "fs-extra": "^11.3.0",
-    "inquirer": "^12.4.2"
+    "gradient-string": "^3.0.0",
+    "inquirer": "^12.4.2",
+    "ora": "^8.2.0",
+    "sort-package-json": "^3.0.0"
   },
   "devDependencies": {
+    "@auth/prisma-adapter": "^2.8.0",
     "@prisma/client": "^6.4.1",
+    "@t3-oss/env-nextjs": "^0.12.0",
     "@types/fs-extra": "^11.0.4",
     "next": "^15.2.1",
+    "next-auth": "^4.24.11",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "prisma": "^6.4.1",
@@ -59,6 +68,8 @@
     "react-dom": "^19.0.0",
     "tailwindcss": "^4.0.11",
     "tsup": "^8.4.0",
-    "typescript": "^5.8.2"
+    "type-fest": "^4.37.0",
+    "typescript": "^5.8.2",
+    "zod": "^3.24.2"
   }
 }

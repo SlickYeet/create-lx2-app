@@ -1,88 +1,113 @@
 #!/user/bin/env node
-import { execSync } from "child_process"
-import path, { dirname } from "path"
-import { fileURLToPath } from "url"
-import chalk from "chalk"
-import { Command } from "commander"
+import path from "path"
+import { execa } from "execa"
 import fs from "fs-extra"
-import inquirer from "inquirer"
+import { type PackageJson } from "type-fest"
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+import { runCli } from "@/cli/index.js"
+import { createProject } from "@/helpers/create-project.js"
+import { initializeGit } from "@/helpers/git.js"
+import { installDependencies } from "@/helpers/install-dependencies.js"
+import { logNextSteps } from "@/helpers/log-next-steps.js"
+import { setImportAlias } from "@/helpers/set-import-alias.js"
+import { buildPkgInstallerMap } from "@/installers/index.js"
+import { getVersion } from "@/utils/get-tnt-version.js"
+import { getUserPkgManager } from "@/utils/get-user-pkg-manager.js"
+import { logger } from "@/utils/logger.js"
+import { parseNameAndPath } from "@/utils/parse-name-and-path.js"
+import { renderTitle } from "@/utils/render-title.js"
+import {
+  getNpmVersion,
+  renderVersionWarning,
+} from "@/utils/render-version-warning.js"
 
-const program = new Command()
+type CTNTAPackageJSON = PackageJson & {
+  ctntaMetadata?: {
+    initVersion: string
+  }
+}
 
-program
-  .name("create-tnt-app")
-  .version("1.0.0")
-  .description("CLI to scaffold a new TNT or TNT-Powered project")
+async function main() {
+  const npmVersion = await getNpmVersion()
+  const pkgManager = getUserPkgManager()
+  renderTitle()
 
-program
-  .argument("[project-name]", "Name of the project")
-  .action(async (projectName = "my-tnt-app") => {
-    console.log(chalk.blue("\n🚀 Welcome to TNT CLI!\n"))
+  if (npmVersion) {
+    renderVersionWarning(npmVersion)
+  }
 
-    // Ask user for stack options
-    const answers = await inquirer.prompt([
-      {
-        type: "list",
-        name: "stackType",
-        message: "Which version of TNT do you want?",
-        choices: [
-          "TNT (Next.js + TypeScript + Tailwind)",
-          "TNT-Powered (With Payload CMS)",
-        ],
-      },
-      {
-        type: "confirm",
-        name: "usePrisma",
-        message: "Would you like to set up Prisma?",
-        default: true,
-      },
-    ])
+  const {
+    appName,
+    databaseProvider,
+    flags: { noGit, noInstall, importAlias },
+    packages,
+  } = await runCli()
 
-    // Determine template path
-    const templateName = answers.stackType.includes("Powered")
-      ? "tnt-powered"
-      : "tnt"
-    const templatePath = path.join(__dirname, "../templates", templateName)
-    const targetPath = path.join(process.cwd(), projectName)
+  const usePackages = buildPkgInstallerMap(packages)
 
-    console.log(chalk.green(`\n📦 Creating project in ${targetPath}...`))
+  // e.g. dir/@mono/app returns ["@mono/app", "dir/app"]
+  const [scopedAppName, appDir] = parseNameAndPath(appName)
 
-    try {
-      // Clone base template
-      await fs.copy(templatePath, targetPath)
-      console.log(chalk.green("✅ Project created successfully!"))
-
-      console.log(chalk.yellow("\n📥 Installing dependencies...\n"))
-      process.chdir(targetPath)
-      execSync("npm install", { stdio: "inherit" })
-
-      // Set up Prisma if selected
-      if (answers.usePrisma) {
-        console.log(chalk.yellow("\n🛠 Setting up Prisma...\n"))
-        execSync("npm install @prisma/client", { stdio: "inherit" })
-        execSync("npm install --save-dev prisma", { stdio: "inherit" })
-        execSync("npx prisma init", { stdio: "inherit" })
-
-        // Copy schema
-        const prismaTemplatePath = path.join(
-          __dirname,
-          "../templates/packages/prisma/schema/base.prisma"
-        )
-        const prismaTargetPath = path.join(targetPath, "prisma/schema.prisma")
-
-        if (fs.existsSync(prismaTemplatePath)) {
-          await fs.copy(prismaTemplatePath, prismaTargetPath)
-          console.log(chalk.green("✅ Custom Prisma schema applied!"))
-        }
-      }
-
-      console.log(chalk.green("\n🎉 Setup complete! Happy coding!\n"))
-    } catch (error) {
-      console.error(chalk.red("❌ Failed to create project."), error)
-    }
+  const projectDir = await createProject({
+    projectName: appDir,
+    scopedAppName,
+    packages: usePackages,
+    noInstall,
+    databaseProvider,
   })
 
-program.parse(process.argv)
+  // Write name to package.json
+  const pkgJson = fs.readJSONSync(
+    path.join(projectDir, "package.json")
+  ) as CTNTAPackageJSON
+  pkgJson.name = scopedAppName
+  pkgJson.ctntaMetadata = { initVersion: getVersion() }
+
+  // ? Bun doesn't support this field (yet)
+  if (pkgManager !== "bun") {
+    const { stdout } = await execa(pkgManager, ["-v"], {
+      cwd: projectDir,
+    })
+    pkgJson.packageManager = `${pkgManager}@${stdout.trim()}`
+  }
+
+  fs.writeJSONSync(path.join(projectDir, "package.json"), pkgJson, {
+    spaces: 2,
+  })
+
+  // update import alias in any generated files if not using the default
+  if (importAlias !== "@/") {
+    setImportAlias(projectDir, importAlias)
+  }
+
+  if (!noInstall) {
+    await installDependencies({ projectDir })
+  }
+
+  if (!noGit) {
+    await initializeGit(projectDir)
+  }
+
+  await logNextSteps({
+    projectDir,
+    projectName: appDir,
+    packages: usePackages,
+    noInstall,
+    databaseProvider,
+  })
+
+  process.exit(0)
+}
+
+main().catch((error) => {
+  logger.error("Aborting installation...")
+  if (error instanceof Error) {
+    logger.error(error)
+  } else {
+    logger.error(
+      "An unknown error occurred. Please open an issue on GitHub with the below:"
+    )
+    console.log(error)
+  }
+  process.exit(1)
+})
