@@ -98,15 +98,21 @@ We 💖 contributors! Feel free to contribute to this project but **please read
 the [Contributing Guidelines](CONTRIBUTING.md) before opening an issue or PR**
 so you understand the branching strategy and local development environment.
 
-<div align="center">
-  <a href="https://github.com/slickyeet/create-tnt-app/graphs/contributors">
+<a href="https://github.com/slickyeet/create-tnt-app/graphs/contributors">
+  <p align="center">
     <img src="https://contrib.rocks/image?repo=slickyeet/create-tnt-app" />
-  </a>
-  Made with [contrib.rocks](https://contrib.rocks)
+  </p>
+</a>
+
+<p align="center">
+  Made with <a href="https://contrib.rocks" target="_blank" rel="noopener noreferrer">contrib.rocks</a>
+</p>
+
+<div align="center">
   <a
-    rel="noopener noreferrer"
-    target="_blank"
     href="https://vercel.com/?utm_source=famlam&utm_campaign=oss"
+    target="_blank"
+    rel="noopener noreferrer"
   >
     <img
       height="34px"
