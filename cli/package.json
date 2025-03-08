@@ -18,15 +18,13 @@
   "type": "module",
   "exports": "./dist/index.js",
   "bin": {
-    "create-t3-app": "./dist/index.js"
+    "create-tnt-app": "./dist/index.js"
   },
   "files": [
     "dist",
     "template",
     "README.md",
     "LICENSE",
-    "CHANGELOG.md",
-    ".yarnrc.yml",
     "package.json"
   ],
   "engines": {

@@ -1,1 +1,140 @@
-# Create TNT App
+<div align="center">
+<picture>
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="https://raw.githubusercontent.com/SlickYeet/create-tnt-app/web/public/logo.light.png"
+  />
+  <img
+    src="https://raw.githubusercontent.com/SlickYeet/create-tnt-app/web/public/logo.dark.png"
+    width="130"
+    alt="TNT-Powered logo"
+  />
+</picture>
+
+# 🚀 TNT-Powered
+
+**The easiest way to scaffold a modern web app using the TNT-Powered stack.**
+
+Simply run `npm create tnt-app@latest` to get started!
+
+[![PRs-Welcome][contribute-image]][contribute-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]
+[![License][license-image]][license-url]
+
+</div>
+
+## 📚 Table of Contents
+
+- <a href="#whats-included">What's Included</a>
+- <a href="#getting-started">Getting Started</a>
+- <a href="#features">Features</a>
+- <a href="#documentation">Documentation</a>
+- <a href="#credits">Credits</a>
+- <a href="#license">License</a>
+
+<h2 id="whats-included">📦 What's Included</h2>
+
+---
+
+TNT-Powered installs **TypeScript, Next.js, Tailwind CSS**, along with:
+
+- ✅ **Payload CMS** - A powerful headless CMS
+- ✅ **NextAuth** - Authentication made easy
+- ✅ **Lucia Auth** - Authentication following
+  [Luca Auth Guidelines](https://lucia-auth.com/)
+- ✅ **Prisma ORM** - Database management with full type safety
+- ✅ **Drizzle ORM** - (Coming soon) A powerful database ORM for TypeScript
+- ✅ **And many more coming soon...**
+
+<h2 id="getting-started">🚀 Getting Started</h2>
+
+---
+
+To create a new project, run the following command:
+
+### npm
+
+```bash
+npm create tnt-app@latest
+```
+
+### yarn
+
+```bash
+yarn create tnt-app
+```
+
+### pnpm
+
+```bash
+pnpm create tnt-app@latest
+```
+
+### bun
+
+```bash
+bun create tnt-app@latest
+```
+
+For more information, visit the [docs](https://tnt.famlam.ca/docs/installation).
+
+<h2 id="features">🛠 Features</h2>
+
+---
+
+- 🎯 **Easy to Use** - Interactive CLI for selecting tools
+- 📦 **Preconfigured Setup** - Comes ready with modern web dev tools
+- 🚀 **Extendable** - More packages coming soon!
+
+---
+
+<h2 id="documentation">📖 Documentation</h2>
+
+Full documentation is available at [tnt.famlam.ca](https://tnt.famlam.ca/docs)
+(coming soon).
+
+---
+
+<h2 id="credits">❤️ Credits</h2>
+
+Huge thanks to [Theo]() and the [T3 Stack]() for their amazing work. TNT-Powered
+builds on the principles of create-t3-app, bringing even more flexibility.
+
+If you like this project, giving it a ⭐ on GitHub!
+
+---
+
+<h2 id="contributors">Contributors</h2>
+
+We 💖 contributors! Feel free to contribute to this project but **please read
+the [Contributing Guidelines](CONTRIBUTING.md) before opening an issue or PR**
+so you understand the branching strategy and local development environment.
+
+<div align="center">
+  <a href="https://github.com/slickyeet/create-tnt-app/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=slickyeet/create-tnt-app" />
+  </a>
+  Made with [contrib.rocks](https://contrib.rocks)
+  <a
+    rel="noopener noreferrer"
+    target="_blank"
+    href="https://vercel.com/?utm_source=famlam&utm_campaign=oss"
+  >
+    <img
+      height="34px"
+      src="https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg"
+      alt="Powered by vercel"
+    />
+  </a>
+</div>
+
+[contribute-image]: https://img.shields.io/badge/PRs-welcome-blue.svg
+[contribute-url]:
+  https://github.com/SlickYeet/create-tnt-app/blob/main/CONTRIBUTING.md
+[npm-image]: https://img.shields.io/npm/v/tnt-app?color=0b7285&logoColor=0b7285
+[npm-url]: https://www.npmjs.com/package/tnt-app
+[license-image]:
+  https://img.shields.io/github/license/SlickYeet/create-tnt-app?color=red
+[license-url]: https://github.com/SlickYeet/create-tnt-app/blob/main/LICENSE
+[downloads-image]:
+  https://img.shields.io/npm/dm/tnt-app?color=364fc7&logoColor=364fc7
