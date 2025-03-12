@@ -2,10 +2,10 @@
 <picture>
   <source
     media="(prefers-color-scheme: dark)"
-    srcset="https://raw.githubusercontent.com/SlickYeet/create-tnt-stack/web/public/logo.light.png"
+    srcset="https://github.com/SlickYeet/create-tnt-stack/blob/8fbac6741f1a0003bbd36e512e8a859b52db0793/web/public/logo.light.png"
   />
   <img
-    src="https://raw.githubusercontent.com/SlickYeet/create-tnt-stack/web/public/logo.dark.png"
+    src="https://github.com/SlickYeet/create-tnt-stack/blob/8fbac6741f1a0003bbd36e512e8a859b52db0793/web/public/logo.dark.png"
     width="130"
     alt="TNT-Powered logo"
   />
