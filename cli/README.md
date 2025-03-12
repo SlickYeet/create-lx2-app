@@ -72,7 +72,8 @@ pnpm create tnt-stack@latest
 bun create tnt-stack@latest
 ```
 
-For more information, visit the [docs](https://tnt.famlam.ca/docs/installation).
+For more information, visit the
+[docs](https://create.tntstack.org/docs/installation).
 
 <h2 id="features">🛠 Features</h2>
 
@@ -82,8 +83,8 @@ For more information, visit the [docs](https://tnt.famlam.ca/docs/installation).
 
 <h2 id="documentation">📖 Documentation</h2>
 
-Full documentation is available at [tnt.famlam.ca](https://tnt.famlam.ca/docs)
-(coming soon).
+Full documentation is available at
+[create.tntstack.org](https://create.tntstack.org/docs) (coming soon).
 
 <h2 id="credits">❤️ Credits</h2>
 

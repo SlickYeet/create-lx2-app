@@ -70,7 +70,8 @@ integrations.
 ## Documentation
 
 For detailed usage instructions, configuration options, and advanced features,
-check out the full documentation at [tnt.famlam.ca](https://tnt.famlam.ca/docs).
+check out the full documentation at
+[create.tntstack.org](https://create.tntstack.org/docs).
 
 ### Docs Highlights:
 

@@ -54,7 +54,7 @@ export default function HomePage() {
           </a>
           <a
             className="flex h-10 items-center justify-center rounded-full border border-solid border-black/[.08] px-4 text-sm transition-colors hover:border-transparent hover:bg-[#f2f2f2] sm:h-12 sm:min-w-44 sm:px-5 sm:text-base dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
-            href="https://tnt.famlam.ca/docs"
+            href="https://create.tntstack.org/docs"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -65,7 +65,7 @@ export default function HomePage() {
       <footer className="row-start-3 flex flex-wrap items-center justify-center gap-6">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://tnt.famlam.ca/docs"
+          href="https://create.tntstack.org/docs"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -80,7 +80,7 @@ export default function HomePage() {
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://tnt.famlam.ca/docs"
+          href="https://create.tntstack.org/docs"
           target="_blank"
           rel="noopener noreferrer"
         >
