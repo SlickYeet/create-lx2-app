@@ -9,7 +9,7 @@ import {
 } from "lucide-react"
 
 export const GITHUB_CREATE_TNT_APP_REPO =
-  "https://github.com/SlickYeet/create-tnt-app"
+  "https://github.com/SlickYeet/create-tnt-stack"
 
 export type FeatureType = {
   title: string
@@ -90,9 +90,9 @@ export const FEATURES: FeatureType[] = [
 //     label: "Usage",
 //     items: [
 //       {
-//         id: "create-tnt-app",
-//         label: "create-tnt-app",
-//         href: "/docs#create-tnt-app",
+//         id: "create-tnt-stack",
+//         label: "create-tnt-stack",
+//         href: "/docs#create-tnt-stack",
 //       },
 //       {
 //         id: "templates",
@@ -199,9 +199,9 @@ export const SECTIONS = [
     href: "/docs#usage",
     items: [
       {
-        id: "create-tnt-app",
-        label: "create-tnt-app",
-        href: "/docs#create-tnt-app",
+        id: "create-tnt-stack",
+        label: "create-tnt-stack",
+        href: "/docs#create-tnt-stack",
       },
       {
         id: "templates",

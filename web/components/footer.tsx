@@ -23,7 +23,7 @@ export function Footer() {
     const fetchVersion = async () => {
       try {
         // Replace with actual GitHub API call
-        // const response = await fetch("https://api.github.com/repos/SlickYeet/create-tnt-app/releases/latest")
+        // const response = await fetch("https://api.github.com/repos/SlickYeet/create-tnt-stack/releases/latest")
         // const data = await response.json()
         // setVersion(data.tag_name)
 

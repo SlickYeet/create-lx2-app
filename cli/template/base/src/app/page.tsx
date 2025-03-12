@@ -95,7 +95,7 @@ export default function HomePage() {
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://tnt.famlam.ca"
+          href="https://create.tntstack.org"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -106,7 +106,7 @@ export default function HomePage() {
             width={16}
             height={16}
           />
-          Go to create.tnt.app →
+          Go to create.tntstack.org →
         </a>
       </footer>
     </div>

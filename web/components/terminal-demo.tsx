@@ -12,7 +12,7 @@ type TerminalStep = {
 
 const terminalSteps: TerminalStep[] = [
   {
-    command: "npx create-tnt-app my-app",
+    command: "npx create-tnt-stack my-app",
     output: ["Creating a new TNT project in ./my-app"],
     delay: 1000,
   },

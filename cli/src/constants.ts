@@ -12,5 +12,5 @@ export const TITLE_TEXT = `
  | (__|   / _| / _ \\| | | _|    | | | .\` | | |    / _ \\|  _/  _/
   \\___|_|_\\___/_/ \\_\\_| |___|   |_| |_|\\_| |_|   /_/ \\_\\_| |_|
 `
-export const DEFAULT_APP_NAME = "my-tnt-app"
-export const CREATE_TNT_APP = "create-tnt-app"
+export const DEFAULT_APP_NAME = "my-tnt-stack"
+export const CREATE_TNT_APP = "create-tnt-stack"

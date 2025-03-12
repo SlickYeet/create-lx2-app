@@ -37,7 +37,7 @@ You can install the CLI tool via `npm` or `npx`.
 Run the following command to create a new project:
 
 ```bash
-npx create-tnt-app@latest
+npx create-tnt-stack@latest
 ```
 
 ### Using npm (For Global Installation)
@@ -51,7 +51,7 @@ npm install -g @ctnta/cli
 Then, you can create a new project:
 
 ```bash
-create-tnt-app
+create-tnt-stack
 ```
 
 ## Usage
@@ -60,7 +60,7 @@ Once installed, you can run the CLI to create a new project by choosing the base
 template and configuration options. Here’s a basic usage example:
 
 ```bash
-create-tnt-app
+create-tnt-stack
 ```
 
 You'll be prompted with a series of questions to customize your app, including

@@ -76,7 +76,7 @@ export async function runCli(): Promise<CliResults> {
     )
     .option(
       "-y, --default",
-      "Bypass the CLI and use all default options to bootstrap a new tnt-app",
+      "Bypass the CLI and use all default options to bootstrap a new tnt-stack",
       false
     )
     /** START CI-FLAGS */
@@ -115,7 +115,7 @@ export async function runCli(): Promise<CliResults> {
 
   if (process.env.npm_config_user_agent?.startsWith("yarn/3")) {
     logger.warn(`  WARNING: It looks like you are using Yarn 3. This is currently not supported,
-      and likely to result in a crash. Please run create-tnt-app with another
+      and likely to result in a crash. Please run create-tnt-stack with another
       package manager such as pnpm, npm, or Yarn Classic.
       See: https://github.com/t3-oss/create-t3-app/issues/57`)
   }
@@ -152,11 +152,11 @@ export async function runCli(): Promise<CliResults> {
 
   // Explained below why this is in a try/catch block
   try {
-    // The url `https://create.tnt.app/installation#experimental-usage` is not yet available
+    // The url `https://create.tntstack.org/installation#experimental-usage` is not yet available
     if (process.env.TERM_PROGRAM?.toLowerCase().includes("mintty")) {
       logger.warn(`  WARNING: It looks like you are using MinTTY, which is non-interactive. This is most likely because you are
     using Git Bash. If that's that case, please use Git Bash from another terminal, such as Windows Terminal. Alternatively, you
-    can provide the arguments from the CLI directly: https://create.tnt.app/installation#experimental-usage to skip the prompts.`)
+    can provide the arguments from the CLI directly: https://create.tntstack.org/installation#experimental-usage to skip the prompts.`)
 
       throw new IsTTYError("Non-interactive environment")
     }
@@ -261,7 +261,7 @@ export async function runCli(): Promise<CliResults> {
       },
     }
   } catch (error) {
-    // If the user is not calling create-tnt-app from an interactive terminal, inquirer will throw an IsTTYError
+    // If the user is not calling create-tnt-stack from an interactive terminal, inquirer will throw an IsTTYError
     // If this happens, we catch the error, tell the user what has happened, and then continue to run the program with a default tnt app
     if (error instanceof IsTTYError) {
       logger.warn(`${CREATE_TNT_APP} needs an interactive terminal to run.`)

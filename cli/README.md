@@ -2,10 +2,10 @@
 <picture>
   <source
     media="(prefers-color-scheme: dark)"
-    srcset="https://raw.githubusercontent.com/SlickYeet/create-tnt-app/web/public/logo.light.png"
+    srcset="https://raw.githubusercontent.com/SlickYeet/create-tnt-stack/web/public/logo.light.png"
   />
   <img
-    src="https://raw.githubusercontent.com/SlickYeet/create-tnt-app/web/public/logo.dark.png"
+    src="https://raw.githubusercontent.com/SlickYeet/create-tnt-stack/web/public/logo.dark.png"
     width="130"
     alt="TNT-Powered logo"
   />
@@ -15,7 +15,7 @@
 
 **The easiest way to scaffold a modern web app using the TNT-Powered stack.**
 
-Simply run `npm create tnt-app@latest` to get started!
+Simply run `npm create tnt-stack@latest` to get started!
 
 [![PRs-Welcome][contribute-image]][contribute-url]
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]
@@ -51,25 +51,25 @@ To create a new project, run the following command:
 ### npm
 
 ```bash
-npm create tnt-app@latest
+npm create tnt-stack@latest
 ```
 
 ### yarn
 
 ```bash
-yarn create tnt-app
+yarn create tnt-stack
 ```
 
 ### pnpm
 
 ```bash
-pnpm create tnt-app@latest
+pnpm create tnt-stack@latest
 ```
 
 ### bun
 
 ```bash
-bun create tnt-app@latest
+bun create tnt-stack@latest
 ```
 
 For more information, visit the [docs](https://tnt.famlam.ca/docs/installation).
@@ -98,9 +98,9 @@ We 💖 contributors! Feel free to contribute to this project but **please read
 the [Contributing Guidelines](CONTRIBUTING.md) before opening an issue or PR**
 so you understand the branching strategy and local development environment.
 
-<a href="https://github.com/slickyeet/create-tnt-app/graphs/contributors">
+<a href="https://github.com/slickyeet/create-tnt-stack/graphs/contributors">
   <p align="center">
-    <img src="https://contrib.rocks/image?repo=slickyeet/create-tnt-app" />
+    <img src="https://contrib.rocks/image?repo=slickyeet/create-tnt-stack" />
   </p>
 </a>
 
@@ -124,12 +124,12 @@ so you understand the branching strategy and local development environment.
 
 [contribute-image]: https://img.shields.io/badge/PRs-welcome-blue.svg
 [contribute-url]:
-  https://github.com/SlickYeet/create-tnt-app/blob/main/CONTRIBUTING.md
+  https://github.com/SlickYeet/create-tnt-stack/blob/main/CONTRIBUTING.md
 [npm-image]:
-  https://img.shields.io/npm/v/create-tnt-app?color=0b7285&logoColor=0b7285
-[npm-url]: https://www.npmjs.com/package/create-tnt-app
+  https://img.shields.io/npm/v/create-tnt-stack?color=0b7285&logoColor=0b7285
+[npm-url]: https://www.npmjs.com/package/create-tnt-stack
 [license-image]:
-  https://img.shields.io/github/license/SlickYeet/create-tnt-app?color=red
-[license-url]: https://github.com/SlickYeet/create-tnt-app/blob/main/LICENSE
+  https://img.shields.io/github/license/SlickYeet/create-tnt-stack?color=red
+[license-url]: https://github.com/SlickYeet/create-tnt-stack/blob/main/LICENSE
 [downloads-image]:
-  https://img.shields.io/npm/dm/tnt-app?color=364fc7&logoColor=364fc7
+  https://img.shields.io/npm/dm/tnt-stack?color=364fc7&logoColor=364fc7

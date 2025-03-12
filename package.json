@@ -18,10 +18,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/slickyeet/create-tnt-app"
+    "url": "https://github.com/slickyeet/create-tnt-stack"
   },
   "keywords": [
-    "create-tnt-app",
+    "create-tnt-stack",
     "tnt-stack",
     "typescript",
     "next.js",
@@ -33,13 +33,13 @@
   "packageManager": "bun@1.2.4",
   "scripts": {
     "build": "turbo run build",
-    "build:cli": "turbo --filter=create-tnt-app build",
+    "build:cli": "turbo --filter=create-tnt-stack build",
     "build:web": "turbo --filter=web build",
     "start": "turbo start",
-    "start:cli": "turbo --filter=create-tnt-app start",
+    "start:cli": "turbo --filter=create-tnt-stack start",
     "start:web": "turbo --filter=web start",
     "dev": "turbo dev",
-    "dev:cli": "turbo --filter=create-tnt-app dev",
+    "dev:cli": "turbo --filter=create-tnt-stack dev",
     "dev:web": "turbo --filter=web dev",
     "lint": "turbo run lint",
     "format": "turbo format && prettier --write '*.{cjs,json}' --ignore-unknown --no-error-on-unmatched-pattern",

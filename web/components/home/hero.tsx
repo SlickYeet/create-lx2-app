@@ -13,7 +13,7 @@ import { GITHUB_CREATE_TNT_APP_REPO } from "@/constants"
 export function Hero() {
   return (
     <section
-      id="create-tnt-app"
+      id="create-tnt-stack"
       className="relative overflow-hidden py-20 md:py-28"
     >
       <div className="from-background to-background/50 absolute inset-0 z-0 bg-linear-to-br" />
@@ -59,7 +59,7 @@ export function Hero() {
             className="mb-12 flex w-full max-w-md flex-col gap-4 sm:flex-row"
           >
             <CodeSnippet
-              code="npx create-tnt-app"
+              code="npx create-tnt-stack"
               showControls={{
                 showCopyButton: true,
                 showWrapButton: false,

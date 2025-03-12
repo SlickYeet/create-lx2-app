@@ -41,7 +41,7 @@ export function Usage() {
               viewport={{ once: true }}
             >
               <CodeSnippet
-                code="npx create-tnt-app my-app"
+                code="npx create-tnt-stack my-app"
                 title="Create a new project"
                 language="bash"
                 showControls={{
@@ -73,7 +73,7 @@ export function Usage() {
               viewport={{ once: true }}
             >
               <CodeSnippet
-                code="create-tnt-app my-app --template tnt-basic"
+                code="create-tnt-stack my-app --template tnt-basic"
                 title="Using a specific template"
                 language="bash"
                 showControls={{

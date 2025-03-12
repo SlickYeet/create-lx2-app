@@ -24,7 +24,7 @@ export function parseNameAndPath(rawInput: string) {
 
   let appName = paths[paths.length - 1]!
 
-  // If the user ran `npx create-tnt-app .` or similar, the appName should be the current directory
+  // If the user ran `npx create-tnt-stack .` or similar, the appName should be the current directory
   if (appName === ".") {
     const parsedCwd = pathModule.resolve(process.cwd())
     appName = pathModule.basename(parsedCwd)
