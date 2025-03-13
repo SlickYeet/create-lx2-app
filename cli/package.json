@@ -1,6 +1,6 @@
 {
   "name": "create-tnt-stack",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Create web application with the TNT-Powered stack",
   "license": "MIT",
   "repository": {
@@ -18,7 +18,7 @@
   "type": "module",
   "exports": "./dist/index.js",
   "bin": {
-    "create-tnt-stack": "./dist/index.js"
+    "create-tnt-stack": "dist/index.js"
   },
   "files": [
     "dist",
