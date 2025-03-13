@@ -1,7 +1,5 @@
-import fs from "fs"
 import path from "path"
 
-import { PKG_ROOT } from "@/constants.js"
 import { installPackages } from "@/helpers/install-packages.js"
 import { scaffoldProject } from "@/helpers/scaffold-project.js"
 import {
