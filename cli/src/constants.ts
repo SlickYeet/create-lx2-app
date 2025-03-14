@@ -13,4 +13,4 @@ export const TITLE_TEXT = `   ___ ___ ___   _ _____ ___   _____ _  _ _____   ___
 `
 
 export const DEFAULT_APP_NAME = "my-tnt-stack"
-export const CREATE_TNT_APP = "create-tnt-stack"
+export const CREATE_TNT_STACK = "create-tnt-stack"

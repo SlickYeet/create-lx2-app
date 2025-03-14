@@ -4,7 +4,7 @@ import { execa } from "execa"
 import fs from "fs-extra"
 import { type PackageJson } from "type-fest"
 
-import { runCli } from "@/cli/index.js"
+import { runCli } from "@/core/index.js"
 import { createProject } from "@/helpers/create-project.js"
 import { initializeGit } from "@/helpers/git.js"
 import { installDependencies } from "@/helpers/install-dependencies.js"
@@ -38,9 +38,9 @@ async function main() {
 
   const {
     appName,
-    databaseProvider,
-    flags: { noGit, noInstall, importAlias },
     packages,
+    flags: { noGit, noInstall, importAlias },
+    databaseProvider,
   } = await runCli()
 
   const usePackages = buildPkgInstallerMap(packages)
@@ -57,19 +57,18 @@ async function main() {
   })
 
   // Write name to package.json
-  const pkgJson = fs.readJSONSync(
+  const pkgJson = fs.readJsonSync(
     path.join(projectDir, "package.json")
   ) as CTNTAPackageJSON
   pkgJson.name = scopedAppName
-  pkgJson.ctntaMetadata = { initVersion: getVersion() }
-
-  // ? Bun doesn't support this field (yet)
-  if (pkgManager !== "bun") {
-    const { stdout } = await execa(pkgManager, ["-v"], {
-      cwd: projectDir,
-    })
-    pkgJson.packageManager = `${pkgManager}@${stdout.trim()}`
+  pkgJson.ctntaMetadata = {
+    initVersion: getVersion(),
   }
+
+  const { stdout } = await execa(pkgManager, ["-v"], {
+    cwd: projectDir,
+  })
+  pkgJson.packageManager = `${pkgManager}@${stdout.trim()}`
 
   fs.writeJSONSync(path.join(projectDir, "package.json"), pkgJson, {
     spaces: 2,
@@ -102,12 +101,12 @@ async function main() {
 main().catch((error) => {
   logger.error("Aborting installation...")
   if (error instanceof Error) {
-    logger.error(error)
+    logger.error(error.message)
   } else {
     logger.error(
       "An unknown error occurred. Please open an issue on GitHub with the below:"
     )
-    console.log(error)
+    console.error(error)
   }
   process.exit(1)
 })

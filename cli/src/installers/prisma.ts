@@ -50,8 +50,10 @@ export const prismaInstaller: Installer = ({
 
   const clientSrc = path.join(packagesDir, "src/server/db/db-prisma.ts")
   const clientDest = path.join(projectDir, "src/server/db/index.ts")
+  fs.mkdirSync(path.dirname(clientDest), { recursive: true })
+  fs.writeFileSync(clientDest, fs.readFileSync(clientSrc, "utf-8"))
 
-  // add postinstall and push script to package.json
+  // Add postinstall and push script to package.json
   const packageJsonPath = path.join(projectDir, "package.json")
 
   /**
@@ -67,7 +69,6 @@ export const prismaInstaller: Installer = ({
     "db:migrate": "prisma migrate deploy",
   }
 
-  fs.copy(clientSrc, clientDest)
   fs.writeJSONSync(packageJsonPath, packageJsonContent, {
     spaces: 2,
   })

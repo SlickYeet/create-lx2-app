@@ -4,7 +4,7 @@ const validationRegExp =
   /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/
 
 // Validate a string against allowed package.json names
-export function validateAppName(rawInput: string) {
+export function validateAppName(rawInput: string): string | boolean {
   const input = removeTrailingSlash(rawInput)
   const paths = input.split("/")
 
@@ -17,7 +17,7 @@ export function validateAppName(rawInput: string) {
   }
 
   if (input == "." || validationRegExp.test(appName ?? "")) {
-    return
+    return true
   } else {
     return "App name must consist of only lowercase alphanumeric characters, '-', and '_'"
   }
