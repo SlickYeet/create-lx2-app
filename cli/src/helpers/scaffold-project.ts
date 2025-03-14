@@ -1,5 +1,5 @@
 import path from "path"
-import * as p from "@clack/prompts"
+import { confirm, select } from "@inquirer/prompts"
 import chalk from "chalk"
 import fs from "fs-extra"
 import ora from "ora"
@@ -8,7 +8,7 @@ import { PKG_ROOT } from "@/constants.js"
 import { type InstallerOptions } from "@/installers/index.js"
 import { logger } from "@/utils/logger.js"
 
-// This bootstraps teh base Next.js app
+// This bootstraps the base Next.js app
 export async function scaffoldProject({
   projectName,
   projectDir,
@@ -33,42 +33,39 @@ export async function scaffoldProject({
         )
     } else {
       spinner.stopAndPersist()
-      const overwriteDir = await p.select({
+      const overwriteDir = await select({
         message: `${chalk.redBright.bold("Warning:")} ${chalk.cyan.bold(
           projectName
         )} already exists and isn't empty. How would you like to proceed?`,
-        options: [
-          {
-            value: "abort",
-            label: "Abort installation (recommended)",
-          },
+        choices: [
+          { value: "abort", name: "Abort installation (recommended)" },
           {
             value: "clear",
-            label: "Clear the directory and continue installation",
+            name: "Clear the directory and continue installation",
           },
           {
             value: "overwrite",
-            label: "Continue installation and overwrite conflicting files",
+            name: "Continue installation and overwrite conflicting files",
           },
         ],
-        initialValue: "abort",
+        default: "abort",
       })
 
-      if (p.isCancel(overwriteDir) || overwriteDir === "abort") {
+      if (overwriteDir === "abort") {
         spinner.fail("Aborting installation...")
         process.exit(1)
       }
 
-      const confirmOverwriteDir = await p.confirm({
+      const confirmOverwriteDir = await confirm({
         message: `Are you sure you want to ${
           overwriteDir === "clear"
             ? "clear the directory"
             : "overwrite conflicting files"
         }`,
-        initialValue: false,
+        default: false,
       })
 
-      if (p.isCancel(confirmOverwriteDir) || !confirmOverwriteDir) {
+      if (!confirmOverwriteDir) {
         spinner.fail("Aborting installation...")
         process.exit(1)
       }

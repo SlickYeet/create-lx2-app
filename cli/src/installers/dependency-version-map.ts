@@ -8,7 +8,7 @@ export const dependencyVersionMap = {
   "@auth/prisma-adapter": "^2.8.0",
 
   // Prisma
-  prisma: "^6.4.1",
-  "@prisma/client": "^6.4.1",
+  prisma: "^6.5.0",
+  "@prisma/client": "^6.5.0",
 } as const
 export type AvailableDependencies = keyof typeof dependencyVersionMap

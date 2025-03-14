@@ -1,4 +1,3 @@
-import crypto from "node:crypto"
 import path from "path"
 import fs from "fs-extra"
 
@@ -7,8 +6,8 @@ import { type DatabaseProvider, type Installer } from "@/installers/index.js"
 
 export const envVariablesInstaller: Installer = ({
   projectDir,
-  packages,
   scopedAppName,
+  packages,
   databaseProvider,
 }) => {
   const usingNextAuth = packages?.nextAuth.inUse
@@ -69,17 +68,17 @@ function getEnvContent(
   databaseProvider: DatabaseProvider
 ) {
   let content = `
-# When adding additional environment variables, the schema in "/src/env.js"
-# should be updated accordingly.
-`
+  # When adding additional environment variables, the schema in "/src/env.js"
+  # should be updated accordingly.
+  `
     .trim()
     .concat("\n")
 
   if (usingPrisma)
     content += `
-# Prisma
-# https://www.prisma.io/docs/reference/database-reference/connection-urls#env
-`
+  # Prisma
+  # https://www.prisma.io/docs/reference/database-reference/connection-urls#env
+  `
 
   if (usingPrisma) {
     if (databaseProvider === "mysql") {
@@ -95,35 +94,35 @@ function getEnvContent(
 
   if (usingNextAuth)
     content += `
-# Next Auth
-# You can generate a new secret on the command line with:
-# npx auth secret
-# https://next-auth.js.org/configuration/options#secret
-AUTH_SECRET=""
+  # Next Auth
+  # You can generate a new secret on the command line with:
+  # npx auth secret
+  # https://next-auth.js.org/configuration/options#secret
+  AUTH_SECRET=""
 
-# Next Auth Discord Provider
-AUTH_DISCORD_ID=""
-AUTH_DISCORD_SECRET=""
-`
+  # Next Auth Discord Provider
+  AUTH_DISCORD_ID=""
+  AUTH_DISCORD_SECRET=""
+  `
 
   if (!usingNextAuth && !usingPrisma)
     content += `
-# Example:
-# SERVERVAR="foo"
-# NEXT_PUBLIC_CLIENTVAR="bar"
-`
+  # Example:
+  # SERVERVAR="foo"
+  # NEXT_PUBLIC_CLIENTVAR="bar"
+  `
 
   return content
 }
 
 const exampleEnvContent = `
-# Since the ".env" file is gitignored, you can use the ".env.example" file to
-# build a new ".env" file when you clone the repo. Keep this file up-to-date
-# when you add new variables to \`.env\`.
+  # Since the ".env" file is gitignored, you can use the ".env.example" file to
+  # build a new ".env" file when you clone the repo. Keep this file up-to-date
+  # when you add new variables to \`.env\`.
 
-# This file will be committed to version control, so make sure not to have any
-# secrets in it. If you are cloning this repo, create a copy of this file named
-# ".env" and populate it with your secrets.
-`
+  # This file will be committed to version control, so make sure not to have any
+  # secrets in it. If you are cloning this repo, create a copy of this file named
+  # ".env" and populate it with your secrets.
+  `
   .trim()
   .concat("\n\n")

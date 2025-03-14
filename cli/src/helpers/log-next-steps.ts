@@ -42,7 +42,7 @@ export const logNextSteps = async ({
     )
   }
 
-  if (["npm", "bun"].includes(pkgManager)) {
+  if (["npm"].includes(pkgManager)) {
     logger.info(`  ${pkgManager} run dev`)
   } else {
     logger.info(`  ${pkgManager} dev`)

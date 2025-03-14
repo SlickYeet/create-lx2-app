@@ -1,7 +1,8 @@
-import { envVariablesInstaller } from "@/installers/env-vars.js"
-import { nextAuthInstaller } from "@/installers/next-auth.js"
-import { prismaInstaller } from "@/installers/prisma.js"
-import { PackageManager } from "@/utils/get-user-pkg-manager.js"
+import { type PackageManager } from "@/utils/get-user-pkg-manager.js"
+
+import { envVariablesInstaller } from "./env-vars.js"
+import { nextAuthInstaller } from "./next-auth.js"
+import { prismaInstaller } from "./prisma.js"
 
 // Turning this into a const allows the list to be iterated over for programmatically creating prompt options
 // Should increase extensibility in the future
@@ -14,10 +15,10 @@ export type DatabaseProvider = (typeof databaseProviders)[number]
 export interface InstallerOptions {
   projectDir: string
   projectName: string
-  pkgManager: PackageManager
-  noInstall: boolean
-  packages?: PkgInstallerMap
   scopedAppName: string
+  pkgManager: PackageManager
+  packages?: PkgInstallerMap
+  noInstall: boolean
   databaseProvider: DatabaseProvider
 }
 

@@ -1,7 +1,7 @@
-import * as p from "@clack/prompts"
+import { confirm, input, select } from "@inquirer/prompts"
 import { Command } from "commander"
 
-import { CREATE_TNT_APP, DEFAULT_APP_NAME } from "@/constants.js"
+import { CREATE_TNT_STACK, DEFAULT_APP_NAME } from "@/constants.js"
 import {
   databaseProviders,
   type AvailablePackages,
@@ -18,14 +18,15 @@ interface CliFlags {
   noGit: boolean
   noInstall: boolean
   default: boolean
-  importAlias: string
 
   /** @internal Used in CI. */
   CI: boolean
   /** @internal Used in CI. */
+  nextAuth: boolean
+  /** @internal Used in CI. */
   prisma: boolean
   /** @internal Used in CI. */
-  nextAuth: boolean
+  importAlias: string
   /** @internal Used in CI. */
   dbProvider: DatabaseProvider
 }
@@ -39,14 +40,14 @@ interface CliResults {
 
 const defaultOptions: CliResults = {
   appName: DEFAULT_APP_NAME,
-  packages: ["prisma"],
+  packages: [],
   flags: {
     noGit: false,
     noInstall: false,
     default: false,
     CI: false,
-    prisma: false,
     nextAuth: false,
+    prisma: false,
     importAlias: "@/",
     dbProvider: "sqlite",
   },
@@ -57,9 +58,9 @@ export async function runCli(): Promise<CliResults> {
   const cliResults = defaultOptions
 
   const program = new Command()
-    .name(CREATE_TNT_APP)
+    .name(CREATE_TNT_STACK)
     .description("CLI for scaffolding new web apps with the TNT-Powered stack")
-    .version(getVersion(), "-v, --version", "Display the version number")
+    .version(getVersion(), "-v, --version", "Output the current version of TNT")
     .argument(
       "[dir]",
       "The name of the application, as well as the name of the directory to create"
@@ -99,10 +100,11 @@ export async function runCli(): Promise<CliResults> {
     )
     /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
     .option(
-      "-i, --import-alias",
+      "-i, --import-alias [alias]",
       "Explicitly tell the CLI to use a custom import alias",
       defaultOptions.flags.importAlias
     )
+    /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
     .option(
       "--dbProvider [provider]",
       `Choose a database provider to use. Possible values: ${databaseProviders.join(
@@ -155,120 +157,103 @@ export async function runCli(): Promise<CliResults> {
     // The url `https://create.tntstack.org/installation#experimental-usage` is not yet available
     if (process.env.TERM_PROGRAM?.toLowerCase().includes("mintty")) {
       logger.warn(`  WARNING: It looks like you are using MinTTY, which is non-interactive. This is most likely because you are
-    using Git Bash. If that's that case, please use Git Bash from another terminal, such as Windows Terminal. Alternatively, you
-    can provide the arguments from the CLI directly: https://create.tntstack.org/installation#experimental-usage to skip the prompts.`)
+          using Git Bash. If that's that case, please use Git Bash from another terminal, such as Windows Terminal. Alternatively, you
+          can provide the arguments from the CLI directly: https://create.tntstack.org/installation#experimental-usage to skip the prompts.`)
 
       throw new IsTTYError("Non-interactive environment")
     }
 
-    // if --CI flag is set, we are running in CI mode and should not prompt the user
-
     const pkgManager = getUserPkgManager()
 
-    const project = await p.group(
-      {
-        ...(!cliProvidedName && {
-          name: () =>
-            p.text({
-              message: `What will your project be called? (e.g. ${DEFAULT_APP_NAME})`,
-              defaultValue: cliProvidedName || DEFAULT_APP_NAME,
-              validate: (input) => validateAppName(input || DEFAULT_APP_NAME),
-            }),
-        }),
-        authentication: () => {
-          return p.select({
-            message: "What authentication provider would you like to use?",
-            options: [
-              { value: "none", label: "None" },
-              { value: "nextAuth", label: "NextAuth.js" },
-              { value: "lucia", label: "Lucia Auth (not a library)" },
-            ],
-            initialValue: "none",
-          })
-        },
-        database: () => {
-          return p.select({
-            message: "What database ORM would you like to use?",
-            options: [
-              { value: "none", label: "None" },
-              { value: "prisma", label: "Prisma" },
-            ],
-            initialValue: "none",
-          })
-        },
-        databaseProvider: ({ results }) => {
-          if (results.database === "none") return
-          return p.select({
-            message: "",
-            options: [
-              { value: "sqlite", label: "SQLite (LibSQL)" },
-              { value: "mysql", label: "MySQL" },
-              { value: "postgresql", label: "PostgreSQL" },
-            ],
-            initialValue: "sqlite",
-          })
-        },
-        ...(!cliResults.flags.noGit && {
-          git: () => {
-            return p.confirm({
-              message:
-                "Should be initialize a new Git repository and stage the changes?",
-              initialValue: !defaultOptions.flags.noGit,
-            })
-          },
-        }),
-        ...(!cliResults.flags.noInstall && {
-          install: () => {
-            return p.confirm({
-              message:
-                `Should we run '${pkgManager}` +
-                (pkgManager === "yarn" ? `'?` : ` install' for you?`),
-              initialValue: !defaultOptions.flags.noInstall,
-            })
-          },
-        }),
-        importAlias: () => {
-          return p.text({
-            message: "What import alias would you like to use?",
-            defaultValue: defaultOptions.flags.importAlias,
-            placeholder: defaultOptions.flags.importAlias,
-            validate: validateImportAlias,
-          })
-        },
-      },
-      {
-        onCancel() {
-          process.exit(1)
-        },
-      }
-    )
+    type ProjectConfig = {
+      name?: string
+      authentication: string
+      database: string
+      databaseProvider?: DatabaseProvider
+      git?: boolean
+      noInstall?: boolean
+      importAlias: string
+    }
+
+    const project: Partial<ProjectConfig> = {}
+    if (!cliProvidedName) {
+      project.name = await input({
+        message: "What will your project be called?",
+        default: DEFAULT_APP_NAME,
+        validate: (value) => validateAppName(value),
+      })
+    }
+    project.authentication = await select({
+      message: "What authentication provider would you like to use?",
+      choices: [
+        { value: "none", name: "None" },
+        { value: "nextAuth", name: "NextAuth.js" },
+      ],
+      default: "none",
+    })
+    project.database = await select({
+      message: "What database ORM would you like to use?",
+      choices: [
+        { value: "none", name: "None" },
+        { value: "prisma", name: "Prisma" },
+      ],
+      default: "none",
+    })
+    if (project.database !== "none") {
+      project.databaseProvider = await select({
+        message: "What database provider would you like to use?",
+        choices: [
+          { value: "sqlite", name: "SQLite" },
+          { value: "mysql", name: "MySQL" },
+          { value: "postgresql", name: "PostgreSQL" },
+        ],
+        default: "sqlite",
+      })
+    }
+    if (!cliResults.flags.noGit) {
+      project.git = await confirm({
+        message: "Should we initialize a Git repository and stage the changes?",
+        default: !defaultOptions.flags.noGit,
+      })
+    }
+    if (!cliResults.flags.noInstall) {
+      project.noInstall = await confirm({
+        message:
+          `Should we run '${pkgManager}` +
+          (pkgManager === "yarn" ? `'?` : ` install' for you?`),
+        default: !defaultOptions.flags.noInstall,
+      })
+    }
+    project.importAlias = await input({
+      message: "What import alias would you like to use?",
+      default: defaultOptions.flags.importAlias,
+      validate: validateImportAlias,
+    })
 
     const packages: AvailablePackages[] = []
     if (project.authentication === "nextAuth") packages.push("nextAuth")
-    // if (project.authentication === "lucia") packages.push("lucia")
     if (project.database === "prisma") packages.push("prisma")
 
     return {
       appName: project.name ?? cliResults.appName,
       packages,
-      databaseProvider:
-        (project.databaseProvider as DatabaseProvider) || "sqlite",
       flags: {
         ...cliResults.flags,
         noGit: !project.git || cliResults.flags.noGit,
-        noInstall: !project.install || cliResults.flags.noInstall,
+        noInstall: !project.noInstall || cliResults.flags.noInstall,
         importAlias: project.importAlias ?? cliResults.flags.importAlias,
       },
+      databaseProvider: project.databaseProvider || "sqlite",
     }
   } catch (error) {
     // If the user is not calling create-tnt-stack from an interactive terminal, inquirer will throw an IsTTYError
     // If this happens, we catch the error, tell the user what has happened, and then continue to run the program with a default tnt app
     if (error instanceof IsTTYError) {
-      logger.warn(`${CREATE_TNT_APP} needs an interactive terminal to run.`)
+      logger.warn(`${CREATE_TNT_STACK} needs an interactive terminal to run.`)
 
-      const shouldContinue = await p.confirm({
+      const shouldContinue = await confirm({
         message: "Continue scaffolding with default options?",
-        initialValue: true,
+        default: true,
       })
       if (!shouldContinue) {
         logger.info("Exiting...")

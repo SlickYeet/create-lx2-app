@@ -1,6 +1,6 @@
 import { execSync } from "child_process"
 import path from "path"
-import * as p from "@clack/prompts"
+import { confirm } from "@inquirer/prompts"
 import chalk from "chalk"
 import { execa } from "execa"
 import fs from "fs-extra"
@@ -72,11 +72,11 @@ export async function initializeGit(projectDir: string) {
   if (isInside && isRoot) {
     // Dir is a root git repo
     spinner.stop()
-    const overwriteGit = await p.confirm({
+    const overwriteGit = await confirm({
       message: `${chalk.redBright.bold(
         "Warning:"
       )} Git is already initialized in "${dirName}". Initializing a new git repository would delete the previous history. Would you like to continue anyways?`,
-      initialValue: false,
+      default: false,
     })
 
     if (!overwriteGit) {
@@ -88,11 +88,11 @@ export async function initializeGit(projectDir: string) {
   } else if (isInside && !isRoot) {
     // Dir is inside a git worktree
     spinner.stop()
-    const initializeChildGitRepo = await p.confirm({
+    const initializeChildGitRepo = await confirm({
       message: `${chalk.redBright.bold(
         "Warning:"
       )} "${dirName}" is already in a git worktree. Would you still like to initialize a new git repository in this directory?`,
-      initialValue: false,
+      default: false,
     })
     if (!initializeChildGitRepo) {
       spinner.info("Skipping Git initialization.")

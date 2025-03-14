@@ -5,12 +5,12 @@ import { getUserPkgManager } from "@/utils/get-user-pkg-manager.js"
 
 // Colors brought in from vscode poimandres theme
 const poimandresTheme = {
-  blue: "#add7ff",
-  cyan: "#89ddff",
-  green: "#5de4c7",
-  magenta: "#fae4fc",
-  red: "#d0679d",
-  yellow: "#fffac2",
+  magenta: "#765bc8",
+  pink: "#a48897",
+  yellow: "#c7b561",
+  green: "#8bb8a0",
+  blue: "#4b97d5",
+  cyan: "#22b6d2",
 }
 
 export function renderTitle() {

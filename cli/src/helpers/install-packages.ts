@@ -11,7 +11,7 @@ type InstallPackagesOptions = InstallerOptions & {
   packages: PkgInstallerMap
 }
 
-// This runs the installer for all the packages that the user has selected
+// This runs the installers for all the selected packages
 export function installPackages(options: InstallPackagesOptions) {
   const { packages } = options
   logger.info("Adding boilerplate...")
