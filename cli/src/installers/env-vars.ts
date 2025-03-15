@@ -101,8 +101,8 @@ function getEnvContent(
   AUTH_SECRET=""
 
   # Next Auth Discord Provider
-  AUTH_DISCORD_ID=""
-  AUTH_DISCORD_SECRET=""
+  DISCORD_CLIENT_ID=""
+  DISCORD_CLIENT_SECRET=""
   `
 
   if (!usingNextAuth && !usingPrisma)
