@@ -1,6 +1,6 @@
 {
   "name": "create-tnt-stack",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Create web application with the TNT-Powered stack",
   "license": "MIT",
   "repository": {
@@ -37,7 +37,8 @@
     "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier '**/*.{cjs,mjs,ts,tsx,md,json}' --ignore-path ../.gitignore --ignore-unknown --no-error-on-unmatched-pattern --write",
     "typecheck": "tsc",
-    "clean": "rm -rf dist .turbo node_modules"
+    "clean": "rm -rf dist .turbo node_modules",
+    "release": "bun run clean build && npm version patch && npm publish --access public"
   },
   "dependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",

@@ -45,7 +45,8 @@
     "format": "turbo format && prettier --write '*.{cjs,json}' --ignore-unknown --no-error-on-unmatched-pattern",
     "typecheck": "turbo run check-types",
     "clean": "turbo clean && rm -rf node_modules",
-    "shadcn": "bun run --filter=web shadcn"
+    "shadcn": "bun run --filter=web shadcn",
+    "release": "bun --filter=create-tnt-stack release"
   },
   "workspaces": [
     "cli",
