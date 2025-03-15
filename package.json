@@ -46,7 +46,7 @@
     "typecheck": "turbo run check-types",
     "clean": "turbo clean && rm -rf node_modules",
     "shadcn": "bun run --filter=web shadcn",
-    "release": "bun --filter=create-tnt-stack release"
+    "release": "bun run --filter=create-tnt-stack release"
   },
   "workspaces": [
     "cli",
