@@ -2,11 +2,17 @@ import { type PackageManager } from "@/utils/get-user-pkg-manager.js"
 
 import { envVariablesInstaller } from "./env-vars.js"
 import { nextAuthInstaller } from "./next-auth.js"
+import { prettierInstaller } from "./prettier.js"
 import { prismaInstaller } from "./prisma.js"
 
 // Turning this into a const allows the list to be iterated over for programmatically creating prompt options
 // Should increase extensibility in the future
-export const availablePackages = ["nextAuth", "prisma", "envVariables"] as const
+export const availablePackages = [
+  "nextAuth",
+  "prisma",
+  "envVariables",
+  "prettier",
+] as const
 export type AvailablePackages = (typeof availablePackages)[number]
 
 export const databaseProviders = ["sqlite", "mysql", "postgresql"] as const
@@ -45,5 +51,9 @@ export const buildPkgInstallerMap = (
   envVariables: {
     inUse: true,
     installer: envVariablesInstaller,
+  },
+  prettier: {
+    inUse: packages.includes("prettier"),
+    installer: prettierInstaller,
   },
 })

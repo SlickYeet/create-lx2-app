@@ -10,5 +10,14 @@ export const dependencyVersionMap = {
   // Prisma
   prisma: "^6.5.0",
   "@prisma/client": "^6.5.0",
+
+  // Environment Variables
+  "@t3-oss/env-nextjs": "^0.12.0",
+  zod: "^3.24.2",
+
+  // Prettier
+  prettier: "^3.5.3",
+  "prettier-plugin-tailwindcss": "^0.6.11",
+  "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
 } as const
 export type AvailableDependencies = keyof typeof dependencyVersionMap

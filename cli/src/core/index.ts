@@ -26,6 +26,8 @@ interface CliFlags {
   /** @internal Used in CI. */
   prisma: boolean
   /** @internal Used in CI. */
+  prettier: boolean
+  /** @internal Used in CI. */
   importAlias: string
   /** @internal Used in CI. */
   dbProvider: DatabaseProvider
@@ -48,6 +50,7 @@ const defaultOptions: CliResults = {
     CI: false,
     nextAuth: false,
     prisma: false,
+    prettier: false,
     importAlias: "@/",
     dbProvider: "sqlite",
   },
@@ -100,6 +103,12 @@ export async function runCli(): Promise<CliResults> {
     )
     /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
     .option(
+      "--prettier [boolean]",
+      "Experimental: Boolean value if we should install Prettier. Must be used in conjunction with `--CI`.",
+      (value) => !!value && value !== "false"
+    )
+    /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
+    .option(
       "-i, --import-alias [alias]",
       "Explicitly tell the CLI to use a custom import alias",
       defaultOptions.flags.importAlias
@@ -132,8 +141,10 @@ export async function runCli(): Promise<CliResults> {
 
   /** @internal Used for CI E2E tests. */
   if (cliResults.flags.CI) {
+    cliResults.packages = []
     if (cliResults.flags.nextAuth) cliResults.packages.push("nextAuth")
     if (cliResults.flags.prisma) cliResults.packages.push("prisma")
+    if (cliResults.flags.prettier) cliResults.packages.push("prettier")
     if (databaseProviders.includes(cliResults.flags.dbProvider) === false) {
       logger.warn(
         `Incompatible database provided. Use: ${databaseProviders.join(", ")}. Exiting.`
@@ -170,7 +181,8 @@ export async function runCli(): Promise<CliResults> {
       authentication: string
       database: string
       databaseProvider?: DatabaseProvider
-      git?: boolean
+      prettier: boolean
+      noGit?: boolean
       noInstall?: boolean
       importAlias: string
     }
@@ -210,8 +222,12 @@ export async function runCli(): Promise<CliResults> {
         default: "sqlite",
       })
     }
+    project.prettier = await confirm({
+      message: "Should we install Prettier?",
+      default: !defaultOptions.flags.prettier,
+    })
     if (!cliResults.flags.noGit) {
-      project.git = await confirm({
+      project.noGit = await confirm({
         message: "Should we initialize a Git repository and stage the changes?",
         default: !defaultOptions.flags.noGit,
       })
@@ -233,13 +249,14 @@ export async function runCli(): Promise<CliResults> {
     const packages: AvailablePackages[] = []
     if (project.authentication === "nextAuth") packages.push("nextAuth")
     if (project.database === "prisma") packages.push("prisma")
+    if (project.prettier) packages.push("prettier")
 
     return {
       appName: project.name ?? cliResults.appName,
       packages,
       flags: {
         ...cliResults.flags,
-        noGit: !project.git || cliResults.flags.noGit,
+        noGit: !project.noGit || cliResults.flags.noGit,
         noInstall: !project.noInstall || cliResults.flags.noInstall,
         importAlias: project.importAlias ?? cliResults.flags.importAlias,
       },
