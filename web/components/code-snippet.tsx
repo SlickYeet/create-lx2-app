@@ -88,7 +88,7 @@ export function CodeSnippet({
       onHoverEnd={() => setIsHovering(false)}
       className={cn(
         "gradient-border relative min-h-[3.25rem] overflow-hidden rounded-lg",
-        className
+        className,
       )}
     >
       {title && (
@@ -136,7 +136,7 @@ export function CodeSnippet({
         <div
           className={cn(
             "absolute top-2 right-2 flex gap-1.5 transition-opacity duration-200",
-            showCopyButton || showWrapButton ? "opacity-100" : "opacity-0"
+            showCopyButton || showWrapButton ? "opacity-100" : "opacity-0",
           )}
           aria-hidden={!showCopyButton && !showWrapButton}
         >

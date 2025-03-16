@@ -17,7 +17,7 @@ export function DocsSidebar() {
         section.items.map((item) => ({
           id: item.id,
           element: document.getElementById(item.id),
-        }))
+        })),
       ).filter((item) => item.element)
 
       const currentItem = itemElements.find((item) => {
@@ -92,7 +92,7 @@ export function DocsSidebar() {
                         "relative block px-3 py-2 text-sm font-medium transition-colors",
                         isActive
                           ? "text-primary"
-                          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                          : "text-muted-foreground hover:bg-muted hover:text-foreground",
                       )}
                     >
                       {item.label}{" "}

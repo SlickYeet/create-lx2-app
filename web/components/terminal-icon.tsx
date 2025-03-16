@@ -44,7 +44,7 @@ const TerminalIcon = forwardRef<TerminalIconHandle, TerminalIconProps>(
       alwaysAnimate = false,
       ...props
     },
-    ref
+    ref,
   ) => {
     const controls = useAnimation()
     const isControlledRef = useRef(false)
@@ -66,7 +66,7 @@ const TerminalIcon = forwardRef<TerminalIconHandle, TerminalIconProps>(
           onMouseEnter?.(e)
         }
       },
-      [controls, onMouseEnter, alwaysAnimate]
+      [controls, onMouseEnter, alwaysAnimate],
     )
 
     const handleMouseLeave = useCallback(
@@ -77,7 +77,7 @@ const TerminalIcon = forwardRef<TerminalIconHandle, TerminalIconProps>(
           onMouseLeave?.(e)
         }
       },
-      [controls, onMouseLeave, alwaysAnimate]
+      [controls, onMouseLeave, alwaysAnimate],
     )
 
     useEffect(() => {
@@ -92,7 +92,7 @@ const TerminalIcon = forwardRef<TerminalIconHandle, TerminalIconProps>(
       <div
         className={cn(
           `flex cursor-pointer items-center justify-center rounded-md p-2 transition-colors duration-200 select-none`,
-          className
+          className,
         )}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -122,7 +122,7 @@ const TerminalIcon = forwardRef<TerminalIconHandle, TerminalIconProps>(
         </svg>
       </div>
     )
-  }
+  },
 )
 
 TerminalIcon.displayName = "TerminalIcon"

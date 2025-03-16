@@ -38,7 +38,7 @@ export function Header() {
               href={href}
               className={cn(
                 "hover:text-foreground/80 relative flex items-center gap-2 text-sm font-medium transition-colors",
-                pathname === href ? "text-foreground" : "text-foreground/60"
+                pathname === href ? "text-foreground" : "text-foreground/60",
               )}
             >
               <Icon className="size-4" />
@@ -110,7 +110,7 @@ export function Header() {
                     "hover:bg-muted flex items-center gap-2 rounded-md p-2 text-sm font-medium transition-colors",
                     pathname === href
                       ? "bg-muted text-primary"
-                      : "text-muted-foreground"
+                      : "text-muted-foreground",
                   )}
                 >
                   <Icon className="size-4" />
