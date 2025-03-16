@@ -133,4 +133,4 @@ so you understand the branching strategy and local development environment.
   https://img.shields.io/github/license/SlickYeet/create-tnt-stack?color=red
 [license-url]: https://github.com/SlickYeet/create-tnt-stack/blob/main/LICENSE
 [downloads-image]:
-  https://img.shields.io/npm/dm/tnt-stack?color=364fc7&logoColor=364fc7
+  https://img.shields.io/npm/dm/create-tnt-stack?color=364fc7&logoColor=364fc7
