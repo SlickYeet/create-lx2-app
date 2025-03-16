@@ -8,7 +8,6 @@ runs:
     - uses: actions/setup-node@v4
       with:
         node-version: 20
-        cache: "bun"
 
     - shell: bash
       run: bun install

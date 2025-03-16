@@ -10,7 +10,7 @@ on:
 
 jobs:
   release:
-    if: ${{ github.repository_owner == 'SlickYeet' }}
+    if: github.repository_owner == 'SlickYeet'
     name: "Create a PR for release workflow"
     runs-on: ubuntu-latest
     steps:
