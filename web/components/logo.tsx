@@ -35,7 +35,7 @@ export function Logo({
         animate={{ scale: 1, opacity: 1, rotate: 360 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
         className={cn(
-          "from-primary/50 to-accent/50 flex items-center justify-center rounded-lg bg-linear-to-r"
+          "from-primary/50 to-accent/50 flex items-center justify-center rounded-lg bg-linear-to-r",
         )}
       >
         <AnimatedTerminalIcon size={size} alwaysAnimate />
@@ -59,7 +59,7 @@ export function Logo({
         transition={{ delay: 0.2, duration: 0.5 }}
         className={cn(
           "font-heading inline-block text-xl font-bold",
-          textClassName
+          textClassName,
         )}
       >
         TNT-Powered

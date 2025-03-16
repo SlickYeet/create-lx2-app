@@ -37,7 +37,7 @@ export function FeatureCard({
       <div
         className={cn(
           "absolute inset-0 rounded-lg bg-linear-to-br to-transparent opacity-0 transition-opacity group-hover:opacity-5",
-          gradientColor
+          gradientColor,
         )}
       />
 
@@ -45,7 +45,7 @@ export function FeatureCard({
         className={cn(
           "mb-4 flex size-12 items-center justify-center rounded-lg",
           iconBgColor,
-          iconColor
+          iconColor,
         )}
       >
         <Icon className="size-6" />
