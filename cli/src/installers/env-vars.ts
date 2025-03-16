@@ -2,7 +2,9 @@ import path from "path"
 import fs from "fs-extra"
 
 import { PKG_ROOT } from "@/constants.js"
+import { AvailableDependencies } from "@/installers/dependency-version-map.js"
 import { type DatabaseProvider, type Installer } from "@/installers/index.js"
+import { addPackageDependency } from "@/utils/add-package-dependency.js"
 
 export const envVariablesInstaller: Installer = ({
   projectDir,
@@ -10,8 +12,21 @@ export const envVariablesInstaller: Installer = ({
   packages,
   databaseProvider,
 }) => {
+  const usingEnv = packages?.envVariables.inUse
   const usingNextAuth = packages?.nextAuth.inUse
   const usingPrisma = packages?.prisma.inUse
+
+  const deps: AvailableDependencies[] = []
+  if (usingEnv) {
+    deps.push("@t3-oss/env-nextjs")
+    deps.push("zod")
+  }
+
+  addPackageDependency({
+    projectDir,
+    dependencies: deps,
+    devMode: false,
+  })
 
   const usingDb = usingPrisma
 
