@@ -1,5 +1,11 @@
 # create-tnt-stack
 
+## 0.3.3
+
+### Patch Changes
+
+- feat: add ESLint support and configuration
+
 ## 0.3.2
 
 ### Patch Changes
