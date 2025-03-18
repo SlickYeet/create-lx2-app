@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --max-warnings 0",
+    "format": "prettier '**/*.{cjs,mjs,ts,tsx,md,json,astro}' --ignore-path ../.gitignore --ignore-unknown --write",
+    "format:check": "prettier '**/*.{cjs,mjs,ts,tsx,md,json,astro}' --ignore-path ../.gitignore --ignore-unknown --check",
     "typecheck": "tsc --noEmit",
-    "format": "prettier '**/*.{mjs,ts,tsx,md,mdx,json}' --ignore-path ../.gitignore --ignore-unknown --write",
     "clean": "rm -rf node_modules .turbo dist .eslintcache",
     "shadcn": "bunx --bun shadcn@latest"
   },

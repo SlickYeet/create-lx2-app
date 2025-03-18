@@ -31,11 +31,11 @@
     "node": ">=18"
   },
   "scripts": {
+    "dev": "tsup --watch",
     "build": "tsup",
     "start": "node dist/index.js",
-    "dev": "tsup --watch",
-    "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier '**/*.{cjs,mjs,ts,tsx,md,json}' --ignore-path ../.gitignore --ignore-unknown --no-error-on-unmatched-pattern --write",
+    "format:check": "prettier '**/*.{cjs,mjs,ts,tsx,md,json}' --ignore-path ../.gitignore --ignore-unknown --no-error-on-unmatched-pattern --check",
     "typecheck": "tsc",
     "clean": "rm -rf dist .turbo node_modules",
     "release": "changeset version",
