@@ -1,6 +1,7 @@
 import { type PackageManager } from "@/utils/get-user-pkg-manager.js"
 
 import { envVariablesInstaller } from "./env-vars.js"
+import { eslintInstaller } from "./eslint.js"
 import { nextAuthInstaller } from "./next-auth.js"
 import { prettierInstaller } from "./prettier.js"
 import { prismaInstaller } from "./prisma.js"
@@ -12,6 +13,7 @@ export const availablePackages = [
   "prisma",
   "envVariables",
   "prettier",
+  "eslint",
 ] as const
 export type AvailablePackages = (typeof availablePackages)[number]
 
@@ -55,5 +57,9 @@ export const buildPkgInstallerMap = (
   prettier: {
     inUse: packages.includes("prettier"),
     installer: prettierInstaller,
+  },
+  eslint: {
+    inUse: true,
+    installer: eslintInstaller,
   },
 })
