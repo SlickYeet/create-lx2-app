@@ -2,14 +2,14 @@
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
   "tasks": {
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true
     },
     "start": {
       "dependsOn": ["^build"]
@@ -17,12 +17,18 @@
     "lint": {
       "cache": false
     },
+    "lint:fix": {
+      "cache": false
+    },
     "format": {
       "cache": false
     },
-    "clean": {
+    "format:check": {
       "cache": false
     },
-    "typecheck": {}
+    "typecheck": {},
+    "clean": {
+      "cache": false
+    }
   }
 }

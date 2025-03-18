@@ -19,6 +19,9 @@ jobs:
           fetch-depth: 0
       - uses: ./.github/actions/setup
 
+      - name: Check for errors
+        run: bun check
+
       - name: Build the package
         run: bun run build:cli
 
