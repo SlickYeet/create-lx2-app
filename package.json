@@ -46,7 +46,7 @@
     "format": "turbo format && prettier --write '*.{cjs,json}' --ignore-unknown --no-error-on-unmatched-pattern",
     "format:check": "turbo format:check && prettier --check '*.{cjs,json}' --ignore-unknown --no-error-on-unmatched-pattern",
     "check": "turbo lint typecheck format:check && manypkg check",
-    "typecheck": "turbo run check-types",
+    "typecheck": "turbo run typecheck",
     "clean": "turbo clean && rm -rf node_modules",
     "shadcn": "bun run --filter=web shadcn",
     "release": "changeset version",
