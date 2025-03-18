@@ -19,6 +19,8 @@ Simply run `npm create tnt-stack@latest` to get started!
 
 [![PRs-Welcome][contribute-image]][contribute-url]
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]
+[![Release][release-image]][release-url]
+[![Prepelease][prerelease-image]][prerelease-url]
 [![License][license-image]][license-url]
 
 </div>
@@ -134,3 +136,11 @@ so you understand the branching strategy and local development environment.
 [license-url]: https://github.com/SlickYeet/create-tnt-stack/blob/main/LICENSE
 [downloads-image]:
   https://img.shields.io/npm/dm/create-tnt-stack?color=364fc7&logoColor=364fc7
+[release-image]:
+  https://github.com/SlickYeet/create-tnt-stack/actions/workflows/release.yml/badge.svg
+[release-url]:
+  https://github.com/SlickYeet/create-tnt-stack/actions/workflows/release.yml
+[prerelease-image]:
+  https://github.com/SlickYeet/create-tnt-stack/actions/workflows/prerelease.yml/badge.svg
+[prerelease-url]:
+  https://github.com/SlickYeet/create-tnt-stack/actions/workflows/prerelease.yml
