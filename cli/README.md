@@ -18,7 +18,8 @@
 Simply run `npm create tnt-stack@latest` to get started!
 
 [![PRs-Welcome][contribute-image]][contribute-url]
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]
+[![NPM version][npm-image]][npm-url]
+[![Downloads][downloads-image]][npm-url]<br />
 [![Release][release-image]][release-url]
 [![Prepelease][prerelease-image]][prerelease-url]
 [![License][license-image]][license-url]
