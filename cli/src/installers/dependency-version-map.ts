@@ -22,7 +22,7 @@ export const dependencyVersionMap = {
 
   // ESLint
   eslint: "^9",
-  "eslint-config-next": "15.2.1",
+  "eslint-config-next": "^15.2.3",
   "@eslint/eslintrc": "^3",
 } as const
 export type AvailableDependencies = keyof typeof dependencyVersionMap
