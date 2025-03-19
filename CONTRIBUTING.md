@@ -113,5 +113,5 @@ for your title.
 
 ## Credits
 
-This documented was inspired by the contributing guidelines for
+These guidelines were inspired by the contributing guidelines for
 [cloudflare/wrangler2](https://github.com/cloudflare/wrangler2/blob/main/CONTRIBUTING.md).
