@@ -1,89 +1,36 @@
-# TNT-Powered CLI Tool
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Welcome to the official documentation and marketing page for the **TNT-Powered
-CLI Tool**! This tool is designed to scaffold modern web applications with the
-TNT stack (TypeScript, Next.js, Tailwind CSS) and additional tools like Payload
-CMS, Prisma ORM, NextAuth, and more.
+## Getting Started
 
-## What is TNT-Powered CLI?
-
-The **TNT-Powered CLI Tool** allows you to quickly generate web applications
-that follow best practices and use modern technologies, including:
-
-- **TypeScript** for static typing
-- **Next.js** for server-side rendering and static site generation
-- **Tailwind CSS** for utility-first styling
-- **Payload CMS** for managing content
-- **Prisma ORM** for interacting with your database
-- And much more...
-
-This tool is perfect for developers who want to quickly scaffold a new project
-with these technologies, saving time and effort.
-
-## Features
-
-- Choose from a variety of base project templates
-- Integrate popular tools like **Payload CMS**, **Prisma**, and **NextAuth**
-  with ease
-- Customizable CLI options for specific configurations
-- Scaffold production-ready web apps in minutes
-
-## Installation
-
-You can install the CLI tool via `npm` or `npx`.
-
-### Using `npx` (No Installation Required)
-
-Run the following command to create a new project:
+First, run the development server:
 
 ```bash
-npx create-tnt-stack@latest
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-### Using npm (For Global Installation)
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can also install it globally via npm for repeated use:
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-```bash
-npm install -g @ctnta/cli
-```
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-Then, you can create a new project:
+## Learn More
 
-```bash
-create-tnt-stack
-```
+To learn more about Next.js, take a look at the following resources:
 
-## Usage
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-Once installed, you can run the CLI to create a new project by choosing the base
-template and configuration options. Here’s a basic usage example:
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-```bash
-create-tnt-stack
-```
+## Deploy on Vercel
 
-You'll be prompted with a series of questions to customize your app, including
-the choice of CMS (e.g., Payload CMS), ORM (e.g., Prisma), and other
-integrations.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-## Documentation
-
-For detailed usage instructions, configuration options, and advanced features,
-check out the full documentation at
-[create.tntstack.org](https://create.tntstack.org/docs).
-
-### Docs Highlights:
-
-- Installation: How to get started with the CLI tool and install dependencies
-- Configuration: Set up custom configurations for your projects, including
-  database, CMS, and more
-- Advanced Usage: Learn about custom templates, scripts, and how to extend the
-  CLI tool
-- FAQ: Common issues and troubleshooting
-
-## Contributing
-
-We welcome contributions! If you'd like to contribute to the development of the
-TNT-Powered CLI, feel free to submit issues or pull requests. Please check our
-[contributing guidelines](../CONTRIBUTING.md) for more details.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

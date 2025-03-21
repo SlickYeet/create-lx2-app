@@ -87,7 +87,7 @@ For more information, visit the
 <h2 id="documentation">📖 Documentation</h2>
 
 Full documentation is available at
-[create.tntstack.org](https://create.tntstack.org/docs) (coming soon).
+[create.tntstack.org](https://create.tntstack.org/docs).
 
 <h2 id="credits">❤️ Credits</h2>
 
