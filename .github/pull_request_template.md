@@ -7,7 +7,6 @@ Closes #<issue>
       (updated 2025-03-17).
 - [ ] The PR title follows the convention we established
       [conventional-commit](https://www.conventionalcommits.org/en/v1.0.0/)
-- [ ] I performed a functional test on my final commit
 
 ---
 

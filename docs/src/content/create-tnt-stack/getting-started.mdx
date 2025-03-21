@@ -1,0 +1,83 @@
+import { Callout } from "nextra/components"
+
+# Getting Started
+
+It is really simple to get started with the TNT Stack. All you need to do is to
+run the following command, and answer the prompts:
+
+## Installation
+
+### npm
+
+```bash copy
+npm create tnt-stack@latest
+```
+
+### yarn
+
+```bash copy
+yarn create tnt-stack
+```
+
+### pnpm
+
+```bash copy
+pnpm create tnt-stack@latest
+```
+
+### bun
+
+```bash copy
+bun create tnt-stack@latest
+```
+
+It is as simple as that. Once you have answered all the prompts, you can
+checkout the [First Steps](/docs/usage/first-steps) section to learn more about
+how to use the TNT Stack.
+
+## Advanced Installation
+
+The CLI comes with several flags that can be used to customize the installation
+process, or skip certain prompts.
+
+| Flags             | Description                                                                    |
+| ----------------- | ------------------------------------------------------------------------------ |
+| `[dir]`           | The name of the application, as well as the name of the directory to create.   |
+| `--noGit`         | Explicitly tell the CLI to not initialize a new git repo in the project.       |
+| `--noInstall`     | Generate project without installing dependencies.                              |
+| `-y`, `--default` | Bypass the CLI and bootstrap a new TNT Stack project with all options selected |
+
+## Experimental CI flags
+
+The CI flag can be used to scaffold a new project without prompts. This is
+useful for CI/CD pipelines.
+
+| Flags                          | Description                                          |
+| ------------------------------ | ---------------------------------------------------- |
+| `--CI`                         | Set the CLI to run in CI mode.                       |
+| `--nextAuth`                   | Set the CLI to scaffold a project with NextAuth.js.  |
+| `--prisma`                     | Set the CLI to scaffold a project with Prisma.       |
+| `--prettier`                   | Set the CLI to scaffold a project with Prettier.     |
+| `-I`, `--import-alias [alias]` | Set the CLI to scaffold a project with Import Alias. |
+| `--dbProvider [provider]`      | Set the CLI to scaffold a project with a database.   |
+
+<Callout type="warning">
+  If you don’t provide the CI flag, the rest of these flags have no effect.
+</Callout>
+
+### Examples
+
+Unless specified otherwise, all flags are boolean flags. This mean that they
+don't require a value to be passed to them. For example, to scaffold a project
+with NextAuth.js, you would run:
+
+```bash copy
+npm create tnt-stack@latest --CI --nextAuth
+```
+
+For flags that require a value, you would pass the value after the flag. For
+example, to scaffold a project with a database provider, you would run:
+
+```bash copy
+npm create tnt-stack@latest --CI --dbProvider postgresql
+```
