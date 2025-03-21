@@ -89,8 +89,6 @@ Check that your code follows the project's style guidelines by running:
 bun check
 ```
 
-Please also make a manual, functional test of your changes.
-
 If your change should appear in the changelog, i.e. it changes some behavior of
 either the CLI or the outputted application, it must be captured by `changeset`
 which is done by running
