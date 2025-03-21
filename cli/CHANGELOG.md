@@ -1,5 +1,13 @@
 # create-tnt-stack
 
+## 0.3.5
+
+### Patch Changes
+
+- [`82faf91`](https://github.com/SlickYeet/create-tnt-stack/commit/82faf9132ab3b79fd7f0eefa37009285fdeeda87)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - fix(cli): update logo
+  image links in README
+
 ## 0.3.4
 
 ### Patch Changes
