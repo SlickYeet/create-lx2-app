@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google"
 import { Layout } from "nextra-theme-docs"
 import { getPageMap } from "nextra/page-map"
 
+import { Footer } from "@/components/footer"
 import { navbar } from "@/components/navigation/navbar"
 
 import "nextra-theme-docs/style.css"
@@ -41,12 +42,11 @@ export default async function RootLayout({
       >
         <Layout
           navbar={navbar}
-          footer={<></>}
-          sidebar={{ autoCollapse: true }}
           docsRepositoryBase="https://github.com/slickyeet/create-tnt-stack/tree/main/web"
           pageMap={await getPageMap()}
         >
           {children}
+          <Footer />
         </Layout>
       </body>
     </html>

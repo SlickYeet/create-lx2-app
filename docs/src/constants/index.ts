@@ -9,7 +9,7 @@ import {
 } from "lucide-react"
 
 export const GITHUB_CREATE_TNT_APP_REPO =
-  "https://github.com/SlickYeet/create-tnt-app"
+  "https://github.com/SlickYeet/create-tnt-stack"
 
 export type FeatureType = {
   title: string

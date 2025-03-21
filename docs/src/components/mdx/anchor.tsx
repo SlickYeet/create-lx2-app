@@ -1,10 +1,15 @@
 import Link from "next/link"
 import { ComponentPropsWithoutRef } from "react"
 
+import { cn } from "@/lib/utils"
+
 type AnchorProps = ComponentPropsWithoutRef<"a">
 
 export function Anchor({ href, children, ...props }: AnchorProps) {
-  const className = "text-violet-500 hover:underline"
+  const className = cn(
+    "text-violet-500 underline-offset-2 hover:underline",
+    props.className,
+  )
 
   if (href?.startsWith("/")) {
     return (
