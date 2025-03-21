@@ -54,22 +54,22 @@ bun install
 ### Implement your changes
 
 This project is a [Turborepo](https://turbo.build/) monorepo. The code for the
-CLI is in the `cli` directory, and the docs is in the `web` directory. Now
+CLI is in the `cli` directory, and the docs is in the `docs` directory. Now
 you're all setup and can start implementing your changes.
 
 Here are some useful scripts for when you are developing:
 
-| Command             | Description                                             |
-| ------------------- | ------------------------------------------------------- |
-| `bun dev:cli`       | Builds and starts the CLI in watch-mode                 |
-| `bun dev:web`       | Starts the development server for the docs with HMR     |
-| `bun run build:cli` | Builds the CLI                                          |
-| `bun run build:web` | Builds the docs                                         |
-| `bun run build`     | Builds CLI and docs                                     |
-| `bun format`        | Formats the code                                        |
-| `bun lint`          | Lints the code                                          |
-| `bun lint:fix`      | Lints the code and fixes any errors                     |
-| `bun check`         | Checks your code for typeerrors, formatting and linting |
+| Command              | Description                                             |
+| -------------------- | ------------------------------------------------------- |
+| `bun dev:cli`        | Builds and starts the CLI in watch-mode                 |
+| `bun dev:docs`       | Starts the development server for the docs with HMR     |
+| `bun run build:cli`  | Builds the CLI                                          |
+| `bun run build:docs` | Builds the docs                                         |
+| `bun run build`      | Builds CLI and docs                                     |
+| `bun format`         | Formats the code                                        |
+| `bun lint`           | Lints the code                                          |
+| `bun lint:fix`       | Lints the code and fixes any errors                     |
+| `bun check`          | Checks your code for typeerrors, formatting and linting |
 
 When making commits, make sure to follow the
 [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/)

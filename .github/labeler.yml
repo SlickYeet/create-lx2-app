@@ -5,7 +5,7 @@
   - any: ["cli/template/**/*"]
 
 "📚 docs":
-  - any: ["web/**/*"]
+  - any: ["docs/**/*"]
   - any: ["**/*.md", "**/*.mdx"]
 
 "📌 area: ci":
