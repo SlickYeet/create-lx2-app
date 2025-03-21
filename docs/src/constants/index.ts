@@ -20,37 +20,37 @@ export type FeatureType = {
 
 export const FEATURES: FeatureType[] = [
   {
-    title: "TNT Stack Integration",
+    title: "TNT Stack",
     description:
-      "Seamlessly integrates TypeScript, Next.js, and Tailwind CSS in optimized starter templates.",
+      "Full-stack typesafe boilerplate with TypeScript, Next.js, and Tailwind CSS",
     icon: RocketIcon,
     color: "blue",
   },
   {
-    title: "Payload CMS Ready",
+    title: "Payload CMS Included",
     description:
-      "Pre-configured templates with Payload CMS integration for powerful content management.",
+      "Build beautiful content based applications with Payload CMS the backend to build the modern web.",
     icon: DatabaseIcon,
     color: "purple",
   },
   {
-    title: "Customizable Templates",
+    title: "Fully Customizable",
     description:
-      "Choose from various templates or customize them to fit your specific project needs.",
+      "Choose only the packages and tools you need and customize the stack to fit your needs.",
     icon: PaletteIcon,
     color: "pink",
   },
   {
     title: "Developer Experience",
     description:
-      "Optimized for the best developer experience with sensible defaults and best practices.",
+      "Well-documented and easy to use, TNT Stack is designed from the ground up to make your life easier.",
     icon: CodeIcon,
     color: "amber",
   },
   {
     title: "Performance Optimized",
     description:
-      "Templates are built with performance in mind, ensuring fast load times and smooth user experiences.",
+      "With Next.js at its core, TNT Stack is optimized for performance and SEO out of the box.",
     icon: ZapIcon,
     color: "emerald",
   },
