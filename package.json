@@ -34,13 +34,13 @@
   "scripts": {
     "dev": "turbo dev",
     "dev:cli": "turbo --filter=create-tnt-stack dev",
-    "dev:web": "turbo --filter=web dev",
+    "dev:docs": "turbo --filter=docs dev",
     "build": "turbo run build",
     "build:cli": "turbo --filter=create-tnt-stack build",
-    "build:web": "turbo --filter=web build",
+    "build:docs": "turbo --filter=docs build",
     "start": "turbo start",
     "start:cli": "turbo --filter=create-tnt-stack start",
-    "start:web": "turbo --filter=web start",
+    "start:docs": "turbo --filter=docs start",
     "lint": "turbo run lint",
     "lint:fix": "turbo lint:fix && manypkg fix",
     "format": "turbo format && prettier --write '*.{cjs,json}' --ignore-unknown --no-error-on-unmatched-pattern",
@@ -48,14 +48,14 @@
     "check": "turbo lint typecheck format:check && manypkg check",
     "typecheck": "turbo run typecheck",
     "clean": "turbo clean && rm -rf node_modules",
-    "shadcn": "bun run --filter=web shadcn",
+    "shadcn": "bun run --filter=docs shadcn",
     "release": "changeset version",
     "pub:beta": "cd cli && bun run pub:beta",
     "pub:release": "cd cli && bun run pub:release"
   },
   "workspaces": [
     "cli",
-    "web",
+    "docs",
     "packages/*"
   ],
   "devDependencies": {
