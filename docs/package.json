@@ -10,7 +10,7 @@
     "format": "prettier '**/*.{cjs,mjs,ts,tsx,md,mdx,json}' --ignore-path ../.gitignore --ignore-unknown --write",
     "format:check": "prettier '**/*.{cjs,mjs,ts,tsx,md,mdx,json}' --ignore-path ../.gitignore --ignore-unknown --check",
     "typecheck": "tsc --noEmit",
-    "clean": "rm -rf node_modules .turbo dist .eslintcache",
+    "clean": "rm -rf node_modules .turbo .next",
     "shadcn": "bunx --bun shadcn@latest"
   },
   "dependencies": {
