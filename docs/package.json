@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --max-warnings 0",
-    "format": "prettier '**/*.{cjs,mjs,ts,tsx,md,json,astro}' --ignore-path ../.gitignore --ignore-unknown --write",
-    "format:check": "prettier '**/*.{cjs,mjs,ts,tsx,md,json,astro}' --ignore-path ../.gitignore --ignore-unknown --check",
+    "format": "prettier '**/*.{cjs,mjs,ts,tsx,md,mdx,json}' --ignore-path ../.gitignore --ignore-unknown --write",
+    "format:check": "prettier '**/*.{cjs,mjs,ts,tsx,md,mdx,json}' --ignore-path ../.gitignore --ignore-unknown --check",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf node_modules .turbo dist .eslintcache",
     "shadcn": "bunx --bun shadcn@latest"
@@ -19,7 +19,7 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.483.0",
     "motion": "^12.5.0",
-    "next": "15.2.3",
+    "next": "^15.2.3",
     "nextra": "^4.2.17",
     "nextra-theme-docs": "^4.2.17",
     "react": "^19.0.0",
@@ -28,15 +28,15 @@
     "tw-animate-css": "^1.2.4"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
+    "@eslint/eslintrc": "^3.3.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.2.3",
+    "eslint": "^9.22.0",
+    "eslint-config-next": "^15.2.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "tailwindcss": "^4.0.14",
+    "typescript": "^5.8.2"
   }
 }

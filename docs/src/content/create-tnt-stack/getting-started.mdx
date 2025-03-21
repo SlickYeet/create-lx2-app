@@ -2,7 +2,8 @@ import { Callout } from "nextra/components"
 
 # Getting Started
 
-It is really simple to get started with the TNT Stack. All you need to do is to run the following command, and answer the prompts:
+It is really simple to get started with the TNT Stack. All you need to do is to
+run the following command, and answer the prompts:
 
 ## Installation
 
@@ -30,11 +31,14 @@ pnpm create tnt-stack@latest
 bun create tnt-stack@latest
 ```
 
-It is as simple as that. Once you have answered all the prompts, you can checkout the [First Steps](/docs/usage/first-steps) section to learn more about how to use the TNT Stack.
+It is as simple as that. Once you have answered all the prompts, you can
+checkout the [First Steps](/docs/usage/first-steps) section to learn more about
+how to use the TNT Stack.
 
 ## Advanced Installation
 
-The CLI comes with several flags that can be used to customize the installation process, or skip certain prompts.
+The CLI comes with several flags that can be used to customize the installation
+process, or skip certain prompts.
 
 | Flags             | Description                                                                    |
 | ----------------- | ------------------------------------------------------------------------------ |
@@ -45,7 +49,8 @@ The CLI comes with several flags that can be used to customize the installation 
 
 ## Experimental CI flags
 
-The CI flag can be used to scaffold a new project without prompts. This is useful for CI/CD pipelines.
+The CI flag can be used to scaffold a new project without prompts. This is
+useful for CI/CD pipelines.
 
 | Flags                          | Description                                          |
 | ------------------------------ | ---------------------------------------------------- |
@@ -62,13 +67,16 @@ The CI flag can be used to scaffold a new project without prompts. This is usefu
 
 ### Examples
 
-Unless specified otherwise, all flags are boolean flags. This mean that they don't require a value to be passed to them. For example, to scaffold a project with NextAuth.js, you would run:
+Unless specified otherwise, all flags are boolean flags. This mean that they
+don't require a value to be passed to them. For example, to scaffold a project
+with NextAuth.js, you would run:
 
 ```bash copy
 npm create tnt-stack@latest --CI --nextAuth
 ```
 
-For flags that require a value, you would pass the value after the flag. For example, to scaffold a project with a database provider, you would run:
+For flags that require a value, you would pass the value after the flag. For
+example, to scaffold a project with a database provider, you would run:
 
 ```bash copy
 npm create tnt-stack@latest --CI --dbProvider postgresql
