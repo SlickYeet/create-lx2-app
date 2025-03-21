@@ -41,7 +41,7 @@ export function Usage() {
               viewport={{ once: true }}
             >
               <CodeBlock
-                code="npx create-tnt-app my-app"
+                code="npm create tnt-stack@latest my-app"
                 filename="Create a new project"
               />
             </motion.div>
@@ -65,8 +65,8 @@ export function Usage() {
               viewport={{ once: true }}
             >
               <CodeBlock
-                code="create-tnt-app my-app --template tnt-basic"
-                filename="Using a specific template"
+                code="npm create tnt-stack@latest my-app --CI --prisma --dbProvider postgresql"
+                filename="Create a new project with CI flags"
               />
             </motion.div>
           </div>
@@ -80,38 +80,45 @@ export function Usage() {
               className="space-y-4"
             >
               <h3 className="font-heading text-2xl font-bold">
-                Available Templates
+                Available Flags
               </h3>
               <ul className="space-y-2">
                 <li className="flex items-center">
                   <div className="bg-primary mr-2 size-2 rounded-full" />
                   <span>
-                    <code>tnt-basic</code> - Basic TNT stack setup
+                    <code>--CI</code> - Set the CLI to run in CI
+                  </span>
+                </li>
+                <li className="flex items-center">
+                  <div className="bg-highlight mr-2 size-2 rounded-full" />
+                  <span>
+                    <code>--nextAuth</code> - Add NextAuth.js to the project
                   </span>
                 </li>
                 <li className="flex items-center">
                   <div className="bg-secondary mr-2 size-2 rounded-full" />
                   <span>
-                    <code>tnt-payload</code> - TNT with Payload CMS
+                    <code>--prisma</code> - Add Prisma ORM to the project
+                  </span>
+                </li>
+                <li className="flex items-center">
+                  <div className="mr-2 size-2 rounded-full bg-emerald-500" />
+                  <span>
+                    <code>--prettier</code> - Add Prettier to the project
                   </span>
                 </li>
                 <li className="flex items-center">
                   <div className="bg-accent mr-2 size-2 rounded-full" />
                   <span>
-                    <code>tnt-auth</code> - TNT with authentication
-                  </span>
-                </li>
-                <li className="flex items-center">
-                  <div className="bg-destructive mr-2 size-2 rounded-full" />
-                  <span>
-                    <code>tnt-full</code> - Complete TNT stack with all features
+                    <code>--dbProvider [provider]</code> - Set the database
+                    provider
                   </span>
                 </li>
               </ul>
 
               <div className="pt-4">
                 <Button className="group" asChild>
-                  <Link href="/docs">
+                  <Link href="/docs/create-tnt-stack/getting-started#experimental-ci-flags">
                     View Full Documentation
                     <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-1" />
                   </Link>

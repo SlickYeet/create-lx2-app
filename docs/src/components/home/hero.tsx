@@ -52,9 +52,9 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground mb-8 max-w-2xl text-xl"
           >
+            Build modern web applications with todat&apos;s most popular tools.
             Launch your TypeScript, Next.js, and Tailwind CSS projects with a
-            bang. Complete with Payload CMS integration, ready to explode into
-            production.
+            bang.
           </motion.p>
 
           <motion.div
