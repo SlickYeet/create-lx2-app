@@ -9,9 +9,7 @@ import rehypePrettyCode, {
   type Options as PrettyCodeOptions,
 } from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
-import remarkFrontmatter from "remark-frontmatter"
 import remarkgfm from "remark-gfm"
-import remarkMdxFrontmatter from "remark-mdx-frontmatter"
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -36,7 +34,7 @@ const prettyCodeOptions: PrettyCodeOptions = {
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [remarkgfm, remarkFrontmatter, remarkMdxFrontmatter],
+    remarkPlugins: [remarkgfm],
     rehypePlugins: [[rehypePrettyCode, prettyCodeOptions], rehypeSlug],
   },
 })

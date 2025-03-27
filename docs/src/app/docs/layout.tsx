@@ -21,7 +21,9 @@ export default function DocsLayout({
         <div className="hidden lg:col-span-3 lg:block">
           <DocsSidebar />
         </div>
-        <div className="mdx col-span-1 lg:col-span-9">{children}</div>
+        <div id="mdx" className="mdx col-span-1 lg:col-span-9">
+          {children}
+        </div>
         <div className="hidden lg:col-span-3 lg:block">
           <DocsTOC />
         </div>

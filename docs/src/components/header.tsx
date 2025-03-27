@@ -51,7 +51,7 @@ export function Header() {
             <Logo />
           </Link>
 
-          <nav className="relative hidden md:block">
+          <nav className="relative hidden lg:block">
             {/* Hover Highlight */}
             <motion.div
               layout
@@ -111,7 +111,7 @@ export function Header() {
           initial={{ opacity: 0, x: 10 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="hidden items-center gap-2 md:flex"
+          className="hidden items-center gap-2 lg:flex"
         >
           <Button variant="outline" asChild>
             <Link href={GITHUB_CREATE_TNT_APP_REPO} target="_blank">
@@ -122,7 +122,7 @@ export function Header() {
           <ThemeToggle />
         </motion.div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <ThemeToggle />
           <Button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -142,7 +142,7 @@ export function Header() {
       {/* Mobile menu */}
       {mobileMenuOpen && (
         <motion.div
-          className="md:hidden"
+          className="lg:hidden"
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}

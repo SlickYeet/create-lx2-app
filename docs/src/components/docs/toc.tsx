@@ -4,66 +4,150 @@ import { MessageSquareIcon, PenIcon } from "lucide-react"
 import { motion } from "motion/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 
 import { GITHUB_CREATE_TNT_APP_REPO } from "@/constants"
 import { cn } from "@/lib/utils"
 import { H3 } from "@/mdx-components"
 
-const ITEMS = [
-  { slug: "introduction", title: "Introduction" },
-  { slug: "getting-started", title: "Getting Started" },
-  { slug: "features", title: "Features" },
-  { slug: "components", title: "Components" },
-  { slug: "layouts", title: "Layouts" },
-  { slug: "theming", title: "Theming" },
-  { slug: "examples", title: "Examples" },
-  { slug: "faq", title: "FAQ" },
-]
+interface Heading {
+  id: string
+  text: string
+  level: number
+}
 
 export function DocsTOC() {
   const pathname = usePathname()
   const pathWithoutPrefix = pathname.replace("/docs/", "")
   const repoPath = `${GITHUB_CREATE_TNT_APP_REPO}/tree/main/docs/src/content/${pathWithoutPrefix}.mdx`
 
+  const [headings, setHeadings] = useState<Heading[]>([])
+  const [activeId, setActiveId] = useState<string | null>(null)
+
+  useEffect(() => {
+    const mdxContent = document.getElementById("mdx")
+    if (!mdxContent) return
+
+    const headingElements = Array.from(
+      mdxContent.querySelectorAll("h1, h2, h3, h4, h5, h6"),
+    )
+
+    const extractedHeadings = headingElements.map((heading) => ({
+      id: heading.id,
+      text: heading.textContent || "",
+      // Parse the heading level from the tagName
+      level: parseInt(heading.tagName.charAt(1)),
+    }))
+
+    setHeadings(extractedHeadings)
+
+    // Set first heading as active default
+    if (extractedHeadings.length > 0) {
+      setActiveId(extractedHeadings[0].id)
+    }
+  }, [pathname])
+
+  // Intersection Observer for active section tracking
+  useEffect(() => {
+    if (headings.length === 0) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries.find((entry) => entry.isIntersecting)
+        if (visibleEntry) {
+          setActiveId(visibleEntry.target.id)
+          history.replaceState(null, "", `#${visibleEntry.target.id}`)
+        }
+      },
+      {
+        rootMargin: "-20% 0px -60% 0px", // More forgiving, triggers earlier
+        threshold: 0.1, // Fires when at least 10% of the heading is visible
+      },
+    )
+
+    headings.forEach((heading) => {
+      const element = document.getElementById(heading.id)
+      if (element) observer.observe(element)
+    })
+
+    return () => observer.disconnect()
+  }, [headings, pathname])
+
+  // First heading should be active when scrolling to top
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY === 0 && headings.length > 0) {
+        setActiveId(headings[0].id) // Keep first heading active
+        history.replaceState(null, "", `#${headings[0].id}`)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [headings, pathname])
+
   return (
     <div className="sticky top-24">
       <H3 className="text-xl">On This Page</H3>
 
-      <ul>
-        {ITEMS.map((item) => {
-          const isActive = pathname.includes(item.slug)
-          return (
-            <li key={item.slug}>
-              <Link href={`/docs/${item.slug}`} className="block">
-                <div className="relative">
-                  {isActive && (
-                    <motion.div
-                      layoutId="tocActiveItem"
-                      className="bg-primary/10 border-primary absolute inset-0 border-l-2"
-                      initial={false}
-                      transition={{
-                        type: "spring",
-                        stiffness: 500,
-                        damping: 30,
-                      }}
-                    />
-                  )}
-                  <span
-                    className={cn(
-                      "relative z-10 block px-4 py-1 text-sm",
-                      "hover:text-primary hover:bg-primary/5",
-                      "border-primary/20 hover:border-primary/50 border-l-2",
-                      isActive ? "text-primary" : "text-muted-foreground",
+      <nav>
+        <ul>
+          {headings.map((heading) => {
+            const isActive = activeId === heading.id
+
+            return (
+              <li
+                key={heading.id}
+                style={{ paddingLeft: `${heading.level * 4}px` }}
+              >
+                <Link
+                  href={`#${heading.id}`}
+                  className="block"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    const targetElement = document.getElementById(heading.id)
+                    if (targetElement) {
+                      targetElement.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      })
+                      history.pushState(null, "", `#${heading.id}`)
+                      setActiveId(heading.id) // Immediately update active state
+                    }
+                  }}
+                >
+                  <div className="relative">
+                    {isActive && (
+                      <motion.div
+                        layoutId="tocActiveItem"
+                        className="bg-primary/10 border-primary absolute inset-0 border-l-2"
+                        initial={false}
+                        transition={{
+                          type: "spring",
+                          stiffness: 500,
+                          damping: 30,
+                        }}
+                      />
                     )}
-                  >
-                    {item.title}
-                  </span>
-                </div>
-              </Link>
-            </li>
-          )
-        })}
-      </ul>
+                    <span
+                      className={cn(
+                        "relative z-10 block px-4 py-1 text-sm",
+                        "hover:text-primary hover:bg-primary/5",
+                        "border-primary/20 hover:border-primary/50 border-l-2",
+                        isActive
+                          ? "text-primary font-medium"
+                          : "text-muted-foreground",
+                      )}
+                    >
+                      {heading.text}
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      </nav>
 
       <H3 className="text-xl">More</H3>
 
