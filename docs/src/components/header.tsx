@@ -230,7 +230,9 @@ export function Header() {
               <span className="ml-1.5">Menu</span>
             </button>
           </div>
-          {isOpen && <DocsSidebar isOpen={isOpen} />}
+          {isOpen && (
+            <DocsSidebar isOpen={isOpen} setIsOpen={toggleMobileMenu} />
+          )}
         </>
       )}
     </>

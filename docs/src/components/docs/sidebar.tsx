@@ -12,9 +12,10 @@ import { H3 } from "@/mdx-components"
 
 interface DocsSidebarProps {
   isOpen?: boolean
+  setIsOpen?: () => void
 }
 
-export function DocsSidebar({ isOpen }: DocsSidebarProps) {
+export function DocsSidebar({ isOpen, setIsOpen }: DocsSidebarProps) {
   const pathname = usePathname()
 
   useEffect(() => {
@@ -44,7 +45,13 @@ export function DocsSidebar({ isOpen }: DocsSidebarProps) {
                     const isActive = pathname.includes(item.slug)
                     return (
                       <li key={item.slug}>
-                        <Link href={`/docs/${item.slug}`} className="block">
+                        <Link
+                          href={`/docs/${item.slug}`}
+                          onClick={() => {
+                            setTimeout(() => setIsOpen && setIsOpen(), 100)
+                          }}
+                          className="block"
+                        >
                           <div className="relative">
                             {isActive && (
                               <motion.div
