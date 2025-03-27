@@ -1,12 +1,42 @@
+import nextMDX from "@next/mdx"
+import {
+  transformerMetaHighlight,
+  transformerMetaWordHighlight,
+  transformerNotationDiff,
+} from "@shikijs/transformers"
 import type { NextConfig } from "next"
-import nextra from "nextra"
+import rehypePrettyCode, {
+  type Options as PrettyCodeOptions,
+} from "rehype-pretty-code"
+import rehypeSlug from "rehype-slug"
+import remarkgfm from "remark-gfm"
 
 const nextConfig: NextConfig = {
-  // ... Other Next.js config options
+  reactStrictMode: true,
+  pageExtensions: ["ts", "tsx", "md", "mdx"],
 }
 
-const withNextra = nextra({
-  contentDirBasePath: "/docs",
+const prettyCodeOptions: PrettyCodeOptions = {
+  keepBackground: false,
+  theme: {
+    dark: "github-dark-default",
+    light: "github-light-default",
+  },
+  transformers: [
+    transformerNotationDiff({
+      matchAlgorithm: "v3",
+    }),
+    transformerMetaHighlight(),
+    transformerMetaWordHighlight(),
+  ],
+}
+
+const withMDX = nextMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [remarkgfm],
+    rehypePlugins: [[rehypePrettyCode, prettyCodeOptions], rehypeSlug],
+  },
 })
 
-export default withNextra(nextConfig)
+export default withMDX(nextConfig)

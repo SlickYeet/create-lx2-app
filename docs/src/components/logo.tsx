@@ -44,8 +44,8 @@ export function Logo({
             transition={{ delay: 0.6, duration: 0.5 }}
             className="absolute -top-1 -right-1 flex size-3"
           >
-            <span className="bg-primary absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" />
-            <span className="from-primary to-accent relative inline-flex size-3 rounded-full bg-linear-to-r" />
+            <span className="bg-primary absolute flex h-full w-full animate-ping rounded-full opacity-75" />
+            <span className="from-primary to-accent relative flex size-3 rounded-full bg-linear-to-r" />
           </motion.span>
         )}
       </motion.div>
@@ -53,10 +53,7 @@ export function Logo({
         initial={animate ? { x: -10, opacity: 0 } : { x: 0, opacity: 1 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className={cn(
-          "font-heading hidden text-xl font-bold max-md:inline-block lg:inline-block",
-          textClassName,
-        )}
+        className={cn("font-heading block text-xl font-bold", textClassName)}
       >
         TNT-Powered
       </motion.span>

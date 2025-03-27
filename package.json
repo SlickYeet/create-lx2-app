@@ -47,7 +47,7 @@
     "format:check": "turbo format:check && prettier --check '*.{cjs,json}' --ignore-unknown --no-error-on-unmatched-pattern",
     "check": "turbo lint typecheck format:check && manypkg check",
     "typecheck": "turbo run typecheck",
-    "clean": "turbo clean && rm -rf node_modules",
+    "clean": "turbo clean && rm -rf node_modules .turbo bun.lockb",
     "shadcn": "bun run --filter=docs shadcn",
     "release": "changeset version",
     "pub:beta": "cd cli && bun run pub:beta",

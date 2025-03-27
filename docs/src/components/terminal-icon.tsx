@@ -91,7 +91,8 @@ const TerminalIcon = forwardRef<TerminalIconHandle, TerminalIconProps>(
     return (
       <div
         className={cn(
-          `flex cursor-pointer items-center justify-center rounded-md p-2 transition-colors duration-200 select-none`,
+          `flex items-center justify-center rounded-md p-2 transition-colors duration-200 select-none`,
+          alwaysAnimate === false && "cursor-pointer",
           className,
         )}
         onMouseEnter={handleMouseEnter}

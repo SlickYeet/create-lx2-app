@@ -1,13 +1,33 @@
-import { DocsWrapper } from "@/components/docs-wrapper"
+"use client"
 
-export default async function DocsLayout({
+import { motion } from "motion/react"
+
+import { DocsSidebar } from "@/components/docs/sidebar"
+import { DocsTOC } from "@/components/docs/toc"
+
+export default function DocsLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <DocsWrapper>
-      <main className="container pt-10">{children}</main>
-    </DocsWrapper>
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2 }}
+      className="container py-5 lg:py-10"
+    >
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-12 lg:grid-cols-15">
+        <div className="sm:col-span-3">
+          <DocsSidebar />
+        </div>
+        <div id="mdx" className="mdx col-span-1 md:col-span-9">
+          {children}
+        </div>
+        <div className="hidden lg:col-span-3 lg:block">
+          <DocsTOC />
+        </div>
+      </div>
+    </motion.div>
   )
 }

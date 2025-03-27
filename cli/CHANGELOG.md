@@ -1,5 +1,11 @@
 # create-tnt-stack
 
+## 0.3.6
+
+### Patch Changes
+
+- chore(cli): update package dependencies for eslint
+
 ## 0.3.5
 
 ### Patch Changes

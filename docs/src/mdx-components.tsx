@@ -1,16 +1,52 @@
-import { useMDXComponents as getThemeComponents } from "nextra-theme-docs"
-import { type MDXComponents } from "nextra/mdx-components"
+import { MDXComponents } from "mdx/types"
 
-import { customComponents } from "@/components/mdx"
+import { Anchor } from "@/components/mdx/anchor"
+import { Figcaption } from "@/components/mdx/figcaption"
+import { H1, H2, H3, H4, H5, H6 } from "@/components/mdx/headings"
+import { LI, OL, UL } from "@/components/mdx/lists"
+import { Paragraph } from "@/components/mdx/paragraph"
+import { Code, Pre } from "@/components/mdx/pre"
 
-// Get the default MDX components
-const defaultComponents = getThemeComponents()
+export const mdxComponents: MDXComponents = {
+  h1: H1,
+  h2: H2,
+  h3: H3,
+  h4: H4,
+  h5: H5,
+  h6: H6,
+  p: Paragraph,
+  a: Anchor,
+  pre: Pre,
+  code: Code,
+  figcaption: Figcaption,
+  ol: OL,
+  ul: UL,
+  li: LI,
+}
 
-// Merge components
+/**
+ * Export the components to be used outside of the MDX context
+ */
+export {
+  Anchor,
+  Code,
+  Figcaption,
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+  LI,
+  OL,
+  Paragraph,
+  Pre,
+  UL,
+}
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    ...defaultComponents,
-    ...customComponents,
+    ...mdxComponents,
     ...components,
   }
 }

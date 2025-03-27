@@ -61,15 +61,15 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex w-full max-w-md flex-col items-center justify-center gap-4 sm:flex-row"
+            className="flex w-full max-w-sm flex-col gap-4 md:flex-row md:items-center md:justify-center"
           >
             <Button
               size="lg"
               variant="outline"
-              className="group h-[3.25rem]"
+              className="group h-[3.25rem] flex-1"
               asChild
             >
-              <Link href={GITHUB_CREATE_TNT_APP_REPO} target="_blank">
+              <Link href="/docs/introduction">
                 <FileCode2Icon className="mr-2 size-4" />
                 <span>Get Started</span>
                 <ArrowRightIcon className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
@@ -79,7 +79,7 @@ export function Hero() {
             <Button
               size="lg"
               variant="outline"
-              className="group h-[3.25rem]"
+              className="group h-[3.25rem] flex-1"
               asChild
             >
               <Link href={GITHUB_CREATE_TNT_APP_REPO} target="_blank">
@@ -93,10 +93,14 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="w-full max-w-[15rem] text-left"
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="w-full max-w-sm text-left"
           >
-            <CodeBlock code="npx create-tnt-app" alwaysShowCopy />
+            <CodeBlock
+              data-language="bash"
+              alwaysShowCopy
+              code="npm create tnt-stack@latest"
+            />
           </motion.div>
         </div>
 
