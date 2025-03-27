@@ -123,7 +123,6 @@ export function Header() {
         </motion.div>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <ThemeToggle />
           <Button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             size="icon"
@@ -153,17 +152,15 @@ export function Header() {
               <Link
                 key={label}
                 href={href}
+                onClick={() => setMobileMenuOpen(false)}
                 className={cn(
                   "hover:text-primary text-foreground rounded-md border p-4 text-sm font-medium transition-colors",
-                  (
-                    pathname.startsWith("/docs")
-                      ? href === "/docs"
-                      : href === pathname
-                  )
+                  (pathname.startsWith("/docs") &&
+                    href === "/docs/introduction") ||
+                    href === pathname
                     ? "bg-primary/10 border-primary"
                     : "border-border/ bg-input/10",
                 )}
-                onClick={() => setMobileMenuOpen(false)}
               >
                 {label}
               </Link>
