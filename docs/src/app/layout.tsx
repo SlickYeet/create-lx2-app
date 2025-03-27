@@ -1,12 +1,10 @@
 import type { Metadata } from "next"
 import { Inter, Space_Grotesk } from "next/font/google"
-import { Layout } from "nextra-theme-docs"
-import { getPageMap } from "nextra/page-map"
 
 import { Footer } from "@/components/footer"
-import { navbar } from "@/components/navigation/navbar"
+import { Header } from "@/components/header"
+import { ThemeProvider } from "@/components/provider"
 
-import "nextra-theme-docs/style.css"
 import "./globals.css"
 
 const inter = Inter({
@@ -40,14 +38,18 @@ export default async function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`}
       >
-        <Layout
-          navbar={navbar}
-          docsRepositoryBase="https://github.com/slickyeet/create-tnt-stack/tree/main/web"
-          pageMap={await getPageMap()}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
-          {children}
-          <Footer />
-        </Layout>
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   )

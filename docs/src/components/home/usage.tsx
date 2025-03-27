@@ -42,7 +42,8 @@ export function Usage() {
             >
               <CodeBlock
                 code="npm create tnt-stack@latest my-app"
-                filename="Create a new project"
+                data-language="bash"
+                title="Create a new project"
               />
             </motion.div>
 
@@ -54,7 +55,8 @@ export function Usage() {
             >
               <CodeBlock
                 code="cd my-app && npm run dev"
-                filename="Start the development server"
+                data-language="bash"
+                title="Start the development server"
               />
             </motion.div>
 
@@ -66,7 +68,8 @@ export function Usage() {
             >
               <CodeBlock
                 code="npm create tnt-stack@latest my-app --CI --prisma --dbProvider postgresql"
-                filename="Create a new project with CI flags"
+                data-language="bash"
+                title="Create a new project with CI flags"
               />
             </motion.div>
           </div>

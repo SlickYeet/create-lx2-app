@@ -1,32 +1,44 @@
-import { type BundledLanguage } from "shiki"
+"use client"
 
-import { Code } from "@/components/mdx/code"
-import { Pre } from "@/components/mdx/pre"
-import { cn } from "@/lib/utils"
+import { useEffect, useState } from "react"
 
-interface CodeBlockProps {
+import { Pre, PreProps } from "@/components/mdx/pre"
+import { cn, processCode } from "@/lib/utils"
+
+interface CodeBlockProps extends PreProps {
   code: string
-  copy?: boolean
-  alwaysShowCopy?: boolean
-  language?: BundledLanguage
-  filename?: string
+  title?: string
 }
 
 export function CodeBlock({
   code,
-  copy = true,
-  alwaysShowCopy = false,
-  language,
-  filename,
+  className,
+  "data-language": language,
+  title,
+  ...props
 }: CodeBlockProps) {
+  const [html, setHtml] = useState<string>("")
+
+  useEffect(() => {
+    processCode({ code, language }).then((html) => {
+      setHtml(html)
+    })
+  }, [code, language])
+
   return (
-    <Pre
-      copy={copy}
-      alwaysShowCopy={alwaysShowCopy}
-      language={language}
-      filename={filename}
-    >
-      <Code className={cn("pl-4", !filename && "pt-1")}>{code}</Code>
-    </Pre>
+    <div className={cn("mdx", className)}>
+      {title && (
+        <div className="bg-muted/80 border-muted -mb-6 min-w-sm rounded-t-lg border px-5 py-2">
+          {title}
+        </div>
+      )}
+      <Pre
+        data-language={language}
+        className={cn("px-4", title ? "rounded-t-none" : "")}
+        {...props}
+      >
+        <div dangerouslySetInnerHTML={{ __html: html }} />
+      </Pre>
+    </div>
   )
 }

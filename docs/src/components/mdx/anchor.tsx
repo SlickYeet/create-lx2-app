@@ -1,39 +1,43 @@
+import { ExternalLink } from "lucide-react"
 import Link from "next/link"
-import { ComponentPropsWithoutRef } from "react"
 
 import { cn } from "@/lib/utils"
 
-type AnchorProps = ComponentPropsWithoutRef<"a">
+interface AnchorProps {
+  children: React.ReactNode
+  href: string
+  className?: string
+}
 
-export function Anchor({ href, children, ...props }: AnchorProps) {
-  const className = cn(
-    "text-violet-500 underline-offset-2 hover:underline",
-    props.className,
-  )
+export function Anchor({ children, href, className }: AnchorProps) {
+  const isExternal = href.startsWith("http") || href.startsWith("mailto")
 
-  if (href?.startsWith("/")) {
+  if (isExternal) {
     return (
-      <Link href={href} className={className} {...props}>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(
+          "text-primary hover:text-primary/80 inline-flex items-center gap-1 underline underline-offset-4",
+          className,
+        )}
+      >
         {children}
-      </Link>
-    )
-  }
-  if (href?.startsWith("#")) {
-    return (
-      <a href={href} className={className} {...props}>
-        {children}
+        <ExternalLink className="size-3" />
       </a>
     )
   }
+
   return (
-    <a
+    <Link
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={className}
-      {...props}
+      className={cn(
+        "text-primary hover:text-primary/80 underline underline-offset-4",
+        className,
+      )}
     >
-      {children}↗
-    </a>
+      {children}
+    </Link>
   )
 }
