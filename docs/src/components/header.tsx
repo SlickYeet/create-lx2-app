@@ -9,12 +9,15 @@ import { useEffect, useRef, useState } from "react"
 import { Logo } from "@/components/logo"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Button } from "@/components/ui/button"
-import { GITHUB_CREATE_TNT_APP_REPO } from "@/constants"
+import {
+  GITHUB_CREATE_TNT_APP_REPO,
+  RELATIVE_INITIAL_DOCS_PATH,
+} from "@/constants"
 import { cn } from "@/lib/utils"
 
 const NAVIGATION = [
   { href: "/", label: "Home" },
-  { href: "/docs/introduction", label: "Docs" },
+  { href: RELATIVE_INITIAL_DOCS_PATH, label: "Docs" },
 ]
 
 export function Header() {
@@ -29,7 +32,7 @@ export function Header() {
     const activeIndex = NAVIGATION.findIndex(
       (item) =>
         item.href ===
-        (pathname.startsWith("/docs") ? "/docs/introduction" : pathname),
+        (pathname.startsWith("/docs") ? RELATIVE_INITIAL_DOCS_PATH : pathname),
     )
     if (activeIndex !== -1 && navRefs.current[activeIndex]) {
       const activeElement = navRefs.current[activeIndex]
@@ -92,7 +95,7 @@ export function Header() {
                   className={cn(
                     "h-[30px] cursor-pointer px-3 py-2 transition-colors duration-300",
                     (pathname.startsWith("/docs") &&
-                      href === "/docs/introduction") ||
+                      href === RELATIVE_INITIAL_DOCS_PATH) ||
                       href === pathname
                       ? "text-primary"
                       : "text-foreground",
@@ -156,7 +159,7 @@ export function Header() {
                 className={cn(
                   "hover:text-primary text-foreground rounded-md border p-4 text-sm font-medium transition-colors",
                   (pathname.startsWith("/docs") &&
-                    href === "/docs/introduction") ||
+                    href === RELATIVE_INITIAL_DOCS_PATH) ||
                     href === pathname
                     ? "bg-primary/10 border-primary"
                     : "border-border/ bg-input/10",

@@ -8,6 +8,8 @@ import {
   ZapIcon,
 } from "lucide-react"
 
+export const RELATIVE_INITIAL_DOCS_PATH = "/docs/introduction"
+
 export const GITHUB_CREATE_TNT_APP_REPO =
   "https://github.com/SlickYeet/create-tnt-stack"
 
