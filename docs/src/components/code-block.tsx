@@ -33,6 +33,7 @@ export function CodeBlock({
         </div>
       )}
       <Pre
+        code={code}
         data-language={language}
         className={cn("px-4", title ? "rounded-t-none" : "")}
         {...props}
