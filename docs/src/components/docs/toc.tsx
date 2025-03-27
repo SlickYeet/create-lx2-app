@@ -1,6 +1,6 @@
 "use client"
 
-import { MessageSquareIcon, PenIcon } from "lucide-react"
+import { ArrowUpCircleIcon, MessageSquareIcon, PenIcon } from "lucide-react"
 import { motion } from "motion/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -32,6 +32,7 @@ export function DocsTOC() {
 
   const [headings, setHeadings] = useState<Heading[]>([])
   const [activeId, setActiveId] = useState<string | null>(null)
+  const [showBackToTop, setShowBackToTop] = useState(false)
 
   useEffect(() => {
     const mdxContent = document.getElementById("mdx")
@@ -94,6 +95,16 @@ export function DocsTOC() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [headings, pathname])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const halfwayPoint = window.innerHeight / 2
+      setShowBackToTop(window.scrollY > halfwayPoint)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
     <div className="sticky top-20 hidden lg:block">
@@ -180,6 +191,24 @@ export function DocsTOC() {
             <MessageSquareIcon className="size-3.5 fill-current" />
             Give feedback
           </Link>
+        </li>
+        <li>
+          <button
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              })
+            }
+            className={cn(
+              "text-muted-foreground hover:text-primary flex items-center gap-1.5 text-sm opacity-0 transition-all hover:underline",
+              showBackToTop && "opacity-100",
+            )}
+            aria-label="Back to Top"
+          >
+            <ArrowUpCircleIcon className="size-3.5" />
+            Back to top
+          </button>
         </li>
       </ul>
     </div>
