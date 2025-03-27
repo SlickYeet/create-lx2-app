@@ -121,7 +121,7 @@ export function Usage() {
 
               <div className="pt-4">
                 <Button className="group" asChild>
-                  <Link href="/docs/create-tnt-stack/getting-started#experimental-ci-flags">
+                  <Link href="/docs/getting-started#experimental-ci-flags">
                     View Full Documentation
                     <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-1" />
                   </Link>

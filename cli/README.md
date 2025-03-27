@@ -76,7 +76,7 @@ bun create tnt-stack@latest
 ```
 
 For more information, visit the
-[docs](https://create.tntstack.org/docs/installation).
+[docs](https://create.tntstack.org/docs/getting-started).
 
 <h2 id="features">🛠 Features</h2>
 
