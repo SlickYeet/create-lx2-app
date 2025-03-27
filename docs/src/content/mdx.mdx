@@ -10,18 +10,18 @@ This is an MDX page.
   title="Create a new project"
 />
 
-```tsx
-<pre
-  ref={preRef}
-  className={cn(
-    "border-muted bg-muted/50 dark:bg-muted/20 my-6 overflow-x-auto rounded-lg border px-4 py-3 font-mono text-sm",
-    language ? "pt-14" : "pt-3",
-    className,
-  )}
-  {...props}
->
-  {children}
-</pre>
+```tsx {7-9} /mx-auto/ title="page.tsx"
+export default async function DocsPage({ params }: DocsPageProps) {
+  const { slug } = params // [!code --]
+  const { slug } = await params // [!code ++]
+  const { default: Source } = await import(`@/content/${slug}.mdx`)
+
+  return (
+    <div className="mdx container mx-auto max-w-7xl px-4 py-20">
+      <Source />
+    </div>
+  )
+}
 ```
 
 ```tsx

@@ -4,20 +4,20 @@ import {
   transformerMetaWordHighlight,
   transformerNotationDiff,
 } from "@shikijs/transformers"
-import rehypePrettyCode from "rehype-pretty-code"
+import type { NextConfig } from "next"
+import rehypePrettyCode, {
+  type Options as PrettyCodeOptions,
+} from "rehype-pretty-code"
 import remarkFrontmatter from "remark-frontmatter"
 import remarkgfm from "remark-gfm"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
 
-/** @type {import("next").NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   pageExtensions: ["ts", "tsx", "md", "mdx"],
 }
 
-/** @type {import("rehype-pretty-code").Options} */
-const prettyCodeOptions = {
-  grid: false,
+const prettyCodeOptions: PrettyCodeOptions = {
   keepBackground: false,
   theme: {
     dark: "github-dark-default",
