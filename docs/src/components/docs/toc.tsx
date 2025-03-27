@@ -132,7 +132,9 @@ export function DocsTOC() {
                         block: "start",
                       })
                       history.pushState(null, "", `#${heading.id}`)
-                      setActiveId(heading.id) // Immediately update active state
+                      setTimeout(() => {
+                        setActiveId(heading.id)
+                      }, 300)
                     }
                   }}
                 >
