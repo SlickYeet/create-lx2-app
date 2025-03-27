@@ -87,7 +87,7 @@ export function DocsTOC() {
   }, [headings, pathname])
 
   return (
-    <div className="sticky top-24">
+    <div className="sticky top-20 hidden lg:block">
       <H3 className="text-xl">On This Page</H3>
 
       <nav>
@@ -149,7 +149,7 @@ export function DocsTOC() {
         </ul>
       </nav>
 
-      <H3 className="text-xl">More</H3>
+      <H3 className="mt-4 text-xl">More</H3>
 
       <ul className="space-y-2">
         <li>

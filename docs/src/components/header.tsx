@@ -142,7 +142,7 @@ export function Header() {
       {/* Mobile menu */}
       {mobileMenuOpen && (
         <motion.div
-          className="lg:hidden"
+          //   className="lg:hidden"
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
@@ -168,6 +168,8 @@ export function Header() {
                 {label}
               </Link>
             ))}
+
+            <div className="bg-border h-px w-full" />
 
             <div className="flex items-center gap-2">
               <Button variant="outline" className="flex-1" asChild>

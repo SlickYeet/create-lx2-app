@@ -11,7 +11,7 @@ export function H1({ children, id, className }: HeadingProps) {
     <h1
       id={id}
       className={cn(
-        "mt-8 mb-4 scroll-m-20 text-4xl font-bold tracking-tight",
+        "mb-4 scroll-m-20 text-4xl font-bold tracking-tight",
         className,
       )}
     >
@@ -25,7 +25,7 @@ export function H2({ children, id, className }: HeadingProps) {
     <h2
       id={id}
       className={cn(
-        "mt-8 mb-4 scroll-m-20 border-b pb-2 text-3xl font-bold tracking-tight",
+        "mb-4 scroll-m-20 border-b pb-2 text-3xl font-bold tracking-tight",
         className,
       )}
     >
@@ -39,7 +39,7 @@ export function H3({ children, id, className }: HeadingProps) {
     <h3
       id={id}
       className={cn(
-        "mt-6 mb-3 scroll-m-20 text-2xl font-bold tracking-tight",
+        "mb-3 scroll-m-20 text-2xl font-bold tracking-tight",
         className,
       )}
     >
@@ -53,7 +53,7 @@ export function H4({ children, id, className }: HeadingProps) {
     <h4
       id={id}
       className={cn(
-        "mt-4 mb-2 scroll-m-20 text-xl font-bold tracking-tight",
+        "mb-2 scroll-m-20 text-xl font-bold tracking-tight",
         className,
       )}
     >
@@ -67,7 +67,7 @@ export function H5({ children, id, className }: HeadingProps) {
     <h5
       id={id}
       className={cn(
-        "mt-4 mb-2 scroll-m-20 text-lg font-bold tracking-tight",
+        "mb-2 scroll-m-20 text-lg font-bold tracking-tight",
         className,
       )}
     >
@@ -81,7 +81,7 @@ export function H6({ children, id, className }: HeadingProps) {
     <h6
       id={id}
       className={cn(
-        "mt-4 mb-2 scroll-m-20 text-base font-bold tracking-tight",
+        "mb-2 scroll-m-20 text-base font-bold tracking-tight",
         className,
       )}
     >
