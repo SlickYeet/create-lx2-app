@@ -84,6 +84,7 @@ export function Code({
   "data-language": language,
   ...props
 }: PreProps) {
+  // Inline code block styling
   if (!language) {
     return (
       <code

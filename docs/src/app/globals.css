@@ -277,7 +277,7 @@
 /* GFM Table */
 @layer utilities {
   .mdx table {
-    @apply w-full table-auto;
+    @apply my-6 w-full table-auto;
   }
   .mdx th {
     @apply px-4 text-left font-bold;
