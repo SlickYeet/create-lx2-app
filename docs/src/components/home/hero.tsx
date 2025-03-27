@@ -66,7 +66,7 @@ export function Hero() {
             <Button
               size="lg"
               variant="outline"
-              className="group h-[3.25rem] flex-1"
+              className="group min-h-[3.5rem] flex-1"
               asChild
             >
               <Link href="/docs/introduction">
@@ -79,7 +79,7 @@ export function Hero() {
             <Button
               size="lg"
               variant="outline"
-              className="group h-[3.25rem] flex-1"
+              className="group min-h-[3.5rem] flex-1"
               asChild
             >
               <Link href={GITHUB_CREATE_TNT_APP_REPO} target="_blank">
