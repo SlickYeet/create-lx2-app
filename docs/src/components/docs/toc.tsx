@@ -6,7 +6,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
-import { GITHUB_CREATE_TNT_APP_REPO } from "@/constants"
+import { GITHUB_CREATE_TNT_APP_REPO, SIDEBAR_NAVIGATION } from "@/constants"
 import { cn } from "@/lib/utils"
 import { H3 } from "@/mdx-components"
 
@@ -18,8 +18,17 @@ interface Heading {
 
 export function DocsTOC() {
   const pathname = usePathname()
-  const pathWithoutPrefix = pathname.replace("/docs/", "")
-  const repoPath = `${GITHUB_CREATE_TNT_APP_REPO}/tree/main/docs/src/content/${pathWithoutPrefix}.mdx`
+
+  // Extract the visible path and find the matched slug
+  const visiblePath = pathname.replace(/^\/docs\/\(([^)]+)\)/, "/docs")
+  const matchedSlug = SIDEBAR_NAVIGATION.find((section) =>
+    section.items.some((item) => visiblePath.includes(item.slug)),
+  )?.slug
+
+  // Construct the repo path
+  const repoPath = `${GITHUB_CREATE_TNT_APP_REPO}/blob/main/docs/src/app/docs/${
+    matchedSlug ? `(${matchedSlug})` : ""
+  }${visiblePath.replace("/docs", "")}/page.mdx`
 
   const [headings, setHeadings] = useState<Heading[]>([])
   const [activeId, setActiveId] = useState<string | null>(null)

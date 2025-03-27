@@ -15,6 +15,7 @@ export const SIDEBAR_NAVIGATION = [
   // Create TNT Stack
   {
     title: "Create TNT Stack",
+    slug: "create-tnt-stack",
     items: [
       { slug: "introduction", title: "Introduction" },
       { slug: "getting-started", title: "Getting Started" },
@@ -24,6 +25,7 @@ export const SIDEBAR_NAVIGATION = [
   // Usage
   {
     title: "Usage",
+    slug: "usage",
     items: [
       { slug: "first-steps", title: "First Steps" },
       { slug: "nextjs", title: "Next.js" },
@@ -33,6 +35,7 @@ export const SIDEBAR_NAVIGATION = [
   // Deploymeny
   //   {
   //     title: "Deployment",
+  //     slug: "deployment",
   //     items: [
   //       { slug: "vercel", title: "Vercel" },
   //       { slug: "netlify", title: "Netlify" },
@@ -41,9 +44,10 @@ export const SIDEBAR_NAVIGATION = [
   // Roadmap
   {
     title: "Roadmap",
+    slug: "roadmap",
     items: [{ slug: "v1", title: "Version 1" }],
   },
-]
+] as const
 
 export type FeatureType = {
   title: string
