@@ -18,7 +18,7 @@ export default function DocsLayout({
       className="container py-5 lg:py-10"
     >
       <div className="grid grid-cols-1 gap-8 md:grid-cols-12 lg:grid-cols-15">
-        <div className="sm:col-span-3">
+        <div className="hidden sm:col-span-3 md:block">
           <DocsSidebar />
         </div>
         <div id="mdx" className="mdx col-span-1 md:col-span-9">
