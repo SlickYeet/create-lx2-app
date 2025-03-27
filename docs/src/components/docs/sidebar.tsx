@@ -7,37 +7,9 @@ import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { SIDEBAR_NAVIGATION } from "@/constants"
 import { cn } from "@/lib/utils"
 import { H3 } from "@/mdx-components"
-
-const NAVIGATION = [
-  // Create TNT Stack
-  {
-    title: "Create TNT Stack",
-    items: [
-      { slug: "introduction", title: "Introduction" },
-      { slug: "getting-started", title: "Getting Started" },
-      { slug: "why", title: "Why?" },
-    ],
-  },
-  // Usage
-  {
-    title: "Usage",
-    items: [
-      { slug: "first-steps", title: "First Steps" },
-      { slug: "nextjs", title: "Next.js" },
-      { slug: "payloadcms", title: "Payload CMS" },
-    ],
-  },
-  // Deploymeny
-  {
-    title: "Deployment",
-    items: [
-      { slug: "vercel", title: "Vercel" },
-      { slug: "netlify", title: "Netlify" },
-    ],
-  },
-]
 
 export function DocsSidebar() {
   const pathname = usePathname()
@@ -65,7 +37,7 @@ export function DocsSidebar() {
       <div className="sticky top-20 hidden md:block">
         <ScrollArea className="h-[calc(100vh-7rem)]">
           <aside>
-            {NAVIGATION.map((page) => (
+            {SIDEBAR_NAVIGATION.map((page) => (
               <div key={page.title}>
                 {/* First child should not have a margin top of 4 */}
                 <H3 className="text-xl">{page.title}</H3>
@@ -136,7 +108,7 @@ export function DocsSidebar() {
       {isOpen && (
         <ScrollArea className="h-[calc(100vh-6.5rem)] pt-8 pb-2">
           <aside>
-            {NAVIGATION.map((page) => (
+            {SIDEBAR_NAVIGATION.map((page) => (
               <div key={page.title}>
                 {/* First child should not have a margin top of 4 */}
                 <H3 className="text-xl">{page.title}</H3>
