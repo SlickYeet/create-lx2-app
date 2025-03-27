@@ -11,6 +11,40 @@ import {
 export const GITHUB_CREATE_TNT_APP_REPO =
   "https://github.com/SlickYeet/create-tnt-stack"
 
+export const SIDEBAR_NAVIGATION = [
+  // Create TNT Stack
+  {
+    title: "Create TNT Stack",
+    items: [
+      { slug: "introduction", title: "Introduction" },
+      { slug: "getting-started", title: "Getting Started" },
+      { slug: "why", title: "Why?" },
+    ],
+  },
+  // Usage
+  {
+    title: "Usage",
+    items: [
+      { slug: "first-steps", title: "First Steps" },
+      { slug: "nextjs", title: "Next.js" },
+      { slug: "payloadcms", title: "Payload CMS" },
+    ],
+  },
+  // Deploymeny
+  //   {
+  //     title: "Deployment",
+  //     items: [
+  //       { slug: "vercel", title: "Vercel" },
+  //       { slug: "netlify", title: "Netlify" },
+  //     ],
+  //   },
+  // Roadmap
+  {
+    title: "Roadmap",
+    items: [{ slug: "v1", title: "Version 1" }],
+  },
+]
+
 export type FeatureType = {
   title: string
   description: string
