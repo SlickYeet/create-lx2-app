@@ -54,7 +54,7 @@ export function DocsSidebar() {
                       <div className="relative">
                         {isActive && (
                           <motion.div
-                            layoutId="activeItem"
+                            layoutId="sidebarActiveItem"
                             className="bg-primary/10 border-primary absolute inset-0 border-l-2"
                             initial={false}
                             transition={{
