@@ -15,7 +15,15 @@ export function Footer() {
             <Logo animate={false} ping={false} textClassName="inline-block" />
           </Link>
           <p className="text-muted-foreground text-sm">
-            &copy; {new Date().getFullYear()} TNT-Powered CLI. MIT License.
+            &copy; {new Date().getFullYear()} TNT-Powered CLI.{" "}
+            <a
+              href={`${GITHUB_CREATE_TNT_APP_REPO}/blob/main/LICENSE.md`}
+              target="_blank"
+              className="hover:underline"
+            >
+              MIT License
+            </a>
+            .
           </p>
         </div>
 
@@ -34,23 +42,26 @@ export function Footer() {
               Contributing
             </Anchor>
             <Anchor
-              href={`${GITHUB_CREATE_TNT_APP_REPO}/issues/new`}
+              href={`${GITHUB_CREATE_TNT_APP_REPO}/issues/new?template=bug_report.yml`}
               className="text-muted-foreground hover:underline"
             >
               Report Issue
             </Anchor>
           </div>
 
-          <div className="flex items-center gap-4">
-            <Link
-              href={GITHUB_CREATE_TNT_APP_REPO}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="GitHub"
-            >
-              <GithubIcon className="size-5" />
-            </Link>
+          <div className="flex items-center gap-2">
+            <Button size="icon" variant="outline" asChild>
+              <Link
+                href={GITHUB_CREATE_TNT_APP_REPO}
+                target="_blank"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="GitHub"
+              >
+                <GithubIcon className="size-4" />
+              </Link>
+            </Button>
 
-            <Button size="sm" variant="outline" asChild>
+            <Button variant="outline" asChild>
               <Link href={GITHUB_CREATE_TNT_APP_REPO} target="_blank">
                 <StarIcon className="size-4 fill-yellow-500 stroke-yellow-500 dark:fill-yellow-400 dark:stroke-yellow-400" />
                 Star on GitHub
