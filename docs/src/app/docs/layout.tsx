@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react"
 
+import { Pagination } from "@/components/docs/pagination"
 import { DocsSidebar } from "@/components/docs/sidebar"
 import { DocsTOC } from "@/components/docs/toc"
 
@@ -23,6 +24,7 @@ export default function DocsLayout({
         </div>
         <div id="mdx" className="mdx col-span-1 md:col-span-9">
           {children}
+          <Pagination />
         </div>
         <div className="hidden lg:col-span-3 lg:block">
           <DocsTOC />
