@@ -51,6 +51,33 @@ Then, install the project's dependencies:
 bun install
 ```
 
+### Suggested Branching Strategy
+
+To maintain a clear and structured repository, we follow a specific branching
+strategy:
+
+```
+feature-area/feature/feature-description
+```
+
+- `feature-area` should be one of the following:
+  - `cli` → Changes related to the CLI
+  - `docs` → Changes related to documentation
+  - `core` → Changes related to the overall repository structure or
+    configurations
+- `feature` should be a short, descriptive name for the change being
+  implemented.
+- `feature-description` (optional) can provide additional context.
+
+**Example Branch Names**:
+
+- `cli/auth/add-lucia-auth`
+- `docs/improve-installation-guide`
+- `core/ci/update-build-scripts`
+
+This structure ensures clear organization and easier navigation through
+contributions.
+
 ### Implement your changes
 
 This project is a [Turborepo](https://turbo.build/) monorepo. The code for the
