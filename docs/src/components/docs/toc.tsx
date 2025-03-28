@@ -70,8 +70,8 @@ export function DocsTOC() {
         }
       },
       {
-        rootMargin: "-20% 0px -60% 0px", // More forgiving, triggers earlier
-        threshold: 0.1, // Fires when at least 10% of the heading is visible
+        rootMargin: "0px 0px -30% 0px",
+        threshold: 1,
       },
     )
 
@@ -87,7 +87,7 @@ export function DocsTOC() {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY === 0 && headings.length > 0) {
-        setActiveId(headings[0].id) // Keep first heading active
+        setActiveId(headings[0].id)
         history.replaceState(null, "", `#${headings[0].id}`)
       }
     }
@@ -116,10 +116,7 @@ export function DocsTOC() {
             const isActive = activeId === heading.id
 
             return (
-              <li
-                key={heading.id}
-                style={{ paddingLeft: `${heading.level * 4}px` }}
-              >
+              <li key={heading.id}>
                 <Link
                   href={`#${heading.id}`}
                   className="block"
@@ -160,6 +157,7 @@ export function DocsTOC() {
                           ? "text-primary font-medium"
                           : "text-muted-foreground",
                       )}
+                      style={{ paddingLeft: `${heading.level * 10}px` }}
                     >
                       {heading.text}
                     </span>
