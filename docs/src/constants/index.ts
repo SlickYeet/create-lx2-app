@@ -13,7 +13,16 @@ export const RELATIVE_INITIAL_DOCS_PATH = "/docs/introduction"
 export const GITHUB_CREATE_TNT_APP_REPO =
   "https://github.com/SlickYeet/create-tnt-stack"
 
-export const SIDEBAR_NAVIGATION = [
+export type NavigationSection = {
+  title: string
+  slug: string
+  items: {
+    slug: string
+    title: string
+  }[]
+}
+
+export const SIDEBAR_NAVIGATION: NavigationSection[] = [
   // Create TNT Stack
   {
     title: "Create TNT Stack",
