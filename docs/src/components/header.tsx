@@ -210,7 +210,10 @@ export function Header() {
 
       {isDocs && (
         <>
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
             className={cn(
               "sticky top-16 left-0 z-20 hidden max-md:block",
               !isOpen
@@ -229,7 +232,7 @@ export function Header() {
               )}
               <span className="ml-1.5">Menu</span>
             </button>
-          </div>
+          </motion.div>
           {isOpen && (
             <DocsSidebar isOpen={isOpen} setIsOpen={toggleMobileMenu} />
           )}
