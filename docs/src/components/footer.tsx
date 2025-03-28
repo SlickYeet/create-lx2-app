@@ -4,7 +4,10 @@ import Link from "next/link"
 import { Logo } from "@/components/logo"
 import { Anchor } from "@/components/mdx/anchor"
 import { Button } from "@/components/ui/button"
-import { GITHUB_CREATE_TNT_APP_REPO } from "@/constants"
+import {
+  GITHUB_CREATE_TNT_APP_REPO,
+  RELATIVE_INITIAL_DOCS_PATH,
+} from "@/constants"
 
 export function Footer() {
   return (
@@ -30,7 +33,7 @@ export function Footer() {
         <div className="text-muted-foreground flex flex-col items-start gap-4 text-sm md:flex-row md:items-center md:justify-between md:gap-6">
           <div className="flex flex-col gap-2 md:flex-row md:gap-4">
             <Anchor
-              href="/docs/create-tnt-stack/introduction"
+              href={RELATIVE_INITIAL_DOCS_PATH}
               className="text-muted-foreground hover:underline"
             >
               Documentation

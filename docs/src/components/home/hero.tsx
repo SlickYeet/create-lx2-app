@@ -13,7 +13,10 @@ import { CodeBlock } from "@/components/code-block"
 import { TerminalDemo } from "@/components/terminal-demo"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { GITHUB_CREATE_TNT_APP_REPO } from "@/constants"
+import {
+  GITHUB_CREATE_TNT_APP_REPO,
+  RELATIVE_INITIAL_DOCS_PATH,
+} from "@/constants"
 
 export function Hero() {
   return (
@@ -66,10 +69,10 @@ export function Hero() {
             <Button
               size="lg"
               variant="outline"
-              className="group h-[3.25rem] flex-1"
+              className="group min-h-[3.5rem] flex-1"
               asChild
             >
-              <Link href="/docs/introduction">
+              <Link href={RELATIVE_INITIAL_DOCS_PATH}>
                 <FileCode2Icon className="mr-2 size-4" />
                 <span>Get Started</span>
                 <ArrowRightIcon className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
@@ -79,7 +82,7 @@ export function Hero() {
             <Button
               size="lg"
               variant="outline"
-              className="group h-[3.25rem] flex-1"
+              className="group min-h-[3.5rem] flex-1"
               asChild
             >
               <Link href={GITHUB_CREATE_TNT_APP_REPO} target="_blank">

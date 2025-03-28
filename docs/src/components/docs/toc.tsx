@@ -1,12 +1,12 @@
 "use client"
 
-import { MessageSquareIcon, PenIcon } from "lucide-react"
+import { ArrowUpCircleIcon, MessageSquareIcon, PenIcon } from "lucide-react"
 import { motion } from "motion/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
-import { GITHUB_CREATE_TNT_APP_REPO } from "@/constants"
+import { GITHUB_CREATE_TNT_APP_REPO, SIDEBAR_NAVIGATION } from "@/constants"
 import { cn } from "@/lib/utils"
 import { H3 } from "@/mdx-components"
 
@@ -18,11 +18,21 @@ interface Heading {
 
 export function DocsTOC() {
   const pathname = usePathname()
-  const pathWithoutPrefix = pathname.replace("/docs/", "")
-  const repoPath = `${GITHUB_CREATE_TNT_APP_REPO}/tree/main/docs/src/content/${pathWithoutPrefix}.mdx`
+
+  // Extract the visible path and find the matched slug
+  const visiblePath = pathname.replace(/^\/docs\/\(([^)]+)\)/, "/docs")
+  const matchedSlug = SIDEBAR_NAVIGATION.find((section) =>
+    section.items.some((item) => visiblePath.includes(item.slug)),
+  )?.slug
+
+  // Construct the repo path
+  const repoPath = `${GITHUB_CREATE_TNT_APP_REPO}/blob/main/docs/src/app/docs/${
+    matchedSlug ? `(${matchedSlug})` : ""
+  }${visiblePath.replace("/docs", "")}/page.mdx`
 
   const [headings, setHeadings] = useState<Heading[]>([])
   const [activeId, setActiveId] = useState<string | null>(null)
+  const [showBackToTop, setShowBackToTop] = useState(false)
 
   useEffect(() => {
     const mdxContent = document.getElementById("mdx")
@@ -60,8 +70,8 @@ export function DocsTOC() {
         }
       },
       {
-        rootMargin: "-20% 0px -60% 0px", // More forgiving, triggers earlier
-        threshold: 0.1, // Fires when at least 10% of the heading is visible
+        rootMargin: "0px 0px -30% 0px",
+        threshold: 1,
       },
     )
 
@@ -77,7 +87,7 @@ export function DocsTOC() {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY === 0 && headings.length > 0) {
-        setActiveId(headings[0].id) // Keep first heading active
+        setActiveId(headings[0].id)
         history.replaceState(null, "", `#${headings[0].id}`)
       }
     }
@@ -85,6 +95,16 @@ export function DocsTOC() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [headings, pathname])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const halfwayPoint = window.innerHeight / 2
+      setShowBackToTop(window.scrollY > halfwayPoint)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
     <div className="sticky top-20 hidden lg:block">
@@ -96,10 +116,7 @@ export function DocsTOC() {
             const isActive = activeId === heading.id
 
             return (
-              <li
-                key={heading.id}
-                style={{ paddingLeft: `${heading.level * 4}px` }}
-              >
+              <li key={heading.id}>
                 <Link
                   href={`#${heading.id}`}
                   className="block"
@@ -112,7 +129,9 @@ export function DocsTOC() {
                         block: "start",
                       })
                       history.pushState(null, "", `#${heading.id}`)
-                      setActiveId(heading.id) // Immediately update active state
+                      setTimeout(() => {
+                        setActiveId(heading.id)
+                      }, 300)
                     }
                   }}
                 >
@@ -138,6 +157,7 @@ export function DocsTOC() {
                           ? "text-primary font-medium"
                           : "text-muted-foreground",
                       )}
+                      style={{ paddingLeft: `${heading.level * 10}px` }}
                     >
                       {heading.text}
                     </span>
@@ -171,6 +191,24 @@ export function DocsTOC() {
             <MessageSquareIcon className="size-3.5 fill-current" />
             Give feedback
           </Link>
+        </li>
+        <li>
+          <button
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              })
+            }
+            className={cn(
+              "text-muted-foreground hover:text-primary flex items-center gap-1.5 text-sm opacity-0 transition-all hover:underline",
+              showBackToTop && "opacity-100",
+            )}
+            aria-label="Back to Top"
+          >
+            <ArrowUpCircleIcon className="size-3.5" />
+            Back to top
+          </button>
         </li>
       </ul>
     </div>

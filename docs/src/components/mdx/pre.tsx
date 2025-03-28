@@ -43,7 +43,7 @@ export function Pre({
     <div className="relative">
       <pre
         className={cn(
-          "dark:bg-input/30 bg-background group border-input my-6 min-w-sm overflow-x-scroll rounded-lg border py-4 shadow-xs",
+          "dark:bg-input/30 bg-background group border-input my-6 w-auto overflow-x-scroll rounded-lg border py-4 shadow-xs md:min-w-sm",
           className,
         )}
         {...props}
@@ -84,6 +84,7 @@ export function Code({
   "data-language": language,
   ...props
 }: PreProps) {
+  // Inline code block styling
   if (!language) {
     return (
       <code
