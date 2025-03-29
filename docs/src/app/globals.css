@@ -242,6 +242,22 @@
 
 /* Code Extras */
 @layer utilities {
+  .mdx pre::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  .mdx pre::-webkit-scrollbar-thumb {
+    background: var(--muted-foreground);
+    border-radius: 4px;
+  }
+  .mdx pre::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .mdx pre {
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted-foreground) transparent;
+  }
+
   .mdx pre [data-line] {
     @apply px-5;
   }
