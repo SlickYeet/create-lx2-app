@@ -2,9 +2,10 @@
 
 import copyToClipboard from "copy-to-clipboard"
 import { Check, Copy, WrapTextIcon } from "lucide-react"
-import { useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { BundledLanguage } from "shiki/bundle/web"
 
+import { useWrapLines } from "@/components/provider"
 import { Button } from "@/components/ui/button"
 import { cn, extractTextContent } from "@/lib/utils"
 
@@ -16,7 +17,6 @@ export interface PreProps {
   showLanguage?: boolean
   "data-line-numbers"?: string
   alwaysShowCopy?: boolean
-  wrapLines?: boolean
 }
 
 export function Pre({
@@ -26,22 +26,15 @@ export function Pre({
   "data-language": language,
   showLanguage = true,
   alwaysShowCopy = false,
-  wrapLines: wrapLinesFromProps = false,
   ...props
 }: PreProps) {
-  const [isCopied, setIsCopied] = useState(false)
-  const [wrapLines, setWrapLines] = useState(wrapLinesFromProps)
-  const [hasOverflow, setHasOverflow] = useState(false)
   const preRef = useRef<HTMLPreElement>(null)
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedWrapLines = localStorage.getItem("data-wrap-lines") === "true"
-      setWrapLines(storedWrapLines || wrapLinesFromProps)
-    }
-  }, [wrapLinesFromProps])
+  const { wrapLines, toggleWrapLines } = useWrapLines()
+  const [isCopied, setIsCopied] = useState(false)
+  const [hasOverflow, setHasOverflow] = useState(false)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const checkOverflow = () => {
       if (preRef.current) {
         setHasOverflow(preRef.current.scrollWidth > preRef.current.clientWidth)
@@ -52,11 +45,6 @@ export function Pre({
     window.addEventListener("resize", checkOverflow)
     return () => window.removeEventListener("resize", checkOverflow)
   }, [])
-
-  const handleWrapLines = () => {
-    setWrapLines(!wrapLines)
-    localStorage.setItem("data-wrap-lines", (!wrapLines).toString())
-  }
 
   const handleCopy = () => {
     if (code !== undefined) {
@@ -82,7 +70,7 @@ export function Pre({
       >
         <div className="absolute top-2 right-1 z-20 flex items-center gap-1">
           <Button
-            onClick={handleWrapLines}
+            onClick={toggleWrapLines}
             size="icon"
             variant="outline"
             className={cn(
