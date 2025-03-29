@@ -2,7 +2,7 @@
 
 import copyToClipboard from "copy-to-clipboard"
 import { Check, Copy, WrapTextIcon } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { BundledLanguage } from "shiki/bundle/web"
 
 import { useWrapLines } from "@/components/provider"
@@ -17,6 +17,7 @@ export interface PreProps {
   showLanguage?: boolean
   "data-line-numbers"?: string
   alwaysShowCopy?: boolean
+  showWrapLines?: boolean
 }
 
 export function Pre({
@@ -26,25 +27,13 @@ export function Pre({
   "data-language": language,
   showLanguage = true,
   alwaysShowCopy = false,
+  showWrapLines = true,
   ...props
 }: PreProps) {
   const preRef = useRef<HTMLPreElement>(null)
 
   const { wrapLines, toggleWrapLines } = useWrapLines()
   const [isCopied, setIsCopied] = useState(false)
-  const [hasOverflow, setHasOverflow] = useState(false)
-
-  useEffect(() => {
-    const checkOverflow = () => {
-      if (preRef.current) {
-        setHasOverflow(preRef.current.scrollWidth > preRef.current.clientWidth)
-      }
-    }
-
-    checkOverflow()
-    window.addEventListener("resize", checkOverflow)
-    return () => window.removeEventListener("resize", checkOverflow)
-  }, [])
 
   const handleCopy = () => {
     if (code !== undefined) {
@@ -75,8 +64,7 @@ export function Pre({
             variant="outline"
             className={cn(
               "dark:bg-input/50 dark:hover:bg-input opacity-0 group-focus-within:opacity-100 group-hover:opacity-100",
-              !hasOverflow && "hidden",
-              alwaysShowCopy && "opacity-100",
+              !showWrapLines && "hidden",
               className,
             )}
             aria-label="Toggle line wrapping"

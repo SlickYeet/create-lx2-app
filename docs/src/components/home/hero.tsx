@@ -102,6 +102,7 @@ export function Hero() {
             <CodeBlock
               data-language="bash"
               alwaysShowCopy
+              showWrapLines={false}
               code="npm create tnt-stack@latest"
             />
           </motion.div>
