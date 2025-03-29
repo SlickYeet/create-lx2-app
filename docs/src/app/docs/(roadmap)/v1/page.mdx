@@ -28,7 +28,7 @@ Planned components:
   items={[
     "Callout",
     "Table",
-    "Code and Pre",
+    "Code block",
     "Headings",
     "Paragraph",
     "Image",
@@ -36,6 +36,7 @@ Planned components:
     "Anchor",
     "List",
   ]}
+  defaultIndex={2}
 >
   <Tabs.Tab>
     - [x] `Callout`
@@ -69,11 +70,11 @@ Planned components:
 
   </Tabs.Tab>
   <Tabs.Tab>
-    - [ ] `Code and Pre`
+    - [ ] `Code block`
 
-        The code block is pretty much complete, however it is missing line numbers, and line wrapping.
+        The code block is pretty much complete, however line wrapping is kind of clunky.
 
-        ```tsx {7-9} /mx-auto/ title="page.tsx"
+        ```tsx {7-9} showLineNumbers /mx-auto/ title="page.tsx"
         export default async function DocsPage({ params }: DocsPageProps) {
           const { slug } = params // [!code --]
           const { slug } = await params // [!code ++]

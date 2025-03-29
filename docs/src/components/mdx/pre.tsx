@@ -1,8 +1,8 @@
 "use client"
 
 import copyToClipboard from "copy-to-clipboard"
-import { Check, Copy } from "lucide-react"
-import { useState } from "react"
+import { Check, Copy, WrapTextIcon } from "lucide-react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { BundledLanguage } from "shiki/bundle/web"
 
 import { Button } from "@/components/ui/button"
@@ -14,7 +14,9 @@ export interface PreProps {
   className?: string
   "data-language"?: BundledLanguage
   showLanguage?: boolean
+  "data-line-numbers"?: string
   alwaysShowCopy?: boolean
+  wrapLines?: boolean
 }
 
 export function Pre({
@@ -24,9 +26,37 @@ export function Pre({
   "data-language": language,
   showLanguage = true,
   alwaysShowCopy = false,
+  wrapLines: wrapLinesFromProps = false,
   ...props
 }: PreProps) {
   const [isCopied, setIsCopied] = useState(false)
+  const [wrapLines, setWrapLines] = useState(wrapLinesFromProps)
+  const [hasOverflow, setHasOverflow] = useState(false)
+  const preRef = useRef<HTMLPreElement>(null)
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedWrapLines = localStorage.getItem("data-wrap-lines") === "true"
+      setWrapLines(storedWrapLines || wrapLinesFromProps)
+    }
+  }, [wrapLinesFromProps])
+
+  useLayoutEffect(() => {
+    const checkOverflow = () => {
+      if (preRef.current) {
+        setHasOverflow(preRef.current.scrollWidth > preRef.current.clientWidth)
+      }
+    }
+
+    checkOverflow()
+    window.addEventListener("resize", checkOverflow)
+    return () => window.removeEventListener("resize", checkOverflow)
+  }, [])
+
+  const handleWrapLines = () => {
+    setWrapLines(!wrapLines)
+    localStorage.setItem("data-wrap-lines", (!wrapLines).toString())
+  }
 
   const handleCopy = () => {
     if (code !== undefined) {
@@ -42,37 +72,57 @@ export function Pre({
   return (
     <div className="relative">
       <pre
+        ref={preRef}
+        data-wrap-lines={wrapLines}
         className={cn(
           "dark:bg-input/30 bg-background group border-input my-6 w-auto overflow-x-auto rounded-lg border py-4 shadow-xs md:min-w-sm",
           className,
         )}
         {...props}
       >
-        <Button
-          onClick={handleCopy}
-          size="icon"
-          variant="outline"
-          className={cn(
-            "absolute top-2 right-1 z-10 opacity-0 group-hover:opacity-100",
-            alwaysShowCopy && "opacity-100",
-            className,
-          )}
-          aria-label="Copy code to clipboard"
-        >
-          {isCopied ? (
-            <Check className="size-3.5 text-emerald-500" />
-          ) : (
-            <Copy className="size-3.5" />
-          )}
-        </Button>
+        <div className="absolute top-2 right-1 z-20 flex items-center gap-1">
+          <Button
+            onClick={handleWrapLines}
+            size="icon"
+            variant="outline"
+            className={cn(
+              "dark:bg-input/50 dark:hover:bg-input opacity-0 group-focus-within:opacity-100 group-hover:opacity-100",
+              !hasOverflow && "hidden",
+              alwaysShowCopy && "opacity-100",
+              className,
+            )}
+            aria-label="Toggle line wrapping"
+          >
+            <WrapTextIcon
+              className={cn("size-3.5", wrapLines && "rotate-y-180 transform")}
+            />
+          </Button>
+          <Button
+            onClick={handleCopy}
+            size="icon"
+            variant="outline"
+            className={cn(
+              "dark:bg-input/50 dark:hover:bg-input opacity-0 group-focus-within:opacity-100 group-hover:opacity-100",
+              alwaysShowCopy && "opacity-100",
+              className,
+            )}
+            aria-label="Copy code to clipboard"
+          >
+            {isCopied ? (
+              <Check className="size-3.5 text-emerald-500" />
+            ) : (
+              <Copy className="size-3.5" />
+            )}
+          </Button>
+        </div>
 
         {language && showLanguage && !alwaysShowCopy && (
-          <span className="text-muted-foreground bg-input/50 border-input absolute top-2 right-1 z-0 rounded-lg rounded-tl-none rounded-br-none border px-2 py-1 font-mono text-xs opacity-100 transition-opacity group-hover:opacity-0">
+          <span className="text-muted-foreground bg-input/50 border-input absolute top-2 right-1 z-10 rounded-lg rounded-tl-none rounded-br-none border px-2 py-1 font-mono text-xs opacity-100 transition-opacity group-hover:opacity-0">
             {language}
           </span>
         )}
 
-        <Code data-language={language}>{children}</Code>
+        {children}
       </pre>
     </div>
   )

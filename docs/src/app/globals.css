@@ -259,34 +259,87 @@
   }
 
   .mdx pre [data-line] {
-    @apply px-5;
+    @apply relative px-5;
   }
   .mdx figure:has(figcaption) pre {
     @apply rounded-t-none;
   }
 
-  .mdx span .highlighted-word {
-    @apply bg-muted-foreground/20 text-foreground -mx-1 rounded-sm px-1 py-0.5;
+  .mdx pre[data-wrap-lines="true"] > code {
+    @apply whitespace-pre-wrap;
   }
 
-  .mdx span.diff.remove::before {
-    content: "-";
-    @apply absolute left-1.5 text-red-500;
+  .mdx code[data-line-numbers] {
+    counter-reset: line;
   }
-  .mdx span.diff.remove {
-    @apply !bg-red-500/10;
+  .mdx code[data-line-numbers] > [data-line]::before {
+    @apply w-1;
+  }
+  .mdx code[data-line-numbers] > [data-line]:not(.diff.remove)::before {
+    counter-increment: line;
+    content: counter(line);
+    @apply text-muted-foreground mr-9 -ml-3 inline-block text-right;
+  }
+  .mdx code[data-line-numbers-max-digits="2"] > [data-line]::before {
+    @apply w-2;
+  }
+  .mdx code[data-line-numbers-max-digits="3"] > [data-line]::before {
+    @apply w-4;
+  }
+  .mdx code[data-line-numbers-max-digits="4"] > [data-line]::before {
+    @apply w-6;
   }
 
-  .mdx span.diff.add::before {
+  .mdx code[data-line-numbers] > [data-line].diff.remove {
+    @apply pl-12;
+  }
+  .mdx code[data-line-numbers-max-digits="2"] > [data-line].diff.remove {
+    @apply pl-[3.25rem];
+  }
+  .mdx code[data-line-numbers-max-digits="3"] > [data-line].diff.remove {
+    @apply pl-[3.75rem];
+  }
+  .mdx code[data-line-numbers-max-digits="4"] > [data-line].diff.remove {
+    @apply pl-[4.25rem];
+  }
+
+  .mdx [data-line].diff::after {
+    @apply absolute left-1.5;
+  }
+  .mdx code[data-line-numbers-max-digits="1"] > [data-line].diff::after {
+    @apply left-7;
+  }
+  .mdx code[data-line-numbers-max-digits="2"] > [data-line].diff::after {
+    @apply left-[2.15rem];
+  }
+  .mdx code[data-line-numbers-max-digits="3"] > [data-line].diff::after {
+    @apply left-[2.65rem];
+  }
+  .mdx code[data-line-numbers-max-digits="4"] > [data-line].diff::after {
+    @apply left-[3.20rem];
+  }
+
+  .mdx [data-line].diff.add::after {
     content: "+";
-    @apply absolute left-1.5 text-emerald-500;
+    @apply text-emerald-500;
   }
-  .mdx span.diff.add {
-    @apply !bg-emerald-500/10;
+  .mdx [data-line].diff.add {
+    @apply bg-emerald-500/10;
   }
 
-  .mdx span.highlighted {
-    @apply !bg-muted-foreground/10;
+  .mdx [data-line].diff.remove::after {
+    content: "-";
+    @apply text-red-500;
+  }
+  .mdx [data-line].diff.remove {
+    @apply bg-red-500/10;
+  }
+
+  .mdx [data-line].highlighted {
+    @apply bg-muted-foreground/10;
+  }
+  .mdx [data-line] .highlighted-word {
+    @apply bg-muted-foreground/20 text-foreground -mx-1 rounded-sm px-1 py-0.5;
   }
 }
 
