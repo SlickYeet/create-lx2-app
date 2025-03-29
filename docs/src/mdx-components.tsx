@@ -1,6 +1,7 @@
 import { MDXComponents } from "mdx/types"
 
 import { Anchor } from "@/components/mdx/anchor"
+import { Callout } from "@/components/mdx/callout"
 import { Figcaption } from "@/components/mdx/figcaption"
 import { H1, H2, H3, H4, H5, H6 } from "@/components/mdx/headings"
 import { LI, OL, UL } from "@/components/mdx/lists"
@@ -24,6 +25,7 @@ export const mdxComponents: MDXComponents = {
   ul: UL,
   li: LI,
   Tabs: Object.assign(Tabs, { Tab }),
+  Callout,
 }
 
 /**
@@ -31,6 +33,7 @@ export const mdxComponents: MDXComponents = {
  */
 export {
   Anchor,
+  Callout,
   Code,
   Figcaption,
   H1,
