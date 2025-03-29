@@ -73,8 +73,18 @@ Planned components:
 
         The code block is pretty much complete, however it is missing line numbers, and line wrapping.
 
-        ```js
-        console.log("Hello, World!")
+        ```tsx {7-9} /mx-auto/ title="page.tsx"
+        export default async function DocsPage({ params }: DocsPageProps) {
+          const { slug } = params // [!code --]
+          const { slug } = await params // [!code ++]
+          const { default: Source } = await import(`@/content/${slug}.mdx`)
+
+          return (
+            <div className="mdx container mx-auto max-w-7xl px-4 py-20">
+              <Source />
+            </div>
+          )
+        }
         ```
 
   </Tabs.Tab>
