@@ -3,7 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google"
 
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
-import { ThemeProvider } from "@/components/provider"
+import { ThemeProvider, WrapLinesProvider } from "@/components/provider"
 
 import "./globals.css"
 
@@ -44,11 +44,13 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+          <WrapLinesProvider>
+            <div className="flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </WrapLinesProvider>
         </ThemeProvider>
       </body>
     </html>
