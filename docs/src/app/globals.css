@@ -293,21 +293,27 @@
 /* GFM Table */
 @layer utilities {
   .mdx table {
-    @apply my-6 w-full table-auto;
+    @apply border-input my-6 w-full table-auto border;
   }
   .mdx th {
-    @apply px-4 text-left font-bold;
+    @apply text-muted-foreground p-4 text-left font-bold;
   }
-  .mdx td {
-    @apply px-4 py-2;
+  .mdx th:not(:nth-child(1)) {
+    @apply border-l;
   }
   .mdx thead th {
-    @apply border-border border-b;
+    @apply border-b;
+  }
+  .mdx td {
+    @apply p-4;
+  }
+  .mdx td:not(:nth-child(1)) {
+    @apply border-l;
   }
   .mdx tbody tr:nth-child(odd) {
-    @apply bg-muted/10;
+    @apply bg-input/30;
   }
-  .mdx tbody tr:hover {
-    @apply bg-muted/20;
+  .mdx tbody tr:not(:last-child) {
+    @apply border-b;
   }
 }
