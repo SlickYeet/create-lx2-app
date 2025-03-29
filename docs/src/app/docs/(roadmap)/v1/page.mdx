@@ -1,3 +1,5 @@
+import { Tabs } from "@/mdx-components"
+
 # Roadmap
 
 These are some of the upcoming features and improvements I have planned for
@@ -22,118 +24,93 @@ the actualy content as well as custom components.
 
 Planned components:
 
-    {/* <Tabs */}
-      {/* items={[ */}
-        {/* "Callout", */}
-        {/* "Table", */}
-        {/* "Code and Pre", */}
-        {/* "Headings", */}
-        {/* "Image", */}
-        {/* "Anchor", */}
-        {/* "List", */}
-        {/* "Paragraph", */}
-      {/* ]} */}
-    {/* > */}
-
-{/* <Tabs.Tab> */}
-
+<Tabs
+  items={[
+    "Callout",
+    "Table",
+    "Code and Pre",
+    "Headings",
+    "Paragraph",
+    "Image",
+    "Tabs",
+    "Anchor",
+    "List",
+  ]}
+>
+  <Tabs.Tab>
     - [ ] `Callout`
 
     {/* <Callout type="info">This is a callout</Callout> */}
 
-{/* </Tabs.Tab> */}
-
-{/* <Tabs.Tab> */}
-
+  </Tabs.Tab>
+  <Tabs.Tab>
     - [ ] `Table`
 
-    {/* <Table className="mt-6">
-      <thead>
-        <Table.Tr>
-          <Table.Th>Country</Table.Th>
-          <Table.Th>Flag</Table.Th>
-        </Table.Tr>
-      </thead>
-      <tbody>
-        <Table.Tr>
-          <Table.Td>France</Table.Td>
-          <Table.Td>🇫🇷</Table.Td>
-        </Table.Tr>
-        <Table.Tr>
-          <Table.Td>Ukraine</Table.Td>
-          <Table.Td>🇺🇦</Table.Td>
-        </Table.Tr>
-      </tbody>
-    </Table> */}
+        | Country | Flag |
+        | ------- | ---- |
+        | France  | 🇫🇷   |
+        | Ukraine | 🇺🇦   |
 
-{/* </Tabs.Tab> */}
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [ ] `Code and Pre`
 
-{/* <Tabs.Tab> */}
+        ```js
+        console.log("Hello, World!")
+        ```
 
-- [ ] `Code and Pre`
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [x] `Headings`
 
-```js
-console.log("Hello, World!")
-```
+        # Heading 1
+        ## Heading 2
+        ### Heading 3
+        #### Heading 4
+        ##### Heading 5
+        ###### Heading 6
 
-{/* </Tabs.Tab> */}
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [x] `Paragraph`
 
-{/* <Tabs.Tab> */}
+        This is a paragraph
 
-- [x] `Headings`
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [ ] `Image`
 
-  # Heading 1
+        ![Image](https://placehold.co/300x300)
 
-  ## Heading 2
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [x] `Tabs`
+        <Tabs items={["Tab 1", "Tab 2", "Tab 3", "Tab 4", "Tab 5"]} defaultIndex={2}>
+          <Tabs.Tab value="tab-1">Tab 1 content</Tabs.Tab>
+          <Tabs.Tab value="tab-2">Tab 2 content</Tabs.Tab>
+          <Tabs.Tab value="tab-3">Tab 3 content</Tabs.Tab>
+          <Tabs.Tab value="tab-4">Tab 4 content</Tabs.Tab>
+          <Tabs.Tab value="tab-5">Tab 5 content</Tabs.Tab>
+        </Tabs>
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [x] `Anchor`
 
-  ### Heading 3
+        [Anchor](/docs/introduction)
 
-  #### Heading 4
+        [Anchor](https://example.com)
 
-  ##### Heading 5
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [x] `Lists`
 
-  ###### Heading 6
+        - Item 1
+        - Item 2
+        - Item 3
 
-{/* </Tabs.Tab> */}
+        1. Item 1
+        2. Item 2
+        3. Item 3
 
-{/* <Tabs.Tab> */}
-
-- [ ] `Image`
-
-  ![Image](https://placehold.co/300x300)
-
-{/* </Tabs.Tab> */}
-
-{/* <Tabs.Tab> */}
-
-- [x] `Anchor`
-
-  [Anchor](/docs/introduction)
-
-  [Anchor](https://example.com)
-
-{/* </Tabs.Tab> */}
-
-{/* <Tabs.Tab> */}
-
-- [x] `Lists`
-
-  - Item 1
-  - Item 2
-  - Item 3
-
-  1. Item 1
-  2. Item 2
-  3. Item 3
-
-{/* </Tabs.Tab> */}
-
-{/* <Tabs.Tab> */}
-
-- [x] `Paragraph`
-
-  This is a paragraph
-
-{/* </Tabs.Tab> */}
-
-{/* </Tabs> */}
+  </Tabs.Tab>
+</Tabs>

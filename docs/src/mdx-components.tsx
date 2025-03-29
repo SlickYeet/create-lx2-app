@@ -6,6 +6,7 @@ import { H1, H2, H3, H4, H5, H6 } from "@/components/mdx/headings"
 import { LI, OL, UL } from "@/components/mdx/lists"
 import { Paragraph } from "@/components/mdx/paragraph"
 import { Code, Pre } from "@/components/mdx/pre"
+import { Tab, Tabs } from "@/components/mdx/tabs"
 
 export const mdxComponents: MDXComponents = {
   h1: H1,
@@ -22,6 +23,7 @@ export const mdxComponents: MDXComponents = {
   ol: OL,
   ul: UL,
   li: LI,
+  Tabs: Object.assign(Tabs, { Tab }),
 }
 
 /**
@@ -41,6 +43,7 @@ export {
   OL,
   Paragraph,
   Pre,
+  Tabs,
   UL,
 }
 
