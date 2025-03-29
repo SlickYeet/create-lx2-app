@@ -1,4 +1,4 @@
-import { Tabs } from "@/mdx-components"
+import { Callout, Tabs } from "@/mdx-components"
 
 # Roadmap
 
@@ -38,13 +38,29 @@ Planned components:
   ]}
 >
   <Tabs.Tab>
-    - [ ] `Callout`
+    - [x] `Callout`
 
-    {/* <Callout type="info">This is a callout</Callout> */}
+    <Callout type="default" title="With a title">
+        This is the default callout
+    </Callout>
+    <Callout type="error">
+        Error: This is an error callout
+    </Callout>
+    <Callout type="info">
+        Info: This is an info callout
+    </Callout>
+    <Callout type="warning">
+        Warning: This is a warning callout
+    </Callout>
+    <Callout type="success">
+        Success: This is a success callout
+    </Callout>
 
   </Tabs.Tab>
   <Tabs.Tab>
     - [ ] `Table`
+
+        The table is already styled, but I am not happy with it just yet.
 
         | Country | Flag |
         | ------- | ---- |
@@ -54,6 +70,8 @@ Planned components:
   </Tabs.Tab>
   <Tabs.Tab>
     - [ ] `Code and Pre`
+
+        The code block is pretty much complete, however it is missing line numbers, and line wrapping.
 
         ```js
         console.log("Hello, World!")
@@ -80,11 +98,14 @@ Planned components:
   <Tabs.Tab>
     - [ ] `Image`
 
+        I do not yet have plans for the image component.
+
         ![Image](https://placehold.co/300x300)
 
   </Tabs.Tab>
   <Tabs.Tab>
     - [x] `Tabs`
+
         <Tabs items={["Tab 1", "Tab 2", "Tab 3", "Tab 4", "Tab 5"]} defaultIndex={2}>
           <Tabs.Tab value="tab-1">Tab 1 content</Tabs.Tab>
           <Tabs.Tab value="tab-2">Tab 2 content</Tabs.Tab>
@@ -92,6 +113,7 @@ Planned components:
           <Tabs.Tab value="tab-4">Tab 4 content</Tabs.Tab>
           <Tabs.Tab value="tab-5">Tab 5 content</Tabs.Tab>
         </Tabs>
+
   </Tabs.Tab>
   <Tabs.Tab>
     - [x] `Anchor`
