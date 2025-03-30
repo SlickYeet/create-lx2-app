@@ -17,7 +17,7 @@ export default function NotFound() {
   useEffect(() => {
     const updateSize = () => {
       if (window.innerWidth < 768) {
-        setSize({ width: 250, height: 250 })
+        setSize({ width: 200, height: 200 })
       } else {
         setSize({ width: 300, height: 300 })
       }
@@ -38,7 +38,10 @@ export default function NotFound() {
         className="max-w-md"
       >
         <div
-          className={`relative mx-auto mb-8 aspect-square w-full max-w-[${size.width}px]`}
+          className="relative mx-auto mb-8 aspect-square w-full"
+          style={{
+            maxWidth: `${size.width}px`,
+          }}
         >
           <div className="from-primary/30 absolute inset-0 rounded-full bg-gradient-to-br to-purple-500/30 opacity-70 blur-xl" />
           <NotFoundImage size={size} />
