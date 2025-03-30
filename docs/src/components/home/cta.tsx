@@ -5,10 +5,7 @@ import { motion } from "motion/react"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
-import {
-  GITHUB_CREATE_TNT_APP_REPO,
-  RELATIVE_INITIAL_DOCS_PATH,
-} from "@/constants"
+import { GITHUB_CREATE_TNT_APP_REPO } from "@/constants"
 
 export function CTA() {
   return (
@@ -32,7 +29,7 @@ export function CTA() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button size="lg" className="group" asChild>
-              <Link href={RELATIVE_INITIAL_DOCS_PATH}>
+              <Link href="/docs">
                 <span>Read the Docs</span>
                 <ArrowRightIcon className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
               </Link>
