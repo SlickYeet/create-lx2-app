@@ -7,7 +7,6 @@ import { useEffect, useState } from "react"
 
 import { NotFoundImage } from "@/components/not-found-image"
 import { Button } from "@/components/ui/button"
-import { RELATIVE_INITIAL_DOCS_PATH } from "@/constants"
 
 export default function NotFound() {
   const [size, setSize] = useState<{ width: number; height: number }>({
@@ -88,10 +87,7 @@ export default function NotFound() {
           </Button>
 
           <Button variant="outline" asChild>
-            <Link
-              href={RELATIVE_INITIAL_DOCS_PATH}
-              className="flex items-center gap-2"
-            >
+            <Link href="/docs" className="flex items-center gap-2">
               <ArrowLeftIcon className="size-4" />
               <span>View Documentation</span>
             </Link>
