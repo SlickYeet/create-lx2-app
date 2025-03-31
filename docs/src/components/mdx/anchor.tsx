@@ -19,12 +19,12 @@ export function Anchor({ children, href, className }: AnchorProps) {
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          "text-primary hover:text-primary/80 inline-flex items-center gap-1 underline underline-offset-4",
+          "text-primary hover:text-primary/80 inline-flex items-center gap-x-1 underline underline-offset-4",
           className,
         )}
       >
-        {children}
-        <ExternalLink className="size-3" />
+        <span className="py-0">{children}</span>
+        <ExternalLink className="size-3.5" />
       </a>
     )
   }
