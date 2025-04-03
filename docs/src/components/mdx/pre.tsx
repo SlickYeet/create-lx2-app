@@ -64,6 +64,7 @@ export function Pre({
             variant="outline"
             className={cn(
               "dark:bg-input/50 dark:hover:bg-input opacity-0 group-focus-within:opacity-100 group-hover:opacity-100",
+              "sm:hidden",
               !showWrapLines && "hidden",
               className,
             )}
@@ -93,7 +94,7 @@ export function Pre({
         </div>
 
         {language && showLanguage && !alwaysShowCopy && (
-          <span className="text-muted-foreground bg-input/50 border-input absolute top-2 right-1 z-10 rounded-lg rounded-tl-none rounded-br-none border px-2 py-1 font-mono text-xs opacity-100 transition-opacity group-hover:opacity-0">
+          <span className="text-muted-foreground bg-input/50 border-input absolute top-2 right-1 z-10 rounded-lg rounded-tl-none rounded-br-none border px-2 py-1 font-mono text-xs opacity-100 transition-opacity group-focus-within:opacity-0 group-hover:opacity-0">
             {language}
           </span>
         )}
