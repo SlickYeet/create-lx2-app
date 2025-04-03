@@ -348,6 +348,9 @@
   .mdx table {
     @apply border-input my-6 w-full table-auto border;
   }
+  .mdx table a {
+    @apply break-all;
+  }
   .mdx th {
     @apply text-muted-foreground p-4 text-left font-bold;
   }

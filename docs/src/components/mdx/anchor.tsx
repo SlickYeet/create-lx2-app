@@ -12,6 +12,9 @@ interface AnchorProps {
 export function Anchor({ children, href, className }: AnchorProps) {
   const isExternal = href.startsWith("http") || href.startsWith("mailto")
 
+  const baseStyles =
+    "text-primary hover:text-primary/80 underline underline-offset-4"
+
   if (isExternal) {
     return (
       <a
@@ -19,7 +22,8 @@ export function Anchor({ children, href, className }: AnchorProps) {
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          "text-primary hover:text-primary/80 inline-flex items-center gap-x-1 underline underline-offset-4",
+          baseStyles,
+          "inline-flex items-center gap-x-1",
           className,
         )}
       >
@@ -30,13 +34,7 @@ export function Anchor({ children, href, className }: AnchorProps) {
   }
 
   return (
-    <Link
-      href={href}
-      className={cn(
-        "text-primary hover:text-primary/80 underline underline-offset-4",
-        className,
-      )}
-    >
+    <Link href={href} className={cn(baseStyles, className)}>
       {children}
     </Link>
   )
