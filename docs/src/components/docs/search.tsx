@@ -154,6 +154,14 @@ export function Search({ docs }: { docs: MdxDocument[] }) {
                               setQuery("")
                               router.push(`/docs/${result.slug}`)
                             }}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter") {
+                                e.preventDefault()
+                                setIsOpen(false)
+                                setQuery("")
+                                router.push(`/docs/${result.slug}`)
+                              }
+                            }}
                             className="hover:bg-input/30 focus-within:bg-input/30 flex w-full items-start gap-2 rounded-md p-2 text-left ring-0 outline-0"
                           >
                             <span className="mt-0.5 shrink-0">
