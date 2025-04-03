@@ -4,6 +4,7 @@ import Fuse from "fuse.js"
 import {
   ArrowRightIcon,
   BookOpen,
+  CommandIcon,
   FileTextIcon,
   HelpCircle,
   SearchIcon,
@@ -11,7 +12,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -34,6 +35,21 @@ export function Search({ docs }: { docs: MdxDocument[] }) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const debouncedQuery = useDebounce(query, 300)
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault()
+        setIsOpen((prev) => !prev)
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [])
 
   const fuse = new Fuse(docs, {
     keys: ["title", "description"],
@@ -65,11 +81,17 @@ export function Search({ docs }: { docs: MdxDocument[] }) {
         <Button
           size={isMobile ? "icon" : "default"}
           variant="outline"
-          className="text-muted-foreground hover:text-muted-foreground"
+          className="text-muted-foreground group"
         >
           <SearchIcon className="size-5" />
           <p className="hidden pr-10 lg:block">Search documentation...</p>
           <span className="sr-only">Search documentation</span>
+          <span className="bg-background group-hover:text-accent-foreground dark:bg-input dark:border-input hidden items-center gap-1 rounded-sm px-1.5 py-0.5 text-xs shadow-xs transition-all lg:flex">
+            <kbd>
+              <CommandIcon className="size-2.5" />
+            </kbd>
+            <kbd>K</kbd>
+          </span>
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[450px] p-4">
