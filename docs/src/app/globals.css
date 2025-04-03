@@ -370,3 +370,11 @@
     @apply border-b;
   }
 }
+
+/* Lists */
+@layer utilities {
+  .mdx .list-disc ::marker,
+  .mdx .list-decimal ::marker {
+    @apply text-primary;
+  }
+}

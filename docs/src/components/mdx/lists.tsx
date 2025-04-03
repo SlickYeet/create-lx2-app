@@ -14,5 +14,5 @@ export function OL({ children, className }: ListProps) {
 }
 
 export function LI({ children, className }: ListProps) {
-  return <li className={cn("my-2", className)}>{children}</li>
+  return <li className={cn("my-3", className)}>{children}</li>
 }
