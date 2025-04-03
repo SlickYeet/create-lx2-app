@@ -1,4 +1,12 @@
-import { GithubIcon, StarIcon } from "lucide-react"
+import {
+  AlertCircleIcon,
+  BookOpenIcon,
+  CodeIcon,
+  FileCogIcon,
+  FilePenIcon,
+  GithubIcon,
+  StarIcon,
+} from "lucide-react"
 import Link from "next/link"
 
 import { Logo } from "@/components/logo"
@@ -8,65 +16,205 @@ import { GITHUB_CREATE_TNT_APP_REPO } from "@/constants"
 
 export function Footer() {
   return (
-    <footer className="border-t py-6 md:pt-8">
-      <div className="container flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="flex flex-col gap-2">
-          <Link href="/">
-            <Logo animate={false} ping={false} textClassName="inline-block" />
-          </Link>
-          <p className="text-muted-foreground text-sm">
-            &copy; {new Date().getFullYear()} TNT-Powered CLI.{" "}
+    // <footer className="flex border-t py-6 md:pt-8">
+    //   <div className="container flex-col gap-6 md:flex-row md:items-center md:justify-between">
+    //     <div className="flex flex-col gap-2">
+    //       <Link href="/">
+    //         <Logo animate={false} ping={false} textClassName="inline-block" />
+    //       </Link>
+    //       <p className="text-muted-foreground text-sm">
+    //         &copy; {new Date().getFullYear()} TNT-Powered CLI.{" "}
+    //         <a
+    //           href={`${GITHUB_CREATE_TNT_APP_REPO}/blob/main/LICENSE.md`}
+    //           target="_blank"
+    //           className="hover:underline"
+    //         >
+    //           MIT License
+    //         </a>
+    //         .
+    //       </p>
+    //     </div>
+
+    //     <div className="text-muted-foreground flex flex-col items-start gap-4 text-sm md:flex-row md:items-center md:justify-between md:gap-6">
+    //       <div className="flex flex-col gap-2 md:flex-row md:gap-4">
+    //         <Anchor
+    //           href="/docs"
+    //           className="text-muted-foreground hover:underline"
+    //         >
+    //           Documentation
+    //         </Anchor>
+    //         <Anchor
+    //           href={`${GITHUB_CREATE_TNT_APP_REPO}/blob/main/CONTRIBUTING.md`}
+    //           className="text-muted-foreground hover:underline"
+    //         >
+    //           Contributing
+    //         </Anchor>
+    //         <Anchor
+    //           href={`${GITHUB_CREATE_TNT_APP_REPO}/issues/new?template=bug_report.yml`}
+    //           className="text-muted-foreground hover:underline"
+    //         >
+    //           Report Issue
+    //         </Anchor>
+    //       </div>
+
+    //       <div className="flex items-center gap-2">
+    //         <Button size="icon" variant="outline" asChild>
+    //           <Link
+    //             href={GITHUB_CREATE_TNT_APP_REPO}
+    //             target="_blank"
+    //             className="text-muted-foreground hover:text-foreground transition-colors"
+    //             aria-label="GitHub"
+    //           >
+    //             <GithubIcon className="size-4" />
+    //           </Link>
+    //         </Button>
+
+    //         <Button variant="outline" asChild>
+    //           <Link href={GITHUB_CREATE_TNT_APP_REPO} target="_blank">
+    //             <StarIcon className="size-4 fill-yellow-500 stroke-yellow-500 dark:fill-yellow-400 dark:stroke-yellow-400" />
+    //             Star on GitHub
+    //           </Link>
+    //         </Button>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </footer>
+
+    <footer className="mt-auto border-t py-12">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {/* Logo and GitHub buttons */}
+          <div className="flex flex-col items-start gap-6">
+            <div className="flex items-center gap-2">
+              <Link href="/">
+                <Logo
+                  animate={false}
+                  ping={false}
+                  textClassName="inline-block"
+                />
+              </Link>
+            </div>
+            <p className="text-muted-foreground max-w-xs text-sm">
+              A powerful web application scaffolding CLI tool to jumpstart your
+              projects with explosive speed.
+            </p>
+            <div className="flex gap-3">
+              <Button variant="outline" asChild>
+                <Link
+                  href={GITHUB_CREATE_TNT_APP_REPO}
+                  target="_blank"
+                  aria-label="GitHub"
+                >
+                  <GithubIcon className="size-4" />
+                  <span>Repository</span>
+                </Link>
+              </Button>
+
+              <Button variant="outline" asChild>
+                <Link href={GITHUB_CREATE_TNT_APP_REPO} target="_blank">
+                  <StarIcon className="size-4 fill-yellow-500 stroke-yellow-500 dark:fill-yellow-400 dark:stroke-yellow-400" />
+                  <span>Star on GitHub</span>
+                </Link>
+              </Button>
+            </div>
+          </div>
+
+          {/* Create TNT Stack links */}
+          <div>
+            <h3 className="mb-4 text-lg font-semibold">Create TNT Stack</h3>
+            <ul className="space-y-2">
+              <li>
+                <Anchor href="/docs/introduction">Introduction</Anchor>
+              </li>
+              <li>
+                <Anchor href="/docs/getting-started">Getting Started</Anchor>
+              </li>
+              <li>
+                <Anchor href="/docs/why">Why?</Anchor>
+              </li>
+              <li>
+                <Anchor href="/docs/faq">FAQ</Anchor>
+              </li>
+            </ul>
+          </div>
+
+          {/* Community links */}
+          <div>
+            <h3 className="mb-4 text-lg font-semibold">Community</h3>
+            <ul className="space-y-2">
+              <li>
+                <Anchor
+                  href={`${GITHUB_CREATE_TNT_APP_REPO}/blob/main/CONTRIBUTING.md`}
+                >
+                  <div className="flex items-center gap-1.5">
+                    <CodeIcon className="size-4" />
+                    <span>Contributing Guidelines</span>
+                  </div>
+                </Anchor>
+              </li>
+              <li>
+                <Anchor
+                  href={`${GITHUB_CREATE_TNT_APP_REPO}/issues/new?template=bug_report.yml`}
+                >
+                  <div className="flex items-center gap-1.5">
+                    <AlertCircleIcon className="size-4" />
+                    <span>Report an Issue</span>
+                  </div>
+                </Anchor>
+              </li>
+              <li>
+                <Anchor href="/docs">
+                  <div className="flex items-center gap-1.5">
+                    <BookOpenIcon className="size-4" />
+                    <span>Documentation</span>
+                  </div>
+                </Anchor>
+              </li>
+              <li>
+                <Anchor href="/v1">Roadmap</Anchor>
+              </li>
+            </ul>
+          </div>
+
+          {/* Resources links */}
+          <div>
+            <h3 className="mb-4 text-lg font-semibold">Resources</h3>
+            <ul className="space-y-2">
+              <li>
+                <Anchor href="https://lasse.famlam.ca">Portfolio</Anchor>
+              </li>
+              <li>
+                <Anchor href="https://lasse.famlam.ca/projects">
+                  <div className="flex items-center gap-1.5">
+                    <FileCogIcon className="size-4" />
+                    <span>Projects</span>
+                  </div>
+                </Anchor>
+              </li>
+              <li>
+                <Anchor href="https://lasse.famlam.ca/blog">
+                  <div className="flex items-center gap-1.5">
+                    <FilePenIcon className="size-4" />
+                    <span>Blog</span>
+                  </div>
+                </Anchor>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-8 flex flex-col items-center justify-between border-t pt-8 md:flex-row">
+          <div className="text-muted-foreground text-sm">
+            &copy; {new Date().getFullYear()} TNT-Powered. All right reserved.
+          </div>
+          <div className="mt-4 md:mt-0">
             <a
               href={`${GITHUB_CREATE_TNT_APP_REPO}/blob/main/LICENSE.md`}
               target="_blank"
-              className="hover:underline"
+              className="text-muted-foreground text-sm hover:underline"
             >
               MIT License
             </a>
-            .
-          </p>
-        </div>
-
-        <div className="text-muted-foreground flex flex-col items-start gap-4 text-sm md:flex-row md:items-center md:justify-between md:gap-6">
-          <div className="flex flex-col gap-2 md:flex-row md:gap-4">
-            <Anchor
-              href="/docs"
-              className="text-muted-foreground hover:underline"
-            >
-              Documentation
-            </Anchor>
-            <Anchor
-              href={`${GITHUB_CREATE_TNT_APP_REPO}/blob/main/CONTRIBUTING.md`}
-              className="text-muted-foreground hover:underline"
-            >
-              Contributing
-            </Anchor>
-            <Anchor
-              href={`${GITHUB_CREATE_TNT_APP_REPO}/issues/new?template=bug_report.yml`}
-              className="text-muted-foreground hover:underline"
-            >
-              Report Issue
-            </Anchor>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Button size="icon" variant="outline" asChild>
-              <Link
-                href={GITHUB_CREATE_TNT_APP_REPO}
-                target="_blank"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="GitHub"
-              >
-                <GithubIcon className="size-4" />
-              </Link>
-            </Button>
-
-            <Button variant="outline" asChild>
-              <Link href={GITHUB_CREATE_TNT_APP_REPO} target="_blank">
-                <StarIcon className="size-4 fill-yellow-500 stroke-yellow-500 dark:fill-yellow-400 dark:stroke-yellow-400" />
-                Star on GitHub
-              </Link>
-            </Button>
           </div>
         </div>
       </div>

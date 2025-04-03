@@ -65,7 +65,7 @@ export function DocsTOC() {
         }
       },
       {
-        rootMargin: "0px 0px -65% 0px",
+        rootMargin: "0px 0px -70% 0px",
         threshold: 0.1,
       },
     )
