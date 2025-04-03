@@ -38,7 +38,7 @@ export function DocsSidebar({ isOpen, setIsOpen }: DocsSidebarProps) {
           <div className="max-md:pt-8 max-md:pb-2">
             {SIDEBAR_NAVIGATION.map((page) => (
               <div key={page.title}>
-                <Heading depth={3} className="text-xl">
+                <Heading depth={3} className="mt-7 text-xl">
                   {page.title}
                 </Heading>
                 <ul className="mb-4 ml-4">

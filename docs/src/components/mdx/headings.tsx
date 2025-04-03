@@ -26,7 +26,7 @@ export function Heading({
     5: "text-lg mb-2 mt-6",
     6: "text-base mb-2 mt-4",
   }
-  const baseStyles = "scroll-m-20 font-bold tracking-tight"
+  const baseStyles = "scroll-m-32 lg:scroll-m-20 font-bold tracking-tight"
   const headingStyles = `${baseStyles} ${headingStylesMap[depth]}`
 
   return (
