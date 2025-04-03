@@ -12,19 +12,16 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 
+import { Search } from "@/components/docs/search"
 import { DocsSidebar } from "@/components/docs/sidebar"
 import { Logo } from "@/components/logo"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Button } from "@/components/ui/button"
-import { GITHUB_CREATE_TNT_APP_REPO } from "@/constants"
+import { GITHUB_CREATE_TNT_APP_REPO, MAIN_NAVIGATION } from "@/constants"
+import { type MdxDocument } from "@/lib/mdx"
 import { cn } from "@/lib/utils"
 
-const NAVIGATION = [
-  { href: "/", label: "Home" },
-  { href: "/docs", label: "Docs" },
-]
-
-export function Header() {
+export function Header({ docs }: { docs: MdxDocument[] }) {
   const pathname = usePathname()
   const navRefs = useRef<(HTMLAnchorElement | null)[]>([])
 
@@ -40,7 +37,7 @@ export function Header() {
   }
 
   useEffect(() => {
-    const activeIndex = NAVIGATION.findIndex(
+    const activeIndex = MAIN_NAVIGATION.findIndex(
       (item) =>
         item.href === (pathname.startsWith("/docs") ? "/docs" : pathname),
     )
@@ -97,7 +94,7 @@ export function Header() {
               />
 
               <div className="relative flex items-center space-x-[6px]">
-                {NAVIGATION.map(({ href, label }, index) => (
+                {MAIN_NAVIGATION.map(({ href, label }, index) => (
                   <Link
                     key={index}
                     href={href}
@@ -129,6 +126,7 @@ export function Header() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="hidden items-center gap-2 lg:flex"
           >
+            <Search docs={docs} />
             <Button variant="outline" asChild>
               <Link href={GITHUB_CREATE_TNT_APP_REPO} target="_blank">
                 <StarIcon className="size-4 fill-yellow-500 stroke-yellow-500 dark:fill-yellow-400 dark:stroke-yellow-400" />
@@ -139,6 +137,7 @@ export function Header() {
           </motion.div>
 
           <div className="flex items-center gap-2 lg:hidden">
+            <Search docs={docs} />
             <Button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               size="icon"
@@ -164,7 +163,7 @@ export function Header() {
             className="lg:hidden"
           >
             <div className="z-10 container flex flex-col gap-4 py-4">
-              {NAVIGATION.map(({ href, label }) => (
+              {MAIN_NAVIGATION.map(({ href, label }) => (
                 <Link
                   key={label}
                   href={href}

@@ -53,7 +53,10 @@ export function Logo({
         initial={animate ? { x: -10, opacity: 0 } : { x: 0, opacity: 1 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className={cn("font-heading block text-xl font-bold", textClassName)}
+        className={cn(
+          "font-heading block text-xl font-bold max-[330px]:hidden",
+          textClassName,
+        )}
       >
         TNT-Powered
       </motion.span>
