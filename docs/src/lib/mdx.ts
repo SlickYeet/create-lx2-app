@@ -29,7 +29,7 @@ const prettyCodeOptinos: PrettyCodeOptions = {
   ],
 }
 
-const workingDirectory = path.join(process.cwd(), "src/app")
+const workingDirectory = path.join(process.cwd(), "src/app/(content)")
 
 export type MdxDocument = {
   slug: string
