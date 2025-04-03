@@ -31,10 +31,12 @@ export function Breadcrumbs() {
   const currentPage = segments.length > 0 ? segments[segments.length - 1] : ""
 
   const formatSlug = (slug: string) => {
-    return slug
-      .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ")
+    return slug === "faq"
+      ? "FAQ"
+      : slug
+          .split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ")
   }
 
   return (
