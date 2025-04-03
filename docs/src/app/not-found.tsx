@@ -7,8 +7,11 @@ import { useEffect, useState } from "react"
 
 import { NotFoundImage } from "@/components/not-found-image"
 import { Button } from "@/components/ui/button"
+import { useMobile } from "@/hooks/use-mobile"
 
 export default function NotFound() {
+  const isMobile = useMobile()
+
   const [size, setSize] = useState<{ width: number; height: number }>({
     width: 300,
     height: 300,
@@ -16,7 +19,7 @@ export default function NotFound() {
 
   useEffect(() => {
     const updateSize = () => {
-      if (window.innerWidth < 768) {
+      if (isMobile) {
         setSize({ width: 200, height: 200 })
       } else {
         setSize({ width: 300, height: 300 })
@@ -27,7 +30,7 @@ export default function NotFound() {
     window.addEventListener("resize", updateSize)
 
     return () => window.removeEventListener("resize", updateSize)
-  }, [])
+  }, [isMobile])
 
   return (
     <div className="my-6 flex min-h-[60vh] flex-col items-center justify-center px-4 text-center md:my-8 lg:my-12">

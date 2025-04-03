@@ -4,6 +4,7 @@ import { Inter, Space_Grotesk } from "next/font/google"
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
 import { ThemeProvider, WrapLinesProvider } from "@/components/provider"
+import { getMdxDocuments } from "@/lib/mdx"
 
 import "./globals.css"
 
@@ -33,6 +34,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const docs = await getMdxDocuments()
+
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <body
@@ -46,7 +49,7 @@ export default async function RootLayout({
         >
           <WrapLinesProvider>
             <div className="flex min-h-screen flex-col">
-              <Header />
+              <Header docs={docs} />
               <main className="flex-1">{children}</main>
               <Footer />
             </div>
