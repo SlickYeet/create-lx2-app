@@ -43,7 +43,7 @@ export function Callout({ children, type = "default", title }: CalloutProps) {
   return (
     <div
       className={cn(
-        "mt-6 flex overflow-x-auto rounded-lg border pe-4",
+        "my-6 flex overflow-x-auto rounded-lg border pe-4",
         "contrast-more:border-current",
         classes[type],
         isSingleLine ? "py-2" : "pt-4 pb-0",

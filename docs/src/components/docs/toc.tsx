@@ -50,11 +50,6 @@ export function DocsTOC() {
     }))
 
     setHeadings(extractedHeadings)
-
-    // Set first heading as active default
-    if (extractedHeadings.length > 0) {
-      setActiveId(extractedHeadings[0].id)
-    }
   }, [pathname])
 
   // Intersection Observer for active section tracking
@@ -70,8 +65,8 @@ export function DocsTOC() {
         }
       },
       {
-        rootMargin: "0px 0px -30% 0px",
-        threshold: 1,
+        rootMargin: "0px 0px -70% 0px",
+        threshold: 0.1,
       },
     )
 
@@ -83,19 +78,7 @@ export function DocsTOC() {
     return () => observer.disconnect()
   }, [headings, pathname])
 
-  // First heading should be active when scrolling to top
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY === 0 && headings.length > 0) {
-        setActiveId(headings[0].id)
-        history.replaceState(null, "", `#${headings[0].id}`)
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [headings, pathname])
-
+  // Scroll event listener for back-to-top button
   useEffect(() => {
     const handleScroll = () => {
       const halfwayPoint = window.innerHeight / 2
