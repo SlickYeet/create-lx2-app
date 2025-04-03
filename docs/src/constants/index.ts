@@ -48,6 +48,7 @@ export const SIDEBAR_NAVIGATION: NavigationSection[] = [
     items: [
       { slug: "first-steps", title: "First Steps" },
       { slug: "nextjs", title: "Next.js" },
+      { slug: "prisma", title: "Prisma ORM" },
       { slug: "payloadcms", title: "Payload CMS" },
     ],
   },
