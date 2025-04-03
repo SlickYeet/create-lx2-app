@@ -11,7 +11,7 @@ import {
   XIcon,
 } from "lucide-react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
 import { Button } from "@/components/ui/button"
@@ -29,6 +29,7 @@ import { type MdxDocument } from "@/lib/mdx"
 
 export function Search({ docs }: { docs: MdxDocument[] }) {
   const router = useRouter()
+  const pathname = usePathname()
   const isMobile = useMobile(1024)
 
   const [query, setQuery] = useState<string>("")
@@ -50,6 +51,13 @@ export function Search({ docs }: { docs: MdxDocument[] }) {
       window.removeEventListener("keydown", handleKeyDown)
     }
   }, [])
+
+  /**
+   * Fix for dialog not closing when navigating
+   */
+  useEffect(() => {
+    setIsOpen(false)
+  }, [pathname])
 
   const fuse = new Fuse(docs, {
     keys: ["title", "description"],
