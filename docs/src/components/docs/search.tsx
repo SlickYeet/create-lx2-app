@@ -60,13 +60,16 @@ export function Search({ docs }: { docs: MdxDocument[] }) {
   }, [pathname])
 
   const fuse = new Fuse(docs, {
+    threshold: 0.3,
     keys: ["title", "description"],
   })
 
   const results: MdxDocument[] =
     debouncedQuery.length > 1
       ? fuse.search(debouncedQuery).map((result) => result.item)
-      : []
+      : query === ""
+        ? docs.slice(0, 4)
+        : []
 
   const handleSearch = (query: string) => {
     setQuery(query)
