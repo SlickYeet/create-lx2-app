@@ -25,7 +25,7 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
   const pathname = usePathname()
   const navRefs = useRef<(HTMLAnchorElement | null)[]>([])
 
-  const isDocs = pathname.startsWith("/docs")
+  const isHome = pathname === "/"
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -201,7 +201,7 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
         )}
       </motion.header>
 
-      {isDocs && (
+      {!isHome && (
         <>
           <motion.div
             initial={{ opacity: 0, y: -20 }}

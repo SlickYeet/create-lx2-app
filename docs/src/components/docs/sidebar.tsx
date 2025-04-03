@@ -32,23 +32,25 @@ export function DocsSidebar({ isOpen, setIsOpen }: DocsSidebarProps) {
   }, [isOpen])
 
   return (
-    <div className="bg-background sticky top-20 z-10 h-[calc(100vh-7rem)] max-md:container">
-      <ScrollArea className="h-[calc(100vh-7rem)]">
+    <div className="bg-background sticky top-20 z-10 max-md:container">
+      <ScrollArea className="max-md:h-[calc(100vh-7rem)]">
         <aside>
           <div className="max-md:pt-8 max-md:pb-2">
             {SIDEBAR_NAVIGATION.map((page) => (
               <div key={page.title}>
-                {/* First child should not have a margin top of 4 */}
                 <Heading depth={3} className="text-xl">
                   {page.title}
                 </Heading>
                 <ul className="mb-4 ml-4">
                   {page.items.map((item) => {
                     const isActive = pathname.includes(item.slug)
+                    const href =
+                      item.slug === "faq" ? "/faq" : `/docs/${item.slug}`
+
                     return (
                       <li key={item.slug}>
                         <Link
-                          href={`/docs/${item.slug}`}
+                          href={href}
                           onClick={() => {
                             setTimeout(() => setIsOpen && setIsOpen(), 100)
                           }}

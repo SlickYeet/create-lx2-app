@@ -17,8 +17,8 @@ export const MAIN_NAVIGATION: {
   href: string
   label: string
 }[] = [
-  { href: "/", label: "Home" },
   { href: "/docs", label: "Docs" },
+  { href: "/faq", label: "FAQ" },
 ]
 
 export type NavigationSection = {
@@ -39,6 +39,7 @@ export const SIDEBAR_NAVIGATION: NavigationSection[] = [
       { slug: "introduction", title: "Introduction" },
       { slug: "getting-started", title: "Getting Started" },
       { slug: "why", title: "Why?" },
+      { slug: "faq", title: "FAQ" },
     ],
   },
   // Usage
