@@ -25,7 +25,8 @@ export function Breadcrumbs() {
 
   const segments = pathname.split("/").filter(Boolean)
 
-  const isDocsOrFaq = segments[0] === "docs" || segments[0] === "faq"
+  const segment =
+    segments[0] === "docs" || segments[0] === "faq" || segments[0] === "roadmap"
   const section = segments[0]
 
   const currentPage = segments.length > 0 ? segments[segments.length - 1] : ""
@@ -52,7 +53,7 @@ export function Breadcrumbs() {
 
       <Seperator />
 
-      {isDocsOrFaq && (
+      {segment && (
         <>
           <DropdownMenu open={open} onOpenChange={setOpen}>
             <DropdownMenuTrigger asChild>
@@ -62,7 +63,7 @@ export function Breadcrumbs() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
-              {["docs", "faq"].map((item) => (
+              {["docs", "faq", "roadmap"].map((item) => (
                 <DropdownMenuItem key={item} asChild>
                   <Link
                     href={`/${item}`}
@@ -99,7 +100,7 @@ export function Breadcrumbs() {
         </>
       )}
 
-      {!isDocsOrFaq && segments.length > 0 && (
+      {!segment && segments.length > 0 && (
         <>
           <Button size="sm" variant="ghost" aria-label="Select Segment" asChild>
             <Link
