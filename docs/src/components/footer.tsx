@@ -17,7 +17,7 @@ import { GITHUB_CREATE_TNT_APP_REPO } from "@/constants"
 export function Footer() {
   return (
     <footer className="mt-auto border-t py-12">
-      <div className="container mx-auto px-4">
+      <div className="container">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo and GitHub buttons */}
           <div className="flex flex-col items-start gap-6">
