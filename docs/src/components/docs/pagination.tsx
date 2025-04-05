@@ -8,12 +8,8 @@ import { SIDEBAR_NAVIGATION } from "@/constants"
 import { cn } from "@/lib/utils"
 
 function getPaginationData(pathname: string) {
-  const normalizedPathname = pathname.replace(/^\/docs\//, "/")
-
   const flatItems = SIDEBAR_NAVIGATION.flatMap((section) => section.items || [])
-  const currentIndex = flatItems.findIndex(
-    (item) => `/${item.slug}` === normalizedPathname,
-  )
+  const currentIndex = flatItems.findIndex((item) => item.slug === pathname)
 
   const previous = currentIndex > 0 ? flatItems[currentIndex - 1] : null
   const next =
@@ -38,7 +34,7 @@ export function Pagination() {
           aria-disabled={!previous}
         >
           <Link
-            href={previous ? `/docs/${previous.slug}` : "#"}
+            href={previous ? previous.slug : "#"}
             className="flex flex-col items-start justify-center gap-y-0"
           >
             <span className="text-muted-foreground text-xs">Previous page</span>
@@ -54,7 +50,7 @@ export function Pagination() {
           aria-disabled={!next}
         >
           <Link
-            href={next ? `/docs/${next.slug}` : "#"}
+            href={next ? next.slug : "#"}
             className="flex flex-col items-end justify-center gap-y-0"
           >
             <span className="text-muted-foreground text-xs">Next page</span>

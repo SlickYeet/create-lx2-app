@@ -44,13 +44,13 @@ export function DocsSidebar({ isOpen, setIsOpen }: DocsSidebarProps) {
                 <ul className="mb-4 ml-4">
                   {page.items.map((item) => {
                     const isActive = pathname.includes(item.slug)
-                    const href =
-                      item.slug === "faq" ? "/faq" : `/docs/${item.slug}`
+
+                    console.log(item.slug)
 
                     return (
                       <li key={item.slug}>
                         <Link
-                          href={href}
+                          href={item.slug}
                           onClick={() => {
                             setTimeout(() => setIsOpen && setIsOpen(), 100)
                           }}
