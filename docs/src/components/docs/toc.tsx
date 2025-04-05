@@ -90,7 +90,7 @@ export function DocsTOC() {
   }, [])
 
   return (
-    <div className="sticky top-20 hidden lg:block">
+    <div className="sticky top-20">
       <Heading depth={3} className="text-xl">
         On This Page
       </Heading>
