@@ -87,19 +87,19 @@ export function Usage() {
               </h3>
               <ul className="space-y-2">
                 <li className="flex items-center">
-                  <div className="bg-primary mr-2 size-2 rounded-full" />
+                  <div className="bg-primary mr-2 size-2 shrink-0 rounded-full" />
                   <span>
                     <code>--CI</code> - Set the CLI to run in CI
                   </span>
                 </li>
                 <li className="flex items-center">
-                  <div className="bg-highlight mr-2 size-2 rounded-full" />
+                  <div className="bg-highlight mr-2 size-2 shrink-0 rounded-full" />
                   <span>
                     <code>--nextAuth</code> - Add NextAuth.js to the project
                   </span>
                 </li>
                 <li className="flex items-center">
-                  <div className="bg-secondary mr-2 size-2 rounded-full" />
+                  <div className="bg-secondary mr-2 size-2 shrink-0 rounded-full" />
                   <span>
                     <code>--prisma</code> - Add Prisma ORM to the project
                   </span>
@@ -111,7 +111,7 @@ export function Usage() {
                   </span>
                 </li>
                 <li className="flex items-center">
-                  <div className="bg-accent mr-2 size-2 rounded-full" />
+                  <div className="bg-accent mr-2 size-2 shrink-0 rounded-full" />
                   <span>
                     <code>--dbProvider [provider]</code> - Set the database
                     provider
