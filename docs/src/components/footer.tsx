@@ -69,7 +69,7 @@ export function Footer() {
                 <Anchor href="/docs/why">Why?</Anchor>
               </li>
               <li>
-                <Anchor href="/docs/faq">FAQ</Anchor>
+                <Anchor href="/faq">FAQ</Anchor>
               </li>
             </ul>
           </div>
@@ -107,7 +107,7 @@ export function Footer() {
                 </Anchor>
               </li>
               <li>
-                <Anchor href="/v1">Roadmap</Anchor>
+                <Anchor href="/roadmap">Roadmap</Anchor>
               </li>
             </ul>
           </div>
