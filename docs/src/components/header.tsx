@@ -38,8 +38,7 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
 
   useEffect(() => {
     const activeIndex = MAIN_NAVIGATION.findIndex(
-      (item) =>
-        item.href === (pathname.startsWith("/docs") ? "/docs" : pathname),
+      (item) => item.href === pathname,
     )
     if (activeIndex !== -1 && navRefs.current[activeIndex]) {
       const activeElement = navRefs.current[activeIndex]
@@ -105,10 +104,16 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
                     onMouseLeave={() => setHoveredIndex(null)}
                     className={cn(
                       "h-[30px] cursor-pointer px-3 py-2 transition-colors duration-300",
-                      (pathname.startsWith("/docs") && href === "/docs") ||
-                        href === pathname
+                      /**
+                       * This is cursed, replace this
+                       */
+                      href === pathname
                         ? "text-primary"
-                        : "text-foreground",
+                        : href === "/docs" &&
+                            pathname.startsWith("/docs") &&
+                            pathname !== "/docs/faq"
+                          ? "text-primary"
+                          : "text-foreground",
                     )}
                   >
                     <div className="flex h-full items-center justify-center leading-5 whitespace-nowrap">
@@ -175,10 +180,16 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
                   }}
                   className={cn(
                     "hover:text-primary text-foreground rounded-md border p-4 text-sm font-medium transition-colors",
-                    (pathname.startsWith("/docs") && href === "/docs") ||
-                      href === pathname
+                    /**
+                     * This is cursed, replace this
+                     */
+                    href === pathname
                       ? "bg-primary/10 border-primary"
-                      : "border-border/ bg-input/10",
+                      : href === "/docs" &&
+                          pathname.startsWith("/docs") &&
+                          pathname !== "/docs/faq"
+                        ? "bg-primary/10 border-primary"
+                        : "border-border/ bg-input/10",
                   )}
                 >
                   {label}

@@ -66,7 +66,7 @@ export function Breadcrumbs() {
               {["docs", "faq", "roadmap"].map((item) => (
                 <DropdownMenuItem key={item} asChild>
                   <Link
-                    href={`/${item}`}
+                    href={`${item === "docs" ? "/docs" : `/docs/${item}`}`}
                     onClick={() => setOpen(false)}
                     className={cn(
                       "w-full cursor-pointer",
