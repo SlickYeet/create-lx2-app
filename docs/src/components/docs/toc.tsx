@@ -22,11 +22,13 @@ export function DocsTOC() {
   // Extract the visible path and find the matched slug
   const visiblePath = pathname.replace(/^\/docs\/\(([^)]+)\)/, "/docs")
   const matchedSlug = SIDEBAR_NAVIGATION.find((section) =>
-    section.items.some((item) => visiblePath.includes(item.slug)),
-  )?.slug
+    section.items.some((item) =>
+      visiblePath.includes(item.slug.replace(/^\/docs\//, "")),
+    ),
+  )?.slug.replace(/^\/docs\//, "")
 
   // Construct the repo path
-  const repoPath = `${GITHUB_CREATE_TNT_APP_REPO}/blob/main/docs/src/app/docs/${
+  const repoPath = `${GITHUB_CREATE_TNT_APP_REPO}/blob/main/docs/src/app/(content)/docs/${
     matchedSlug ? `(${matchedSlug})` : ""
   }${visiblePath.replace("/docs", "")}/page.mdx`
 
