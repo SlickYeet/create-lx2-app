@@ -42,8 +42,6 @@ export function DocsSidebar({ isOpen, setIsOpen }: DocsSidebarProps) {
             {page.items.map((item) => {
               const isActive = pathname.includes(item.slug)
 
-              console.log(item.slug)
-
               return (
                 <li key={item.slug}>
                   <Link
