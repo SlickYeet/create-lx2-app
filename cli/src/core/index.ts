@@ -5,6 +5,7 @@ import { CREATE_TNT_STACK, DEFAULT_APP_NAME } from "@/constants.js"
 import {
   databaseProviders,
   type AvailablePackages,
+  type BackendFramework,
   type DatabaseProvider,
 } from "@/installers/index.js"
 import { getVersion } from "@/utils/get-tnt-version.js"
@@ -31,6 +32,8 @@ interface CliFlags {
   importAlias: string
   /** @internal Used in CI. */
   dbProvider: DatabaseProvider
+  /** @internal Used in CI. */
+  backend: BackendFramework
 }
 
 interface CliResults {
@@ -53,6 +56,7 @@ const defaultOptions: CliResults = {
     prettier: false,
     importAlias: "@/",
     dbProvider: "sqlite",
+    backend: "nextjs",
   },
   databaseProvider: "sqlite",
 }
@@ -121,6 +125,12 @@ export async function runCli(): Promise<CliResults> {
       )}`,
       defaultOptions.flags.dbProvider
     )
+    /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
+    .option(
+      "--backend [framework]",
+      `Choose a backend framework to use. Possible values: ${defaultOptions.flags.backend}`,
+      defaultOptions.flags.backend
+    )
     /** END CI-FLAGS */
     .parse(process.argv)
 
@@ -151,10 +161,13 @@ export async function runCli(): Promise<CliResults> {
       )
       process.exit(0)
     }
-
-    cliResults.databaseProvider = cliResults.packages.includes("prisma")
-      ? cliResults.flags.dbProvider
-      : "sqlite"
+    if (
+      cliResults.flags.backend === "payload" &&
+      cliResults.flags.dbProvider === "mysql"
+    ) {
+      logger.warn(`Payload CMS does not support MySQL. Exiting.`)
+      process.exit(0)
+    }
 
     return cliResults
   }
@@ -178,6 +191,7 @@ export async function runCli(): Promise<CliResults> {
 
     type ProjectConfig = {
       name?: string
+      backend: BackendFramework
       authentication: string
       database: string
       databaseProvider?: DatabaseProvider
@@ -195,33 +209,55 @@ export async function runCli(): Promise<CliResults> {
         validate: (value) => validateAppName(value),
       })
     }
-    project.authentication = await select({
-      message: "What authentication provider would you like to use?",
+    project.backend = await select({
+      message: "What backend framework would you like to use?",
       choices: [
-        { value: "none", name: "None" },
-        { value: "nextAuth", name: "NextAuth.js" },
+        { value: "nextjs", name: "Next.js" },
+        { value: "payload", name: "Payload CMS" },
       ],
-      default: "none",
+      default: "nextjs",
     })
-    project.database = await select({
-      message: "What database ORM would you like to use?",
-      choices: [
-        { value: "none", name: "None" },
-        { value: "prisma", name: "Prisma" },
-      ],
-      default: "none",
-    })
-    if (project.database !== "none") {
+    if (project.backend === "payload") {
       project.databaseProvider = await select({
         message: "What database provider would you like to use?",
         choices: [
           { value: "sqlite", name: "SQLite" },
-          { value: "mysql", name: "MySQL" },
           { value: "postgresql", name: "PostgreSQL" },
         ],
         default: "sqlite",
       })
     }
+
+    if (project.backend === "nextjs") {
+      project.authentication = await select({
+        message: "What authentication provider would you like to use?",
+        choices: [
+          { value: "none", name: "None" },
+          { value: "nextAuth", name: "NextAuth.js" },
+        ],
+        default: "none",
+      })
+      project.database = await select({
+        message: "What database ORM would you like to use?",
+        choices: [
+          { value: "none", name: "None" },
+          { value: "prisma", name: "Prisma" },
+        ],
+        default: "none",
+      })
+      if (project.database !== "none") {
+        project.databaseProvider = await select({
+          message: "What database provider would you like to use?",
+          choices: [
+            { value: "sqlite", name: "SQLite" },
+            { value: "mysql", name: "MySQL" },
+            { value: "postgresql", name: "PostgreSQL" },
+          ],
+          default: "sqlite",
+        })
+      }
+    }
+
     project.prettier = await confirm({
       message: "Should we install Prettier?",
       default: !defaultOptions.flags.prettier,
@@ -250,6 +286,7 @@ export async function runCli(): Promise<CliResults> {
     if (project.authentication === "nextAuth") packages.push("nextAuth")
     if (project.database === "prisma") packages.push("prisma")
     if (project.prettier) packages.push("prettier")
+    if (project.backend === "payload") packages.push("payload")
 
     return {
       appName: project.name ?? cliResults.appName,

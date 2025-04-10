@@ -1,3 +1,4 @@
+import { payloadCMSInstaller } from "@/installers/payloadcms.js"
 import { typescriptInstaller } from "@/installers/typescript.js"
 import { type PackageManager } from "@/utils/get-user-pkg-manager.js"
 
@@ -16,12 +17,15 @@ export const availablePackages = [
   "prettier",
   "eslint",
   "typescript",
+  "payload",
 ] as const
 export type AvailablePackages = (typeof availablePackages)[number]
 
+export const backendFrameworks = ["nextjs", "payload"] as const
+export type BackendFramework = (typeof backendFrameworks)[number]
+
 export const databaseProviders = ["sqlite", "mysql", "postgresql"] as const
 export type DatabaseProvider = (typeof databaseProviders)[number]
-
 export interface InstallerOptions {
   projectDir: string
   projectName: string
@@ -67,5 +71,9 @@ export const buildPkgInstallerMap = (
   typescript: {
     inUse: true,
     installer: typescriptInstaller,
+  },
+  payload: {
+    inUse: packages.includes("payload"),
+    installer: payloadCMSInstaller,
   },
 })

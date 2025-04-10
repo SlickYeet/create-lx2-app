@@ -8,6 +8,7 @@ import { addPackageDependency } from "@/utils/add-package-dependency.js"
 
 export const typescriptInstaller: Installer = ({ projectDir, packages }) => {
   const usingTS = packages?.typescript.inUse
+  const usingPayload = packages?.payload.inUse
 
   const deps: AvailableDependencies[] = []
   if (usingTS) {
@@ -26,7 +27,7 @@ export const typescriptInstaller: Installer = ({ projectDir, packages }) => {
   const tsConfigSrc = path.join(
     PKG_ROOT,
     "template/packages/config/tsconfig",
-    "with-payload.json"
+    `${usingPayload ? "with-payload" : "base"}.json`
   )
   const tsConfigDest = path.join(projectDir, "tsconfig.json")
 
