@@ -29,7 +29,7 @@ export const envVariablesInstaller: Installer = ({
     devMode: false,
   })
 
-  const usingDb = usingPrisma
+  const usingDb = usingPrisma || usingPayload
 
   const envContent = getEnvContent(
     !!usingNextAuth,
@@ -41,13 +41,18 @@ export const envVariablesInstaller: Installer = ({
 
   let envFile = ""
   if (usingDb) {
+    console.log("Using a database, copying env file")
     if (usingNextAuth) {
       envFile = "with-next-auth-db.js"
+    } else if (usingPayload) {
+      envFile = "with-payload.js"
     } else {
       envFile = "with-db.js"
     }
   } else {
-    if (usingNextAuth) envFile = "with-next-auth.js"
+    if (usingNextAuth) {
+      envFile = "with-next-auth.js"
+    }
   }
 
   if (envFile !== "") {
