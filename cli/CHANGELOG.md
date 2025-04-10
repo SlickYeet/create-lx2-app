@@ -1,5 +1,11 @@
 # create-tnt-stack
 
+## 0.4.1
+
+### Patch Changes
+
+- fix missing env.js when using Payload CMS as a backend
+
 ## 0.4.0
 
 ### Minor Changes
