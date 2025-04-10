@@ -12,6 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { RELATIVE_INITIAL_DOCS_PATH } from "@/constants"
 import { cn } from "@/lib/utils"
 
 function Seperator() {
@@ -25,19 +26,17 @@ export function Breadcrumbs() {
 
   const segments = pathname.split("/").filter(Boolean)
 
-  const segment =
-    segments[0] === "docs" || segments[0] === "faq" || segments[0] === "roadmap"
-  const section = segments[0]
-
-  const currentPage = segments.length > 0 ? segments[segments.length - 1] : ""
+  const currentPage = segments[0]
 
   const formatSlug = (slug: string) => {
-    return slug === "faq"
-      ? "FAQ"
-      : slug
-          .split("-")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" ")
+    switch (slug) {
+      case "faq":
+        return "FAQ"
+      case "roadmap":
+        return "Roadmap"
+      default:
+        return "Docs"
+    }
   }
 
   return (
@@ -53,84 +52,44 @@ export function Breadcrumbs() {
 
       <Seperator />
 
-      {segment && (
-        <>
-          <DropdownMenu open={open} onOpenChange={setOpen}>
-            <DropdownMenuTrigger asChild>
-              <Button size="sm" variant="ghost" aria-label="Select Section">
-                {formatSlug(section)}
-                <ChevronDownIcon className="size-3" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              {["docs", "faq", "roadmap"].map((item) => (
-                <DropdownMenuItem key={item} asChild>
-                  <Link
-                    href={`${item === "docs" ? "/docs" : `/docs/${item}`}`}
-                    onClick={() => setOpen(false)}
-                    className={cn(
-                      "w-full cursor-pointer",
-                      section === item && "font-medium",
-                    )}
-                  >
-                    {formatSlug(item)}
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <Seperator />
-
-          {segments.length > 1 && (
-            <Button
-              size="sm"
-              variant="ghost"
-              aria-label="Select Segment"
-              asChild
-            >
-              <Link
-                href={`/${section}/${currentPage}`}
-                className="hover:text-foreground transition-colors"
-              >
-                {formatSlug(currentPage)}
-              </Link>
-            </Button>
-          )}
-        </>
-      )}
-
-      {!segment && segments.length > 0 && (
-        <>
-          <Button size="sm" variant="ghost" aria-label="Select Segment" asChild>
-            <Link
-              href={`/${segments[0]}`}
-              className="hover:text-foreground transition-colors"
-            >
-              {formatSlug(segments[0])}
-            </Link>
+      <DropdownMenu open={open} onOpenChange={setOpen}>
+        <DropdownMenuTrigger asChild>
+          <Button size="sm" variant="ghost" aria-label="Select Section">
+            {formatSlug(currentPage)}
+            <ChevronDownIcon className="size-3" />
           </Button>
-
-          {segments.length > 1 && (
-            <>
-              <Seperator />
-              <Button
-                size="sm"
-                variant="ghost"
-                aria-label="Select Segment"
-                asChild
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="start">
+          {["docs", "faq", "roadmap"].map((item) => (
+            <DropdownMenuItem key={item} asChild>
+              <Link
+                href={`${item === "docs" ? RELATIVE_INITIAL_DOCS_PATH : `/${item}`}`}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  "w-full cursor-pointer",
+                  currentPage === item && "font-medium",
+                )}
               >
-                <Link
-                  href={`/${segments[0]}/${segments[1]}`}
-                  className="hover:text-foreground transition-colors"
-                >
-                  {formatSlug(segments[1])}
-                </Link>
-              </Button>
-            </>
-          )}
-        </>
-      )}
+                {formatSlug(item)}
+              </Link>
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <Seperator />
+
+      <Button size="sm" variant="ghost" aria-label="Select Segment" asChild>
+        <Link
+          href={`/${currentPage}`}
+          className="hover:text-foreground transition-colors"
+        >
+          {currentPage
+            .split("-")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ")}
+        </Link>
+      </Button>
     </div>
   )
 }

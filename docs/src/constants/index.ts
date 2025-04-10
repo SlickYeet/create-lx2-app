@@ -8,7 +8,7 @@ import {
   ZapIcon,
 } from "lucide-react"
 
-export const RELATIVE_INITIAL_DOCS_PATH = "/docs/introduction"
+export const RELATIVE_INITIAL_DOCS_PATH = "/introduction"
 
 export const GITHUB_CREATE_TNT_APP_REPO =
   "https://github.com/SlickYeet/create-tnt-stack"
@@ -17,8 +17,8 @@ export const MAIN_NAVIGATION: {
   href: string
   label: string
 }[] = [
-  { href: "/docs", label: "Docs" },
-  { href: "/docs/faq", label: "FAQ" },
+  { href: RELATIVE_INITIAL_DOCS_PATH, label: "Docs" },
+  { href: "/faq", label: "FAQ" },
 ]
 
 export type NavigationSection = {
@@ -34,33 +34,33 @@ export const SIDEBAR_NAVIGATION: NavigationSection[] = [
   // Create TNT Stack
   {
     title: "Create TNT Stack",
-    slug: "/docs/create-tnt-stack",
+    slug: "/create-tnt-stack",
     items: [
-      { slug: "/docs/introduction", title: "Introduction" },
-      { slug: "/docs/getting-started", title: "Getting Started" },
-      { slug: "/docs/why", title: "Why?" },
-      { slug: "/docs/faq", title: "FAQ" },
-      { slug: "/docs/roadmap", title: "Roadmap" },
+      { slug: RELATIVE_INITIAL_DOCS_PATH, title: "Introduction" },
+      { slug: "/getting-started", title: "Getting Started" },
+      { slug: "/why", title: "Why?" },
+      { slug: "/faq", title: "FAQ" },
+      { slug: "/roadmap", title: "Roadmap" },
     ],
   },
   // Usage
   {
     title: "Usage",
-    slug: "/docs/usage",
+    slug: "/usage",
     items: [
-      { slug: "/docs/first-steps", title: "First Steps" },
-      { slug: "/docs/nextjs", title: "Next.js" },
-      { slug: "/docs/prisma", title: "Prisma ORM" },
-      { slug: "/docs/payloadcms", title: "Payload CMS" },
+      { slug: "/first-steps", title: "First Steps" },
+      { slug: "/nextjs", title: "Next.js" },
+      { slug: "/prisma", title: "Prisma ORM" },
+      { slug: "/payloadcms", title: "Payload CMS" },
     ],
   },
   // Deploymeny
   //   {
   //     title: "Deployment",
-  //     slug: "/docs/deployment",
+  //     slug: "/deployment",
   //     items: [
-  //       { slug: "/docs/vercel", title: "Vercel" },
-  //       { slug: "/docs/netlify", title: "Netlify" },
+  //       { slug: "/vercel", title: "Vercel" },
+  //       { slug: "/netlify", title: "Netlify" },
   //     ],
   //   },
 ] as const
