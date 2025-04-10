@@ -3,10 +3,8 @@
 import Fuse from "fuse.js"
 import {
   ArrowRightIcon,
-  BookOpen,
   CommandIcon,
   FileTextIcon,
-  HelpCircle,
   SearchIcon,
   XIcon,
 } from "lucide-react"
@@ -75,17 +73,6 @@ export function Search({ docs }: { docs: MdxDocument[] }) {
     setQuery(query)
   }
 
-  const getIconForCategory = (category: string) => {
-    switch (category) {
-      case "docs":
-        return <BookOpen className="text-primary size-4" />
-      case "faq":
-        return <HelpCircle className="text-accent size-4" />
-      default:
-        return <FileTextIcon className="text-highlight size-4" />
-    }
-  }
-
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
@@ -105,7 +92,7 @@ export function Search({ docs }: { docs: MdxDocument[] }) {
           </span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-[450px] p-4">
+      <DialogContent className="top-1/4 max-w-[450px] -translate-y-1/4 p-4">
         <DialogTitle>
           <div className="flex items-center gap-2">
             <SearchIcon className="text-muted-foreground size-5" />
@@ -143,40 +130,35 @@ export function Search({ docs }: { docs: MdxDocument[] }) {
                 Results ({results.length})
               </div>
 
-              {["docs", "faq"].map((category) => {
-                const categoryResults = results.filter(
-                  (result) => result.category === category,
-                )
-                const type = categoryResults[0]?.category
-
+              {["docs"].map((category) => {
                 return (
                   <div key={category} className="mb-4">
                     <div className="text-muted-foreground mb-2 px-2 text-xs font-semibold uppercase">
                       {category}
                     </div>
                     <ul className="space-y-1">
-                      {categoryResults.map((result) => (
+                      {results.map((result) => (
                         <li key={result.slug}>
                           <Link
-                            href={`/docs/${result.slug}`}
+                            href={result.slug}
                             onClick={(e) => {
                               e.preventDefault()
                               setIsOpen(false)
                               setQuery("")
-                              router.push(`/docs/${result.slug}`)
+                              router.push(result.slug)
                             }}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault()
                                 setIsOpen(false)
                                 setQuery("")
-                                router.push(`/docs/${result.slug}`)
+                                router.push(result.slug)
                               }
                             }}
                             className="hover:bg-input/30 focus-within:bg-input/30 flex w-full items-start gap-2 rounded-md p-2 text-left ring-0 outline-0"
                           >
                             <span className="mt-0.5 shrink-0">
-                              {getIconForCategory(type)}
+                              <FileTextIcon className="text-primary size-4" />
                             </span>
                             <div className="min-w-0 flex-1">
                               <div className="truncate font-medium">

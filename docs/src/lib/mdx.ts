@@ -35,7 +35,6 @@ export type MdxDocument = {
   slug: string
   title: string
   description: string
-  category: string
   content: string
 }
 
@@ -45,7 +44,6 @@ export async function getMdxDocuments(): Promise<MdxDocument[]> {
   const mdxDocuments = await Promise.all(
     fileNames.map(async (fileName) => {
       const slug = path.basename(path.dirname(fileName))
-      const category = fileName.split("/")[0]
 
       const fullPath = path.join(workingDirectory, fileName)
       const fileContents = await fs.readFile(fullPath, "utf8")
@@ -56,7 +54,6 @@ export async function getMdxDocuments(): Promise<MdxDocument[]> {
         slug,
         title: frontmatter.title as string,
         description: frontmatter.description as string,
-        category,
         content,
       }
     }),

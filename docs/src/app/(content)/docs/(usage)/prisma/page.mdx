@@ -22,7 +22,7 @@ operations on your database in a type-safe manner.
 In TNT-Powered applications, the Prisma Client is initialized and made available
 globally. You can import the client from the `@/server/db` module.
 
-```ts
+```typescript
 import { PrismaClient } from "@prisma/client"
 
 import { env } from "@/env"
@@ -61,7 +61,7 @@ errors and warnings by default. To enable query logs, uncomment `"query"` in the
 
 - Create:
 
-```ts
+```typescript
 const newPost = await db.post.create({
   data: {
     id: "1",
@@ -74,7 +74,7 @@ console.log(newPost)
 
 - Read:
 
-```ts
+```typescript
 const posts = await db.post.findMany({})
 console.log(posts)
 
@@ -86,7 +86,7 @@ console.log(post)
 
 - Update:
 
-```ts
+```typescript
 const updatedPost = await db.post.update({
   where: { id: "1" },
   data: { title: "Updated Post" },
@@ -96,7 +96,7 @@ console.log(updatedPost)
 
 - Delete:
 
-```ts
+```typescript
 const deletedPost = await db.post.delete({
   where: { id: "1" },
 })
@@ -108,7 +108,7 @@ console.log(deletedPost)
 It's good practice to disconnect the Prisma Client when you're done using it,
 especially in serverless environments.
 
-```ts
+```typescript
 async function main() {
   // ... your Prisma Client operations
 }
@@ -189,22 +189,24 @@ Prisma Migrate is a tool for managing database schema changes. It allows you to:
 
 **Common Commands:**
 
-- `npm db:migrate dev`: Create a migration from changes in Prisma schema, apply
-  it to the database, trigger generators (e.g. Prisma Client)
-- `npm db:migrate reset`: Reset your database and apply all migrations (use with
-  caution in production)
-- `npm db:migrate deploy`: Apply pending migrations to the database in
+- `npm run db:migrate dev`: Create a migration from changes in Prisma schema,
+  apply it to the database, trigger generators (e.g. Prisma Client)
+- `npm run db:migrate reset`: Reset your database and apply all migrations (use
+  with caution in production)
+- `npm run db:migrate deploy`: Apply pending migrations to the database in
   production/staging
-- `npm db:migrate status`: Check the status of migrations in the
+- `npm run db:migrate status`: Check the status of migrations in the
   production/staging database
-- `npm db:migrate resolve`: Resolve issues with database migrations, i.e.
+- `npm run db:migrate resolve`: Resolve issues with database migrations, i.e.
   baseline, failed migration, hotfix
-- `npm db:migrate diff`: Compare the database schema from two arbitrary sources
+- `npm run db:migrate diff`: Compare the database schema from two arbitrary
+  sources
 
 **Workflow:**
 
 1. Modify your `prisma/schema.prisma` file.
-2. Run `npm db:migrate dev --name <migration-name>` to create a new migration.
+2. Run `npm run db:migrate dev --name <migration-name>` to create a new
+   migration.
 3. Prisma will generate SQL migration files in the `prisma/migrations`
    directory.
 4. Apply the migrations to your database.
@@ -222,7 +224,7 @@ allows you to:
 **Running Prisma Studio:**
 
 ```bash
-npm db:studio
+npm run db:studio
 ```
 
 This will return a URL (usually `http://localhost:5555`) where you can access

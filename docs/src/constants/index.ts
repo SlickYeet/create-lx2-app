@@ -18,7 +18,7 @@ export const MAIN_NAVIGATION: {
   label: string
 }[] = [
   { href: "/docs", label: "Docs" },
-  { href: "/faq", label: "FAQ" },
+  { href: "/docs/faq", label: "FAQ" },
 ]
 
 export type NavigationSection = {
@@ -34,40 +34,35 @@ export const SIDEBAR_NAVIGATION: NavigationSection[] = [
   // Create TNT Stack
   {
     title: "Create TNT Stack",
-    slug: "create-tnt-stack",
+    slug: "/docs/create-tnt-stack",
     items: [
-      { slug: "introduction", title: "Introduction" },
-      { slug: "getting-started", title: "Getting Started" },
-      { slug: "why", title: "Why?" },
-      { slug: "faq", title: "FAQ" },
+      { slug: "/docs/introduction", title: "Introduction" },
+      { slug: "/docs/getting-started", title: "Getting Started" },
+      { slug: "/docs/why", title: "Why?" },
+      { slug: "/docs/faq", title: "FAQ" },
+      { slug: "/docs/roadmap", title: "Roadmap" },
     ],
   },
   // Usage
   {
     title: "Usage",
-    slug: "usage",
+    slug: "/docs/usage",
     items: [
-      { slug: "first-steps", title: "First Steps" },
-      { slug: "nextjs", title: "Next.js" },
-      { slug: "prisma", title: "Prisma ORM" },
-      { slug: "payloadcms", title: "Payload CMS" },
+      { slug: "/docs/first-steps", title: "First Steps" },
+      { slug: "/docs/nextjs", title: "Next.js" },
+      { slug: "/docs/prisma", title: "Prisma ORM" },
+      { slug: "/docs/payloadcms", title: "Payload CMS" },
     ],
   },
   // Deploymeny
   //   {
   //     title: "Deployment",
-  //     slug: "deployment",
+  //     slug: "/docs/deployment",
   //     items: [
-  //       { slug: "vercel", title: "Vercel" },
-  //       { slug: "netlify", title: "Netlify" },
+  //       { slug: "/docs/vercel", title: "Vercel" },
+  //       { slug: "/docs/netlify", title: "Netlify" },
   //     ],
   //   },
-  // Roadmap
-  {
-    title: "Roadmap",
-    slug: "roadmap",
-    items: [{ slug: "v1", title: "Version 1" }],
-  },
 ] as const
 
 export type FeatureType = {
