@@ -24,5 +24,21 @@ export const dependencyVersionMap = {
   eslint: "^9",
   "eslint-config-next": "^15.2.4",
   "@eslint/eslintrc": "^3.3.1",
+
+  // TypeScript
+  typescript: "^5.8.2",
+  "@types/node": "^22",
+  "@types/react": "^19",
+  "@types/react-dom": "^19",
+
+  // Payload CMS
+  payload: "^3.33.0",
+  "@payloadcms/next": "^3.33.0",
+  "@payloadcms/payload-cloud": "^3.33.0",
+  "@payloadcms/richtext-lexical": "^3.33.0",
+  "@payloadcms/db-vercel-postgres": "^3.33.0",
+  "@payloadcms/db-sqlite": "^3.33.0",
+  graphql: "^16.10.0",
+  sharp: "^0.34.1",
 } as const
 export type AvailableDependencies = keyof typeof dependencyVersionMap

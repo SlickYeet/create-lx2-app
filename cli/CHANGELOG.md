@@ -1,5 +1,13 @@
 # create-tnt-stack
 
+## 0.4.0
+
+### Minor Changes
+
+- [`0fe4769`](https://github.com/SlickYeet/create-tnt-stack/commit/0fe4769743414f9137a9f5316c7b9234d72198a3)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - feat: add Payload CMS
+  support with backend framework selection
+
 ## 0.3.6
 
 ### Patch Changes

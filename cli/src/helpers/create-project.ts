@@ -3,6 +3,11 @@ import path from "path"
 import { installPackages } from "@/helpers/install-packages.js"
 import { scaffoldProject } from "@/helpers/scaffold-project.js"
 import {
+  selectGlobals,
+  selectLayoutFile,
+  selectPageFile,
+} from "@/helpers/select-boilerplate.js"
+import {
   type DatabaseProvider,
   type PkgInstallerMap,
 } from "@/installers/index.js"
@@ -46,6 +51,11 @@ export async function createProject({
     noInstall,
     databaseProvider,
   })
+
+  // Copy the boilerplate files
+  selectLayoutFile({ packages, projectDir })
+  selectPageFile({ packages, projectDir })
+  selectGlobals({ packages, projectDir })
 
   return projectDir
 }
