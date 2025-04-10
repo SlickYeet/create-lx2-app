@@ -37,9 +37,15 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
   }
 
   useEffect(() => {
-    const activeIndex = MAIN_NAVIGATION.findIndex(
-      (item) => item.href === pathname,
-    )
+    const activeIndex = MAIN_NAVIGATION.findIndex(({ href }) => {
+      if (href !== "/faq" && pathname !== "/faq") {
+        return true
+      }
+      if (href === "/faq" && pathname === "/faq") {
+        return true
+      }
+      return false
+    })
     if (activeIndex !== -1 && navRefs.current[activeIndex]) {
       const activeElement = navRefs.current[activeIndex]
       const { offsetLeft, offsetWidth } = activeElement!
@@ -107,11 +113,9 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
                       /**
                        * This is cursed, replace this
                        */
-                      href === pathname
+                      href === "/faq" && pathname === "/faq"
                         ? "text-primary"
-                        : href === "/docs" &&
-                            pathname.startsWith("/docs") &&
-                            pathname !== "/docs/faq"
+                        : href !== "/faq" && pathname !== "/faq"
                           ? "text-primary"
                           : "text-foreground",
                     )}
@@ -183,11 +187,9 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
                     /**
                      * This is cursed, replace this
                      */
-                    href === pathname
+                    href === "/faq" && pathname === "/faq"
                       ? "bg-primary/10 border-primary"
-                      : href === "/docs" &&
-                          pathname.startsWith("/docs") &&
-                          pathname !== "/docs/faq"
+                      : href !== "/faq" && pathname !== "/faq"
                         ? "bg-primary/10 border-primary"
                         : "border-border/ bg-input/10",
                   )}

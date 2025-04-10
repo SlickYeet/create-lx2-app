@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 
 import { NotFoundImage } from "@/components/not-found-image"
 import { Button } from "@/components/ui/button"
+import { RELATIVE_INITIAL_DOCS_PATH } from "@/constants"
 import { useMobile } from "@/hooks/use-mobile"
 
 export default function NotFound() {
@@ -93,7 +94,10 @@ export default function NotFound() {
           </Button>
 
           <Button variant="outline" asChild>
-            <Link href="/docs" className="flex items-center gap-2">
+            <Link
+              href={RELATIVE_INITIAL_DOCS_PATH}
+              className="flex items-center gap-2"
+            >
               <ArrowLeftIcon className="size-4" />
               <span>View Documentation</span>
             </Link>

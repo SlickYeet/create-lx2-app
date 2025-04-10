@@ -55,7 +55,7 @@ export default function HomePage() {
         </Link>
 
         <Link
-          href="https://create.tntstack.org/docs"
+          href="https://create.tntstack.org/introduction"
           target="_blank"
           referrerPolicy="no-referrer"
           className="hover:text-primary relative flex items-center justify-center gap-2 text-lg font-medium"

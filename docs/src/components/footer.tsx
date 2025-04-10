@@ -12,7 +12,10 @@ import Link from "next/link"
 import { Logo } from "@/components/logo"
 import { Anchor } from "@/components/mdx/anchor"
 import { Button } from "@/components/ui/button"
-import { GITHUB_CREATE_TNT_APP_REPO } from "@/constants"
+import {
+  GITHUB_CREATE_TNT_APP_REPO,
+  RELATIVE_INITIAL_DOCS_PATH,
+} from "@/constants"
 
 export function Footer() {
   return (
@@ -60,13 +63,13 @@ export function Footer() {
             <h3 className="mb-4 text-lg font-semibold">Create TNT Stack</h3>
             <ul className="space-y-2">
               <li>
-                <Anchor href="/docs/introduction">Introduction</Anchor>
+                <Anchor href={RELATIVE_INITIAL_DOCS_PATH}>Introduction</Anchor>
               </li>
               <li>
-                <Anchor href="/docs/getting-started">Getting Started</Anchor>
+                <Anchor href="/getting-started">Getting Started</Anchor>
               </li>
               <li>
-                <Anchor href="/docs/why">Why?</Anchor>
+                <Anchor href="/why">Why?</Anchor>
               </li>
               <li>
                 <Anchor href="/faq">FAQ</Anchor>
@@ -99,7 +102,7 @@ export function Footer() {
                 </Anchor>
               </li>
               <li>
-                <Anchor href="/docs">
+                <Anchor href={RELATIVE_INITIAL_DOCS_PATH}>
                   <div className="flex items-center gap-1.5">
                     <BookOpenIcon className="size-4" />
                     <span>Documentation</span>
