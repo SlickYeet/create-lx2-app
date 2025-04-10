@@ -1,3 +1,4 @@
+import { typescriptInstaller } from "@/installers/typescript.js"
 import { type PackageManager } from "@/utils/get-user-pkg-manager.js"
 
 import { envVariablesInstaller } from "./env-vars.js"
@@ -14,6 +15,7 @@ export const availablePackages = [
   "envVariables",
   "prettier",
   "eslint",
+  "typescript",
 ] as const
 export type AvailablePackages = (typeof availablePackages)[number]
 
@@ -61,5 +63,9 @@ export const buildPkgInstallerMap = (
   eslint: {
     inUse: true,
     installer: eslintInstaller,
+  },
+  typescript: {
+    inUse: true,
+    installer: typescriptInstaller,
   },
 })
