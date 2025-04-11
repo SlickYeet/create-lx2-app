@@ -1,9 +1,329 @@
 ---
-title: "Payload CMS"
-description: "The backend to build the modern web."
+title: Payload CMS
+description: The backend to build the modern web.
 ---
+
+import { Callout } from "@/mdx-components"
 
 # Payload CMS
 
-First I would like to explain why I chose to use Payload CMS to add to the
-stack. ...
+## Why I chose Payload
+
+First I would like to explain why I chose to use Payload to add to the stack.
+Payload was my first choice, because it is open-source, self-hosted, has a great
+developer experience, and has a great community.
+
+I first came across Payload when I was looking for a headless Next.js CMS for my
+personal portfolio. I originally did not end up using it, because I was
+overwhelmed by the amount of options available. I wanted to quickly get
+something up and running, and I ended up hardcoding the content into my site,
+which was a mistake.
+
+When I started working on the second version of my portfolio
+[(my current one)](https://lasse.famlam.ca), I decided to give Payload a try. I
+was blown away by how easy it was to set up and use. The documentation is great,
+and the community is very helpful. I was able to get up and running in no time,
+and I was could focus on building the site and writing content instead of
+worrying about the CMS.
+
+## What is Payload?
+
+Payload is a headless open-source CMS natively built for Next.js. It has full
+support for TypeScript, and is fully typesafe. Its main focus is on providing a
+flexible and developer-friendly experience with features such as:
+
+- **Payload is Next.js native**: Payload is built on Next.js, ensuring less
+  hassle, more speed, and enhancing your projects from the ground up.
+- **Customizable Content Modeling**: Define your schema in code and get a full
+  TypeScript backend and admin panel. Instantly.
+- **Fully Leverage React Server Components**: Extend your admin panel with
+  server components, reducing client-side load and keeping business logic behind
+  the scenes.
+- **Turbopack Out of Box**: Payload supports Turbopack from the start,
+  accelerating development with instant updates and a superior developer
+  experience.
+- **Deploy Serverlessly**: A Next.js foundation allows effortless deploy of your
+  full stack to serverless platforms like Vercel, streamlining your workflow and
+  boosting scalability.
+- **Harmonious Front and Back-End Deployment**: Bring your front and back-end
+  together in perfect harmony, simplifying deployment and enhancing
+  collaboration across your entire stack.
+
+## How to use Payload
+
+<Callout type="info">
+  This guide is not meant to be a full tutorial on how to use Payload. It is
+  just a quick overview to get you started. For more complete information,
+  please check out the [official
+  documentation](https://payloadcms.com/docs/getting-started/what-is-payload).
+</Callout>
+
+### Payload config
+
+The `payload.config.ts` file is where all the magic happens. It is a fully-typed
+JavaScript object that can be infinitely extended upon. It is also where you
+configure your Payload instance. Everything from your Database choice to the
+appearance of the Admin Panel is configured there.
+
+The config is typically located in the root of your project along with the
+`next.config.mjs` file. Below you can see an example of the simplest possible
+Payload config:
+
+```ts showLineNumbers title="payload.config.ts"
+import { postgresAdapter } from "@payloadcms/db-postgres"
+import { buildConfig } from "payload"
+
+export default buildConfig({
+  secret: process.env.PAYLOAD_SECRET,
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URL,
+    },
+  }),
+  collections: [
+    {
+      slug: "posts",
+      fields: [
+        {
+          name: "title",
+          type: "text",
+        },
+      ],
+    },
+  ],
+})
+```
+
+See
+[Payload config overview](https://payloadcms.com/docs/configuration/overview)
+for more information and examples of the config.
+
+### Database
+
+Payload support a variety of databases, including MongoDB, PostgreSQL, and
+SQLite.
+
+To configure a Database adapter, use the `db` property in the config.
+
+```ts {6-10} showLineNumbers title="payload.config.ts"
+import { postgresAdapter } from "@payloadcms/db-postgres"
+import { buildConfig } from "payload"
+
+export default buildConfig({
+  // ...
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URL,
+    },
+  }),
+})
+```
+
+See [Payload database overview](https://payloadcms.com/docs/database/overview)
+for more information and examples of the database adapters.
+
+### Collections
+
+A collection is a group of records, called Documents, that share the same
+structure. For example, a blog post collection would have a title, body, and
+author field. To define a collection, use the `collections` property in the
+config.
+
+```ts {5-7} showLineNumbers title="payload.config.ts"
+import { buildConfig } from "payload"
+
+export default buildConfig({
+  // ...
+  collections: [
+    // Your Collections go here
+  ],
+})
+```
+
+Generally, you will want to create a Collection in a separate file, and import
+it into the config. This keeps your config file clean and easy to read.
+
+```ts showLineNumbers title="collections/posts.ts"
+import type { CollectionConfig } from "payload"
+
+export const Posts: CollectionConfig = {
+  slug: "posts",
+  fields: [
+    {
+      name: "title",
+      type: "text",
+    },
+    {
+      name: "body",
+      type: "richText",
+    },
+    {
+      name: "author",
+      type: "relationship",
+      relationTo: "users",
+    },
+  ],
+}
+```
+
+```ts {7-10} showLineNumbers title="payload.config.ts"
+import { buildConfig } from "payload"
+
+import { posts } from "./collections/posts"
+
+export default buildConfig({
+  // ...
+  collections: [
+    posts,
+    // Other Collections go here
+  ],
+})
+```
+
+See
+[Payload collections overview](https://payloadcms.com/docs/configuration/collections)
+for more information and examples of collections.
+
+<Callout type="info">
+  If your Collection is only meant to contain a single Document (e.g. a Footer),
+  you can use a [`Global`](#globals) instead.
+</Callout>
+
+### Globals
+
+Globals are very similar to [Collections](#collections), but they are meant to
+be used for a single Document.
+
+For example, a Footer or a Header would be a good condidate for a Global. To
+define a Global, use the `globals` property in the config.
+
+```ts {5-7} showLineNumbers title="payload.config.ts"
+import { buildConfig } from "payload"
+
+export default buildConfig({
+  // ...
+  globals: [
+    // Your Globals go here
+  ],
+})
+```
+
+The same way you would create a Collection in a separate file, you can create a
+Global in a separate file, and import it into the config.
+
+```ts {7-10} showLineNumbers title="payload.config.ts"
+import { buildConfig } from "payload"
+
+import { footer } from "./globals/footer"
+
+export default buildConfig({
+  // ...
+  globals: [
+    footer,
+    // Other Globals go here
+  ],
+})
+```
+
+See
+[Payload globals overview](https://payloadcms.com/docs/configuration/globals)
+for more information and examples of globals.
+
+### Fields
+
+Fields are the building blocks of your Collections and Globals. They define the
+structure of your Documents. Payload has many built-in fields, but you can also
+create your own custom fields.
+
+To define a field, use the `fields` property in the Collection or Global config.
+
+```ts {6-8} showLineNumbers title="collections/posts.ts"
+import { Text } from "@payloadcms/fields"
+import type { CollectionConfig } from "payload"
+
+export const Posts: CollectionConfig = {
+  // ...
+  fields: [
+    // ...
+  ],
+}
+```
+
+### APIs
+
+Payload gives you access to three different APIs:
+
+- **Local API**: Extremely fast, direct-to-database access
+- **REST API**: Standard HTTP endpoints for querying and mutating data
+- **GraphQL API**: A full GraphQL API with a GraphQL Playground
+
+<Callout type="warning">
+  This guide will not cover the APIs in detail. For more information, please
+  check out how to [retrieve
+  data](https://payloadcms.com/docs/getting-started/concepts#retrieving-data)
+  using Payload.
+</Callout>
+
+The Local API is strongly typed and the fastest way to access your data, but it
+is only available in the app itself. If you need to access your data from
+outside the app, you can use the REST or the GraphQL APIs.
+
+Here is a quick example of how to use each API:
+
+```ts showLineNumbers title="Local API"
+import config from "@payload-config"
+import { getPayload } from "payload"
+
+async function MyServerComponent() {
+  const payload = await getPayload({ config })
+
+  const posts = await payload.find({
+    collection: "posts",
+  })
+
+  return (
+    <ul>
+      {posts.docs.map((post) => (
+        <li key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.body}</p>
+        </li>
+      ))}
+    </ul>
+  )
+}
+```
+
+```ts showLineNumbers title="REST API"
+async function MyServerComponent() {
+  const res = await fetch("http://localhost:3000/api/posts")
+  const posts = await res.json()
+
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.body}</p>
+        </li>
+      ))}
+    </ul>
+  )
+}
+```
+
+<Callout type="warning">
+  Since the GraphQL API is much more complex, this guide will not cover it. To
+  learn how to use it, please check out the [GraphQL API
+  documentation](https://payloadcms.com/docs/graphql/overview).
+</Callout>
+
+## Useful Resources
+
+| Resource                                                                              | Description                                    |
+| ------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| [Payload Docs](https://payloadcms.com/docs)                                           | The official documentation for Payload.        |
+| [Payload Concepts](https://payloadcms.com/docs/getting-started/concepts)              | A great place to start learning about Payload. |
+| [API Reference](https://payloadcms.com/docs/getting-started/concepts#retrieving-data) | API references for Payload.                    |
+| [Payload GitHub](https://github.com/payloadcms/payload)                               | Give Payload a star on GitHub!                 |
+| [Payload Discord](https://discord.gg/FSn5QRdsbC)                                      | Join the Payload community on Discord.         |
