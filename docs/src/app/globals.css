@@ -381,3 +381,26 @@
     @apply text-primary;
   }
 }
+
+/* Asciinema Player */
+.asciinema-player-theme-ctnts {
+  --term-color-foreground: white !important;
+  --term-color-background: black !important;
+
+  --term-color-0: #21222c !important;
+  --term-color-1: #ff5555 !important;
+  --term-color-2: #50fa7b !important;
+  --term-color-3: #f1fa8c !important;
+  --term-color-4: #bd93f9 !important;
+  --term-color-5: #ff79c6 !important;
+  --term-color-6: #8be9fd !important;
+  --term-color-7: #f8f8f2 !important;
+  --term-color-8: #6272a4 !important;
+  --term-color-9: #ff6e6e !important;
+  --term-color-10: #69ff94 !important;
+  --term-color-11: #ffffa5 !important;
+  --term-color-12: #d6acff !important;
+  --term-color-13: #ff92df !important;
+  --term-color-14: #a4ffff !important;
+  --term-color-15: #ffffff !important;
+}
