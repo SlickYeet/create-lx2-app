@@ -30,7 +30,7 @@ export default function HomePage() {
           TNT-Powered Next.js App
         </h1>
         <p className="mb-12 text-xl text-neutral-700 md:text-2xl dark:text-neutral-300">
-          Build modern web applications with todat&apos;s most popular tools
+          Build modern web applications with today&apos;s most popular tools
         </p>
       </div>
 
