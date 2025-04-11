@@ -38,6 +38,10 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
 
   useEffect(() => {
     const activeIndex = MAIN_NAVIGATION.findIndex(({ href }) => {
+      if (pathname === "/") {
+        setIndicatorStyle({ left: 0, width: 0 })
+        return false
+      }
       if (href !== "/faq" && pathname !== "/faq") {
         return true
       }
@@ -73,8 +77,7 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
             <nav className="relative hidden lg:block">
               {/* Hover Highlight */}
               <motion.div
-                layout
-                initial={false}
+                initial={{ opacity: 0 }}
                 animate={
                   hoveredIndex !== null && navRefs.current[hoveredIndex]
                     ? {
@@ -84,6 +87,7 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
                       }
                     : { opacity: 0 }
                 }
+                transition={{ duration: 0.15 }}
                 className="bg-muted/50 absolute flex h-[30px] items-center rounded-[6px]"
               />
 
@@ -110,14 +114,14 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
                     onMouseLeave={() => setHoveredIndex(null)}
                     className={cn(
                       "h-[30px] cursor-pointer px-3 py-2 transition-colors duration-300",
-                      /**
-                       * This is cursed, replace this
-                       */
-                      href === "/faq" && pathname === "/faq"
-                        ? "text-primary"
-                        : href !== "/faq" && pathname !== "/faq"
+                      /** This is cursed, replace this */
+                      pathname === "/"
+                        ? "text-foreground"
+                        : href === "/faq" && pathname === "/faq"
                           ? "text-primary"
-                          : "text-foreground",
+                          : href !== "/faq" && pathname !== "/faq"
+                            ? "text-primary"
+                            : "text-foreground",
                     )}
                   >
                     <div className="flex h-full items-center justify-center leading-5 whitespace-nowrap">
@@ -177,21 +181,19 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
                   key={label}
                   href={href}
                   onClick={() => {
-                    /**
-                     * Hack to close the menu after navigating
-                     */
+                    /** Hack to close the menu after navigating */
                     setTimeout(() => setMobileMenuOpen(false), 100)
                   }}
                   className={cn(
-                    "hover:text-primary text-foreground rounded-md border p-4 text-sm font-medium transition-colors",
-                    /**
-                     * This is cursed, replace this
-                     */
-                    href === "/faq" && pathname === "/faq"
-                      ? "bg-primary/10 border-primary"
-                      : href !== "/faq" && pathname !== "/faq"
-                        ? "bg-primary/10 border-primary"
-                        : "border-border/ bg-input/10",
+                    "hover:text-primary focus-within:text-primary text-foreground rounded-md border p-4 text-sm font-medium transition-colors",
+                    /** This is cursed, replace this */
+                    pathname === "/"
+                      ? "text-foreground"
+                      : href === "/faq" && pathname === "/faq"
+                        ? "bg-primary/10 border-primary text-primary"
+                        : href !== "/faq" && pathname !== "/faq"
+                          ? "bg-primary/10 border-primary text-primary"
+                          : "border-border/ bg-input/10",
                   )}
                 >
                   {label}
