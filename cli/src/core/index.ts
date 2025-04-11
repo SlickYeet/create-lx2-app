@@ -3,10 +3,16 @@ import { Command } from "commander"
 
 import { CREATE_TNT_STACK, DEFAULT_APP_NAME } from "@/constants.js"
 import {
+  authProviders,
+  databaseORM,
   databaseProviders,
+  type AuthProvider,
   type AvailablePackages,
   type BackendFramework,
+  type DatabaseORM,
   type DatabaseProvider,
+  type Formatter,
+  type Linter,
 } from "@/installers/index.js"
 import { getVersion } from "@/utils/get-tnt-version.js"
 import { getUserPkgManager } from "@/utils/get-user-pkg-manager.js"
@@ -23,11 +29,13 @@ interface CliFlags {
   /** @internal Used in CI. */
   CI: boolean
   /** @internal Used in CI. */
-  nextAuth: boolean
+  authentication: AuthProvider
   /** @internal Used in CI. */
-  prisma: boolean
+  orm: DatabaseORM
   /** @internal Used in CI. */
-  prettier: boolean
+  formatter: Formatter
+  /** @internal Used in CI. */
+  linter: Linter
   /** @internal Used in CI. */
   importAlias: string
   /** @internal Used in CI. */
@@ -51,9 +59,10 @@ const defaultOptions: CliResults = {
     noInstall: false,
     default: false,
     CI: false,
-    nextAuth: false,
-    prisma: false,
-    prettier: false,
+    authentication: "none",
+    orm: "none",
+    formatter: "prettier",
+    linter: "eslint",
     importAlias: "@/",
     dbProvider: "sqlite",
     backend: "nextjs",
@@ -67,7 +76,11 @@ export async function runCli(): Promise<CliResults> {
   const program = new Command()
     .name(CREATE_TNT_STACK)
     .description("CLI for scaffolding new web apps with the TNT-Powered stack")
-    .version(getVersion(), "-v, --version", "Output the current version of TNT")
+    .version(
+      getVersion(),
+      "-v, --version",
+      "Output the current version of Create TNT Stack"
+    )
     .argument(
       "[dir]",
       "The name of the application, as well as the name of the directory to create"
@@ -93,23 +106,39 @@ export async function runCli(): Promise<CliResults> {
      *               skip prompting.
      */
     .option("--CI", "Boolean value if we're running in CI", false)
+    /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
+    .option(
+      "--backend [framework]",
+      `Choose a backend framework to use. Possible values: ${defaultOptions.flags.backend}`,
+      defaultOptions.flags.backend
+    )
     /** @experimental Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
     .option(
-      "--nextAuth [boolean]",
-      "Experimental: Boolean value if we should install NextAuth.js. Must be used in conjunction with `--CI`.",
-      (value) => !!value && value !== "false"
+      "--authProvider [provider]",
+      `Choose an authentication provider to use. Possible values: ${authProviders.join(
+        ", "
+      )}`,
+      defaultOptions.flags.authentication
     )
     /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
     .option(
-      "--prisma [boolean]",
-      "Experimental: Boolean value if we should install Prisma. Must be used in conjunction with `--CI`.",
-      (value) => !!value && value !== "false"
+      "--databaseORM [orm]",
+      `Choose a database ORM to use. Possible values: ${databaseORM.join(
+        ", "
+      )}`,
+      defaultOptions.flags.orm
     )
     /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
     .option(
-      "--prettier [boolean]",
-      "Experimental: Boolean value if we should install Prettier. Must be used in conjunction with `--CI`.",
-      (value) => !!value && value !== "false"
+      "--formatter [formatter]",
+      `Choose a formatter to use. Possible values: ${defaultOptions.flags.formatter}`,
+      defaultOptions.flags.formatter
+    )
+    /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
+    .option(
+      "--linter [linter]",
+      `Choose a linter to use. Possible values: ${defaultOptions.flags.linter}`,
+      defaultOptions.flags.linter
     )
     /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
     .option(
@@ -124,12 +153,6 @@ export async function runCli(): Promise<CliResults> {
         ", "
       )}`,
       defaultOptions.flags.dbProvider
-    )
-    /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
-    .option(
-      "--backend [framework]",
-      `Choose a backend framework to use. Possible values: ${defaultOptions.flags.backend}`,
-      defaultOptions.flags.backend
     )
     /** END CI-FLAGS */
     .parse(process.argv)
@@ -152,9 +175,42 @@ export async function runCli(): Promise<CliResults> {
   /** @internal Used for CI E2E tests. */
   if (cliResults.flags.CI) {
     cliResults.packages = []
-    if (cliResults.flags.nextAuth) cliResults.packages.push("nextAuth")
-    if (cliResults.flags.prisma) cliResults.packages.push("prisma")
-    if (cliResults.flags.prettier) cliResults.packages.push("prettier")
+    switch (cliResults.flags.backend) {
+      case "payload":
+        cliResults.packages.push("payload")
+        break
+      default:
+        break
+    }
+    switch (cliResults.flags.authentication) {
+      case "nextAuth":
+        cliResults.packages.push("nextAuth")
+        break
+      default:
+        break
+    }
+    switch (cliResults.flags.orm) {
+      case "prisma":
+        cliResults.packages.push("prisma")
+        break
+      default:
+        break
+    }
+    switch (cliResults.flags.formatter) {
+      case "prettier":
+        cliResults.packages.push("prettier")
+        break
+      default:
+        break
+    }
+    switch (cliResults.flags.linter) {
+      case "eslint":
+        cliResults.packages.push("eslint")
+        break
+      default:
+        break
+    }
+
     if (databaseProviders.includes(cliResults.flags.dbProvider) === false) {
       logger.warn(
         `Incompatible database provided. Use: ${databaseProviders.join(", ")}. Exiting.`
@@ -165,7 +221,7 @@ export async function runCli(): Promise<CliResults> {
       cliResults.flags.backend === "payload" &&
       cliResults.flags.dbProvider === "mysql"
     ) {
-      logger.warn(`Payload CMS does not support MySQL. Exiting.`)
+      logger.warn("Payload CMS does not support MySQL. Exiting.")
       process.exit(0)
     }
 
@@ -192,10 +248,11 @@ export async function runCli(): Promise<CliResults> {
     type ProjectConfig = {
       name?: string
       backend: BackendFramework
-      authentication: string
-      database: string
+      authentication: AuthProvider
+      orm: DatabaseORM
       databaseProvider?: DatabaseProvider
-      prettier: boolean
+      formatter: Formatter
+      linter: Linter
       noGit?: boolean
       noInstall?: boolean
       importAlias: string
@@ -215,7 +272,7 @@ export async function runCli(): Promise<CliResults> {
         { value: "nextjs", name: "Next.js" },
         { value: "payload", name: "Payload CMS" },
       ],
-      default: "nextjs",
+      default: !defaultOptions.flags.backend,
     })
     if (project.backend === "payload") {
       project.databaseProvider = await select({
@@ -224,7 +281,7 @@ export async function runCli(): Promise<CliResults> {
           { value: "sqlite", name: "SQLite" },
           { value: "postgresql", name: "PostgreSQL" },
         ],
-        default: "sqlite",
+        default: !defaultOptions.flags.dbProvider,
       })
     }
 
@@ -235,17 +292,17 @@ export async function runCli(): Promise<CliResults> {
           { value: "none", name: "None" },
           { value: "nextAuth", name: "NextAuth.js" },
         ],
-        default: "none",
+        default: !defaultOptions.flags.authentication,
       })
-      project.database = await select({
+      project.orm = await select({
         message: "What database ORM would you like to use?",
         choices: [
           { value: "none", name: "None" },
           { value: "prisma", name: "Prisma" },
         ],
-        default: "none",
+        default: !defaultOptions.flags.orm,
       })
-      if (project.database !== "none") {
+      if (project.orm !== "none") {
         project.databaseProvider = await select({
           message: "What database provider would you like to use?",
           choices: [
@@ -253,14 +310,23 @@ export async function runCli(): Promise<CliResults> {
             { value: "mysql", name: "MySQL" },
             { value: "postgresql", name: "PostgreSQL" },
           ],
-          default: "sqlite",
+          default: !defaultOptions.flags.dbProvider,
         })
       }
     }
 
-    project.prettier = await confirm({
-      message: "Should we install Prettier?",
-      default: !defaultOptions.flags.prettier,
+    project.formatter = await select({
+      message: "What formatter would you like to use?",
+      choices: [
+        { value: "none", name: "None" },
+        { value: "prettier", name: "Prettier" },
+      ],
+      default: !defaultOptions.flags.formatter,
+    })
+    project.linter = await select({
+      message: "What linter would you like to use?",
+      choices: [{ value: "eslint", name: "ESLint" }],
+      default: !defaultOptions.flags.linter,
     })
     if (!cliResults.flags.noGit) {
       project.noGit = await confirm({
@@ -283,10 +349,41 @@ export async function runCli(): Promise<CliResults> {
     })
 
     const packages: AvailablePackages[] = []
-    if (project.authentication === "nextAuth") packages.push("nextAuth")
-    if (project.database === "prisma") packages.push("prisma")
-    if (project.prettier) packages.push("prettier")
-    if (project.backend === "payload") packages.push("payload")
+    switch (project.backend) {
+      case "payload":
+        packages.push("payload")
+        break
+      default:
+        break
+    }
+    switch (project.authentication) {
+      case "nextAuth":
+        packages.push("nextAuth")
+        break
+      default:
+        break
+    }
+    switch (project.orm) {
+      case "prisma":
+        packages.push("prisma")
+        break
+      default:
+        break
+    }
+    switch (project.formatter) {
+      case "prettier":
+        packages.push("prettier")
+        break
+      default:
+        break
+    }
+    switch (project.linter) {
+      case "eslint":
+        packages.push("eslint")
+        break
+      default:
+        break
+    }
 
     return {
       appName: project.name ?? cliResults.appName,
