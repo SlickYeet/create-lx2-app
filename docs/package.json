@@ -50,6 +50,7 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "asciinema-player": "3.6.3",
     "eslint": "^9.22.0",
     "eslint-config-next": "^15.2.4",
     "prettier-plugin-tailwindcss": "^0.6.11",
