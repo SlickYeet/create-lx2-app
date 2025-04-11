@@ -8,6 +8,7 @@ import { LI, OL, UL } from "@/components/mdx/lists"
 import { Paragraph } from "@/components/mdx/paragraph"
 import { Code, Pre } from "@/components/mdx/pre"
 import { Tab, Tabs } from "@/components/mdx/tabs"
+import { Video } from "@/components/mdx/video"
 
 export const mdxComponents: MDXComponents = {
   h1: H1,
@@ -26,6 +27,7 @@ export const mdxComponents: MDXComponents = {
   li: LI,
   Tabs: Object.assign(Tabs, { Tab }),
   Callout,
+  Video,
 }
 
 /**
@@ -48,6 +50,7 @@ export {
   Pre,
   Tabs,
   UL,
+  Video,
 }
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
