@@ -19,6 +19,12 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const fs = require("fs");
+
+            if (!process.env.GITHUB_ENV) {
+              throw new Error("GITHUB_ENV is not defined in the environment.");
+            }
+
             const allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -30,12 +36,12 @@ jobs:
               const match = /^npm-package-create-tnt-stack@(.*?)-pr-(\d+)/.exec(artifact.name);
 
               if (match) {
-                require("fs").appendFileSync(
-                  process.env.GITHUB_ENV,
-                  `\nBETA_PACKAGE_VERSION=${match[1]}` +
-                  `\nWORKFLOW_RUN_PR=${match[2]}` +
-                  `\nWORKFLOW_RUN_ID=${context.payload.workflow_run.id}`
-                );
+                const envData = `
+                BETA_PACKAGE_VERSION=${match[1]}
+                WORKFLOW_RUN_PR=${match[2]}
+                WORKFLOW_RUN_ID=${context.payload.workflow_run.id}`;
+
+                fs.appendFileSync(process.env.GITHUB_ENV, envData.trim() + "\n");
                 break;
               }
             }
