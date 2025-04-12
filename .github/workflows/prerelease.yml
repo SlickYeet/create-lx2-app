@@ -12,7 +12,7 @@ jobs:
   prerelease:
     if: |
       github.repository_owner == 'SlickYeet' &&
-      contains(github.event.pull_request.labels.*.name, '🚀 autorelease')
+      contains(github.event.pull_request.labels.*.name, '🚀 betarelease')
     name: Build & Publish a beta release to NPM
     runs-on: ubuntu-latest
 
