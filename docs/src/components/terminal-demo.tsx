@@ -6,7 +6,11 @@ import { useEffect } from "react"
 
 import "asciinema-player/dist/bundle/asciinema-player.css"
 
+import { useMobile } from "@/hooks/use-mobile"
+
 export function TerminalDemo() {
+  const isMobile = useMobile(768)
+
   useEffect(() => {
     const container = document.getElementById("demo-player")
     if (!container) {
@@ -23,7 +27,7 @@ export function TerminalDemo() {
       loop: true,
       speed: 1.5,
       theme: "ctnts",
-      fit: "none",
+      fit: isMobile ? "width" : "none",
       controls: "auto",
       terminalFontSize: "large",
       terminalFontFamily: "Cascadia Mono, monospace",
@@ -33,10 +37,10 @@ export function TerminalDemo() {
     return () => {
       container.innerHTML = ""
     }
-  }, [])
+  }, [isMobile])
 
   return (
-    <div className="min-h-[400px] overflow-hidden bg-black px-4 pt-4">
+    <div className="overflow-hidden bg-black px-4 pt-4 max-md:max-h-[400px] md:min-h-[400px]">
       <div className="mb-4 flex items-center gap-2">
         <div className="size-3 rounded-full bg-red-500" />
         <div className="size-3 rounded-full bg-yellow-500" />

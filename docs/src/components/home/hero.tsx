@@ -18,7 +18,7 @@ import {
   RELATIVE_INITIAL_DOCS_PATH,
 } from "@/constants"
 
-export function Hero() {
+export function Hero({ npmVersion }: { npmVersion?: string }) {
   return (
     <section
       id="create-tnt-app"
@@ -35,16 +35,22 @@ export function Hero() {
             transition={{ duration: 0.5 }}
             className="mb-6"
           >
-            <Badge className="bg-primary/10 text-primary border-primary/10 hover:border-primary/40 rounded-full border transition-colors">
-              Supercharge your Next.js projects
-            </Badge>
+            <Link
+              href="https://www.npmjs.com/package/create-tnt-stack/v/0.4.3"
+              target="_blank"
+            >
+              <Badge className="bg-highlight/10 text-highlight border-highlight/10 hover:border-highlight/40 rounded-full border transition-colors">
+                {/* Supercharge your Next.js projects */}
+                Payload CMS now available on the v{npmVersion}-beta branch! 🚀
+              </Badge>
+            </Link>
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="gradient-text mb-6 text-4xl font-bold tracking-tight md:text-6xl"
+            className="gradient-text mb-6 text-6xl font-bold tracking-tight md:text-8xl"
           >
             TNT-Powered
           </motion.h1>
