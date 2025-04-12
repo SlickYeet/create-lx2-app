@@ -4,7 +4,7 @@
 "📌 area: tnt-app":
   - any: ["cli/template/**/*"]
 
-"📚 docs":
+"📚 site":
   - any: ["docs/**/*"]
   - any: ["**/*.md", "**/*.mdx"]
 
