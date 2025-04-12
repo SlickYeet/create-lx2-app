@@ -38,6 +38,7 @@
     "format:check": "prettier '**/*.{cjs,mjs,ts,tsx,md,json}' --ignore-path ../.gitignore --ignore-unknown --no-error-on-unmatched-pattern --check",
     "typecheck": "tsc",
     "clean": "rm -rf dist .turbo node_modules",
+    "link": "bun run build && npm link",
     "release": "changeset version",
     "pub:beta": "bun run build && npm publish --tag beta",
     "pub:release": "bun run build && npm publish"

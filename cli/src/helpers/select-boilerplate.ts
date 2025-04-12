@@ -34,8 +34,9 @@ export function selectPageFile({
 }: SelectBoilerplateOoptions) {
   const pageFileDir = path.join(PKG_ROOT, "template/packages/src/app/page")
 
-  const usingAuthjs = packages.authjs.inUse
   const usingPayload = packages.payload.inUse
+  const usingAuthjs = packages.authjs.inUse
+  const usingPrisma = packages.prisma.inUse
 
   let pageFile = "base.tsx"
   if (usingPayload) {
@@ -43,6 +44,9 @@ export function selectPageFile({
   }
   if (usingAuthjs) {
     pageFile = "with-authjs.tsx"
+  }
+  if (usingPrisma) {
+    pageFile = "with-prisma.tsx"
   }
 
   const pageSrc = path.join(pageFileDir, pageFile)

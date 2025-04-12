@@ -49,6 +49,7 @@
     "typecheck": "turbo run typecheck",
     "clean": "turbo clean && rm -rf node_modules .turbo bun.lockb",
     "shadcn": "bun run --filter=docs shadcn",
+    "link": "bun run --filter=create-tnt-stack link",
     "release": "changeset version",
     "pub:beta": "cd cli && bun run pub:beta",
     "pub:release": "cd cli && bun run pub:release"
