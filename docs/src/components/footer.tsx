@@ -16,8 +16,12 @@ import {
   GITHUB_CREATE_TNT_APP_REPO,
   RELATIVE_INITIAL_DOCS_PATH,
 } from "@/constants"
+import { getNpmVersion } from "@/lib/utils"
 
-export function Footer() {
+export async function Footer() {
+  const npmVersionLatest = await getNpmVersion("latest")
+  const npmVersionBeta = await getNpmVersion("beta")
+
   return (
     <footer className="mt-auto border-t py-12">
       <div className="container">
@@ -146,11 +150,32 @@ export function Footer() {
           <div className="text-muted-foreground text-sm">
             &copy; {new Date().getFullYear()} TNT-Powered. All right reserved.
           </div>
-          <div className="mt-4 md:mt-0">
+          <div className="mt-4 flex flex-col items-center text-center max-sm:space-y-4 sm:flex-row sm:gap-4 sm:text-left md:mt-0">
+            <div className="space-x-1.5">
+              <a
+                href={`https://www.npmjs.com/package/create-tnt-stack/v/${npmVersionLatest}`}
+                target="_blank"
+                className="text-muted-foreground text-sm hover:underline"
+              >
+                Latest: v{npmVersionLatest}
+              </a>
+              <a
+                href={`https://www.npmjs.com/package/create-tnt-stack/v/${npmVersionBeta}`}
+                target="_blank"
+                className="text-muted-foreground text-sm hover:underline"
+              >
+                Beta: v{npmVersionBeta}
+              </a>
+            </div>
+
+            <span className="text-muted-foreground hidden text-sm md:block">
+              |
+            </span>
+
             <a
               href={`${GITHUB_CREATE_TNT_APP_REPO}/blob/main/LICENSE.md`}
               target="_blank"
-              className="text-muted-foreground text-sm hover:underline"
+              className="text-muted-foreground block text-sm hover:underline"
             >
               MIT License
             </a>
