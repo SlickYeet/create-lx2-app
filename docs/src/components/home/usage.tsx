@@ -95,19 +95,21 @@ export function Usage() {
                 <li className="flex items-center">
                   <div className="bg-highlight mr-2 size-2 shrink-0 rounded-full" />
                   <span>
-                    <code>--nextAuth</code> - Add NextAuth.js to the project
+                    <code>--backend [framework]</code> - Choose which backend
+                    framework to use
+                  </span>
+                </li>
+                <li className="flex items-center">
+                  <div className="bg-highlight mr-2 size-2 shrink-0 rounded-full" />
+                  <span>
+                    <code>--authProvider [provider]</code> - Choose an auth
+                    provider
                   </span>
                 </li>
                 <li className="flex items-center">
                   <div className="bg-secondary mr-2 size-2 shrink-0 rounded-full" />
                   <span>
-                    <code>--prisma</code> - Add Prisma ORM to the project
-                  </span>
-                </li>
-                <li className="flex items-center">
-                  <div className="mr-2 size-2 rounded-full bg-emerald-500" />
-                  <span>
-                    <code>--prettier</code> - Add Prettier to the project
+                    <code>--databaseORM [orm]</code> - Choose a database ORM
                   </span>
                 </li>
                 <li className="flex items-center">
