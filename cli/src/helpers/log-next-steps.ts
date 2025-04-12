@@ -40,6 +40,9 @@ export const logNextSteps = async ({
       `  Fill in your .env with necessary values. See https://create.tntstack.org/first-steps for more info.`
     )
   }
+  if (packages?.prisma.inUse) {
+    logger.info(`  Run "${pkgManager} db:push" to create you database tables.`)
+  }
 
   if (["npm"].includes(pkgManager)) {
     logger.info(`  ${pkgManager} run dev`)

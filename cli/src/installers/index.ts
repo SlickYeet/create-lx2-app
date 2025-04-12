@@ -33,7 +33,7 @@ export type DatabaseORM = (typeof databaseORM)[number]
 export const databaseProviders = ["sqlite", "mysql", "postgresql"] as const
 export type DatabaseProvider = (typeof databaseProviders)[number]
 
-export const formatters = ["none", "prettier"] as const
+export const formatters = ["prettier"] as const
 export type Formatter = (typeof formatters)[number]
 
 export const linters = ["eslint"] as const

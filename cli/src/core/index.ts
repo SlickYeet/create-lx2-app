@@ -316,10 +316,7 @@ export async function runCli(): Promise<CliResults> {
 
     project.formatter = await select({
       message: "What formatter would you like to use?",
-      choices: [
-        { value: "none", name: "None" },
-        { value: "prettier", name: "Prettier" },
-      ],
+      choices: [{ value: "prettier", name: "Prettier" }],
       default: !defaultOptions.flags.formatter,
     })
     project.linter = await select({

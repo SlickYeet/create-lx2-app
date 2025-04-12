@@ -11,6 +11,8 @@ export const prismaInstaller: Installer = ({
   packages,
   databaseProvider,
 }) => {
+  const usingAuthjs = packages?.authjs.inUse
+
   addPackageDependency({
     projectDir,
     dependencies: ["prisma"],
@@ -27,7 +29,7 @@ export const prismaInstaller: Installer = ({
   const schemaSrc = path.join(
     packagesDir,
     "prisma/schema",
-    `${packages?.authjs.inUse ? "with-authjs" : "base"}.prisma`
+    `${usingAuthjs ? "with-authjs" : "base"}.prisma`
   )
   let schemaText = fs.readFileSync(schemaSrc, "utf-8")
   if (databaseProvider !== "sqlite") {
