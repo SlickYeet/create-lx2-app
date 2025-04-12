@@ -41,7 +41,7 @@ export function Hero({ npmVersion }: { npmVersion?: string }) {
             >
               <Badge className="bg-highlight/10 text-highlight border-highlight/10 hover:border-highlight/40 rounded-full border transition-colors">
                 {/* Supercharge your Next.js projects */}
-                Payload CMS now available on the v{npmVersion}-beta branch! 🚀
+                Payload CMS now available on the v{npmVersion} branch! 🚀
               </Badge>
             </Link>
           </motion.div>
