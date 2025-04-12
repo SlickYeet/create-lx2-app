@@ -1,5 +1,14 @@
 # create-tnt-stack
 
+## 0.5.1
+
+### Patch Changes
+
+- [#97](https://github.com/SlickYeet/create-tnt-stack/pull/97)
+  [`6ab3c04`](https://github.com/SlickYeet/create-tnt-stack/commit/6ab3c04303b73ba8cf06d72930bcfe4e07e86c82)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - update prisma related
+  files
+
 ## 0.5.0
 
 ### Minor Changes
