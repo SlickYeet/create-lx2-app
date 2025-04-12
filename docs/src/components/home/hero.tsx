@@ -17,6 +17,7 @@ import {
   GITHUB_CREATE_TNT_APP_REPO,
   RELATIVE_INITIAL_DOCS_PATH,
 } from "@/constants"
+import { cn } from "@/lib/utils"
 
 export function Hero({ npmVersion }: { npmVersion?: string }) {
   return (
@@ -39,9 +40,18 @@ export function Hero({ npmVersion }: { npmVersion?: string }) {
               href={`https://www.npmjs.com/package/create-tnt-stack/v/${npmVersion}`}
               target="_blank"
             >
-              <Badge className="bg-highlight/10 text-highlight border-highlight/10 hover:border-highlight/40 rounded-full border transition-colors">
+              <Badge
+                className={cn(
+                  "rounded-full border transition-colors",
+                  //   "border-primary/10 bg-primary/10 text-primary hover:border-primary/40",
+                  "border-emerald-600/10 bg-emerald-600/10 text-emerald-600 hover:border-emerald-600/40",
+                  "dark:border-emerald-400/10 dark:bg-emerald-400/10 dark:text-emerald-400 dark:hover:border-emerald-400/40",
+                  npmVersion?.includes("beta") &&
+                    "!border-highlight/10 !bg-highlight/10 !text-highlight !hover:border-highlight/40",
+                )}
+              >
                 {/* Supercharge your Next.js projects */}
-                Payload CMS now available on the v{npmVersion} branch! 🚀
+                Create TNT Stack v{npmVersion} is now out! 🚀
               </Badge>
             </Link>
           </motion.div>
