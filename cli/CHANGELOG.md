@@ -1,5 +1,14 @@
 # create-tnt-stack
 
+## 0.4.3
+
+### Patch Changes
+
+- [#84](https://github.com/SlickYeet/create-tnt-stack/pull/84)
+  [`bdf055a`](https://github.com/SlickYeet/create-tnt-stack/commit/bdf055a9d2b0335b7acd4c88e6c99bcee21359e4)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - update CLI options for
+  improved configuration management
+
 ## 0.4.2
 
 ### Patch Changes

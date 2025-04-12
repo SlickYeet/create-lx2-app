@@ -24,8 +24,21 @@ export type AvailablePackages = (typeof availablePackages)[number]
 export const backendFrameworks = ["nextjs", "payload"] as const
 export type BackendFramework = (typeof backendFrameworks)[number]
 
+export const authProviders = ["none", "nextAuth"] as const
+export type AuthProvider = (typeof authProviders)[number]
+
+export const databaseORM = ["none", "prisma"] as const
+export type DatabaseORM = (typeof databaseORM)[number]
+
 export const databaseProviders = ["sqlite", "mysql", "postgresql"] as const
 export type DatabaseProvider = (typeof databaseProviders)[number]
+
+export const formatters = ["none", "prettier"] as const
+export type Formatter = (typeof formatters)[number]
+
+export const linters = ["eslint"] as const
+export type Linter = (typeof linters)[number]
+
 export interface InstallerOptions {
   projectDir: string
   projectName: string
@@ -65,7 +78,7 @@ export const buildPkgInstallerMap = (
     installer: prettierInstaller,
   },
   eslint: {
-    inUse: true,
+    inUse: packages.includes("eslint"),
     installer: eslintInstaller,
   },
   typescript: {
