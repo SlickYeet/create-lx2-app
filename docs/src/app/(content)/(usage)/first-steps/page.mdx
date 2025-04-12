@@ -3,6 +3,8 @@ title: First Steps
 description: Moving your TNT-Powered project into development.
 ---
 
+import { Callout } from "@/mdx-components"
+
 # What's Next?
 
 Now that you have created your TNT-Powered project, you can start building your
@@ -41,8 +43,9 @@ npm postinstall
 
 ### Drizzle
 
-{/* <Callout type="default"> */} Drizzle is not yet available in TNT-Powered
-projects. {/* </Callout> */}
+<Callout type="default">
+  Drizzle is not yet available in TNT-Powered projects.
+</Callout>
 
 Drizzle will be available in the future to help you manage your database schema
 and migrations. Drizzle cannot be used at the same time as Prisma, so you will
@@ -50,14 +53,14 @@ need to choose one or the other.
 
 ## Authentication
 
-### NextAuth.js
+### Auth.js
 
-When using NextAuth.js, we have included the `DiscordProvider` by default. It is
-one of the simplest ways to add authentication to your application. However, it
+When using Auth.js, we have included the `DiscordProvider` by default. It is one
+of the simplest ways to add authentication to your application. However, it
 still needs some initial setup.
 
-If you wish to use another provider, you can find a list of all the NextAuth.js
-providers [here](https://next-auth.js.org/providers/).
+If you wish to use another provider, you can find a list of all the Auth.js
+providers [here](https://authjs.dev/getting-started/authentication/oauth).
 
 1. Of course, you need a Discord account, so register one if you don't already
    have one.

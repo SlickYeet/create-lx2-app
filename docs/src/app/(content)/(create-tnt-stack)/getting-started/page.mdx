@@ -5,6 +5,8 @@ description:
   application.
 ---
 
+import { Callout } from "@/mdx-components"
+
 # Getting Started
 
 It is really simple to get started with the TNT-Powered Stack. All you need to
@@ -57,26 +59,29 @@ process, or skip certain prompts.
 The CI flag can be used to scaffold a new project without prompts. This is
 useful for CI/CD pipelines.
 
-| Flags                          | Description                                          |
-| ------------------------------ | ---------------------------------------------------- |
-| `--CI`                         | Set the CLI to run in CI mode.                       |
-| `--nextAuth`                   | Set the CLI to scaffold a project with NextAuth.js.  |
-| `--prisma`                     | Set the CLI to scaffold a project with Prisma.       |
-| `--prettier`                   | Set the CLI to scaffold a project with Prettier.     |
-| `-I`, `--import-alias [alias]` | Set the CLI to scaffold a project with Import Alias. |
-| `--dbProvider [provider]`      | Set the CLI to scaffold a project with a database.   |
+| Flags                        | Description                                                |
+| ---------------------------- | ---------------------------------------------------------- |
+| `--CI`                       | Set the CLI to run in CI mode.                             |
+| `--backend [framework]`      | Set the CLI to scaffold a project with the chosen backend. |
+| `--authProvider [provider]`  | Set the CLI to scaffold a project with an auth provider    |
+| `--databaseORM [orm]`        | Set the CLI to scaffold a project with a database ORM      |
+| `--formatter [formatter]`    | Set the CLI to scaffold a project with a formatter         |
+| `--linter [linter]`          | Set the CLI to scaffold a project with a linter            |
+| `-i, --import-alias [alias]` | Set the CLI to scaffold a project with Import Alias.       |
+| `--dbProvider [provider]`    | Set the CLI to scaffold a project with a database.         |
 
-{/* <Callout type="warning"> */} If you don’t provide the CI flag, the rest of
-these flags have no effect. {/* </Callout> */}
+<Callout type="warning">
+  If you don’t provide the CI flag, the rest of these flags have no effect.
+</Callout>
 
 ### Examples
 
 Unless specified otherwise, all flags are boolean flags. This mean that they
 don't require a value to be passed to them. For example, to scaffold a project
-with NextAuth.js, you would run:
+with Auth.js, you would run:
 
 ```bash copy
-npm create tnt-stack@latest --CI --nextAuth
+npm create tnt-stack@latest --CI --authProvider authjs
 ```
 
 For flags that require a value, you would pass the value after the flag. For
