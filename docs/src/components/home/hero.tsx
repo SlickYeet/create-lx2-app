@@ -36,7 +36,7 @@ export function Hero({ npmVersion }: { npmVersion?: string }) {
             className="mb-6"
           >
             <Link
-              href="https://www.npmjs.com/package/create-tnt-stack/v/0.4.3"
+              href={`https://www.npmjs.com/package/create-tnt-stack/v/${npmVersion}`}
               target="_blank"
             >
               <Badge className="bg-highlight/10 text-highlight border-highlight/10 hover:border-highlight/40 rounded-full border transition-colors">
