@@ -33,7 +33,7 @@ please refer to the respective docs.
 
 - [Next.js](https://nextjs.org)
 - [Payload CMS](https://payloadcms.com)
-- [NextAuth.js](https://next-auth.js.org)
+- [Auth.js](https://authjs.dev/)
 - [Prisma](https://prisma.io)
 - [Drizzle](https://orm.drizzle.team)
 - [Tailwind CSS](https://tailwindcss.com)

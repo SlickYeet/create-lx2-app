@@ -27,7 +27,7 @@ export const prismaInstaller: Installer = ({
   const schemaSrc = path.join(
     packagesDir,
     "prisma/schema",
-    `${packages?.nextAuth.inUse ? "with-next-auth" : "base"}.prisma`
+    `${packages?.authjs.inUse ? "with-authjs" : "base"}.prisma`
   )
   let schemaText = fs.readFileSync(schemaSrc, "utf-8")
   if (databaseProvider !== "sqlite") {

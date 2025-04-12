@@ -13,7 +13,7 @@ export const envVariablesInstaller: Installer = ({
   databaseProvider,
 }) => {
   const usingEnv = packages?.envVariables.inUse
-  const usingNextAuth = packages?.nextAuth.inUse
+  const usingAuthjs = packages?.authjs.inUse
   const usingPrisma = packages?.prisma.inUse
   const usingPayload = packages?.payload.inUse
 
@@ -32,7 +32,7 @@ export const envVariablesInstaller: Installer = ({
   const usingDb = usingPrisma || usingPayload
 
   const envContent = getEnvContent(
-    !!usingNextAuth,
+    !!usingAuthjs,
     !!usingPrisma,
     !!usingPayload,
     scopedAppName,
@@ -41,16 +41,16 @@ export const envVariablesInstaller: Installer = ({
 
   let envFile = ""
   if (usingDb) {
-    if (usingNextAuth) {
-      envFile = "with-next-auth-db.js"
+    if (usingAuthjs) {
+      envFile = "with-authjs-db.js"
     } else if (usingPayload) {
       envFile = "with-payload.js"
     } else {
       envFile = "with-db.js"
     }
   } else {
-    if (usingNextAuth) {
-      envFile = "with-next-auth.js"
+    if (usingAuthjs) {
+      envFile = "with-authjs.js"
     }
   }
 
@@ -88,7 +88,7 @@ export const envVariablesInstaller: Installer = ({
 }
 
 function getEnvContent(
-  usingNextAuth: boolean,
+  usingAuthjs: boolean,
   usingPrisma: boolean,
   usingPayload: boolean,
   scopedAppName: string,
@@ -134,12 +134,12 @@ function getEnvContent(
     content += "\n"
   }
 
-  if (usingNextAuth)
+  if (usingAuthjs)
     content += `
 # Next Auth
 # You can generate a new secret on the command line with:
 # npx auth secret
-# https://next-auth.js.org/configuration/options#secret
+# https://authjs.dev/getting-started/installation#setup-environment
 AUTH_SECRET=""
 
 # Next Auth Discord Provider
@@ -147,7 +147,7 @@ DISCORD_CLIENT_ID=""
 DISCORD_CLIENT_SECRET=""
 `
 
-  if (!usingNextAuth && !usingPrisma && !usingPayload) {
+  if (!usingAuthjs && !usingPrisma && !usingPayload) {
     content += `
 # Example:
 # SERVERVAR="foo"

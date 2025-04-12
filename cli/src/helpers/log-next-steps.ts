@@ -35,10 +35,9 @@ export const logNextSteps = async ({
     logger.info("  Add your database connection string to .env")
   }
 
-  //   The url `https://create.tntstack.org/usage/first-steps` is not yet available
-  if (packages?.nextAuth.inUse) {
+  if (packages?.authjs.inUse) {
     logger.info(
-      `  Fill in your .env with necessary values. See https://create.tntstack.org/usage/first-steps for more info.`
+      `  Fill in your .env with necessary values. See https://create.tntstack.org/first-steps for more info.`
     )
   }
 

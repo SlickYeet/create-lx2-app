@@ -15,17 +15,9 @@ export function selectLayoutFile({
 }: SelectBoilerplateOoptions) {
   const layoutFileDir = path.join(PKG_ROOT, "template/packages/src/app/layout")
 
-  /**
-   * TODO: Add NextAuth layout file
-   */
-  // const usingNextAuth = packages.nextAuth.inUse
   const usingPayload = packages.payload.inUse
 
   let layoutFile = "base.tsx"
-  if (usingPayload) {
-    layoutFile = "base.tsx" // We can use the same layout file for Payload
-    // layoutFile = "with-payload.tsx"
-  }
 
   const layoutSrc = path.join(layoutFileDir, layoutFile)
   const layoutDest = path.join(
@@ -42,15 +34,15 @@ export function selectPageFile({
 }: SelectBoilerplateOoptions) {
   const pageFileDir = path.join(PKG_ROOT, "template/packages/src/app/page")
 
-  /**
-   * TODO: Add NextAuth page file
-   */
-  // const usingNextAuth = packages.nextAuth.inUse
+  const usingAuthjs = packages.authjs.inUse
   const usingPayload = packages.payload.inUse
 
   let pageFile = "base.tsx"
   if (usingPayload) {
     pageFile = "with-payload.tsx"
+  }
+  if (usingAuthjs) {
+    pageFile = "with-authjs.tsx"
   }
 
   const pageSrc = path.join(pageFileDir, pageFile)
@@ -70,10 +62,6 @@ export function selectGlobals({
   const usingPayload = packages.payload.inUse
 
   let globalsCSSFile = "base.css"
-  if (usingPayload) {
-    globalsCSSFile = "base.css" // We can use the same globals file for Payload
-    // globalsCSSFile = "with-payload.css"
-  }
 
   const globalsCSSSrc = path.join(globalsCSSDir, globalsCSSFile)
   const globalsCSSDest = path.join(
