@@ -23,7 +23,8 @@ export function selectLayoutFile({
 
   let layoutFile = "base.tsx"
   if (usingPayload) {
-    layoutFile = "with-payload.tsx"
+    layoutFile = "base.tsx" // We can use the same layout file for Payload
+    // layoutFile = "with-payload.tsx"
   }
 
   const layoutSrc = path.join(layoutFileDir, layoutFile)
@@ -70,7 +71,8 @@ export function selectGlobals({
 
   let globalsCSSFile = "base.css"
   if (usingPayload) {
-    globalsCSSFile = "with-payload.css"
+    globalsCSSFile = "base.css" // We can use the same globals file for Payload
+    // globalsCSSFile = "with-payload.css"
   }
 
   const globalsCSSSrc = path.join(globalsCSSDir, globalsCSSFile)
