@@ -41,7 +41,7 @@ Simply run `npm create tnt-stack@latest` to get started!
 TNT-Powered installs **TypeScript, Next.js, Tailwind CSS**, along with:
 
 - ✅ **Payload CMS** - A powerful headless CMS
-- ✅ **NextAuth** - Authentication made easy
+- ✅ **Auth.js** - Authentication made easy
 - ✅ **Lucia Auth** - Authentication following
   [Luca Auth Guidelines](https://lucia-auth.com/)
 - ✅ **Prisma ORM** - Database management with full type safety

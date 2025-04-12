@@ -183,8 +183,8 @@ export async function runCli(): Promise<CliResults> {
         break
     }
     switch (cliResults.flags.authentication) {
-      case "nextAuth":
-        cliResults.packages.push("nextAuth")
+      case "authjs":
+        cliResults.packages.push("authjs")
         break
       default:
         break
@@ -234,11 +234,10 @@ export async function runCli(): Promise<CliResults> {
 
   // Explained below why this is in a try/catch block
   try {
-    // The url `https://create.tntstack.org/installation#experimental-usage` is not yet available
     if (process.env.TERM_PROGRAM?.toLowerCase().includes("mintty")) {
       logger.warn(`  WARNING: It looks like you are using MinTTY, which is non-interactive. This is most likely because you are
           using Git Bash. If that's that case, please use Git Bash from another terminal, such as Windows Terminal. Alternatively, you
-          can provide the arguments from the CLI directly: https://create.tntstack.org/installation#experimental-usage to skip the prompts.`)
+          can provide the arguments from the CLI directly: https://create.tntstack.org/getting-started#experimental-ci-flags to skip the prompts.`)
 
       throw new IsTTYError("Non-interactive environment")
     }
@@ -290,7 +289,7 @@ export async function runCli(): Promise<CliResults> {
         message: "What authentication provider would you like to use?",
         choices: [
           { value: "none", name: "None" },
-          { value: "nextAuth", name: "NextAuth.js" },
+          { value: "authjs", name: "Auth.js" },
         ],
         default: !defaultOptions.flags.authentication,
       })
@@ -357,8 +356,8 @@ export async function runCli(): Promise<CliResults> {
         break
     }
     switch (project.authentication) {
-      case "nextAuth":
-        packages.push("nextAuth")
+      case "authjs":
+        packages.push("authjs")
         break
       default:
         break

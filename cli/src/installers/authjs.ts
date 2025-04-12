@@ -6,7 +6,7 @@ import { type AvailableDependencies } from "@/installers/dependency-version-map.
 import { type Installer } from "@/installers/index.js"
 import { addPackageDependency } from "@/utils/add-package-dependency.js"
 
-export const nextAuthInstaller: Installer = ({ projectDir, packages }) => {
+export const authjsInstaller: Installer = ({ projectDir, packages }) => {
   const usingPrisma = packages?.prisma.inUse
 
   const deps: AvailableDependencies[] = ["next-auth"]
@@ -28,11 +28,11 @@ export const nextAuthInstaller: Installer = ({ projectDir, packages }) => {
   const authConfigSrc = path.join(
     packagesDir,
     "src/server/auth/config",
-    usingPrisma ? "next-auth-with-prisma.ts" : "next-auth.ts"
+    usingPrisma ? "authjs-with-prisma.ts" : "authjs.ts"
   )
   const authConfigDest = path.join(projectDir, "src/server/auth/config.ts")
 
-  const authIndexSrc = path.join(packagesDir, "src/server/auth/next-auth.ts")
+  const authIndexSrc = path.join(packagesDir, "src/server/auth/authjs.ts")
   const authIndexDest = path.join(projectDir, "src/server/auth/index.ts")
 
   fs.copySync(apiHandlerSrc, apiHandlerDest)

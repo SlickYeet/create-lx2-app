@@ -3,8 +3,8 @@
  * This improves performance significantly over fetching it from the npm registry.
  */
 export const dependencyVersionMap = {
-  // NextAuth.js
-  "next-auth": "^4.24.11",
+  // Auth.js
+  "next-auth": "^5.0.0-beta.25",
   "@auth/prisma-adapter": "^2.8.0",
 
   // Prisma

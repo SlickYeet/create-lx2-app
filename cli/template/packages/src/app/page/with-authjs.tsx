@@ -1,20 +1,39 @@
 import { fileURLToPath } from "url"
-import config from "@payload-config"
-import { headers as getHeaders } from "next/headers.js"
-import { getPayload } from "payload"
 
-import "./globals.css"
+import { auth, signIn, signOut } from "@/server/auth"
 
 export default async function HomePage() {
-  const headers = await getHeaders()
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
-  const { user } = await payload.auth({ headers })
+  const session = await auth()
+  const user = session?.user
 
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
   return (
     <main className="mx-auto flex h-screen max-w-5xl flex-col items-center justify-between overflow-hidden p-6 sm:p-[45px]">
+      <header className="ml-auto">
+        {user ? (
+          <button
+            onClick={async () => {
+              "use server"
+              await signOut()
+            }}
+            className="cursor-pointer rounded-md bg-rose-400 px-4 py-2"
+          >
+            Sign Out
+          </button>
+        ) : (
+          <button
+            onClick={async () => {
+              "use server"
+              await signIn("discord")
+            }}
+            className="cursor-pointer rounded-md bg-purple-400 px-4 py-2"
+          >
+            Sign In
+          </button>
+        )}
+      </header>
+
       <div className="flex grow flex-col items-center justify-center">
         {/* Logo */}
         <picture className="relative">
@@ -29,40 +48,12 @@ export default async function HomePage() {
           />
         </picture>
 
-        {!user && (
-          <>
-            <h1 className="mt-6 bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-center text-4xl leading-10 text-transparent sm:text-5xl sm:leading-14 md:text-6xl md:leading-20 lg:mt-10 lg:text-7xl lg:font-bold">
-              TNT-Powered Next.js App
-            </h1>
-            <p className="mt-4 text-center text-lg text-neutral-700 md:text-xl lg:mt-6 dark:text-neutral-300">
-              Build modern web applications with today&apos;s most popular tools
-            </p>
-          </>
-        )}
-        {user && (
-          <h1 className="mt-6 bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-center text-4xl leading-10 text-transparent sm:text-5xl sm:leading-14 md:text-6xl md:leading-20 lg:mt-10 lg:text-7xl lg:font-bold">
-            Welcome back, {user.email}
-          </h1>
-        )}
-
-        <div className="mt-12 flex items-center gap-3">
-          <a
-            href={payloadConfig.routes.admin}
-            rel="noopener noreferrer"
-            target="_blank"
-            className="rounded-md bg-white px-2 py-1 text-black focus:opacity-80 focus:outline-none active:opacity-70 active:outline-none"
-          >
-            Go to admin panel
-          </a>
-          <a
-            href="https://payloadcms.com/docs"
-            rel="noopener noreferrer"
-            target="_blank"
-            className="rounded-md border border-white px-2 py-1 text-white focus:opacity-80 focus:outline-none active:opacity-70 active:outline-none"
-          >
-            Payload Docs
-          </a>
-        </div>
+        <h1 className="mt-6 bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-center text-4xl leading-10 text-transparent sm:text-5xl sm:leading-14 md:text-6xl md:leading-20 lg:mt-10 lg:text-7xl lg:font-bold">
+          TNT-Powered Next.js App
+        </h1>
+        <p className="mt-4 text-center text-lg text-neutral-700 md:text-xl lg:mt-6 dark:text-neutral-300">
+          Build modern web applications with today&apos;s most popular tools
+        </p>
 
         <div className="mt-12 flex items-center gap-3">
           <a
@@ -121,14 +112,13 @@ export default async function HomePage() {
           </a>
         </div>
       </div>
-
       <div className="flex flex-col items-center gap-1 text-sm text-neutral-600 lg:flex-row lg:gap-2 dark:text-neutral-400">
         <p className="m-0">Get started by editing </p>
         <a
           href={fileURL}
           className="rounded-md bg-neutral-200 px-2 py-1 dark:bg-neutral-800"
         >
-          <code>src/app/(frontend)/page.tsx</code>
+          <code>src/app/page.tsx</code>
         </a>
       </div>
     </main>

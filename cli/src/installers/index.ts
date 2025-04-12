@@ -2,16 +2,16 @@ import { payloadCMSInstaller } from "@/installers/payloadcms.js"
 import { typescriptInstaller } from "@/installers/typescript.js"
 import { type PackageManager } from "@/utils/get-user-pkg-manager.js"
 
+import { authjsInstaller } from "./authjs.js"
 import { envVariablesInstaller } from "./env-vars.js"
 import { eslintInstaller } from "./eslint.js"
-import { nextAuthInstaller } from "./next-auth.js"
 import { prettierInstaller } from "./prettier.js"
 import { prismaInstaller } from "./prisma.js"
 
 // Turning this into a const allows the list to be iterated over for programmatically creating prompt options
 // Should increase extensibility in the future
 export const availablePackages = [
-  "nextAuth",
+  "authjs",
   "prisma",
   "envVariables",
   "prettier",
@@ -24,7 +24,7 @@ export type AvailablePackages = (typeof availablePackages)[number]
 export const backendFrameworks = ["nextjs", "payload"] as const
 export type BackendFramework = (typeof backendFrameworks)[number]
 
-export const authProviders = ["none", "nextAuth"] as const
+export const authProviders = ["none", "authjs"] as const
 export type AuthProvider = (typeof authProviders)[number]
 
 export const databaseORM = ["none", "prisma"] as const
@@ -61,9 +61,9 @@ export type PkgInstallerMap = {
 export const buildPkgInstallerMap = (
   packages: AvailablePackages[]
 ): PkgInstallerMap => ({
-  nextAuth: {
-    inUse: packages.includes("nextAuth"),
-    installer: nextAuthInstaller,
+  authjs: {
+    inUse: packages.includes("authjs"),
+    installer: authjsInstaller,
   },
   prisma: {
     inUse: packages.includes("prisma"),
