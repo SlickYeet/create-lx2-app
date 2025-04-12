@@ -1,5 +1,14 @@
 # create-tnt-stack
 
+## 0.5.0
+
+### Minor Changes
+
+- [#94](https://github.com/SlickYeet/create-tnt-stack/pull/94)
+  [`2bb303e`](https://github.com/SlickYeet/create-tnt-stack/commit/2bb303edc2f29c065555a8848300bbf4683e6810)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - migrate from NextAuth.js
+  to Auth.js
+
 ## 0.4.3
 
 ### Patch Changes
