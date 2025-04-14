@@ -48,6 +48,9 @@ export function selectPageFile({
   if (usingPrisma) {
     pageFile = "with-prisma.tsx"
   }
+  if (usingAuthjs && usingPrisma) {
+    pageFile = "with-authjs-prisma.tsx"
+  }
 
   const pageSrc = path.join(pageFileDir, pageFile)
   const pageDest = path.join(
