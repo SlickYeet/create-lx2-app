@@ -1,5 +1,14 @@
 # create-tnt-stack
 
+## 0.5.2
+
+### Patch Changes
+
+- [#102](https://github.com/SlickYeet/create-tnt-stack/pull/102)
+  [`5f14deb`](https://github.com/SlickYeet/create-tnt-stack/commit/5f14deb288095b7406bb9208c2ed50210c7bd779)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - add Prisma and Auth.js
+  template page
+
 ## 0.5.1
 
 ### Patch Changes
