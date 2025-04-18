@@ -7,6 +7,11 @@ export const dependencyVersionMap = {
   "next-auth": "^5.0.0-beta.25",
   "@auth/prisma-adapter": "^2.8.0",
 
+  // Better-Auth
+  "better-auth": "^1.2.7",
+  "better-sqlite3": "^11.9.1",
+  "@types/better-sqlite3": "^7.6.13",
+
   // Prisma
   prisma: "^6.5.0",
   "@prisma/client": "^6.5.0",

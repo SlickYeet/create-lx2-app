@@ -36,6 +36,7 @@ export function selectPageFile({
 
   const usingPayload = packages.payload.inUse
   const usingAuthjs = packages.authjs.inUse
+  const usingBetterAuth = packages.betterAuth.inUse
   const usingPrisma = packages.prisma.inUse
 
   let pageFile = "base.tsx"
@@ -44,6 +45,9 @@ export function selectPageFile({
   }
   if (usingAuthjs) {
     pageFile = "with-authjs.tsx"
+  }
+  if (usingBetterAuth) {
+    pageFile = "with-better-auth.tsx"
   }
   if (usingPrisma) {
     pageFile = "with-prisma.tsx"

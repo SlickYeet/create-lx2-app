@@ -1,3 +1,4 @@
+import { betterAuthInstaller } from "@/installers/better-auth.js"
 import { payloadCMSInstaller } from "@/installers/payloadcms.js"
 import { typescriptInstaller } from "@/installers/typescript.js"
 import { type PackageManager } from "@/utils/get-user-pkg-manager.js"
@@ -12,6 +13,7 @@ import { prismaInstaller } from "./prisma.js"
 // Should increase extensibility in the future
 export const availablePackages = [
   "authjs",
+  "betterAuth",
   "prisma",
   "envVariables",
   "prettier",
@@ -24,7 +26,7 @@ export type AvailablePackages = (typeof availablePackages)[number]
 export const backendFrameworks = ["nextjs", "payload"] as const
 export type BackendFramework = (typeof backendFrameworks)[number]
 
-export const authProviders = ["none", "authjs"] as const
+export const authProviders = ["none", "authjs", "betterAuth"] as const
 export type AuthProvider = (typeof authProviders)[number]
 
 export const databaseORM = ["none", "prisma"] as const
@@ -64,6 +66,10 @@ export const buildPkgInstallerMap = (
   authjs: {
     inUse: packages.includes("authjs"),
     installer: authjsInstaller,
+  },
+  betterAuth: {
+    inUse: packages.includes("betterAuth"),
+    installer: betterAuthInstaller,
   },
   prisma: {
     inUse: packages.includes("prisma"),

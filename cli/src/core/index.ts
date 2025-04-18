@@ -186,6 +186,9 @@ export async function runCli(): Promise<CliResults> {
       case "authjs":
         cliResults.packages.push("authjs")
         break
+      case "betterAuth":
+        cliResults.packages.push("betterAuth")
+        break
       default:
         break
     }
@@ -290,6 +293,7 @@ export async function runCli(): Promise<CliResults> {
         choices: [
           { value: "none", name: "None" },
           { value: "authjs", name: "Auth.js" },
+          { value: "betterAuth", name: "Better Auth" },
         ],
         default: !defaultOptions.flags.authentication,
       })
@@ -355,6 +359,9 @@ export async function runCli(): Promise<CliResults> {
     switch (project.authentication) {
       case "authjs":
         packages.push("authjs")
+        break
+      case "betterAuth":
+        packages.push("betterAuth")
         break
       default:
         break
