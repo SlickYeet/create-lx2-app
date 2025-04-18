@@ -4,7 +4,7 @@ import { Inter, Space_Grotesk } from "next/font/google"
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
 import { ThemeProvider, WrapLinesProvider } from "@/components/provider"
-import { SITE_CONFIG } from "@/constants"
+import { SITE_DESCRIPTION, SITE_IMAGE, SITE_TITLE } from "@/constants"
 import { getMdxDocuments } from "@/lib/mdx"
 
 import "./globals.css"
@@ -22,13 +22,33 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: SITE_CONFIG.title,
-  description: SITE_CONFIG.description,
+  title: {
+    default: SITE_TITLE,
+    template: `%s | ${SITE_TITLE}`,
+  },
+  description: SITE_DESCRIPTION,
   openGraph: {
-    ...SITE_CONFIG.openGraph,
+    title: SITE_TITLE,
+    siteName: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    type: "website",
+    url: "https://create.tntstack.org",
+    images: [
+      {
+        url: SITE_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: SITE_TITLE,
+      },
+    ],
   },
   twitter: {
-    ...SITE_CONFIG.twitter,
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    site: "create.tntstack.org",
+    creator: "@slickyeet",
+    images: [SITE_IMAGE],
   },
 }
 

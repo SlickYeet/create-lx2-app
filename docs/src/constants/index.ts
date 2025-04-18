@@ -7,7 +7,6 @@ import {
   RocketIcon,
   ZapIcon,
 } from "lucide-react"
-import type { Metadata } from "next"
 
 export const RELATIVE_INITIAL_DOCS_PATH = "/introduction"
 
@@ -15,42 +14,12 @@ export const GITHUB_CREATE_TNT_APP_REPO =
   "https://github.com/SlickYeet/create-tnt-stack"
 export const DISCORD_LINK = "https://tntstack.org/discord"
 
-const SITE_TITLE =
+export const SITE_TITLE =
   "Create TNT Stack | TypeScript, Next.js, Tailwind CSS Starter"
-const SITE_DESCRIPTION =
+export const SITE_DESCRIPTION =
   "Build modern web applications with today's most popular tools. Launch your TypeScript, Next.js, and Tailwind CSS projects with a bang."
-const SITE_IMAGE =
+export const SITE_IMAGE =
   "https://opengraph.b-cdn.net/production/images/bbb17c9b-78ff-461f-a1a0-62bfb26d0004.png?token=VFzXyXk-G1Rzpf7kQNL9CrkqP4irm5n5ud7C-UPmrsU&height=645&width=1200&expires=33280994199"
-export const SITE_CONFIG: Metadata = {
-  title: {
-    default: SITE_TITLE,
-    template: `%s | ${SITE_TITLE}`,
-  },
-  description: SITE_DESCRIPTION,
-  openGraph: {
-    title: SITE_TITLE,
-    siteName: SITE_TITLE,
-    description: SITE_DESCRIPTION,
-    type: "website",
-    url: "https://create.tntstack.org",
-    images: [
-      {
-        url: SITE_IMAGE,
-        width: 1200,
-        height: 630,
-        alt: SITE_TITLE,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: SITE_TITLE,
-    description: SITE_DESCRIPTION,
-    site: "create.tntstack.org",
-    creator: "@slickyeet",
-    images: [SITE_IMAGE],
-  },
-}
 
 export const MAIN_NAVIGATION: {
   href: string
