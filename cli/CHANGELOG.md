@@ -1,5 +1,13 @@
 # create-tnt-stack
 
+## 0.6.0
+
+### Minor Changes
+
+- [#104](https://github.com/SlickYeet/create-tnt-stack/pull/104)
+  [`a0ed6b0`](https://github.com/SlickYeet/create-tnt-stack/commit/a0ed6b0882f34a375a8e7930ef469d3edfd94a4a)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - add better auth
+
 ## 0.5.2
 
 ### Patch Changes
