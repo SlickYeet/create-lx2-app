@@ -12,6 +12,7 @@ export const RELATIVE_INITIAL_DOCS_PATH = "/introduction"
 
 export const GITHUB_CREATE_TNT_APP_REPO =
   "https://github.com/SlickYeet/create-tnt-stack"
+export const DISCORD_LINK = "https://tntstack.org/discord"
 
 export const MAIN_NAVIGATION: {
   href: string
