@@ -10,6 +10,7 @@ jobs:
   comment:
     if: |
       github.repository_owner == 'SlickYeet' &&
+      contains(github.event.pull_request.labels.*.name, '🚀 betarelease')
       ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     name: Write comment to the PR
