@@ -5,13 +5,14 @@ name: Release - Beta
 
 on:
   pull_request:
-    types: [labeled]
+    types: [closed]
     branches:
       - main
 jobs:
   prerelease:
     if: |
       github.repository_owner == 'SlickYeet' &&
+      github.event.pull_request.merged == true &&
       contains(github.event.pull_request.labels.*.name, '🚀 betarelease')
     name: Build & Publish a beta release to NPM
     runs-on: ubuntu-latest
