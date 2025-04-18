@@ -1,14 +1,12 @@
 "use client"
 
-import { ArrowRightIcon, StarIcon } from "lucide-react"
+import { ArrowRightIcon } from "lucide-react"
 import { motion } from "motion/react"
 import Link from "next/link"
 
+import { StarOnGithub } from "@/components/star-on-github"
 import { Button } from "@/components/ui/button"
-import {
-  GITHUB_CREATE_TNT_APP_REPO,
-  RELATIVE_INITIAL_DOCS_PATH,
-} from "@/constants"
+import { RELATIVE_INITIAL_DOCS_PATH } from "@/constants"
 
 export function CTA() {
   return (
@@ -38,12 +36,7 @@ export function CTA() {
               </Link>
             </Button>
 
-            <Button size="lg" variant="outline" asChild>
-              <Link href={GITHUB_CREATE_TNT_APP_REPO} target="_blank">
-                <StarIcon className="mr-2 size-4 fill-yellow-500 stroke-yellow-500 dark:fill-yellow-400 dark:stroke-yellow-400" />
-                Star on GitHub
-              </Link>
-            </Button>
+            <StarOnGithub size="lg" />
           </div>
         </motion.div>
       </div>

@@ -4,7 +4,6 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
   MenuIcon,
-  StarIcon,
   XIcon,
 } from "lucide-react"
 import { motion } from "motion/react"
@@ -12,12 +11,14 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 
+import { DiscordLink } from "@/components/discord-link"
 import { Search } from "@/components/docs/search"
 import { DocsSidebar } from "@/components/docs/sidebar"
 import { Logo } from "@/components/logo"
+import { StarOnGithub } from "@/components/star-on-github"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Button } from "@/components/ui/button"
-import { GITHUB_CREATE_TNT_APP_REPO, MAIN_NAVIGATION } from "@/constants"
+import { MAIN_NAVIGATION } from "@/constants"
 import { type MdxDocument } from "@/lib/mdx"
 import { cn } from "@/lib/utils"
 
@@ -140,12 +141,8 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
             className="hidden items-center gap-2 lg:flex"
           >
             <Search docs={docs} />
-            <Button variant="outline" asChild>
-              <Link href={GITHUB_CREATE_TNT_APP_REPO} target="_blank">
-                <StarIcon className="size-4 fill-yellow-500 stroke-yellow-500 dark:fill-yellow-400 dark:stroke-yellow-400" />
-                Star on GitHub
-              </Link>
-            </Button>
+            <StarOnGithub />
+            <DiscordLink />
             <ThemeToggle />
           </motion.div>
 
@@ -203,12 +200,8 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
               <div className="bg-border h-px w-full" />
 
               <div className="flex items-center gap-2">
-                <Button variant="outline" className="flex-1" asChild>
-                  <Link href={GITHUB_CREATE_TNT_APP_REPO} target="_blank">
-                    <StarIcon className="size-4 fill-yellow-500 stroke-yellow-500 dark:fill-yellow-400 dark:stroke-yellow-400" />
-                    Star on GitHub
-                  </Link>
-                </Button>
+                <StarOnGithub className="flex-1" />
+                <DiscordLink />
                 <ThemeToggle />
               </div>
             </div>
