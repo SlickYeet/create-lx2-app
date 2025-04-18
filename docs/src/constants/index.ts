@@ -22,7 +22,10 @@ const SITE_DESCRIPTION =
 const SITE_IMAGE =
   "https://opengraph.b-cdn.net/production/images/bbb17c9b-78ff-461f-a1a0-62bfb26d0004.png?token=VFzXyXk-G1Rzpf7kQNL9CrkqP4irm5n5ud7C-UPmrsU&height=645&width=1200&expires=33280994199"
 export const SITE_CONFIG: Metadata = {
-  title: SITE_TITLE,
+  title: {
+    default: SITE_TITLE,
+    template: `%s | ${SITE_TITLE}`,
+  },
   description: SITE_DESCRIPTION,
   openGraph: {
     title: SITE_TITLE,
