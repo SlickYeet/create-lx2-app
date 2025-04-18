@@ -45,6 +45,8 @@ export const envVariablesInstaller: Installer = ({
   if (usingDb) {
     if (usingAuthjs) {
       envFile = "with-authjs-db.js"
+    } else if (usingBetterAuth) {
+      envFile = "with-better-auth-db.js"
     } else if (usingPayload) {
       envFile = "with-payload.js"
     } else {
@@ -166,6 +168,10 @@ DISCORD_CLIENT_SECRET=""
 # https://www.better-auth.com/docs/installation#set-environment-variables
 BETTER_AUTH_SECRET=""
 NEXT_PUBLIC_BETTER_AUTH_URL="http://localhost:3000" # Base URL of your app
+
+# Better Auth Discord Provider
+DISCORD_CLIENT_ID=""
+DISCORD_CLIENT_SECRET=""
 `
   }
 

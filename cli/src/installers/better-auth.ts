@@ -6,7 +6,11 @@ import { type AvailableDependencies } from "@/installers/dependency-version-map.
 import { type Installer } from "@/installers/index.js"
 import { addPackageDependency } from "@/utils/add-package-dependency.js"
 
-export const betterAuthInstaller: Installer = ({ projectDir, packages }) => {
+export const betterAuthInstaller: Installer = ({
+  projectDir,
+  packages,
+  databaseProvider,
+}) => {
   const usingPrisma = packages?.prisma.inUse
 
   const deps: AvailableDependencies[] = ["better-auth"]
@@ -41,7 +45,21 @@ export const betterAuthInstaller: Installer = ({ projectDir, packages }) => {
     "src/server/auth/config",
     usingPrisma ? "better-auth-with-prisma.ts" : "better-auth.ts"
   )
+  let authIndexText = fs.readFileSync(authIndexSrc, "utf-8")
+  if (usingPrisma && databaseProvider !== "sqlite") {
+    authIndexText = authIndexText.replace(
+      'provider: "sqlite",',
+      `provider: "${
+        {
+          mysql: "mysql",
+          postgresql: "postgresql",
+        }[databaseProvider]
+      }",`
+    )
+  }
   const authIndexDest = path.join(projectDir, "src/server/auth/index.ts")
+  fs.mkdirSync(path.dirname(authIndexDest), { recursive: true })
+  fs.writeFileSync(authIndexDest, authIndexText)
 
   const authClientSrc = path.join(
     packagesDir,
@@ -50,6 +68,5 @@ export const betterAuthInstaller: Installer = ({ projectDir, packages }) => {
   const authClientDest = path.join(projectDir, "src/lib/auth/client.ts")
 
   fs.copySync(apiHandlerSrc, apiHandlerDest)
-  fs.copySync(authIndexSrc, authIndexDest)
   fs.copySync(authClientSrc, authClientDest)
 }
