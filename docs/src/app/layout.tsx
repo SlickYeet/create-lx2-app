@@ -4,6 +4,7 @@ import { Inter, Space_Grotesk } from "next/font/google"
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
 import { ThemeProvider, WrapLinesProvider } from "@/components/provider"
+import { SITE_CONFIG } from "@/constants"
 import { getMdxDocuments } from "@/lib/mdx"
 
 import "./globals.css"
@@ -21,12 +22,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: {
-    default: "TNT-Powered | TypeScript, Next.js, Tailwind CSS Starter",
-    template: "%s | TNT-Powered",
-  },
-  description:
-    "Start building with the TNT stack today and experience the power of TypeScript, Next.js, and Tailwind CSS combined with todays most popular tools.",
+  ...SITE_CONFIG,
 }
 
 export default async function RootLayout({
