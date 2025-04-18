@@ -16,25 +16,25 @@ do is to run the following command, and answer the prompts:
 
 ### npm
 
-```bash copy
+```bash
 npm create tnt-stack@latest
 ```
 
 ### yarn
 
-```bash copy
+```bash
 yarn create tnt-stack
 ```
 
 ### pnpm
 
-```bash copy
+```bash
 pnpm create tnt-stack@latest
 ```
 
 ### bun
 
-```bash copy
+```bash
 bun create tnt-stack@latest
 ```
 
@@ -76,17 +76,9 @@ useful for CI/CD pipelines.
 
 ### Examples
 
-Unless specified otherwise, all flags are boolean flags. This mean that they
-don't require a value to be passed to them. For example, to scaffold a project
-with Auth.js, you would run:
+Most flags will require a value, you can pass the value after the flag. For
+example, to scaffold a project with a Prisma, you would run:
 
-```bash copy
-npm create tnt-stack@latest --CI --authProvider authjs
-```
-
-For flags that require a value, you would pass the value after the flag. For
-example, to scaffold a project with a database provider, you would run:
-
-```bash copy
-npm create tnt-stack@latest --CI --dbProvider postgresql
+```bash
+npm create tnt-stack@latest --CI --databaseORM prisma
 ```
