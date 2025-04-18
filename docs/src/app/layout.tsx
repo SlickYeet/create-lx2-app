@@ -22,7 +22,14 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  ...SITE_CONFIG,
+  title: SITE_CONFIG.title,
+  description: SITE_CONFIG.description,
+  openGraph: {
+    ...SITE_CONFIG.openGraph,
+  },
+  twitter: {
+    ...SITE_CONFIG.twitter,
+  },
 }
 
 export default async function RootLayout({
