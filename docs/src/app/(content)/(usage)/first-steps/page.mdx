@@ -43,7 +43,7 @@ npm postinstall
 
 ### Drizzle
 
-<Callout type="default">
+<Callout type="warning">
   Drizzle is not yet available in TNT-Powered projects.
 </Callout>
 
@@ -53,14 +53,32 @@ need to choose one or the other.
 
 ## Authentication
 
-### Auth.js
+### Auth.js and Better Auth
 
-When using Auth.js, we have included the `DiscordProvider` by default. It is one
-of the simplest ways to add authentication to your application. However, it
-still needs some initial setup.
+For authentication, you can choose between the two below libraries. Both
+libraries are great options, but they have different features and capabilities.
 
-If you wish to use another provider, you can find a list of all the Auth.js
-providers [here](https://authjs.dev/getting-started/authentication/oauth).
+- [Auth.js](https://authjs.dev/)
+- [Better Auth](https://www.better-auth.com/)
+
+Auth.js is a great option if you want a simple and easy-to-use authentication
+library. It has a lot of built-in providers and is easy to set up. Better Auth
+is a more customizable option that allows you to extend your authentication flow
+with many different plugins.
+
+A list of all the providers for both libraries can be found below:
+
+- [Auth.js Providers](https://authjs.dev/getting-started/authentication/oauth)
+- [Better Auth Providers](https://www.better-auth.com/docs/authentication/discord)
+
+<Callout type="default" title="Note">
+  Better Auth does not have a dedicated page for providers, but you can find
+  them in the docs under the `Authentication` section in the sidebar.
+</Callout>
+
+#### Setup
+
+The setup for both libraries is the same:
 
 1. Of course, you need a Discord account, so register one if you don't already
    have one.
