@@ -14,7 +14,7 @@ export function FeatureCard({
   icon: Icon,
   color,
 }: FeatureType) {
-  const colorMap: Record<string, string> = {
+  const colorMap: Record<typeof color, string> = {
     blue: "from-blue-500 to-blue-600 bg-blue-100 text-blue-600",
     purple: "from-purple-500 to-purple-600 bg-purple-100 text-purple-600",
     pink: "from-pink-500 to-pink-600 bg-pink-100 text-pink-600",
@@ -31,12 +31,14 @@ export function FeatureCard({
     <motion.div
       variants={cardVariants}
       whileHover={{ y: -5 }}
+      whileFocus={{ y: -5 }}
+      whileTap={{ y: -5 }}
       transition={{ duration: 0.5 }}
-      className="group relative rounded-lg border p-6 transition-colors hover:shadow-md"
+      className="group bg-background relative rounded-lg border p-6 outline-0 transition-shadow focus-within:shadow-md hover:shadow-md"
     >
       <div
         className={cn(
-          "absolute inset-0 rounded-lg bg-linear-to-br to-transparent opacity-0 transition-opacity group-hover:opacity-5",
+          "absolute inset-0 rounded-lg bg-linear-to-br to-transparent opacity-0 transition-opacity group-focus-within:opacity-10 group-hover:opacity-10 dark:group-focus-within:opacity-5 dark:group-hover:opacity-5",
           gradientColor,
         )}
       />
