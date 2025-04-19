@@ -67,7 +67,7 @@ export function Usage() {
               viewport={{ once: true }}
             >
               <CodeBlock
-                code="npm create tnt-stack@latest my-app --CI --prisma --dbProvider postgresql"
+                code="npm create tnt-stack@latest my-app --CI --databaseORM prisma --dbProvider postgresql"
                 data-language="bash"
                 title="Create a new project with CI flags"
               />

@@ -45,6 +45,37 @@ export async function processCode({
       //   transformerMetaWordHighlight(),
     ],
   })
+
+  // Use rehype-pretty-code to process the code block
+  // and apply syntax highlighting
+
+  //   const result = await unified()
+  //     .use(rehypeParse)
+  //     .use(rehypeStringify)
+  //     .use(rehypePrettyCode, {
+  //       keepBackground: false,
+  //       theme: {
+  //         dark: "github-dark-default",
+  //         light: "github-light-default",
+  //       },
+  //       onVisitHighlightedLine(node) {
+  //         node.properties.className = [
+  //           ...(node.properties.className || []),
+  //           "highlighted-line",
+  //         ]
+  //       },
+  //       onVisitHighlightedChars(node) {
+  //         node.properties.className = [
+  //           ...(node.properties.className || []),
+  //           "highlighted-word",
+  //         ]
+  //       },
+  //     })
+  //     .process(
+  //       `<pre><code class="language-${language || "plaintext"}">${code}</code></pre>`,
+  //     )
+
+  //   return result.toString()
 }
 
 export async function getNpmVersion(

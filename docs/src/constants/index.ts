@@ -90,9 +90,9 @@ export const FEATURES: FeatureType[] = [
     color: "blue",
   },
   {
-    title: "Payload CMS Included",
+    title: "Choose Your Backend",
     description:
-      "Build beautiful content based applications with Payload CMS the backend to build the modern web.",
+      "Control your the entire stack and your application with your choice of backend.",
     icon: DatabaseIcon,
     color: "purple",
   },

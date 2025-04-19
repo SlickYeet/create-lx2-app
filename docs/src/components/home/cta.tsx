@@ -36,7 +36,9 @@ export function CTA() {
               </Link>
             </Button>
 
-            <StarOnGithub size="lg" />
+            <div className="bg-background rounded-md">
+              <StarOnGithub size="lg" />
+            </div>
           </div>
         </motion.div>
       </div>
