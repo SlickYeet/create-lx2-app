@@ -32,18 +32,20 @@ export function Heading({
   return (
     <Tag id={id} className={cn(headingStyles, className)}>
       {id ? (
-        <a href={`#${id}`} className="group relative">
-          <LinkIcon
-            className={cn(
-              "text-muted-foreground absolute top-1/2 -left-7 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100",
-              depth === 1 && "size-6",
-              depth === 2 && "size-5",
-              depth > 2 && "size-4",
-            )}
-            aria-hidden="true"
-          />
+        <span className="group flex items-center gap-x-2">
           {children}
-        </a>
+          <a href={`#${id}`}>
+            <LinkIcon
+              className={cn(
+                "text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100",
+                depth === 1 && "size-6",
+                depth === 2 && "size-5",
+                depth > 2 && "size-4",
+              )}
+              aria-hidden="true"
+            />
+          </a>
+        </span>
       ) : (
         children
       )}
