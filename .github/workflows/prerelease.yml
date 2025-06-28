@@ -26,10 +26,10 @@ jobs:
         run: node .github/version-script-beta.js
 
       - name: Authenticate to NPM
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_ACCESS_TOKEN }}" > ~/.npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_ACCESS_TOKEN }}" > cli/.npmrc
 
       - name: Publish Beta to NPM
-        run: bun pub:beta
+        run: pnpm pub:beta
         env:
           NPM_PUBLISH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
 
@@ -42,7 +42,5 @@ jobs:
       - name: Upload packaged artifact
         uses: actions/upload-artifact@v4
         with:
-          name: npm-package-create-t3-app@${{
-            steps.package-version.outputs.current-version }}-pr-${{
-            github.event.number }} # encode the PR number into the artifact name
+          name: npm-package-create-tnt-stack@${{ steps.package-version.outputs.current-version }}-pr-${{ github.event.number }}
           path: cli/dist/index.js

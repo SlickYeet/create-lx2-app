@@ -38,17 +38,17 @@ then, clone it to your local machine:
 gh repo clone <your-github-name>/create-tnt-stack
 ```
 
-This project uses [bun](https://bun.sh) as its package manager. Install it if
+This project uses [pnpm](https://pnpm.io) as its package manager. Install it if
 you haven't already:
 
 ```bash
-npm install -g bun
+npm install -g pnpm
 ```
 
 Then, install the project's dependencies:
 
 ```bash
-bun install
+pnpm install
 ```
 
 ### Suggested Branching Strategy
@@ -88,15 +88,15 @@ Here are some useful scripts for when you are developing:
 
 | Command              | Description                                             |
 | -------------------- | ------------------------------------------------------- |
-| `bun dev:cli`        | Builds and starts the CLI in watch-mode                 |
-| `bun dev:docs`       | Starts the development server for the docs with HMR     |
-| `bun run build:cli`  | Builds the CLI                                          |
-| `bun run build:docs` | Builds the docs                                         |
-| `bun run build`      | Builds CLI and docs                                     |
-| `bun format`         | Formats the code                                        |
-| `bun lint`           | Lints the code                                          |
-| `bun lint:fix`       | Lints the code and fixes any errors                     |
-| `bun check`          | Checks your code for typeerrors, formatting and linting |
+| `pnpm dev:cli`        | Builds and starts the CLI in watch-mode                 |
+| `pnpm dev:docs`       | Starts the development server for the docs with HMR     |
+| `pnpm run build:cli`  | Builds the CLI                                          |
+| `pnpm run build:docs` | Builds the docs                                         |
+| `pnpm run build`      | Builds CLI and docs                                     |
+| `pnpm format`         | Formats the code                                        |
+| `pnpm lint`           | Lints the code                                          |
+| `pnpm lint:fix`       | Lints the code and fixes any errors                     |
+| `pnpm check`          | Checks your code for typeerrors, formatting and linting |
 
 When making commits, make sure to follow the
 [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/)
@@ -113,7 +113,7 @@ git add <file> && git commit -m "feat/fix/chore/docs: commit message"
 Check that your code follows the project's style guidelines by running:
 
 ```bash
-bun check
+pnpm check
 ```
 
 If your change should appear in the changelog, i.e. it changes some behavior of
@@ -121,7 +121,7 @@ either the CLI or the outputted application, it must be captured by `changeset`
 which is done by running
 
 ```bash
-bun changeset
+pnpm changeset
 ```
 
 and filling out the form with the appropriate information.
