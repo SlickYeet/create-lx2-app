@@ -76,7 +76,7 @@ jobs:
 
   build-docs:
     runs-on: ubuntu-latest
-    name: Build and Check Astro
+    name: Build and Check Docs
     steps:
       - uses: actions/checkout@v4
         with:
