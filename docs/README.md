@@ -30,8 +30,8 @@ To run the documentation site locally, follow these steps:
 ```bash
 git clone https://github.com/SlickYeet/create-tnt-stack.git
 cd create-tnt-stack/docs
-bun install
-bun dev
+pnpm install
+pnpm dev
 ```
 
 This will start the development server at `http://localhost:3000`.
@@ -40,13 +40,13 @@ This will start the development server at `http://localhost:3000`.
 
 All commands are run from the `docs` directory of the project.
 
-| Command       | Action                                            |
-| ------------- | ------------------------------------------------- |
-| `bun install` | Installs dependencies                             |
-| `bun dev`     | Starts the development server at `localhost:3000` |
-| `bun build`   | Builds the production site to `.next/`            |
-| `bun lint`    | Lints the code                                    |
-| `bun format`  | Formats the code                                  |
+| Command        | Action                                            |
+| -------------- | ------------------------------------------------- |
+| `pnpm install` | Installs dependencies                             |
+| `pnpm dev`     | Starts the development server at `localhost:3000` |
+| `pnpm build`   | Builds the production site to `.next/`            |
+| `pnpm lint`    | Lints the code                                    |
+| `pnpm format`  | Formats the code                                  |
 
 ## Customize This Site
 
