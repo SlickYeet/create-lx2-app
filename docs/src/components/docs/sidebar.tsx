@@ -47,15 +47,18 @@ export function DocsSidebar({ isOpen, setIsOpen }: DocsSidebarProps) {
                   <Link
                     href={item.slug}
                     onClick={() => {
-                      setTimeout(() => setIsOpen && setIsOpen(), 100)
+                      setTimeout(() => (setIsOpen ? setIsOpen() : null), 100)
                     }}
-                    className="block"
+                    className="group block focus:outline-none"
                   >
                     <div className="relative">
                       {isActive && (
                         <motion.div
                           layoutId="sidebarActiveItem"
-                          className="bg-primary/10 border-primary absolute inset-0 border-l-2"
+                          className={cn(
+                            "bg-primary/10 border-primary absolute inset-0 border-l-2",
+                            "group-focus:bg-primary/10 group-focus:border-primary",
+                          )}
                           initial={false}
                           transition={{
                             type: "spring",
@@ -68,7 +71,8 @@ export function DocsSidebar({ isOpen, setIsOpen }: DocsSidebarProps) {
                         className={cn(
                           "relative z-10 block px-4 py-2",
                           "hover:text-primary hover:bg-primary/5",
-                          "border-primary/20 hover:border-primary/50 border-l-2",
+                          "group-focus:text-primary group-focus:bg-primary/5",
+                          "border-primary/20 hover:border-primary/50 group-focus:border-primary/50 border-l-2",
                           isActive ? "text-primary" : "text-muted-foreground",
                         )}
                       >
