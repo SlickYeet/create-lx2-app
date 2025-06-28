@@ -1,5 +1,6 @@
 "use client"
 
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -26,10 +27,10 @@ export function Pagination() {
     <div className="mt-16">
       <div className="bg-muted mb-6 hidden h-px w-full md:block" />
 
-      <div className="flex items-center justify-between gap-2 md:gap-4 lg:gap-8">
+      <div className="flex flex-col items-center justify-between gap-2 sm:flex-row md:gap-4 lg:gap-6">
         <Button
           variant="outline"
-          className={cn("h-16 flex-[0.5] shrink-0", !previous && "invisible")}
+          className={cn("h-16 w-full flex-1 shrink-0", !previous && "hidden")}
           asChild
           aria-disabled={!previous}
         >
@@ -37,7 +38,10 @@ export function Pagination() {
             href={previous ? previous.slug : "#"}
             className="flex flex-col items-start justify-center gap-y-0"
           >
-            <span className="text-muted-foreground text-xs">Previous page</span>
+            <span className="text-muted-foreground flex items-center gap-x-1 text-xs">
+              <ChevronLeft className="text-muted-foreground -ml-1 size-4" />
+              Previous page
+            </span>
             <span className="text-primary text-base lg:text-lg">
               {previous && previous.title}
             </span>
@@ -45,7 +49,7 @@ export function Pagination() {
         </Button>
         <Button
           variant="outline"
-          className={cn("h-16 flex-[0.5] shrink-0", !next && "invisible")}
+          className={cn("h-16 w-full flex-1 shrink-0", !next && "hidden")}
           asChild
           aria-disabled={!next}
         >
@@ -53,7 +57,10 @@ export function Pagination() {
             href={next ? next.slug : "#"}
             className="flex flex-col items-end justify-center gap-y-0"
           >
-            <span className="text-muted-foreground text-xs">Next page</span>
+            <span className="text-muted-foreground flex items-center gap-x-1 text-xs">
+              Next page
+              <ChevronRight className="text-muted-foreground -mr-1 size-4" />
+            </span>
             <span className="text-primary text-base lg:text-lg">
               {next && next.title}
             </span>
