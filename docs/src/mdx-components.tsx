@@ -33,9 +33,7 @@ export const mdxComponents: MDXComponents = {
   Video,
 }
 
-/**
- * Export the components to be used outside of the MDX context
- */
+// Export the components to be used outside of the MDX context
 export {
   Anchor,
   Callout,
