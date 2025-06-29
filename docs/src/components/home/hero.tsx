@@ -4,7 +4,6 @@ import { ArrowRightIcon, ArrowUpRightIcon, FileCode2Icon } from "lucide-react"
 import { motion } from "motion/react"
 import Link from "next/link"
 
-import { CodeBlock } from "@/components/code-block"
 import { TerminalDemo } from "@/components/terminal-demo"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -24,7 +23,7 @@ export function Hero({ npmVersion }: { npmVersion?: string }) {
       <div className="bg-grid-pattern absolute inset-0 z-0 opacity-[0.03]" />
 
       <div className="relative z-10 container">
-        <div className="mx-auto mb-12 flex max-w-4xl flex-col items-center text-center">
+        <div className="mx-auto mb-28 flex max-w-4xl flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -114,20 +113,6 @@ export function Hero({ npmVersion }: { npmVersion?: string }) {
                 <ArrowUpRightIcon className="ml-2 size-4 transition-transform group-focus-within:translate-x-1 group-focus-within:-translate-y-1 group-hover:translate-x-1 group-hover:-translate-y-1" />
               </Link>
             </Button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="w-full max-w-sm text-left"
-          >
-            <CodeBlock
-              data-language="bash"
-              alwaysShowCopy
-              showWrapLines={false}
-              code="npm create tnt-stack@latest"
-            />
           </motion.div>
         </div>
 
