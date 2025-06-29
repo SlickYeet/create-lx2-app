@@ -37,15 +37,12 @@ export function Callout({ children, type = "default", title }: CalloutProps) {
       "border-green-200 bg-green-100 text-green-900 dark:border-green-500/10 dark:bg-green-900/30 dark:text-green-200",
   }
 
-  const isSingleLine = typeof children === "string"
-
   return (
     <div
       className={cn(
-        "my-6 flex overflow-x-auto rounded-lg border pe-4",
+        "my-6 flex overflow-x-auto rounded-lg border py-2 pe-4",
         "contrast-more:border-current",
         classes[type],
-        isSingleLine ? "py-2" : "pt-4 pb-0",
       )}
     >
       <div
@@ -59,14 +56,7 @@ export function Callout({ children, type = "default", title }: CalloutProps) {
       </div>
       <div>
         {title && <span className="text-base font-semibold">{title}</span>}
-        <div
-          className={cn(
-            "w-full min-w-0 leading-7",
-            isSingleLine ? "inline-block" : "block",
-          )}
-        >
-          {children}
-        </div>
+        <div className="w-full min-w-0 leading-7">{children}</div>
       </div>
     </div>
   )
