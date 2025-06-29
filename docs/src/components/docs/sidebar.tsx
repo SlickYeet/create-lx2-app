@@ -5,7 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect } from "react"
 
-import { Heading } from "@/components/mdx/headings"
+import { H3 } from "@/components/mdx/headings"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { SIDEBAR_NAVIGATION } from "@/constants"
 import { cn } from "@/lib/utils"
@@ -35,9 +35,7 @@ export function DocsSidebar({ isOpen, setIsOpen }: DocsSidebarProps) {
     <aside>
       {SIDEBAR_NAVIGATION.map((page) => (
         <div key={page.title}>
-          <Heading depth={3} className="text-xl">
-            {page.title}
-          </Heading>
+          <H3 className="text-xl">{page.title}</H3>
           <ul className="mb-4 ml-4">
             {page.items.map((item) => {
               const isActive = pathname.includes(item.slug)

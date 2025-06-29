@@ -1,71 +1,64 @@
-import { LinkIcon } from "lucide-react"
-import { JSX } from "react"
+import { type ComponentProps } from "react"
 
 import { cn } from "@/lib/utils"
 
-interface HeadingProps {
-  children: React.ReactNode
-  depth: 1 | 2 | 3 | 4 | 5 | 6
-  id?: string
-  className?: string
-}
-
-export function Heading({
-  children,
-  depth,
-  id = undefined,
-  className = "",
-}: HeadingProps) {
-  const Tag: keyof JSX.IntrinsicElements = `h${depth}`
-
-  const headingStylesMap = {
-    1: "text-4xl mb-4",
-    2: "text-3xl mb-4 mt-12 border-b pb-2",
-    3: "text-2xl mb-3 mt-10",
-    4: "text-xl mb-2 mt-8",
-    5: "text-lg mb-2 mt-6",
-    6: "text-base mb-2 mt-4",
-  }
-  const baseStyles = "scroll-m-32 lg:scroll-m-20 font-bold tracking-tight"
-  const headingStyles = `${baseStyles} ${headingStylesMap[depth]}`
-
-  return (
-    <Tag id={id} className={cn(headingStyles, className)}>
-      {id ? (
-        <span className="group flex items-center gap-x-2">
-          {children}
-          <a href={`#${id}`}>
-            <LinkIcon
-              className={cn(
-                "text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100",
-                depth === 1 && "size-6",
-                depth === 2 && "size-5",
-                depth > 2 && "size-4",
-              )}
-              aria-hidden="true"
-            />
-          </a>
-        </span>
-      ) : (
-        children
-      )}
-    </Tag>
-  )
-}
-
-function createHeading(depth: 1 | 2 | 3 | 4 | 5 | 6) {
-  const Component = ({ children, id, className }: HeadingProps) => (
-    <Heading depth={depth} id={id} className={className}>
-      {children}
-    </Heading>
-  )
-  Component.displayName = `HeadingLevel${depth}`
-  return Component
-}
-
-export const H1 = createHeading(1)
-export const H2 = createHeading(2)
-export const H3 = createHeading(3)
-export const H4 = createHeading(4)
-export const H5 = createHeading(5)
-export const H6 = createHeading(6)
+export const H1 = ({ className, ...props }: ComponentProps<"h1">) => (
+  <h1
+    className={cn(
+      "mt-2 scroll-m-28 text-3xl font-bold tracking-tight",
+      className,
+    )}
+    {...props}
+  />
+)
+export const H2 = ({ className, ...props }: ComponentProps<"h2">) => (
+  <h2
+    id={props.children
+      ?.toString()
+      .replace(/ /g, "-")
+      .replace(/'/g, "")
+      .replace(/\?/g, "")
+      .toLowerCase()}
+    className={cn(
+      "font-heading mt-12 scroll-m-28 text-2xl font-medium tracking-tight first:mt-0 lg:mt-20 [&+p]:!mt-4 *:[code]:text-2xl",
+      className,
+    )}
+    {...props}
+  />
+)
+export const H3 = ({ className, ...props }: ComponentProps<"h3">) => (
+  <h3
+    className={cn(
+      "mt-8 scroll-m-28 text-xl font-semibold tracking-tight *:[code]:text-xl",
+      className,
+    )}
+    {...props}
+  />
+)
+export const H4 = ({ className, ...props }: ComponentProps<"h4">) => (
+  <h4
+    className={cn(
+      "font-heading mt-8 scroll-m-28 text-lg font-medium tracking-tight",
+      className,
+    )}
+    {...props}
+  />
+)
+export const H5 = ({ className, ...props }: ComponentProps<"h5">) => (
+  <h5
+    className={cn(
+      "mt-8 scroll-m-28 text-lg font-medium tracking-tight",
+      className,
+    )}
+    {...props}
+  />
+)
+export const H6 = ({ className, ...props }: ComponentProps<"h6">) => (
+  <h6
+    className={cn(
+      "mt-8 scroll-m-28 text-base font-medium tracking-tight",
+      className,
+    )}
+    {...props}
+  />
+)
