@@ -13,6 +13,8 @@ import remarkFrontmatter from "remark-frontmatter"
 import remarkgfm from "remark-gfm"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
 
+import { transformers } from "@/lib/highlight-code"
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   pageExtensions: ["ts", "tsx", "md", "mdx"],
@@ -30,6 +32,7 @@ const prettyCodeOptions: PrettyCodeOptions = {
     }),
     transformerMetaHighlight(),
     transformerMetaWordHighlight(),
+    ...transformers,
   ],
 }
 

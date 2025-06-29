@@ -72,9 +72,16 @@ Planned components:
 
   </Tabs.Tab>
   <Tabs.Tab>
-    - [ ] `Code block`
+    - [x] `Code block`
 
-        The code block is pretty much complete, however line wrapping is kind of clunky.
+        ```Bash
+        npm create tnt-stack@latest
+        ```
+
+        ```diff
+        + Hello World!
+        - Hello World
+        ```
 
         ```tsx {7-9} showLineNumbers /mx-auto/ title="page.tsx"
         export default async function DocsPage({ params }: DocsPageProps) {
