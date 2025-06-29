@@ -14,8 +14,59 @@ export const transformers = [
         const raw = this.source
         node.properties["__raw__"] = raw
 
-        const transforms = applyPackageManagerTransformations(raw)
-        Object.assign(node.properties, transforms)
+        // npm install.
+        if (raw.startsWith("npm install")) {
+          node.properties["__npm__"] = raw
+          node.properties["__yarn__"] = raw.replace("npm install", "yarn add")
+          node.properties["__pnpm__"] = raw.replace("npm install", "pnpm add")
+          node.properties["__bun__"] = raw.replace("npm install", "bun add")
+        }
+
+        // yarn add.
+        if (raw.startsWith("npx create-")) {
+          node.properties["__npm__"] = raw
+          node.properties["__yarn__"] = raw.replace(
+            "npx create-",
+            "yarn create ",
+          )
+          node.properties["__pnpm__"] = raw.replace(
+            "npx create-",
+            "pnpm create ",
+          )
+          node.properties["__bun__"] = raw.replace("npx", "bunx --bun")
+        }
+
+        // npm create.
+        if (raw.startsWith("npm create")) {
+          node.properties["__npm__"] = raw
+          node.properties["__yarn__"] = raw.replace("npm create", "yarn create")
+          node.properties["__pnpm__"] = raw.replace("npm create", "pnpm create")
+          node.properties["__bun__"] = raw.replace("npm create", "bun create")
+        }
+
+        // npx.
+        if (raw.startsWith("npx")) {
+          node.properties["__npm__"] = raw
+          node.properties["__yarn__"] = raw.replace("npx", "yarn")
+          node.properties["__pnpm__"] = raw.replace("npx", "pnpm dlx")
+          node.properties["__bun__"] = raw.replace("npx", "bunx --bun")
+        }
+
+        // npm run.
+        if (raw.startsWith("npm run")) {
+          node.properties["__npm__"] = raw
+          node.properties["__yarn__"] = raw.replace("npm run", "yarn")
+          node.properties["__pnpm__"] = raw.replace("npm run", "pnpm")
+          node.properties["__bun__"] = raw.replace("npm run", "bun")
+        }
+
+        // npx
+        if (raw.startsWith("npx")) {
+          node.properties["__npm__"] = raw
+          node.properties["__yarn__"] = raw.replace("npx", "yarn")
+          node.properties["__pnpm__"] = raw.replace("npx", "pnpm dlx")
+          node.properties["__bun__"] = raw.replace("npx", "bunx --bun")
+        }
       }
     },
   },
@@ -31,27 +82,48 @@ export function applyPackageManagerTransformations(
     __bun__: code,
   }
 
+  // npm install.
   if (code.startsWith("npm install")) {
     transformations.__npm__ = code
     transformations.__yarn__ = code.replace("npm install", "yarn add")
     transformations.__pnpm__ = code.replace("npm install", "pnpm add")
     transformations.__bun__ = code.replace("npm install", "bun add")
-  } else if (code.startsWith("npx create-")) {
+  }
+
+  // yarn add.
+  if (code.startsWith("npx create-")) {
     transformations.__npm__ = code
     transformations.__yarn__ = code.replace("npx create-", "yarn create ")
     transformations.__pnpm__ = code.replace("npx create-", "pnpm create ")
     transformations.__bun__ = code.replace("npx", "bunx --bun")
-  } else if (code.startsWith("npm create")) {
+  }
+
+  // npm create.
+  if (code.startsWith("npm create")) {
     transformations.__npm__ = code
     transformations.__yarn__ = code.replace("npm create", "yarn create")
     transformations.__pnpm__ = code.replace("npm create", "pnpm create")
     transformations.__bun__ = code.replace("npm create", "bun create")
-  } else if (code.startsWith("npm run")) {
+  }
+
+  // npx.
+  if (code.startsWith("npx")) {
+    transformations.__npm__ = code
+    transformations.__yarn__ = code.replace("npx", "yarn")
+    transformations.__pnpm__ = code.replace("npx", "pnpm dlx")
+    transformations.__bun__ = code.replace("npx", "bunx --bun")
+  }
+
+  // npm run.
+  if (code.startsWith("npm run")) {
     transformations.__npm__ = code
     transformations.__yarn__ = code.replace("npm run", "yarn")
     transformations.__pnpm__ = code.replace("npm run", "pnpm")
     transformations.__bun__ = code.replace("npm run", "bun")
-  } else if (code.startsWith("npx")) {
+  }
+
+  // npx
+  if (code.startsWith("npx")) {
     transformations.__npm__ = code
     transformations.__yarn__ = code.replace("npx", "yarn")
     transformations.__pnpm__ = code.replace("npx", "pnpm dlx")

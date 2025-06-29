@@ -27,12 +27,12 @@ const prettyCodeOptions: PrettyCodeOptions = {
     light: "github-light-default",
   },
   transformers: [
+    ...transformers,
     transformerNotationDiff({
       matchAlgorithm: "v3",
     }),
     transformerMetaHighlight(),
     transformerMetaWordHighlight(),
-    ...transformers,
   ],
 }
 
