@@ -192,7 +192,7 @@ export function DocsTOC() {
               })
             }
             className={cn(
-              "text-muted-foreground hover:text-primary focus:text-primary flex items-center gap-1.5 text-sm transition-colors hover:underline focus:underline focus:outline-none",
+              "text-muted-foreground hover:text-primary focus:text-primary flex items-center gap-1.5 text-sm opacity-0 transition-all hover:underline focus:underline focus:outline-none",
               showBackToTop && "opacity-100",
             )}
             aria-label="Back to Top"
