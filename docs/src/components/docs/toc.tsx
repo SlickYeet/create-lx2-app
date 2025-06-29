@@ -6,7 +6,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
-import { Heading } from "@/components/mdx/headings"
+import { H3 } from "@/components/mdx/headings"
 import { GITHUB_CREATE_TNT_APP_REPO, SIDEBAR_NAVIGATION } from "@/constants"
 import { cn } from "@/lib/utils"
 
@@ -91,9 +91,7 @@ export function DocsTOC() {
 
   return (
     <div className="sticky top-20">
-      <Heading depth={3} className="text-xl">
-        On This Page
-      </Heading>
+      <H3 className="text-xl">On This Page</H3>
 
       <nav>
         <ul>
@@ -158,9 +156,7 @@ export function DocsTOC() {
         </ul>
       </nav>
 
-      <Heading depth={3} className="mt-4 text-xl">
-        More
-      </Heading>
+      <H3 className="mt-4 text-xl">More</H3>
 
       <ul className="space-y-2">
         <li>

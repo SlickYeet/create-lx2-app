@@ -290,14 +290,6 @@
   }
 }
 
-/* Lists */
-@layer utilities {
-  .mdx .list-disc ::marker,
-  .mdx .list-decimal ::marker {
-    @apply text-primary;
-  }
-}
-
 @layer components {
   [data-rehype-pretty-code-figure] {
     background-color: var(--color-code);

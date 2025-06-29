@@ -13,13 +13,13 @@ These are some of the upcoming features and improvements I have planned for
 ## Packages
 
 - [x] Add `Payload CMS` package
+- [x] Add `Better Auth` package
 - [ ] Add `Drizzle` package
-- [ ] Add `Better Auth` package
 - [ ] Templates
 
 ## Documentation
 
-- [ ] Add package documentation (WIP)
+- [ ] Add deployment guides
 - [ ] Add example projects
 
 ## Components
@@ -78,12 +78,12 @@ Planned components:
         npm create tnt-stack@latest
         ```
 
-        ```diff
+        ```diff showLineNumbers
         + Hello World!
         - Hello World
         ```
 
-        ```tsx {7-9} showLineNumbers /mx-auto/ title="page.tsx"
+        ```tsx {8-10} showLineNumbers /mx-auto/ title="page.tsx"
         export default async function DocsPage({ params }: DocsPageProps) {
           const { slug } = params // [!code --]
           const { slug } = await params // [!code ++]

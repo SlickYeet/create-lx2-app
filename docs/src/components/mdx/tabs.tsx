@@ -51,7 +51,7 @@ function Tabs({ items, defaultIndex = 0, children }: TabsProps) {
               </button>
             ))}
           </div>
-          <ScrollBar orientation="horizontal" className="z-0 -mb-1 h-2" />
+          <ScrollBar orientation="horizontal" className="h-0" />
         </ScrollArea>
         <div className="mt-6 mb-12">
           {React.Children.map(children, (child, index) => {
