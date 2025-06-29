@@ -1,18 +1,15 @@
+import type { ComponentProps } from "react"
+
 import { cn } from "@/lib/utils"
 
-interface ListProps {
-  children: React.ReactNode
-  className?: string
+export function UL({ className, ...props }: ComponentProps<"ul">) {
+  return <ul className={cn("my-6 ml-6 list-disc", className)} {...props} />
 }
 
-export function UL({ children, className }: ListProps) {
-  return <ul className={cn("mb-4 list-disc pl-6", className)}>{children}</ul>
+export function OL({ className, ...props }: ComponentProps<"ol">) {
+  return <ol className={cn("my-6 ml-6 list-decimal", className)} {...props} />
 }
 
-export function OL({ children, className }: ListProps) {
-  return <ol className={cn("mb-4 list-decimal pl-6", className)}>{children}</ol>
-}
-
-export function LI({ children, className }: ListProps) {
-  return <li className={cn("my-3", className)}>{children}</li>
+export function LI({ className, ...props }: ComponentProps<"li">) {
+  return <li className={cn("mt-2", className)} {...props} />
 }
