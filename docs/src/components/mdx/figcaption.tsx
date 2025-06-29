@@ -1,10 +1,26 @@
-interface FigcaptionProps {
-  children: React.ReactNode
-}
+import { type ComponentProps } from "react"
 
-export function Figcaption({ children }: FigcaptionProps) {
+import { getIconForLanguageExtension } from "@/components/icons"
+import { cn } from "@/lib/utils"
+
+export function Figcaption(props: ComponentProps<"figcaption">) {
+  const { className, children, ...rest } = props
+
+  const iconExtension =
+    "data-language" in props && typeof props["data-language"] === "string"
+      ? getIconForLanguageExtension(props["data-language"])
+      : null
+
   return (
-    <figcaption className="bg-muted/80 border-input/80 -mb-6 w-auto rounded-t-lg border px-5 py-2 md:min-w-sm">
+    <figcaption
+      className={cn(
+        "text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70",
+        className,
+      )}
+      {...rest}
+      data-rehype-pretty-code-title=""
+    >
+      {iconExtension}
       {children}
     </figcaption>
   )

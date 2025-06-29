@@ -65,8 +65,9 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className={cn(
-          "sticky top-0 z-50 w-full border-b backdrop-blur-sm",
+          "sticky top-0 z-50 w-full backdrop-blur-sm",
           isOpen ? "bg-background" : "bg-background/80",
+          mobileMenuOpen ? "border-b" : "md:border-b",
         )}
       >
         <div className="container flex h-16 items-center justify-between">
@@ -216,10 +217,11 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className={cn(
-              "sticky top-16 left-0 z-50 hidden max-md:block",
+              "sticky top-16 left-0 z-50",
               !isOpen
                 ? "bg-background/80 border-b backdrop-blur-sm"
                 : "bg-background",
+              mobileMenuOpen ? "hidden" : "hidden max-md:block",
             )}
           >
             <button

@@ -40,11 +40,7 @@ export function Usage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <CodeBlock
-                code="npm create tnt-stack@latest my-app"
-                data-language="bash"
-                title="Create a new project"
-              />
+              <CodeBlock code="npm create tnt-stack@latest my-app" />
             </motion.div>
 
             <motion.div
@@ -53,11 +49,7 @@ export function Usage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <CodeBlock
-                code="cd my-app && npm run dev"
-                data-language="bash"
-                title="Start the development server"
-              />
+              <CodeBlock code="cd my-app && npm run dev" />
             </motion.div>
 
             <motion.div
@@ -66,11 +58,7 @@ export function Usage() {
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <CodeBlock
-                code="npm create tnt-stack@latest my-app --CI --prisma --dbProvider postgresql"
-                data-language="bash"
-                title="Create a new project with CI flags"
-              />
+              <CodeBlock code="npx create-tnt-stack@latest" />
             </motion.div>
           </div>
 

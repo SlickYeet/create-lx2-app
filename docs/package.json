@@ -23,11 +23,14 @@
     "@radix-ui/react-popover": "^1.1.6",
     "@radix-ui/react-scroll-area": "^1.2.3",
     "@radix-ui/react-slot": "^1.1.2",
+    "@radix-ui/react-tabs": "^1.1.12",
+    "@radix-ui/react-tooltip": "^1.2.7",
     "@types/mdx": "^2.0.13",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "copy-to-clipboard": "^3.3.3",
     "fuse.js": "^7.1.0",
+    "jotai": "^2.12.5",
     "lucide-react": "^0.484.0",
     "motion": "^12.6.2",
     "next": "^15.2.4",
@@ -56,6 +59,8 @@
     "eslint-config-next": "^15.2.4",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^4.0.17",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "unist-builder": "^4.0.0",
+    "unist-util-visit": "^5.0.0"
   }
 }

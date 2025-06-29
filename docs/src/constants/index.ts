@@ -58,6 +58,7 @@ export const SIDEBAR_NAVIGATION: NavigationSection[] = [
     items: [
       { slug: "/first-steps", title: "First Steps" },
       { slug: "/nextjs", title: "Next.js" },
+      { slug: "/authjs", title: "Auth.js" },
       { slug: "/better-auth", title: "Better Auth" },
       { slug: "/prisma", title: "Prisma ORM" },
       { slug: "/payloadcms", title: "Payload CMS" },
@@ -90,9 +91,9 @@ export const FEATURES: FeatureType[] = [
     color: "blue",
   },
   {
-    title: "Payload CMS Included",
+    title: "Choose Your Backend",
     description:
-      "Build beautiful content based applications with Payload CMS the backend to build the modern web.",
+      "Control your the entire stack and your application with your choice of backend.",
     icon: DatabaseIcon,
     color: "purple",
   },

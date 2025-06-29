@@ -24,6 +24,7 @@ import { Input } from "@/components/ui/input"
 import { useDebounce } from "@/hooks/use-debounce"
 import { useMobile } from "@/hooks/use-mobile"
 import { type MdxDocument } from "@/lib/mdx"
+import { cn } from "@/lib/utils"
 
 export function Search({ docs }: { docs: MdxDocument[] }) {
   const router = useRouter()
@@ -65,9 +66,7 @@ export function Search({ docs }: { docs: MdxDocument[] }) {
   const results: MdxDocument[] =
     debouncedQuery.length > 1
       ? fuse.search(debouncedQuery).map((result) => result.item)
-      : query === ""
-        ? docs.slice(0, 4)
-        : []
+      : []
 
   const handleSearch = (query: string) => {
     setQuery(query)
@@ -92,13 +91,8 @@ export function Search({ docs }: { docs: MdxDocument[] }) {
           </span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="top-1/4 max-w-[450px] -translate-y-1/4 p-4">
-        <DialogTitle>
-          <div className="flex items-center gap-2">
-            <SearchIcon className="text-muted-foreground size-5" />
-            <span className="text-lg font-medium">Search</span>
-          </div>
-        </DialogTitle>
+      <DialogContent className="top-1/4 max-w-[450px] -translate-y-1/4 border-0 bg-transparent p-0">
+        <DialogTitle hidden />
         <DialogDescription hidden />
         <div className="w-full">
           <div className="relative">
@@ -107,7 +101,13 @@ export function Search({ docs }: { docs: MdxDocument[] }) {
               value={query}
               onChange={(e) => handleSearch(e.target.value)}
               placeholder="Search documentation..."
-              className="pl-10"
+              className={cn(
+                "!bg-background h-12 pl-10",
+                (results.length > 0 ||
+                  debouncedQuery.length > 1 ||
+                  debouncedQuery.length === 1) &&
+                  "rounded-b-none",
+              )}
               autoFocus
             />
             {query && (
@@ -125,7 +125,7 @@ export function Search({ docs }: { docs: MdxDocument[] }) {
           </div>
 
           {results.length > 0 ? (
-            <div className="mt-2 max-h-[400px] overflow-y-auto">
+            <div className="bg-background max-h-[400px] overflow-auto rounded-lg rounded-t-none border px-2 shadow-lg">
               <div className="text-muted-foreground py-2 text-sm font-medium">
                 Results ({results.length})
               </div>
@@ -178,7 +178,7 @@ export function Search({ docs }: { docs: MdxDocument[] }) {
               })}
             </div>
           ) : debouncedQuery.length > 1 ? (
-            <div className="text-muted-foreground py-6 text-center">
+            <div className="text-muted-foreground bg-background max-h-[400px] overflow-auto rounded-lg rounded-t-none border py-6 text-center shadow-lg">
               <FileTextIcon className="mx-auto mb-2 size-8 opacity-50" />
               <p>No results found for &quot;{query}&quot;</p>
               <p className="mt-1 text-sm">Try adjusting your search terms</p>
@@ -186,7 +186,7 @@ export function Search({ docs }: { docs: MdxDocument[] }) {
           ) : null}
 
           {debouncedQuery.length === 1 && (
-            <div className="text-muted-foreground py-4 text-center text-sm">
+            <div className="text-muted-foreground bg-background max-h-[400px] overflow-auto rounded-lg rounded-t-none border py-4 text-center text-sm shadow-lg">
               Please enter at least 2 characters to search
             </div>
           )}

@@ -104,7 +104,6 @@ export function DocsTOC() {
               <li key={heading.id}>
                 <Link
                   href={`#${heading.id}`}
-                  className="block"
                   onClick={(e) => {
                     e.preventDefault()
                     const targetElement = document.getElementById(heading.id)
@@ -119,12 +118,16 @@ export function DocsTOC() {
                       }, 300)
                     }
                   }}
+                  className="group block focus:outline-none"
                 >
                   <div className="relative">
                     {isActive && (
                       <motion.div
                         layoutId="tocActiveItem"
-                        className="bg-primary/10 border-primary absolute inset-0 border-l-2"
+                        className={cn(
+                          "bg-primary/10 border-primary absolute inset-0 border-l-2",
+                          "group-focus:bg-primary/10 group-focus:border-primary",
+                        )}
                         initial={false}
                         transition={{
                           type: "spring",
@@ -138,6 +141,7 @@ export function DocsTOC() {
                         "relative z-10 block px-4 py-1 text-sm",
                         "hover:text-primary hover:bg-primary/5",
                         "border-primary/20 hover:border-primary/50 border-l-2",
+                        "group-focus:text-primary group-focus:bg-primary/5 group-focus:border-primary/50",
                         isActive
                           ? "text-primary font-medium"
                           : "text-muted-foreground",
@@ -163,7 +167,7 @@ export function DocsTOC() {
           <Link
             href={repoPath}
             target="_blank"
-            className="text-muted-foreground hover:text-primary flex items-center gap-1.5 text-sm transition-colors hover:underline"
+            className="text-muted-foreground hover:text-primary focus:text-primary flex items-center gap-1.5 text-sm transition-colors hover:underline focus:underline focus:outline-none"
           >
             <PenIcon className="size-3.5 fill-current" />
             Edit this page
@@ -173,7 +177,7 @@ export function DocsTOC() {
           <Link
             href={`${GITHUB_CREATE_TNT_APP_REPO}/issues/new/choose`}
             target="_blank"
-            className="text-muted-foreground hover:text-primary flex items-center gap-1.5 text-sm transition-colors hover:underline"
+            className="text-muted-foreground hover:text-primary focus:text-primary flex items-center gap-1.5 text-sm transition-colors hover:underline focus:underline focus:outline-none"
           >
             <MessageSquareIcon className="size-3.5 fill-current" />
             Give feedback
@@ -188,7 +192,7 @@ export function DocsTOC() {
               })
             }
             className={cn(
-              "text-muted-foreground hover:text-primary flex cursor-pointer items-center gap-1.5 text-sm opacity-0 transition-all hover:underline",
+              "text-muted-foreground hover:text-primary focus:text-primary flex items-center gap-1.5 text-sm opacity-0 transition-all hover:underline focus:underline focus:outline-none",
               showBackToTop && "opacity-100",
             )}
             aria-label="Back to Top"
