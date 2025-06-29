@@ -11,5 +11,5 @@ export function OL({ className, ...props }: ComponentProps<"ol">) {
 }
 
 export function LI({ className, ...props }: ComponentProps<"li">) {
-  return <li className={cn("mt-2", className)} {...props} />
+  return <li className={cn("marker:text-primary mt-2", className)} {...props} />
 }
