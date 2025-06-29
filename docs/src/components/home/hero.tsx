@@ -23,7 +23,7 @@ export function Hero({ npmVersion }: { npmVersion?: string }) {
       <div className="bg-grid-pattern absolute inset-0 z-0 opacity-[0.03]" />
 
       <div className="relative z-10 container">
-        <div className="mx-auto mb-28 flex max-w-4xl flex-col items-center text-center">
+        <div className="@container mx-auto mb-12 flex max-w-4xl flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -73,7 +73,7 @@ export function Hero({ npmVersion }: { npmVersion?: string }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex w-full max-w-sm flex-col gap-4 md:flex-row md:items-center md:justify-center"
+            className="flex w-full max-w-sm flex-col gap-4 @sm:flex-row @sm:items-center @sm:justify-center"
           >
             <Button
               size="lg"
