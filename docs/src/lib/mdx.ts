@@ -1,33 +1,9 @@
 import fs from "fs/promises"
 import path from "path"
-import {
-  transformerMetaHighlight,
-  transformerMetaWordHighlight,
-  transformerNotationDiff,
-} from "@shikijs/transformers"
 import { serialize } from "next-mdx-remote/serialize"
-import rehypePrettyCode, {
-  type Options as PrettyCodeOptions,
-} from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
 import remarkFrontmatter from "remark-frontmatter"
-import remarkGfm from "remark-gfm"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
-
-const prettyCodeOptinos: PrettyCodeOptions = {
-  keepBackground: false,
-  theme: {
-    dark: "github-dark-default",
-    light: "github-light-default",
-  },
-  transformers: [
-    transformerNotationDiff({
-      matchAlgorithm: "v3",
-    }),
-    transformerMetaHighlight(),
-    transformerMetaWordHighlight(),
-  ],
-}
 
 const workingDirectory = path.join(process.cwd(), "src/app/(content)")
 
@@ -83,8 +59,8 @@ async function getMdxFileNames(dir: string): Promise<string[]> {
 async function serializeMdx(source: string) {
   const mdxSource = await serialize(source, {
     mdxOptions: {
-      remarkPlugins: [remarkGfm, remarkFrontmatter, remarkMdxFrontmatter],
-      rehypePlugins: [[rehypePrettyCode, prettyCodeOptinos], rehypeSlug],
+      remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
+      rehypePlugins: [rehypeSlug],
     },
     parseFrontmatter: true,
   })
