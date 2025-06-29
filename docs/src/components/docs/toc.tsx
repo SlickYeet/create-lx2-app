@@ -91,7 +91,7 @@ export function DocsTOC() {
 
   return (
     <div className="sticky top-20">
-      <H3 className="text-xl">On This Page</H3>
+      <H3 className="mb-4 text-xl">On This Page</H3>
 
       <nav>
         <ul>
@@ -156,7 +156,7 @@ export function DocsTOC() {
         </ul>
       </nav>
 
-      <H3 className="mt-4 text-xl">More</H3>
+      <H3 className="my-4 text-xl">More</H3>
 
       <ul className="space-y-2">
         <li>

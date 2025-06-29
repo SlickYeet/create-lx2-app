@@ -36,7 +36,7 @@ export function DocsSidebar({ isOpen, setIsOpen }: DocsSidebarProps) {
       {SIDEBAR_NAVIGATION.map((page) => (
         <div key={page.title}>
           <H3 className="text-xl">{page.title}</H3>
-          <ul className="mb-4 ml-4">
+          <ul className="my-4 ml-4">
             {page.items.map((item) => {
               const isActive = pathname.includes(item.slug)
 
