@@ -1,6 +1,6 @@
 {
   "name": "create-tnt-stack",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Create web application with the TNT-Powered stack",
   "license": "MIT",
   "repository": {
