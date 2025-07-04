@@ -64,15 +64,15 @@ export const SIDEBAR_NAVIGATION: NavigationSection[] = [
       { slug: "/payloadcms", title: "Payload CMS" },
     ],
   },
-  // Deploymeny
-  //   {
-  //     title: "Deployment",
-  //     slug: "/deployment",
-  //     items: [
-  //       { slug: "/vercel", title: "Vercel" },
-  //       { slug: "/netlify", title: "Netlify" },
-  //     ],
-  //   },
+  // Deployment
+  {
+    title: "Deployment",
+    slug: "/deployment",
+    items: [
+      { slug: "/vercel", title: "Vercel" },
+      // { slug: "/netlify", title: "Netlify" },
+    ],
+  },
 ] as const
 
 export type FeatureType = {
