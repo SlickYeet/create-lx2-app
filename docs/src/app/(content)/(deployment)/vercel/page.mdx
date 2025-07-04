@@ -1,0 +1,137 @@
+---
+title: Deploy to Vercel
+description: How to deploy your TNT Stack application to Vercel.
+---
+
+# Deploy to Vercel
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+- A Vercel account. If you don't have one, you can sign up for free at
+  [vercel.com](https://vercel.com/).
+- Git installed and your project committed to GitHub.
+
+## Step 1: Link Your Git Repo
+
+Vercel integrates seamlessly with Git providers.
+
+1.  **Open your dashboard:** Go to
+    [vercel.com/dashboard](https://vercel.com/dashboard) and login if you
+    haven't.
+2.  **Import a Project:** On your Vercel dashboard, click `Add New...` and
+    select `Project` from the dropdown.
+3.  **Import Git Repository:** Vercel will ask you to connect a Git repository.
+    - If you're deploying a new project, click "Continue with
+      GitHub/GitLab/Bitbucket" and authorize Vercel to access your repositories.
+    - Once authorized, you'll see a list of your repositories. Select the
+      repository containing your TNT-Powered application.
+
+## Step 2: Configure Your Project
+
+Vercel automatically detects Next.js applications and sets up the correct build
+configuration. However, there are a few things you might want to review or
+configure.
+
+1.  **Project Name:** You can change the project name if needed. This will also
+    determine the default Vercel deployment URL (e.g.,
+    `my-tnt-stack.vercel.app`).
+2.  **Root Directory (Optional):** If your TNT-Powered application is not in the
+    root of your repository, you can specify the root directory here.
+3.  **Build and Output Settings (Optional):** Vercel's defaults for Next.js are
+    usually sufficient.
+    - **Build Command:** Vercel will default to `next build`. You typically
+      don't need to change this.
+    - **Output Directory:** Vercel expects `public` for static assets and
+      `.next` for the build output, which it handles automatically.
+4.  **Environment Variables:** You can quickly add all your environment
+    variables at once:
+    - Open your `.env` file, press `Ctrl + A` to select all, then `Ctrl + C` to
+      copy.
+    - Open the `Environment Variables` dropdown and paste everything into the
+      single input field.
+    - Vercel will automatically create a new variable for each line.
+
+## Step 3: Deploy
+
+Once you've configured your project, you're ready to deploy.
+
+1.  **Click Deploy:** After reviewing your settings, click the `Deploy` button.
+2.  **Deployment Process:** Vercel will now:
+    - Clone your Git repository.
+    - Install your project dependencies.
+    - Run the build command (`next build`).
+    - Upload your built application to its global edge network.
+    - Assign a unique deployment URL.
+
+## Step 4: Monitor Your Deployment
+
+Vercel provides a real-time log of your deployment process.
+
+1.  **Deployment Logs:** After clicking deploy, you'll be able to see the logs
+    in real-time.
+2.  **Post Deployment:** Once the deployment is complete, you'll see your
+    project was successfully deployed and a link to your deployed application.
+
+## Step 5: Add Your Own Domains (Optional)
+
+To use your own domain for your Next.js application:
+
+1.  **Go to Domains:** From your Vercel project's overview, click on the
+    `Domains` button on the right.
+2.  **Add a Domain:** Click on `Add Domain`, enter your custom domain name
+    (e.g., `yourdomain.com` or `app.yourdomain.com`) and click `Save`.
+3.  **Configure DNS:** Vercel will provide you with DNS records (usually an A
+    record and/or a CNAME record) that you need to add to your domain
+    registrar's DNS settings.
+    - Automatic configuration:
+      - You can click the `Configure Automatically` button and follow the
+        instructions to automatically set up your DNS records.
+    - Manual configuration:
+      - **For `yourdomain.com`:** Vercel typically recommends an A record
+        pointing to their IP address.
+      - **For `www.yourdomain.com` or `sub.yourdomain.com`:** Vercel usually
+        suggests a CNAME record pointing to `cname.vercel-dns.com`.
+      - Simply copy the provided `Name` and `Value` fields for each record, and
+        paste them into your domain registrar's DNS settings.
+4.  **Verify:** After adding the DNS records, return to Vercel. It might take
+    some time for the DNS changes to propagate, but Vercel will automatically
+    verify the setup once it's complete.
+
+## Continuous Deployment
+
+One of Vercel's strongest features is continuous deployment. Once your project
+is connected:
+
+- Every time you push new commits to your connected Git branch (usually `main`
+  or `master`), Vercel will automatically trigger a new deployment.
+- You'll get a unique preview URL for each commit, allowing you to review
+  changes before merging to production.
+
+## Troubleshooting Common Issues
+
+- **Build Failures:** Check the deployment logs on Vercel for error messages.
+  Common causes include:
+  - Missing environment variables.
+  - Syntax errors in your Next.js code.
+  - Incorrect `package.json` scripts or dependencies.
+- **"Page Not Found" Errors:**
+  - Ensure your `app` directory is correctly structured.
+  - Verify that your Next.js application is indeed in the root directory or that
+    you've correctly set the `Root Directory` in Vercel.
+- **Slow Deployments:** Large applications or many dependencies can lead to
+  longer build times. Consider optimizing your dependencies or using Vercel's
+  caching features.
+
+By following these steps, you should have your `create-tnt-stack` application
+successfully deployed on Vercel and set up for continuous deployment!
+
+## Useful Resources
+
+| Resource               | Link                                                          |
+| ---------------------- | ------------------------------------------------------------- |
+| Vercel Deployment Docs | [Vercel Deployment Docs](https://vercel.com/docs/deployments) |
+| Vercel Support         | [Vercel Support](https://vercel.com/support)                  |
+| Vercel GitHub          | [Vercel GitHub](https://github.com/vercel)                    |
+| Vercel Community       | [Vercel Community](https://community.vercel.com/)             |
