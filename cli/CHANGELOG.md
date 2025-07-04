@@ -1,5 +1,14 @@
 # create-tnt-stack
 
+## 0.6.1
+
+### Patch Changes
+
+- [#125](https://github.com/SlickYeet/create-tnt-stack/pull/125)
+  [`b249af1`](https://github.com/SlickYeet/create-tnt-stack/commit/b249af13132b82232f191fe0278e63825250be50)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - update README to reflect
+  current CLI
+
 ## 0.6.0
 
 ### Minor Changes
