@@ -42,10 +42,9 @@ TNT-Powered installs **TypeScript, Next.js, Tailwind CSS**, along with:
 
 - ✅ **Payload CMS** - A powerful headless CMS
 - ✅ **Auth.js** - Authentication made easy
-- ✅ **Lucia Auth** - Authentication following
-  [Luca Auth Guidelines](https://lucia-auth.com/)
+- ✅ **Better Auth** - The most comprehensive authentication framework for
+  TypeScript.
 - ✅ **Prisma ORM** - Database management with full type safety
-- ✅ **Drizzle ORM** - (Coming soon) A powerful database ORM for TypeScript
 - ✅ **And many more coming soon...**
 
 <h2 id="getting-started">🚀 Getting Started</h2>
