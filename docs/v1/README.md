@@ -1,3 +1,7 @@
+> This directory has been depricated
+>
+> The new version of the docs site can be found under docs/v2/
+
 # Create TNT Stack Documentation Site
 
 Welcome to the official documentation site for **Create TNT Stack**! This site
@@ -29,7 +33,7 @@ To run the documentation site locally, follow these steps:
 
 ```bash
 git clone https://github.com/SlickYeet/create-tnt-stack.git
-cd create-tnt-stack/docs
+cd create-tnt-stack/docs/v1
 pnpm install
 pnpm dev
 ```
@@ -38,7 +42,7 @@ This will start the development server at `http://localhost:3000`.
 
 ## Command Cheat Sheet
 
-All commands are run from the `docs` directory of the project.
+All commands are run from the `docs/v1` directory of the project.
 
 | Command        | Action                                            |
 | -------------- | ------------------------------------------------- |
