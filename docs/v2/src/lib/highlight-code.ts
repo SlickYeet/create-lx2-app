@@ -7,6 +7,7 @@ export const transformers = [
         const raw = this.source
         node.properties["__raw__"] = raw
 
+        // npm install
         if (raw.startsWith("npm install")) {
           node.properties["__npm__"] = raw
           node.properties["__yarn__"] = raw.replace("npm install", "yarn add")
@@ -14,6 +15,7 @@ export const transformers = [
           node.properties["__bun__"] = raw.replace("npm install", "bun add")
         }
 
+        // npx create-
         if (raw.startsWith("npx create-")) {
           node.properties["__npm__"] = raw
           node.properties["__yarn__"] = raw.replace(
@@ -27,7 +29,7 @@ export const transformers = [
           node.properties["__bun__"] = raw.replace("npx", "bunx --bun")
         }
 
-        // npm create.
+        // npm create
         if (raw.startsWith("npm create")) {
           node.properties["__npm__"] = raw
           node.properties["__yarn__"] = raw.replace("npm create", "yarn create")
@@ -35,7 +37,7 @@ export const transformers = [
           node.properties["__bun__"] = raw.replace("npm create", "bun create")
         }
 
-        // npx.
+        // npx
         if (raw.startsWith("npx")) {
           node.properties["__npm__"] = raw
           node.properties["__yarn__"] = raw.replace("npx", "yarn")
@@ -43,7 +45,7 @@ export const transformers = [
           node.properties["__bun__"] = raw.replace("npx", "bunx --bun")
         }
 
-        // npm run.
+        // npm run
         if (raw.startsWith("npm run")) {
           node.properties["__npm__"] = raw
           node.properties["__yarn__"] = raw.replace("npm run", "yarn")
@@ -80,7 +82,7 @@ export function applyPackageManagerTransformations(
     transformations.__bun__ = code.replace("npm install", "bun add")
   }
 
-  // yarn add
+  // npx create-
   if (code.startsWith("npx create-")) {
     transformations.__npm__ = code
     transformations.__yarn__ = code.replace("npx create-", "yarn create ")
