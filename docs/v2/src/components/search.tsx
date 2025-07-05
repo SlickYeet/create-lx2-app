@@ -101,13 +101,7 @@ export function Search(props: SearchProps) {
       if (e.key === "c" && (e.metaKey || e.ctrlKey)) {
         runCommand(async () => {
           if (selectedType === "command") {
-            try {
-              await navigator.clipboard.writeText(copyPayload)
-            } catch {
-              alert(
-                "Clipboard write is not allowed. Please check your browser permissions.",
-              )
-            }
+            await navigator.clipboard.writeText(copyPayload)
           }
         })
       }
@@ -213,9 +207,10 @@ export function Search(props: SearchProps) {
                   handlePageHighlight(true, "create tnt-stack@latest")
                 }
                 onSelect={() =>
-                  runCommand(() => {
+                  runCommand(async () => {
                     setSelectedType("command")
                     setCopyPayload(`${packageManager} create tnt-stack@latest`)
+                    await navigator.clipboard.writeText(copyPayload)
                   })
                 }
               >
