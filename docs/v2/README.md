@@ -1,56 +1,46 @@
-# Create TNT Stack
+> This is the v2 updated docs directory
 
-This is a [TNT-Powered Stack](https://create.tntstack.org/) project bootstrapped
-with `create-tnt-stack`.
+# Create TNT Stack Documentation Site
 
-## Where do I go from here?
+## Outline
 
-You can treat this project just as you would a regular `create-next-app`
-project, but without needing to implement additional packages yourself. This
-means you can start scaffolding from our base template.
+- [Run Site Locally](#run-site-locally)
+- [Command Cheat Sheet](#command-cheat-sheet)
+- [Contribution Guidelines](#contribution-guidelines)
 
-To start developing simply run the following commands:
+## Run Site Locally
+
+To run the documentation site locally, follow these steps:
 
 ```bash
-cd your-project-name
-
-npm run dev
-# or
+git clone https://github.com/SlickYeet/create-tnt-stack.git
+cd create-tnt-stack/docs/v2
+pnpm install
 pnpm dev
-# or
-yarn dev
-# or
-bun dev
 ```
 
-## Learn More
+This will start the development server at `http://localhost:3000`.
 
-To learn more about the [TNT Stack](https://create.tntstack.org/), take a look
-at our [documentation](https://create.tntstack.org/).
+## Command Cheat Sheet
 
-If you are not familiar with the different technologies used in this project,
-please refer to the respective docs.
+All commands are run from the `docs/v2` directory of the project.
 
-- [Next.js](https://nextjs.org)
-- [Payload CMS](https://payloadcms.com)
-- [Auth.js](https://authjs.dev/)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
+| Command        | Action                                            |
+| -------------- | ------------------------------------------------- |
+| `pnpm install` | Installs dependencies                             |
+| `pnpm dev`     | Starts the development server at `localhost:3000` |
+| `pnpm build`   | Builds the production site to `.next/`            |
+| `pnpm lint`    | Lints the code                                    |
+| `pnpm format`  | Formats the code                                  |
 
-You can check out the
-[create-tnt-stack GitHub repository](https://github.com/SlickYeet/create-tnt-stack)
-— your feedback and contributions are welcome!
+## Contribution Guidelines
 
-## How do I deploy this?
+We 💖 contributors! If you’d like to contribute to the documentation, please
+refer to the
+[Contribution Guidelines](https://github.com/SlickYeet/create-tnt-stack/blob/main/CONTRIBUTING.md).
+It includes detailed instructions on setting up your environment, making
+changes, and submitting pull requests.
 
-> [!NOTE] Currently, we have a guide for deploying to
-> [Vercel](https://create.tntstack.org/deployment/vercel), with more deployment
-> options coming soon.
-
-Follow our deployment guides for more information
-
-- [Vercel](https://create.tntstack.org/deployment/vercel)
-- [Netlify](https://create.tntstack.org/deployment/netlify) — Coming soon
-- [Docker](https://create.tntstack.org/deployment/docker) — Coming soon
-- [Cloudflare](https://create.tntstack.org/deployment/cloudflare) — Coming soon
+Thank you for visiting the Create TNT Stack documentation site! If you have any
+questions or feedback, feel free to open an issue or join the discussion on
+[GitHub](https://github.com/SlickYeet/create-tnt-stack).
