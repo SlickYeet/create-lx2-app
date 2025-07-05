@@ -21,7 +21,7 @@ export function TerminalDemo() {
         autoPlay: true,
         preload: true,
         loop: true,
-        speed: 1.5,
+        speed: 1.2,
         theme: "ctnts",
         fit: "width",
         controls: "auto",
