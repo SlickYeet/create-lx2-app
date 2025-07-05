@@ -83,5 +83,7 @@ jobs:
           fetch-depth: 0
       - uses: ./.github/actions/setup
 
-      - run: pnpm run --filter=docs check
-      - run: pnpm turbo --filter=docs build
+      - run: pnpm run --filter=docsv1 check
+      - run: pnpm turbo --filter=docsv1 build
+      # - run: pnpm run --filter=docsv2 check
+      # - run: pnpm turbo --filter=docsv2 build
