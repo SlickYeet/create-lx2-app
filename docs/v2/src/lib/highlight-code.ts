@@ -105,19 +105,11 @@ export function applyPackageManagerTransformations(
   }
 
   // npm run
-  if (code.startsWith("npm run")) {
+  if (code.includes("npm run")) {
     transformations.__npm__ = code
-    transformations.__yarn__ = code.replace("npm run", "yarn")
-    transformations.__pnpm__ = code.replace("npm run", "pnpm")
-    transformations.__bun__ = code.replace("npm run", "bun")
-  }
-
-  // npx
-  if (code.startsWith("npx")) {
-    transformations.__npm__ = code
-    transformations.__yarn__ = code.replace("npx", "yarn")
-    transformations.__pnpm__ = code.replace("npx", "pnpm dlx")
-    transformations.__bun__ = code.replace("npx", "bunx --bun")
+    transformations.__yarn__ = code.replaceAll("npm run", "yarn")
+    transformations.__pnpm__ = code.replaceAll("npm run", "pnpm")
+    transformations.__bun__ = code.replaceAll("npm run", "bun")
   }
 
   return transformations
