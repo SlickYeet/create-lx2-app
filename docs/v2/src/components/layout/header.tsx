@@ -23,7 +23,7 @@ export function Header({ className }: { className?: string }) {
         className,
       )}
     >
-      <div className="container flex h-(--header-height) items-center gap-2 px-4 **:data-[slot=separator]:!h-4">
+      <div className="container flex h-16 items-center gap-2 px-4 **:data-[slot=separator]:!h-4">
         <MobileNav
           tree={pageTree}
           items={siteConfig.navItems}

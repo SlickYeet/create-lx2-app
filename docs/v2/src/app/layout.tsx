@@ -70,7 +70,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "group/body overscroll-none font-sans antialiased [--header-height:calc(var(--spacing)*16)]",
+          "group/body overscroll-none font-sans antialiased",
           fontVariables,
         )}
       >
