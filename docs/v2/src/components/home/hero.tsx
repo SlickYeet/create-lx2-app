@@ -101,7 +101,7 @@ export function Hero({ npmVersion }: { npmVersion?: string }) {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="relative mx-auto"
+          className="relative"
         >
           <div className="from-primary via-accent to-secondary absolute -inset-1 rounded-lg bg-linear-to-r opacity-50 blur-lg" />
           <div className="relative overflow-hidden rounded-lg">
