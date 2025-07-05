@@ -1,0 +1,246 @@
+---
+title: Prisma ORM
+description: From idea to scale. Simplified.
+links:
+  {
+    docs: https://www.prisma.io/docs,
+    api: https://www.prisma.io/docs/orm/reference/prisma-client-reference,
+    repo: https://pris.ly/github?utm_source=docs&utm_medium=navbar,
+    community: https://www.prisma.io/community,
+  }
+---
+
+[Prisma ORM](https://www.prisma.io/) is a modern database toolkit that
+simplifies database access and management in Node.js and ts applications.
+
+## Prisma Client
+
+The Prisma Client is a type-safe query builder that's generated based on your
+Prisma schema. It allows you to perform CRUD (Create, Read, Update, Delete)
+operations on your database in a type-safe manner.
+
+**Importing the Prisma Client:**
+
+In TNT-Powered applications, the Prisma Client is initialized and made available
+globally. You can import the client from the `@/server/db` module.
+
+```ts title="src/server/db"
+import { PrismaClient } from "@prisma/client"
+
+import { env } from "@/env"
+
+const createPrismaClient = () =>
+  new PrismaClient({
+    log:
+      env.NODE_ENV === "development"
+        ? [
+            // "query",
+            "error",
+            "warn",
+          ]
+        : ["error"],
+  })
+
+const globalForPrisma = globalThis as unknown as {
+  prisma: ReturnType<typeof createPrismaClient> | undefined
+}
+
+export const db = globalForPrisma.prisma ?? createPrismaClient()
+
+if (env.NODE_ENV !== "production") globalForPrisma.prisma = db
+```
+
+The `PrismaClient` instance, exported as `db`, manages database access and logs
+errors and warnings by default. To enable query logs, uncomment `"query"` in the
+`log` array.
+
+<Callout type="warning" title="Caution with Query Logs">
+  Query logs can expose sensitive data, such as passwords. They are also very
+  verbose and tend to spam the console.
+</Callout>
+
+**Basic CRUD Operations:**
+
+- Create:
+
+```ts
+const newPost = await db.post.create({
+  data: {
+    id: "1",
+    title: "New Post",
+    content: "This is a new post.",
+  },
+})
+console.log(newPost)
+```
+
+- Read:
+
+```ts
+const posts = await db.post.findMany({})
+console.log(posts)
+
+const post = await db.post.findUnique({
+  where: { id: "1" },
+})
+console.log(post)
+```
+
+- Update:
+
+```ts
+const updatedPost = await db.post.update({
+  where: { id: "1" },
+  data: { title: "Updated Post" },
+})
+console.log(updatedPost)
+```
+
+- Delete:
+
+```ts
+const deletedPost = await db.post.delete({
+  where: { id: "1" },
+})
+console.log(deletedPost)
+```
+
+**Disconnecting the Client:**
+
+It's good practice to disconnect the Prisma Client when you're done using it,
+especially in serverless environments.
+
+```ts title="prisma/seed.ts"
+async function main() {
+  // ... your Prisma Client operations
+}
+
+main()
+  .then(async () => {
+    await prisma.$disconnect()
+  })
+  .catch(async (e) => {
+    console.error(e)
+    await prisma.$disconnect()
+    process.exit(1)
+  })
+```
+
+<Callout type="info">
+  The above code can be used for
+  [seeding](https://www.prisma.io/docs/orm/prisma-migrate/workflows/seeding)
+  your database.
+</Callout>
+
+## Schema
+
+The `prisma/schema.prisma` file defines your database schema. This file contains
+a few models, depending on your feature selection during the initialization
+process. It also specifies:
+
+- **Data source:** The database provider (e.g., PostgreSQL, MySQL, SQLite).
+- **Connection URL:** The URL used to connect to your database.
+- **Data model:** The structure of your tables, including fields, data types,
+  and relations.
+
+The default schema for a TNT-Powered application when initialized with Prisma:
+
+```prisma title="prisma/schema.prisma"
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+}
+
+model Post {
+    id        Int      @id @default(autoincrement())
+    name      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([name])
+}
+
+```
+
+**Key Concepts:**
+
+- `generator`: Configures how Prisma Client is generated
+- `datasource`: Defines the database connection
+- `model`: Represents a database table
+- `fields`: Define the columns within a table with their datatypes and
+  constraints
+- `@id`: Marks a field as the primary key
+- `@default`: Specifies a default value for a field
+- `@unique`: Enforces uniqueness for a field
+- `@relation`: Defines relationships between models (tables)
+
+## Migrate
+
+Prisma Migrate is a tool for managing database schema changes. It allows you to:
+
+- Create migrations based on changes in your Prisma schema
+- Apply migrations to your database
+- Track the history of schema changes
+
+**Common Commands:**
+
+- `npm run db:migrate dev`: Create a migration from changes in Prisma schema,
+  apply it to the database, trigger generators (e.g. Prisma Client)
+- `npm run db:migrate reset`: Reset your database and apply all migrations (use
+  with caution in production)
+- `npm run db:migrate deploy`: Apply pending migrations to the database in
+  production/staging
+- `npm run db:migrate status`: Check the status of migrations in the
+  production/staging database
+- `npm run db:migrate resolve`: Resolve issues with database migrations, i.e.
+  baseline, failed migration, hotfix
+- `npm run db:migrate diff`: Compare the database schema from two arbitrary
+  sources
+
+**Workflow:**
+
+1. Modify your `prisma/schema.prisma` file.
+2. Run `npm run db:migrate dev --name <migration-name>` to create a new
+   migration.
+3. Prisma will generate SQL migration files in the `prisma/migrations`
+   directory.
+4. Apply the migrations to your database.
+
+## Prisma Studio
+
+Prisma Studio is a GUI for viewing and manipulating data in your database. It
+allows you to:
+
+- Browse your data
+- Create, update, and delete records
+- Filter and sort data
+- View relationships between tables
+
+**Running Prisma Studio:**
+
+```bash
+npm run db:studio
+```
+
+This will return a URL (usually `http://localhost:5555`) where you can access
+Prisma Studio in your web browser.
+
+## Useful Resources
+
+This is a brief overview of Prisma ORM. For more detailed information, please
+refer to the official Prisma documentation:
+
+| Resource                                                                                | Description                       |
+| --------------------------------------------------------------------------------------- | --------------------------------- |
+| [Prisma ORM Documentation](https://www.prisma.io/docs)                                  | The official Prisma documentation |
+| [Prisma Client API](https://www.prisma.io/docs/orm/reference/prisma-client-reference)   | API reference for Prisma Client   |
+| [Prisma Schema Guide](https://www.prisma.io/docs/orm/reference/prisma-schema-reference) | Schema reference                  |
+| [Prisma Migrate](https://www.prisma.io/docs/orm/prisma-migrate/getting-started)         | Migrations guide                  |
+| [Prisma Studio](https://www.prisma.io/docs/orm/tools/prisma-studio)                     | GUI for data management           |

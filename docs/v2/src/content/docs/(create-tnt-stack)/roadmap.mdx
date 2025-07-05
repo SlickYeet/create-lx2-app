@@ -1,0 +1,175 @@
+---
+title: Roadmap
+description: What's next for Create TNT Stack?
+---
+
+These are some of the upcoming features and improvements I have planned for
+`Create TNT Stack`.
+
+## Packages
+
+- [x] Add `Payload CMS` package
+- [x] Add `Better Auth` package
+- [ ] Add `Drizzle` package
+- [ ] Templates
+
+## Documentation
+
+- [ ] Add deployment guides
+- [ ] Add example projects
+
+## Components
+
+`Create TNT Stack` has moved away from Nextra entierly and I am now working on
+the actualy content as well as custom components.
+
+Planned components:
+
+<Tabs
+  items={[
+    "Callout",
+    "Table",
+    "Code block",
+    "Headings",
+    "Paragraph",
+    "Image",
+    "Video",
+    "Tabs",
+    "Anchor",
+    "List",
+    "Blockquote",
+  ]}
+>
+  <Tabs.Tab>
+    - [x] `Callout`
+
+    <Callout type="default" title="With a title">
+        This is the default callout
+    </Callout>
+    <Callout type="error">
+        Error: This is an error callout
+    </Callout>
+    <Callout type="info">
+        Info: This is an info callout
+    </Callout>
+    <Callout type="warning">
+        Warning: This is a warning callout
+    </Callout>
+    <Callout type="success">
+        Success: This is a success callout
+    </Callout>
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [x] `Table`
+
+        | Country | Flag |
+        | ------- | ---- |
+        | France  | 🇫🇷   |
+        | Ukraine | 🇺🇦   |
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [x] `Code block`
+
+        ```Bash
+        npm create tnt-stack@latest
+        ```
+
+        ```diff showLineNumbers
+        + Hello World!
+        - Hello World
+        ```
+
+        ```tsx {9-11} showLineNumbers /mx-auto/ title="page.tsx"
+        // src/app/docs/[slug]/page.tsx
+        export default async function DocsPage({ params }: DocsPageProps) {
+          const { slug } = params // [!code --]
+          const { slug } = await params // [!code ++]
+          const { default: Source } = await import(`@/content/${slug}.mdx`)
+
+          return (
+            <div className="mdx container mx-auto max-w-7xl px-4 py-20">
+              <Source />
+            </div>
+          )
+        }
+        ```
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [x] `Headings`
+
+        # Heading 1
+        ## Heading 2
+        ### Heading 3
+        #### Heading 4
+        ##### Heading 5
+        ###### Heading 6
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [x] `Paragraph`
+
+        This is a paragraph
+
+        _Italic text_
+
+        **Bold text**
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [x] `Image`
+
+        ![Image](https://placehold.co/300x300)
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [x] `Image`
+
+        <Video id="W4UhNo3HAMw" />
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [x] `Tabs`
+
+        <Tabs items={["Tab 1", "Tab 2", "Tab 3", "Tab 4", "Tab 5"]} defaultIndex={2}>
+          <Tabs.Tab value="tab-1">Tab 1 content</Tabs.Tab>
+          <Tabs.Tab value="tab-2">Tab 2 content</Tabs.Tab>
+          <Tabs.Tab value="tab-3">Tab 3 content</Tabs.Tab>
+          <Tabs.Tab value="tab-4">Tab 4 content</Tabs.Tab>
+          <Tabs.Tab value="tab-5">Tab 5 content</Tabs.Tab>
+        </Tabs>
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [x] `Anchor`
+
+        [Anchor](/docs)
+
+        [Anchor](https://example.com)
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [x] `Lists`
+
+        - Item 1
+        - Item 2
+        - Item 3
+
+        1. Item 1
+        2. Item 2
+        3. Item 3
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - [x] `Blockquote`
+
+        > This is a blockquote
+        >
+        > It can span multiple lines
+        >
+        > And it can have multiple paragraphs
+
+  </Tabs.Tab>
+</Tabs>
