@@ -139,7 +139,8 @@ export async function Footer() {
 
         <div className="mt-8 flex flex-col items-center justify-between border-t pt-8 md:flex-row">
           <div className="text-muted-foreground text-center text-sm md:text-left">
-            &copy; {new Date().getFullYear()} TNT-Powered. All right reserved.
+            &copy; {new Date().getFullYear()} {siteConfig.name}. All right
+            reserved.
           </div>
           <div className="mt-4 flex flex-col items-center text-center max-sm:space-y-4 sm:flex-row sm:gap-4 sm:text-left md:mt-0">
             <div className="flex flex-wrap items-center justify-center gap-1.5">
