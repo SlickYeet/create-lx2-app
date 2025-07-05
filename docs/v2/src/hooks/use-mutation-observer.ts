@@ -1,7 +1,7 @@
-import { useEffect, type RefObject } from "react"
+import { useEffect } from "react"
 
 export const useMutationObserver = (
-  ref: RefObject<HTMLElement | null>,
+  ref: React.RefObject<HTMLElement | null>,
   callback: MutationCallback,
   options: MutationObserverInit = {
     attributes: true,
