@@ -1,5 +1,4 @@
-// ORIGINALLY FROM CLOUDFLARE WRANGLER:
-// https://github.com/cloudflare/wrangler2/blob/main/.github/version-script.js
+// Adapted from create-t3-app.
 
 import fs from "fs"
 import { exec } from "child_process"

@@ -1,5 +1,4 @@
-// ORIGINALLY FROM CLOUDFLARE WRANGLER:
-// https://github.com/cloudflare/wrangler2/blob/main/.github/changeset-version.js
+// Adapted from create-t3-app.
 
 import { exec } from "child_process"
 // This script is used by the `release.yml` workflow to update the version of the packages being released.
