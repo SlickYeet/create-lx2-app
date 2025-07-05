@@ -10,6 +10,6 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["docs/v1", "docs/v2"],
+  "ignore": ["docsv1"],
   "changedFilePatterns": ["src/**", "templates/**"]
 }
