@@ -1,4 +1,4 @@
 packages:
   - "cli"
-  - "docs"
-  - "packages/*"
+  - "docs/v1"
+  - "docs/v2"
