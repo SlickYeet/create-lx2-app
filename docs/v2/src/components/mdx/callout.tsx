@@ -16,7 +16,7 @@ interface CalloutProps {
 }
 
 export function Callout(props: CalloutProps) {
-  const { title, type, children } = props
+  const { title, type = "default", children } = props
 
   const iconMap: Record<typeof type, LucideIcon> = {
     default: Lightbulb,

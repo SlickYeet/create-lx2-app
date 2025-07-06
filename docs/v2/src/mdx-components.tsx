@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/code-block"
 import { Anchor } from "@/components/mdx/anchor"
 import { Blockquote } from "@/components/mdx/blockquote"
 import { Callout } from "@/components/mdx/callout"
@@ -35,4 +36,5 @@ export const mdxComponents = {
   Callout,
   Video,
   Tabs: Object.assign(Tabs, { Tab }),
+  CodeBlock,
 }
