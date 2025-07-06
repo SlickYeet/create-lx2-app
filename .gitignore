@@ -36,3 +36,6 @@ yarn-error.log*
 .DS_Store
 *.pem
 package-lock.json
+
+# generated
+docs/v2/.source
