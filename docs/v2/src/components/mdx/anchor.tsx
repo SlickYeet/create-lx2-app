@@ -1,4 +1,4 @@
-import { ExternalLink } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
@@ -28,7 +28,7 @@ export function Anchor({
         {...props}
       >
         <span className="py-0">{children}</span>
-        <ExternalLink className="size-3.5" />
+        <ArrowUpRight className="size-3.5 shrink-0" />
       </a>
     )
   }
