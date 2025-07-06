@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 
 import { Providers } from "@/components/providers"
-import { env } from "@/env"
 import { siteConfig } from "@/lib/config"
 import { fontVariables } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
@@ -14,7 +13,7 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  metadataBase: new URL(env.NEXT_PUBLIC_URL),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_URL!),
   keywords: [
     "Typescript",
     "Next.js",
@@ -33,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: env.NEXT_PUBLIC_URL,
+    url: process.env.NEXT_PUBLIC_URL,
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
