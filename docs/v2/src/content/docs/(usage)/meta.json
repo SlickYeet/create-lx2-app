@@ -1,0 +1,11 @@
+{
+  "title": "Usage",
+  "pages": [
+    "first-steps",
+    "next.js",
+    "auth.js",
+    "betterauth",
+    "prisma",
+    "payloadcms"
+  ]
+}

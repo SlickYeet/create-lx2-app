@@ -4,8 +4,8 @@ import { ArrowRightIcon } from "lucide-react"
 import { motion } from "motion/react"
 import Link from "next/link"
 
-import { CodeBlock } from "../code-block"
-import { Button } from "../ui/button"
+import { CodeBlock } from "@/components/code-block"
+import { Button } from "@/components/ui/button"
 
 export function Usage() {
   return (

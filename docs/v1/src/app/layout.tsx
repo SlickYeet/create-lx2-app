@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
 import { Inter, Space_Grotesk } from "next/font/google"
 
-import { Footer } from "../components/footer"
-import { Header } from "../components/header"
-import { ThemeProvider, WrapLinesProvider } from "../components/provider"
-import { SITE_DESCRIPTION, SITE_IMAGE, SITE_TITLE } from "../constants"
-import { getMdxDocuments } from "../lib/mdx"
+import { Footer } from "@/components/footer"
+import { Header } from "@/components/header"
+import { ThemeProvider, WrapLinesProvider } from "@/components/provider"
+import { SITE_DESCRIPTION, SITE_IMAGE, SITE_TITLE } from "@/constants"
+import { getMdxDocuments } from "@/lib/mdx"
 
 import "./globals.css"
 

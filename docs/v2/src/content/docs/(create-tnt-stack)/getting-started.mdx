@@ -1,0 +1,60 @@
+---
+title: Getting Started
+description:
+  Get started with the TNT-Powered Stack, the best way to build your next web
+  application.
+---
+
+It is really simple to get started with the TNT-Powered Stack. All you need to
+do is to run the following command, and answer the prompts:
+
+## Installation
+
+```bash
+npm create tnt-stack@latest
+```
+
+It is as simple as that. Once you have answered all the prompts, you can
+checkout the [First Steps](/docs/first-steps) section to learn more about how to
+use the TNT Stack.
+
+## Advanced Installation
+
+The CLI comes with several flags that can be used to customize the installation
+process, or skip certain prompts.
+
+| Flags             | Description                                                                    |
+| ----------------- | ------------------------------------------------------------------------------ |
+| `[dir]`           | The name of the application, as well as the name of the directory to create.   |
+| `--noGit`         | Explicitly tell the CLI to not initialize a new git repo in the project.       |
+| `--noInstall`     | Generate project without installing dependencies.                              |
+| `-y`, `--default` | Bypass the CLI and bootstrap a new TNT Stack project with all options selected |
+
+## Experimental CI flags
+
+The CI flag can be used to scaffold a new project without prompts. This is
+useful for CI/CD pipelines.
+
+| Flags                        | Description                                                |
+| ---------------------------- | ---------------------------------------------------------- |
+| `--CI`                       | Set the CLI to run in CI mode.                             |
+| `--backend [framework]`      | Set the CLI to scaffold a project with the chosen backend. |
+| `--authProvider [provider]`  | Set the CLI to scaffold a project with an auth provider    |
+| `--databaseORM [orm]`        | Set the CLI to scaffold a project with a database ORM      |
+| `--formatter [formatter]`    | Set the CLI to scaffold a project with a formatter         |
+| `--linter [linter]`          | Set the CLI to scaffold a project with a linter            |
+| `-i, --import-alias [alias]` | Set the CLI to scaffold a project with Import Alias.       |
+| `--dbProvider [provider]`    | Set the CLI to scaffold a project with a database.         |
+
+<Callout type="warning">
+  If you don't provide the CI flag, the rest of these flags have no effect.
+</Callout>
+
+### Examples
+
+Most flags will require a value, you can pass the value after the flag. For
+example, to scaffold a project with a Prisma, you would run:
+
+```bash
+npm create tnt-stack@latest --CI --databaseORM prisma
+```

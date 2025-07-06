@@ -2,10 +2,10 @@
 
 import { motion } from "motion/react"
 
-import { Breadcrumbs } from "../../components/docs/breadcrumbs"
-import { Pagination } from "../../components/docs/pagination"
-import { DocsSidebar } from "../../components/docs/sidebar"
-import { DocsTOC } from "../../components/docs/toc"
+import { Breadcrumbs } from "@/components/docs/breadcrumbs"
+import { Pagination } from "@/components/docs/pagination"
+import { DocsSidebar } from "@/components/docs/sidebar"
+import { DocsTOC } from "@/components/docs/toc"
 
 export default function DocsLayout({
   children,

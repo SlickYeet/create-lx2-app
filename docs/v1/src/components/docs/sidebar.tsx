@@ -5,10 +5,10 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect } from "react"
 
-import { SIDEBAR_NAVIGATION } from "../../constants"
-import { cn } from "../../lib/utils"
-import { H3 } from "../mdx/headings"
-import { ScrollArea } from "../ui/scroll-area"
+import { H3 } from "@/components/mdx/headings"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { SIDEBAR_NAVIGATION } from "@/constants"
+import { cn } from "@/lib/utils"
 
 interface DocsSidebarProps {
   isOpen?: boolean

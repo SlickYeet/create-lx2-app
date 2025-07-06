@@ -7,16 +7,16 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 
+import { DiscordLink } from "@/components/discord-link"
+import { Logo } from "@/components/logo"
+import { Anchor } from "@/components/mdx/anchor"
+import { Button } from "@/components/ui/button"
 import {
   DISCORD_LINK,
   GITHUB_CREATE_TNT_APP_REPO,
   RELATIVE_INITIAL_DOCS_PATH,
-} from "../constants"
-import { getNpmVersion } from "../lib/utils"
-import { DiscordLink } from "./discord-link"
-import { Logo } from "./logo"
-import { Anchor } from "./mdx/anchor"
-import { Button } from "./ui/button"
+} from "@/constants"
+import { getNpmVersion } from "@/lib/utils"
 
 export async function Footer() {
   const npmVersionLatest = await getNpmVersion("latest")

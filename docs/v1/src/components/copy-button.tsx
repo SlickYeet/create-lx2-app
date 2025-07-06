@@ -3,9 +3,13 @@
 import { Check, Clipboard } from "lucide-react"
 import { useEffect, useState, type ComponentProps } from "react"
 
-import { cn } from "../lib/utils"
-import { Button } from "./ui/button"
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
+import { Button } from "@/components/ui/button"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { cn } from "@/lib/utils"
 
 interface CopyButtonProps extends ComponentProps<typeof Button> {
   value: string

@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react"
 
-import { cn } from "../../lib/utils"
+import { cn } from "@/lib/utils"
 
 export function UL({ className, ...props }: ComponentProps<"ul">) {
   return <ul className={cn("my-6 ml-6 list-disc", className)} {...props} />

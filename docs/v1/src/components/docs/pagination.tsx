@@ -4,9 +4,9 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-import { SIDEBAR_NAVIGATION } from "../../constants"
-import { cn } from "../../lib/utils"
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
+import { SIDEBAR_NAVIGATION } from "@/constants"
+import { cn } from "@/lib/utils"
 
 function getPaginationData(pathname: string) {
   const flatItems = SIDEBAR_NAVIGATION.flatMap((section) => section.items || [])

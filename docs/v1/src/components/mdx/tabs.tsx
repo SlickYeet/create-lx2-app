@@ -7,8 +7,8 @@ import React, {
   type ReactNode,
 } from "react"
 
-import { cn } from "../../lib/utils"
-import { ScrollArea, ScrollBar } from "../ui/scroll-area"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { cn } from "@/lib/utils"
 
 const TabsContext = createContext<
   { activeTab: string; setActiveTab: (title: string) => void } | undefined

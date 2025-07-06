@@ -1,7 +1,7 @@
 import { type ComponentProps } from "react"
 
-import { cn } from "../../lib/utils"
-import { getIconForLanguageExtension } from "../icons"
+import { getIconForLanguageExtension } from "@/components/icons"
+import { cn } from "@/lib/utils"
 
 export function Figcaption(props: ComponentProps<"figcaption">) {
   const { className, children, ...rest } = props
