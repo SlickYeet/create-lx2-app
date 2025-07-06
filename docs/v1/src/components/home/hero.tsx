@@ -4,14 +4,14 @@ import { ArrowRightIcon, ArrowUpRightIcon, FileCode2Icon } from "lucide-react"
 import { motion } from "motion/react"
 import Link from "next/link"
 
+import { TerminalDemo } from "@/components/terminal-demo"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   GITHUB_CREATE_TNT_APP_REPO,
   RELATIVE_INITIAL_DOCS_PATH,
-} from "../../constants"
-import { cn } from "../../lib/utils"
-import { TerminalDemo } from "../terminal-demo"
-import { Badge } from "../ui/badge"
-import { Button } from "../ui/button"
+} from "@/constants"
+import { cn } from "@/lib/utils"
 
 export function Hero({ npmVersion }: { npmVersion?: string }) {
   return (

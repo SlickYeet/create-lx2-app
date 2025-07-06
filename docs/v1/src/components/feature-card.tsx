@@ -1,7 +1,7 @@
 import { motion } from "motion/react"
 
-import { FeatureType } from "../constants"
-import { cn } from "../lib/utils"
+import { FeatureType } from "@/constants"
+import { cn } from "@/lib/utils"
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },

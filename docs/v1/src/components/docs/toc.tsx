@@ -6,9 +6,9 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
-import { GITHUB_CREATE_TNT_APP_REPO, SIDEBAR_NAVIGATION } from "../../constants"
-import { cn } from "../../lib/utils"
-import { H3 } from "../mdx/headings"
+import { H3 } from "@/components/mdx/headings"
+import { GITHUB_CREATE_TNT_APP_REPO, SIDEBAR_NAVIGATION } from "@/constants"
+import { cn } from "@/lib/utils"
 
 interface Heading {
   id: string

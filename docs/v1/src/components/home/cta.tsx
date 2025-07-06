@@ -4,9 +4,9 @@ import { ArrowRightIcon } from "lucide-react"
 import { motion } from "motion/react"
 import Link from "next/link"
 
-import { RELATIVE_INITIAL_DOCS_PATH } from "../../constants"
-import { StarOnGithub } from "../star-on-github"
-import { Button } from "../ui/button"
+import { StarOnGithub } from "@/components/star-on-github"
+import { Button } from "@/components/ui/button"
+import { RELATIVE_INITIAL_DOCS_PATH } from "@/constants"
 
 export function CTA() {
   return (

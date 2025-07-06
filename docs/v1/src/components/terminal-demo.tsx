@@ -6,7 +6,7 @@ import { useEffect } from "react"
 
 import "asciinema-player/dist/bundle/asciinema-player.css"
 
-import { useMobile } from "../hooks/use-mobile"
+import { useMobile } from "@/hooks/use-mobile"
 
 export function TerminalDemo() {
   const isMobile = useMobile(768)

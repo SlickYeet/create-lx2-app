@@ -2,8 +2,8 @@
 
 import { motion } from "motion/react"
 
-import { cn } from "../lib/utils"
-import { TerminalIcon as AnimatedTerminalIcon } from "./terminal-icon"
+import { TerminalIcon as AnimatedTerminalIcon } from "@/components/terminal-icon"
+import { cn } from "@/lib/utils"
 
 interface LogoProps {
   containerClassName?: string

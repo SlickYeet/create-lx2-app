@@ -2,8 +2,8 @@
 
 import { motion } from "motion/react"
 
-import { FEATURES } from "../../constants"
-import { FeatureCard } from "../feature-card"
+import { FeatureCard } from "@/components/feature-card"
+import { FEATURES } from "@/constants"
 
 const containerVariants = {
   hidden: { opacity: 1 },

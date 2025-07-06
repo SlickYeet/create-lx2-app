@@ -5,10 +5,10 @@ import { motion } from "motion/react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
-import { NotFoundImage } from "../components/not-found-image"
-import { Button } from "../components/ui/button"
-import { RELATIVE_INITIAL_DOCS_PATH } from "../constants"
-import { useMobile } from "../hooks/use-mobile"
+import { NotFoundImage } from "@/components/not-found-image"
+import { Button } from "@/components/ui/button"
+import { RELATIVE_INITIAL_DOCS_PATH } from "@/constants"
+import { useMobile } from "@/hooks/use-mobile"
 
 export default function NotFound() {
   const isMobile = useMobile()

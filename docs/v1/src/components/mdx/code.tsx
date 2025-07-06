@@ -1,8 +1,8 @@
 import { type ComponentProps } from "react"
 
-import { cn } from "../../lib/utils"
-import { CodeBlockCommand } from "../code-block"
-import { CopyButton } from "../copy-button"
+import { CodeBlockCommand } from "@/components/code-block"
+import { CopyButton } from "@/components/copy-button"
+import { cn } from "@/lib/utils"
 
 interface ShadcnCodeProps extends ComponentProps<"code"> {
   __raw__?: string

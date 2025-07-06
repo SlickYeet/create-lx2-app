@@ -1,6 +1,6 @@
-import { DISCORD_LINK } from "../constants"
-import { cn } from "../lib/utils"
-import { Button, ButtonProps } from "./ui/button"
+import { Button, ButtonProps } from "@/components/ui/button"
+import { DISCORD_LINK } from "@/constants"
+import { cn } from "@/lib/utils"
 
 interface DiscordLinkProps extends ButtonProps {
   withText?: boolean

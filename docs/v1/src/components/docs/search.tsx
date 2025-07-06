@@ -12,19 +12,19 @@ import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
-import { useDebounce } from "../../hooks/use-debounce"
-import { useMobile } from "../../hooks/use-mobile"
-import { type MdxDocument } from "../../lib/mdx"
-import { cn } from "../../lib/utils"
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogTitle,
   DialogTrigger,
-} from "../ui/dialog"
-import { Input } from "../ui/input"
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { useDebounce } from "@/hooks/use-debounce"
+import { useMobile } from "@/hooks/use-mobile"
+import { type MdxDocument } from "@/lib/mdx"
+import { cn } from "@/lib/utils"
 
 export function Search({ docs }: { docs: MdxDocument[] }) {
   const router = useRouter()

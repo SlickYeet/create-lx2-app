@@ -1,8 +1,8 @@
 import { StarIcon } from "lucide-react"
 
-import { GITHUB_CREATE_TNT_APP_REPO } from "../constants"
-import { cn } from "../lib/utils"
-import { Button, ButtonProps } from "./ui/button"
+import { Button, ButtonProps } from "@/components/ui/button"
+import { GITHUB_CREATE_TNT_APP_REPO } from "@/constants"
+import { cn } from "@/lib/utils"
 
 export function StarOnGithub({
   size = "default",

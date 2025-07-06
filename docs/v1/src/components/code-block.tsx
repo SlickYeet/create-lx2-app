@@ -4,12 +4,16 @@ import { Check, Clipboard, TerminalIcon } from "lucide-react"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import type { BundledLanguage } from "shiki"
 
-import { useConfig } from "../hooks/use-config"
-import { applyPackageManagerTransformations } from "../lib/highlight-code"
-import { Code, Figure, Pre } from "../mdx-components"
-import { Button } from "./ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
+import { Button } from "@/components/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { useConfig } from "@/hooks/use-config"
+import { applyPackageManagerTransformations } from "@/lib/highlight-code"
+import { Code, Figure, Pre } from "@/mdx-components"
 
 interface CodeBlockProps extends React.ComponentProps<"pre"> {
   code: string
