@@ -84,6 +84,7 @@ export default async function DocsPage({ params }: DocsPageProps) {
           <TableOfContents
             // @ts-expect-error - revisit fumadocs types.
             toc={doc.toc}
+            tree={source.pageTree}
             variant="dropdown"
             className="no-scrollbar sticky top-4 right-4 z-40 ml-auto hidden lg:flex xl:hidden"
           />
@@ -109,6 +110,7 @@ export default async function DocsPage({ params }: DocsPageProps) {
         <TableOfContents
           // @ts-expect-error - revisit fumadocs types.
           toc={doc.toc}
+          tree={source.pageTree}
           variant="list"
           className="no-scrollbar sticky top-8 z-30 ml-auto hidden h-full w-72 overflow-hidden overflow-y-auto overscroll-none pl-8 xl:flex"
         />
