@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google"
 
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
+import { LegacyBanner } from "@/components/legacy-banner"
 import { ThemeProvider, WrapLinesProvider } from "@/components/provider"
 import { SITE_DESCRIPTION, SITE_IMAGE, SITE_TITLE } from "@/constants"
 import { getMdxDocuments } from "@/lib/mdx"
@@ -72,6 +73,7 @@ export default async function RootLayout({
         >
           <WrapLinesProvider>
             <div className="flex min-h-screen flex-col">
+              <LegacyBanner />
               <Header docs={docs} />
               <main className="flex-1">{children}</main>
               <Footer />
