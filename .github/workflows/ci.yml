@@ -11,7 +11,6 @@ on:
 env:
   TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
   TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
-  NEXT_PUBLIC_URL: "https://create.tntstack.org"
 
 jobs:
   lint:
@@ -78,6 +77,8 @@ jobs:
   build-docs:
     runs-on: ubuntu-latest
     name: Build and Check Docs
+    env:
+      NEXT_PUBLIC_URL: "https://create.tntstack.org"
     steps:
       - uses: actions/checkout@v4
         with:
