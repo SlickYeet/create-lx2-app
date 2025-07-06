@@ -9,6 +9,7 @@ import { Fragment } from "react"
 
 import {
   Breadcrumb,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
@@ -30,7 +31,7 @@ export function DocsBreadcrumb({ tree }: { tree: PageTree.Root }) {
   return (
     <Breadcrumb>
       <BreadcrumbList className="text-primary text-base">
-        <BreadcrumbItem>
+        <BreadcrumbItem className="hidden sm:block">
           <BreadcrumbLink asChild>
             <Link href="/">
               <Home className="size-4" />
@@ -38,15 +39,22 @@ export function DocsBreadcrumb({ tree }: { tree: PageTree.Root }) {
           </BreadcrumbLink>
         </BreadcrumbItem>
 
-        <BreadcrumbSeparator />
+        <BreadcrumbSeparator className="hidden sm:block" />
 
         <BreadcrumbItem>
           <DropdownMenu>
             <DropdownMenuTrigger className="hover:text-foreground flex items-center gap-1 transition-colors">
-              {items[0].name}
-              <ChevronDown className="size-3" />
+              <span className="hidden sm:inline">{items[0].name}</span>
+              <ChevronDown className="hidden size-3 sm:inline" />
+              <BreadcrumbEllipsis className="sm:hidden" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
+              <DropdownMenuItem className="sm:hidden" asChild>
+                <Link href="/" className="truncate">
+                  Home
+                </Link>
+              </DropdownMenuItem>
+
               {tree.children.map((item) => {
                 const href =
                   item.type === "folder" && item.children[0]?.type === "page"
