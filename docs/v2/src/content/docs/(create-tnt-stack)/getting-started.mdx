@@ -23,28 +23,28 @@ use the TNT Stack.
 The CLI comes with several flags that can be used to customize the installation
 process, or skip certain prompts.
 
-| Flags             | Description                                                                    |
-| ----------------- | ------------------------------------------------------------------------------ |
-| `[dir]`           | The name of the application, as well as the name of the directory to create.   |
-| `--noGit`         | Explicitly tell the CLI to not initialize a new git repo in the project.       |
-| `--noInstall`     | Generate project without installing dependencies.                              |
-| `-y`, `--default` | Bypass the CLI and bootstrap a new TNT Stack project with all options selected |
+| Flags             | Description                                                                             |
+| ----------------- | --------------------------------------------------------------------------------------- |
+| `[dir]`           | The name of the application, as well as the name of the directory to create.            |
+| `--noGit`         | Explicitly tell the CLI to not initialize a new git repo in the project.                |
+| `--noInstall`     | Generate project without installing dependencies.                                       |
+| `-y`, `--default` | Bypass the CLI and bootstrap a new TNT Stack project with all default options selected. |
 
 ## Experimental CI flags
 
 The CI flag can be used to scaffold a new project without prompts. This is
 useful for CI/CD pipelines.
 
-| Flags                        | Description                                                |
-| ---------------------------- | ---------------------------------------------------------- |
-| `--CI`                       | Set the CLI to run in CI mode.                             |
-| `--backend [framework]`      | Set the CLI to scaffold a project with the chosen backend. |
-| `--authProvider [provider]`  | Set the CLI to scaffold a project with an auth provider    |
-| `--databaseORM [orm]`        | Set the CLI to scaffold a project with a database ORM      |
-| `--formatter [formatter]`    | Set the CLI to scaffold a project with a formatter         |
-| `--linter [linter]`          | Set the CLI to scaffold a project with a linter            |
-| `-i, --import-alias [alias]` | Set the CLI to scaffold a project with Import Alias.       |
-| `--dbProvider [provider]`    | Set the CLI to scaffold a project with a database.         |
+| Flags                        | Description                                       |
+| ---------------------------- | ------------------------------------------------- |
+| `--CI`                       | Set the CLI to run in CI mode.                    |
+| `--backend [framework]`      | Specify which backend framework to scaffold with. |
+| `--authProvider [provider]`  | Specify which auth provider to scaffold with.     |
+| `--databaseORM [orm]`        | Specify which orm to scaffold with.               |
+| `--formatter [formatter]`    | Specify which formatter to scaffold with.         |
+| `--linter [linter]`          | Specify which linter to scaffold with.            |
+| `-i, --import-alias [alias]` | Specify which import alias to scaffold with.      |
+| `--dbProvider [provider]`    | Specify which database engine to scaffold with.   |
 
 <Callout type="warning">
   If you don't provide the CI flag, the rest of these flags have no effect.
@@ -53,8 +53,20 @@ useful for CI/CD pipelines.
 ### Examples
 
 Most flags will require a value, you can pass the value after the flag. For
-example, to scaffold a project with a Prisma, you would run:
+example, to scaffold a project with Prisma, you would run:
 
 ```bash
 npm create tnt-stack@latest --CI --databaseORM prisma
+```
+
+You can use the CI flags to skip the entire prompt process like this:
+
+```bash
+npm create tnt-stack@latest my-app \
+  --CI \
+  --backend nextjs \
+  --authProvider nextAuth \
+  --databaseORM prisma \
+  --formatter prettier \
+  --linter eslint
 ```

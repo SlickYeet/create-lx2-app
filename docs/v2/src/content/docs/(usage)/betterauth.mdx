@@ -88,9 +88,9 @@ For more information on the `generate` command, check out the
 #### Migrate
 
 The `migrate` command is used to apply the generated schema to your database.
-This command is only available when you are NOT using an ORM. If you are using
-Prisma or Drizzle, you must apply the generated schema using manually using the
-provided migration commands.
+This command is NOT available when you are using an ORM. If you are using Prisma
+or Drizzle, you must apply the generated schema manually using the provided
+migration commands.
 
 ```bash
 npx @better-auth/cli@latest migrate
