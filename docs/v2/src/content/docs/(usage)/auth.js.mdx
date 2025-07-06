@@ -29,7 +29,7 @@ You can access all methods and properties of Auth.js by importing them from
 `@/server/auth`. For example, to get the current user session, you can call the
 `auth` function:
 
-```tsx title="page.tsx"
+```tsx title="page.tsx" showLineNumbers
 import { auth } from "@/server/auth"
 
 export default async function Page() {
@@ -56,7 +56,7 @@ By default, we have included Discord OAuth, but you can add any of the
 Auth.js supports. To configure additional providers, you can add them to the
 `providers` array in the `server/auth/config.ts` file.
 
-```ts title="server/auth/config.ts"
+```ts title="server/auth/config.ts" showLineNumbers
 import { NextAuthConfig } from "next-auth"
 import GitHub from "next-auth/providers/github"
 

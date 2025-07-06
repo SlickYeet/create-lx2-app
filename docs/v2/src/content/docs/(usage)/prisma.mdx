@@ -24,7 +24,7 @@ operations on your database in a type-safe manner.
 In TNT-Powered applications, the Prisma Client is initialized and made available
 globally. You can import the client from the `@/server/db` module.
 
-```ts title="src/server/db"
+```ts title="src/server/db" showLineNumbers
 import { PrismaClient } from "@prisma/client"
 
 import { env } from "@/env"
@@ -63,54 +63,139 @@ errors and warnings by default. To enable query logs, uncomment `"query"` in the
 
 - Create:
 
-```ts
-const newPost = await db.post.create({
-  data: {
-    id: "1",
-    title: "New Post",
-    content: "This is a new post.",
-  },
-})
-console.log(newPost)
-```
+<Tabs items={["Code", "Output"]}>
+  <Tabs.Tab className="mt-[-1.5rem]">
+    ```ts showLineNumbers
+    const newPost = await db.post.create({
+      data: {
+        id: "1",
+        title: "New Post",
+        content: "This is a new post.",
+      },
+    })
+    console.log(newPost)
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab className="mt-[-1.5rem]">
+    ```json showLineNumbers
+    {
+      "id": "1",
+      "title": "New Post",
+      "content": "This is a new post.",
+      "createdAt": "2025-07-01T00:00:00.000Z",
+      "updatedAt": "2025-07-01T00:00:00.000Z"
+    }
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 - Read:
 
-```ts
-const posts = await db.post.findMany({})
-console.log(posts)
+<Tabs items={["Code", "Output"]}>
+  <Tabs.Tab className="mt-[-1.5rem]">
+    ```ts showLineNumbers
+    const posts = await db.post.findMany({})
+    console.log(posts)
 
-const post = await db.post.findUnique({
-  where: { id: "1" },
-})
-console.log(post)
-```
+    const post = await db.post.findUnique({
+      where: { id: "1" },
+    })
+    console.log(post)
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab className="mt-[-1.5rem]">
+    ```json showLineNumbers
+    // findMany
+    [
+      {
+        "id": "1",
+        "title": "New Post",
+        "content": "This is a new post.",
+        "createdAt": "2025-07-01T00:00:00.000Z",
+        "updatedAt": "2025-07-01T00:00:00.000Z"
+      },
+      {
+        "id": "2",
+        "title": "Another Post",
+        "content": "This is another post.",
+        "createdAt": "2025-07-02T00:00:00.000Z",
+        "updatedAt": "2025-07-02T00:00:00.000Z"
+      }
+    ]
+
+    // findUnique
+    {
+      "id": "1",
+      "title": "New Post",
+      "content": "This is a new post.",
+      "createdAt": "2025-07-01T00:00:00.000Z",
+      "updatedAt": "2025-07-01T00:00:00.000Z"
+    }
+    ```
+
+  </Tabs.Tab>
+</Tabs>
 
 - Update:
 
-```ts
-const updatedPost = await db.post.update({
-  where: { id: "1" },
-  data: { title: "Updated Post" },
-})
-console.log(updatedPost)
-```
+<Tabs items={["Code", "Output"]}>
+  <Tabs.Tab className="mt-[-1.5rem]">
+    ```ts showLineNumbers
+    const updatedPost = await db.post.update({
+      where: { id: "1" },
+      data: { 
+        title: "Updated Post",
+        content: "This is an updated post.",
+      },
+    })
+    console.log(updatedPost)
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab className="mt-[-1.5rem]">
+    ```json {3,4,6} showLineNumbers
+    {
+      "id": "1",
+      "title": "Updated Post",
+      "content": "This is an updated post.",
+      "createdAt": "2025-07-01T00:00:00.000Z",
+      "updatedAt": "2025-07-05T00:00:00.000Z"
+    }
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 - Delete:
 
-```ts
-const deletedPost = await db.post.delete({
-  where: { id: "1" },
-})
-console.log(deletedPost)
-```
+<Tabs items={["Code", "Output"]}>
+  <Tabs.Tab className="mt-[-1.5rem]">
+    ```ts showLineNumbers
+    const deletedPost = await db.post.delete({
+      where: { id: "1" },
+    })
+    console.log(deletedPost)
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab className="mt-[-1.5rem]">
+    ```json showLineNumbers
+    {
+      "id": "1",
+      "title": "Updated Post",
+      "content": "This is an updated post.",
+      "createdAt": "2025-07-01T00:00:00.000Z",
+      "updatedAt": "2025-07-05T00:00:00.000Z"
+    }
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 **Disconnecting the Client:**
 
-It's good practice to disconnect the Prisma Client when you're done using it,
-especially in serverless environments.
+It's good practice to disconnect the Prisma Client outside of the application's
+main execution context (e.g., in a script) when you're done using it, especially
+in serverless environments.
 
-```ts title="prisma/seed.ts"
+```ts title="prisma/seed.ts" showLineNumbers
 async function main() {
   // ... your Prisma Client operations
 }
@@ -145,7 +230,7 @@ process. It also specifies:
 
 The default schema for a TNT-Powered application when initialized with Prisma:
 
-```prisma title="prisma/schema.prisma"
+```prisma title="prisma/schema.prisma" showLineNumbers
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 

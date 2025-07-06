@@ -29,13 +29,21 @@ additional setup is required to get started.
 We recommend using [Prisma](https://www.prisma.io/) to interact with your
 database. Prisma is a modern database toolkit that makes it easy to interact
 with your database using TypeScript. If you chose to include Prisma ensure you
-run the following commands to push your schema to your database and generate
-your Prisma client.
+run the following commands.
 
-```bash
-npm run db:push
-npm run postinstall
-```
+<CodeBlock code="npm run db:push && npm run postinstall" />
+
+The above command will:
+
+- Push your prisma schema to your database, creating the necessary tables and
+  relationships.
+- Generate the Prisma client, which is used to interact with your database in
+  your application code, in a type-safe manner.
+
+<Callout type="info">
+  The `postinstall` script in your package.json runs `prisma generate`, and will
+  automatically run after installing dependencies.
+</Callout>
 
 ### Drizzle
 
@@ -74,7 +82,10 @@ A list of all the providers for both libraries can be found below:
 
 #### Setup
 
-The setup for both libraries is the same:
+<Callout type="info">The setup for both libraries is the same</Callout>
+
+By default, create-tnt-stack will set up Discord as the authentication provider,
+so:
 
 1. Of course, you need a Discord account, so register one if you don't already
    have one.
