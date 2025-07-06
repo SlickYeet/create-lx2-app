@@ -45,19 +45,19 @@ export async function GET(request: Request) {
   return new ImageResponse(
     (
       <div
-        tw="flex h-full w-full bg-black text-white"
+        tw="flex h-full w-full bg-[#272935] text-[#f8f8f2]"
         style={{ fontFamily: "Geist Sans" }}
       >
-        <div tw="flex border absolute border-stone-700 border-dashed inset-y-0 left-16 w-[1px]" />
-        <div tw="flex border absolute border-stone-700 border-dashed inset-y-0 right-16 w-[1px]" />
-        <div tw="flex border absolute border-stone-700 inset-x-0 h-[1px] top-16" />
-        <div tw="flex border absolute border-stone-700 inset-x-0 h-[1px] bottom-16" />
+        <div tw="flex border absolute border-[#44475a] border-dashed inset-y-0 left-16 w-[1px]" />
+        <div tw="flex border absolute border-[#44475a] border-dashed inset-y-0 right-16 w-[1px]" />
+        <div tw="flex border absolute border-[#44475a] inset-x-0 h-[1px] top-16" />
+        <div tw="flex border absolute border-[#44475a] inset-x-0 h-[1px] bottom-16" />
         <div tw="flex absolute flex-row bottom-24 right-24 text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            width={24}
-            height={24}
+            width={48}
+            height={48}
             fill="none"
             stroke="currentColor"
             stroke-width="2"

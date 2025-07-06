@@ -14,7 +14,7 @@ export const siteConfig = {
     "Build modern web applications with today's most popular tools. Launch your TypeScript, Next.js, and Tailwind CSS projects with a bang.",
   url: "https://create.tntstack.org",
   ogImage:
-    "https://opengraph.b-cdn.net/production/images/bbb17c9b-78ff-461f-a1a0-62bfb26d0004.png?token=VFzXyXk-G1Rzpf7kQNL9CrkqP4irm5n5ud7C-UPmrsU&height=645&width=1200&expires=33280994199",
+    "https://opengraph.b-cdn.net/production/images/3db2fef4-89b2-482a-bf11-29259d3f1bda.png?token=9qAl6n5l1iI8IaST_CyAfcGDnPbQNM-mk-7PxwveB2Q&height=675&width=1200&expires=33287835224",
   links: {
     github: "https://github.com/SlickYeet/create-tnt-stack",
     discord: "https://tntstack.org/discord",
