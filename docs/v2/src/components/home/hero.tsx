@@ -19,8 +19,8 @@ export function Hero({ npmVersion }: { npmVersion?: string }) {
       <div className="z-10 container px-4">
         <div className="@container mb-12 flex flex-col items-center text-center md:mb-32 md:items-start md:text-left">
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, filter: "blur(10px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 0.2 }}
             className="mb-6"
           >
@@ -43,8 +43,8 @@ export function Hero({ npmVersion }: { npmVersion?: string }) {
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, filter: "blur(10px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 0.2, delay: 0.1 }}
             className="mb-6 text-6xl font-bold tracking-tight md:text-8xl"
           >
@@ -54,8 +54,8 @@ export function Hero({ npmVersion }: { npmVersion?: string }) {
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, filter: "blur(10px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 0.2, delay: 0.2 }}
             className="text-muted-foreground mb-8 max-w-2xl text-xl"
           >
@@ -98,8 +98,8 @@ export function Hero({ npmVersion }: { npmVersion?: string }) {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.5, delay: 0.1 }}
           className="relative"
         >

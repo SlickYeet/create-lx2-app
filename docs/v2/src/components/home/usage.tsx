@@ -15,8 +15,8 @@ export function Usage() {
       <div className="container px-4">
         <div className="mb-16 text-center md:text-left">
           <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="mb-4 text-3xl font-bold md:text-4xl"
@@ -24,8 +24,8 @@ export function Usage() {
             Simple to Use
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
             className="text-muted-foreground max-w-2xl text-xl"
@@ -37,24 +37,24 @@ export function Usage() {
         <div className="flex flex-col items-center gap-12 lg:flex-row">
           <div className="w-full flex-1">
             <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 25, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
             >
               <CodeBlock code="npm create tnt-stack@latest my-app" />
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 25, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
             >
               <CodeBlock code="cd my-app && npm run dev" />
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 25, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
@@ -66,8 +66,8 @@ export function Usage() {
             <div className="from-primary via-accent to-secondary absolute -inset-1 rounded-lg bg-linear-to-r opacity-50 blur-lg" />
 
             <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 25, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
               className="bg-background relative space-y-4 rounded-lg p-6"

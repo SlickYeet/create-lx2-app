@@ -21,8 +21,8 @@ export function Features() {
       <div className="container px-4">
         <div className="mb-16 text-center md:text-left">
           <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="mb-4 text-3xl font-bold md:text-4xl"
@@ -31,8 +31,8 @@ export function Features() {
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
             className="text-muted-foreground max-w-2xl text-xl"

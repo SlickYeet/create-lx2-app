@@ -14,8 +14,8 @@ export function CTA() {
       <div className="relative">
         <div className="from-primary via-accent to-secondary absolute -inset-1 rounded-lg bg-linear-to-r opacity-50 blur-lg" />
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, filter: "blur(0px)" }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
           viewport={{ once: true }}
           className="bg-background relative rounded-lg p-8 text-center md:p-12 md:text-left"
