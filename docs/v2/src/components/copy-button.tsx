@@ -38,6 +38,7 @@ export function CopyButton(props: CopyButtonProps) {
           variant={variant}
           className={cn(
             "absolute top-3 right-2 z-10 size-7 opacity-70 hover:opacity-100 focus-visible:opacity-100",
+            "bg-card! dark:bg-muted!",
             className,
           )}
           data-slot="copy-button"
