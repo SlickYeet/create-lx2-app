@@ -52,7 +52,7 @@ useful for CI/CD pipelines.
 
 ### Examples
 
-Most flags will require a value, you can pass the value after the flag. For
+Most flags will require a value, which can be passed in after the flag. For
 example, to scaffold a project with Prisma, you would run:
 
 ```bash
@@ -64,9 +64,13 @@ You can use the CI flags to skip the entire prompt process like this:
 ```bash
 npm create tnt-stack@latest my-app \
   --CI \
+  # --noGit \
+  # --noInstall \
   --backend nextjs \
-  --authProvider nextAuth \
+  --authProvider authjs \
   --databaseORM prisma \
+  --dbProvider postgresql \
   --formatter prettier \
   --linter eslint
+  # --import-alias @/
 ```
