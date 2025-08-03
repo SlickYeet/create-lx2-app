@@ -78,7 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Check Docs
     env:
-      NEXT_PUBLIC_URL: "https://create.tntstack.org"
+      NEXT_PUBLIC_URL: "https://create.lx2.dev"
     steps:
       - uses: actions/checkout@v4
         with:

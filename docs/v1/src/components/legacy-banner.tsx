@@ -7,7 +7,7 @@ export function LegacyBanner() {
         You are viewing the v1 docs.
       </span>
       <a
-        href="https://create.tntstack.org"
+        href="https://create.lx2.dev"
         className="text-foreground flex items-center gap-1 underline hover:no-underline"
       >
         Switch to latest <ArrowRight className="size-3" />

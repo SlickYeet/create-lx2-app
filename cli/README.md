@@ -76,7 +76,7 @@ bun create tnt-stack@latest
 ```
 
 For more information, visit the
-[docs](https://create.tntstack.org/docs/getting-started).
+[docs](https://create.lx2.dev/docs/getting-started).
 
 <h2 id="features">🛠 Features</h2>
 
@@ -87,7 +87,7 @@ For more information, visit the
 <h2 id="documentation">📖 Documentation</h2>
 
 Full documentation is available at
-[create.tntstack.org](https://create.tntstack.org/docs).
+[create.lx2.dev](https://create.lx2.dev/docs).
 
 <h2 id="credits">❤️ Credits</h2>
 

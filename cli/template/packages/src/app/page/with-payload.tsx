@@ -19,9 +19,9 @@ export default async function HomePage() {
         {/* Logo */}
         <picture className="relative">
           <div className="absolute inset-0 animate-pulse rounded-xl bg-gradient-to-r from-purple-500 to-cyan-500 opacity-20 blur-xl dark:from-purple-800 dark:to-cyan-800" />
-          <source srcSet="https://github.com/SlickYeet/create-lx2-app/blob/main/docs/public/logo.light.png?raw=true" />
+          <source srcSet="https://github.com/SlickYeet/create-tnt-stack/blob/main/docs/public/logo.light.png?raw=true" />
           <img
-            src="https://github.com/SlickYeet/create-lx2-app/blob/main/docs/public/logo.light.png?raw=true"
+            src="https://github.com/SlickYeet/create-tnt-stack/blob/main/docs/public/logo.light.png?raw=true"
             alt="Logo"
             width={65}
             height={65}
@@ -66,7 +66,7 @@ export default async function HomePage() {
 
         <div className="mt-12 flex items-center gap-3">
           <a
-            href="https://create.tntstack.org"
+            href="https://create.lx2.dev"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center rounded-md border border-white px-2 py-1 outline-none focus:opacity-80 active:opacity-70"
@@ -84,7 +84,7 @@ export default async function HomePage() {
             </svg>
           </a>
           <a
-            href="https://create.tntstack.org/introduction"
+            href="https://create.lx2.dev/docs"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center rounded-md border border-white px-2 py-1 outline-none focus:opacity-80 active:opacity-70"
@@ -102,7 +102,7 @@ export default async function HomePage() {
             </svg>
           </a>
           <a
-            href="https://github.com/SlickYeet/create-lx2-app"
+            href="https://github.com/SlickYeet/create-tnt-stack"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center rounded-md border border-white px-2 py-1 outline-none focus:opacity-80 active:opacity-70"

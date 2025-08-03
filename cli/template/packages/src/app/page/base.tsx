@@ -28,7 +28,7 @@ export default function HomePage() {
 
         <div className="mt-12 flex items-center gap-3">
           <a
-            href="https://create.tntstack.org"
+            href="https://create.lx2.dev"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center rounded-md border border-white px-2 py-1 outline-none focus:opacity-80 active:opacity-70"
@@ -46,7 +46,7 @@ export default function HomePage() {
             </svg>
           </a>
           <a
-            href="https://create.tntstack.org/introduction"
+            href="https://create.lx2.dev/docs"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center rounded-md border border-white px-2 py-1 outline-none focus:opacity-80 active:opacity-70"

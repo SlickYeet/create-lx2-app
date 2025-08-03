@@ -240,7 +240,7 @@ export async function runCli(): Promise<CliResults> {
     if (process.env.TERM_PROGRAM?.toLowerCase().includes("mintty")) {
       logger.warn(`  WARNING: It looks like you are using MinTTY, which is non-interactive. This is most likely because you are
           using Git Bash. If that's that case, please use Git Bash from another terminal, such as Windows Terminal. Alternatively, you
-          can provide the arguments from the CLI directly: https://create.tntstack.org/getting-started#experimental-ci-flags to skip the prompts.`)
+          can provide the arguments from the CLI directly: https://create.lx2.dev/getting-started#experimental-ci-flags to skip the prompts.`)
 
       throw new IsTTYError("Non-interactive environment")
     }
