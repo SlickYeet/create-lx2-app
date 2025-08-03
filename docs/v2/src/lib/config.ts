@@ -40,7 +40,7 @@ export type FeatureType = {
 
 export const FEATURES: FeatureType[] = [
   {
-    title: "TNT Stack",
+    title: "Lx2 App",
     description:
       "Full-stack typesafe boilerplate with TypeScript, Next.js, and Tailwind CSS",
     icon: Rocket,
@@ -63,14 +63,14 @@ export const FEATURES: FeatureType[] = [
   {
     title: "Developer Experience",
     description:
-      "Well-documented and easy to use, TNT Stack is designed from the ground up to make your life easier.",
+      "Well-documented and easy to use, Lx2 App is designed from the ground up to make your life easier.",
     icon: Code,
     color: "amber",
   },
   {
     title: "Performance Optimized",
     description:
-      "With Next.js at its core, TNT Stack is optimized for performance and SEO out of the box.",
+      "With Next.js at its core, Lx2 App is optimized for performance and SEO out of the box.",
     icon: Zap,
     color: "emerald",
   },

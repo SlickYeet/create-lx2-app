@@ -25,7 +25,7 @@ bun dev
 
 ## Learn More
 
-To learn more about the [TNT Stack](https://create.lx2.dev), take a look
+To learn more about the [Lx2 App](https://create.lx2.dev), take a look
 at our [documentation](https://create.lx2.dev).
 
 If you are not familiar with the different technologies used in this project,
