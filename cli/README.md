@@ -2,10 +2,10 @@
 <picture>
   <source
     media="(prefers-color-scheme: dark)"
-    srcset="https://github.com/SlickYeet/create-lx2-app/blob/1a2dc7b99935663b2caf1a88de04e1edeac94a89/docs/public/logo.light.png"
+    srcset="https://github.com/SlickYeet/create-lx2-app/blob/1d4a2538aeddf0dc9184c984e5384ed089392b9e/docs/v2/public/android-chrome-512x512.png"
   />
   <img
-    src="https://github.com/SlickYeet/create-lx2-app/blob/1a2dc7b99935663b2caf1a88de04e1edeac94a89/docs/public/logo.dark.png"
+    src="https://github.com/SlickYeet/create-lx2-app/blob/1d4a2538aeddf0dc9184c984e5384ed089392b9e/docs/v2/public/android-chrome-512x512.png"
     width="130"
     alt="Lx2 logo"
   />
