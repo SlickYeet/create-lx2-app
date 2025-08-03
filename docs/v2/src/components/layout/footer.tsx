@@ -51,9 +51,9 @@ export async function Footer() {
             </div>
           </div>
 
-          {/* Create TNT Stack links */}
+          {/* Create Lx2 App links */}
           <div>
-            <h3 className="mb-4 text-lg font-semibold">Create TNT Stack</h3>
+            <h3 className="mb-4 text-lg font-semibold">Create Lx2 App</h3>
             <ul className="space-y-2">
               <li>
                 <Anchor href={siteConfig.navItems[0].href}>Introduction</Anchor>

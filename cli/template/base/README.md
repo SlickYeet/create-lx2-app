@@ -1,4 +1,4 @@
-# Create TNT Stack
+# Create Lx2 App
 
 This is a [TNT-Powered Stack](https://create.tntstack.org/) project bootstrapped
 with `create-lx2-app`.

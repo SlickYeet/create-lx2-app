@@ -9,7 +9,7 @@ import {
 } from "lucide-react"
 
 export const siteConfig = {
-  name: "Create TNT Stack",
+  name: "Create Lx2 App",
   description:
     "Build modern web applications with today's most popular tools. Launch your TypeScript, Next.js, and Tailwind CSS projects with a bang.",
   url: "https://create.tntstack.org",

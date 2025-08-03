@@ -79,7 +79,7 @@ export async function runCli(): Promise<CliResults> {
     .version(
       getVersion(),
       "-v, --version",
-      "Output the current version of Create TNT Stack"
+      "Output the current version of Create Lx2 App"
     )
     .argument(
       "[dir]",

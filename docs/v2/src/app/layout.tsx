@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "Tailwind CSS",
     "React",
     "CLI",
-    "Create TNT Stack",
+    "Create Lx2 App",
   ],
   authors: [
     {
