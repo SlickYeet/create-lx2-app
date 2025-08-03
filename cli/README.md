@@ -15,7 +15,7 @@
 
 **The easiest way to scaffold a modern web app using the TNT-Powered stack.**
 
-Simply run `npm create tnt-stack@latest` to get started!
+Simply run `npm create lx2-app@latest` to get started!
 
 [![PRs-Welcome][contribute-image]][contribute-url]
 [![NPM version][npm-image]][npm-url]
@@ -54,25 +54,25 @@ To create a new project, run the following command:
 ### npm
 
 ```bash
-npm create tnt-stack@latest
+npm create lx2-app@latest
 ```
 
 ### yarn
 
 ```bash
-yarn create tnt-stack
+yarn create lx2-app
 ```
 
 ### pnpm
 
 ```bash
-pnpm create tnt-stack@latest
+pnpm create lx2-app@latest
 ```
 
 ### bun
 
 ```bash
-bun create tnt-stack@latest
+bun create lx2-app@latest
 ```
 
 For more information, visit the

@@ -97,7 +97,7 @@ export async function runCli(): Promise<CliResults> {
     )
     .option(
       "-y, --default",
-      "Bypass the CLI and use all default options to bootstrap a new tnt-stack",
+      "Bypass the CLI and use all default options to bootstrap a new lx2-app",
       false
     )
     /** START CI-FLAGS */

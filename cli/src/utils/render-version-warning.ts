@@ -38,7 +38,7 @@ function checkForLatestVersion(): Promise<string> {
   return new Promise((resolve, reject) => {
     https
       .get(
-        "https://registry.npmjs.org/-/package/tnt-stack/dist-tags",
+        "https://registry.npmjs.org/-/package/create-lx2-app/dist-tags",
         (res) => {
           if (res.statusCode === 200) {
             let body = ""
