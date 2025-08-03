@@ -75,7 +75,7 @@ export async function runCli(): Promise<CliResults> {
 
   const program = new Command()
     .name(CREATE_LX2_APP)
-    .description("CLI for scaffolding new web apps with the TNT-Powered stack")
+    .description("CLI for scaffolding new web apps with the Lx2 stack")
     .version(
       getVersion(),
       "-v, --version",

@@ -1,7 +1,7 @@
 {
   "name": "create-lx2-app",
   "version": "0.6.1",
-  "description": "Create web application with the TNT-Powered stack",
+  "description": "Create web application with the Lx2 stack",
   "license": "MIT",
   "repository": {
     "type": "git",

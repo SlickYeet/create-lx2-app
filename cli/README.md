@@ -7,13 +7,13 @@
   <img
     src="https://github.com/SlickYeet/create-lx2-app/blob/1a2dc7b99935663b2caf1a88de04e1edeac94a89/docs/public/logo.dark.png"
     width="130"
-    alt="TNT-Powered logo"
+    alt="Lx2 logo"
   />
 </picture>
 
-# 🚀 TNT-Powered
+# 🚀 Create Lx2 App
 
-**The easiest way to scaffold a modern web app using the TNT-Powered stack.**
+**The easiest way to scaffold a modern web app using the Lx2 stack.**
 
 Simply run `npm create lx2-app@latest` to get started!
 
@@ -38,7 +38,7 @@ Simply run `npm create lx2-app@latest` to get started!
 
 <h2 id="whats-included">📦 What's Included</h2>
 
-TNT-Powered installs **TypeScript, Next.js, Tailwind CSS**, along with:
+Create Lx2 App installs **TypeScript, Next.js, Tailwind CSS**, along with:
 
 - ✅ **Payload CMS** - A powerful headless CMS
 - ✅ **Auth.js** - Authentication made easy
@@ -91,8 +91,9 @@ Full documentation is available at
 
 <h2 id="credits">❤️ Credits</h2>
 
-Huge thanks to [Theo]() and the [T3 Stack]() for their amazing work. TNT-Powered
-builds on the principles of create-t3-app, bringing even more flexibility.
+Huge thanks to [Theo](https://t3.gg) and the [T3 Stack](https://create.t3.gg)
+for their amazing work. The Lx2 stack builds on the principles of create-t3-app,
+bringing even more flexibility.
 
 If you like this project, giving it a ⭐ on GitHub!
 

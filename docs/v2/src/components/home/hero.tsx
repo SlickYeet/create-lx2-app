@@ -49,7 +49,7 @@ export function Hero({ npmVersion }: { npmVersion?: string }) {
             className="mb-6 text-6xl font-bold tracking-tight md:text-8xl"
           >
             <span className="from-primary to-secondary bg-linear-to-r bg-clip-text text-transparent">
-              TNT-Powered
+              Lx2 Stack
             </span>
           </motion.h1>
 

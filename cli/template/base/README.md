@@ -1,7 +1,7 @@
 # Create Lx2 App
 
-This is a [TNT-Powered Stack](https://create.lx2.dev) project bootstrapped
-with `create-lx2-app`.
+This is a [Lx2 Stack](https://create.lx2.dev) project bootstrapped with
+`create-lx2-app`.
 
 ## Where do I go from here?
 
@@ -25,8 +25,8 @@ bun dev
 
 ## Learn More
 
-To learn more about the [Lx2 App](https://create.lx2.dev), take a look
-at our [documentation](https://create.lx2.dev).
+To learn more about the [Lx2 Stack](https://create.lx2.dev), take a look at our
+[documentation](https://create.lx2.dev).
 
 If you are not familiar with the different technologies used in this project,
 please refer to the respective docs.
@@ -46,12 +46,12 @@ You can check out the
 ## How do I deploy this?
 
 > [!NOTE] Currently, we have a guide for deploying to
-> [Vercel](https://create.lx2.dev/docs/vercel), with more deployment
-> options coming soon.
+> [Vercel](https://create.lx2.dev/docs/vercel), with more deployment options
+> coming soon.
 
 Follow our deployment guides for more information
 
 - [Vercel](https://create.lx2.dev/docs/vercel)
-<!-- - [Netlify](https://create.lx2.dev/docs/netlify) — Coming soon -->
-<!-- - [Docker](https://create.lx2.dev/docs/docker) — Coming soon -->
-<!-- - [Cloudflare](https://create.lx2.dev/docs/cloudflare) — Coming soon -->
+  <!-- - [Netlify](https://create.lx2.dev/docs/netlify) — Coming soon -->
+  <!-- - [Docker](https://create.lx2.dev/docs/docker) — Coming soon -->
+  <!-- - [Cloudflare](https://create.lx2.dev/docs/cloudflare) — Coming soon -->
