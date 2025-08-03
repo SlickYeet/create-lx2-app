@@ -1,7 +1,7 @@
 import { confirm, input, select } from "@inquirer/prompts"
 import { Command } from "commander"
 
-import { CREATE_TNT_STACK, DEFAULT_APP_NAME } from "@/constants.js"
+import { CREATE_LX2_APP, DEFAULT_APP_NAME } from "@/constants.js"
 import {
   authProviders,
   databaseORM,
@@ -74,7 +74,7 @@ export async function runCli(): Promise<CliResults> {
   const cliResults = defaultOptions
 
   const program = new Command()
-    .name(CREATE_TNT_STACK)
+    .name(CREATE_LX2_APP)
     .description("CLI for scaffolding new web apps with the TNT-Powered stack")
     .version(
       getVersion(),
@@ -159,7 +159,7 @@ export async function runCli(): Promise<CliResults> {
 
   if (process.env.npm_config_user_agent?.startsWith("yarn/3")) {
     logger.warn(`  WARNING: It looks like you are using Yarn 3. This is currently not supported,
-      and likely to result in a crash. Please run create-tnt-stack with another
+      and likely to result in a crash. Please run create-lx2-app with another
       package manager such as pnpm, npm, or Yarn Classic.
       See: https://github.com/t3-oss/create-t3-app/issues/57`)
   }
@@ -400,10 +400,10 @@ export async function runCli(): Promise<CliResults> {
       databaseProvider: project.databaseProvider || "sqlite",
     }
   } catch (error) {
-    // If the user is not calling create-tnt-stack from an interactive terminal, inquirer will throw an IsTTYError
-    // If this happens, we catch the error, tell the user what has happened, and then continue to run the program with a default tnt app
+    // If the user is not calling create-lx2-app from an interactive terminal, inquirer will throw an IsTTYError
+    // If this happens, we catch the error, tell the user what has happened, and then continue to run the program with a default lx2 app
     if (error instanceof IsTTYError) {
-      logger.warn(`${CREATE_TNT_STACK} needs an interactive terminal to run.`)
+      logger.warn(`${CREATE_LX2_APP} needs an interactive terminal to run.`)
 
       const shouldContinue = await confirm({
         message: "Continue scaffolding with default options?",

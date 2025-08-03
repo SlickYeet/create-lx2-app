@@ -2,10 +2,10 @@
 <picture>
   <source
     media="(prefers-color-scheme: dark)"
-    srcset="https://github.com/SlickYeet/create-tnt-stack/blob/1a2dc7b99935663b2caf1a88de04e1edeac94a89/docs/public/logo.light.png"
+    srcset="https://github.com/SlickYeet/create-lx2-app/blob/1a2dc7b99935663b2caf1a88de04e1edeac94a89/docs/public/logo.light.png"
   />
   <img
-    src="https://github.com/SlickYeet/create-tnt-stack/blob/1a2dc7b99935663b2caf1a88de04e1edeac94a89/docs/public/logo.dark.png"
+    src="https://github.com/SlickYeet/create-lx2-app/blob/1a2dc7b99935663b2caf1a88de04e1edeac94a89/docs/public/logo.dark.png"
     width="130"
     alt="TNT-Powered logo"
   />
@@ -102,9 +102,9 @@ We 💖 contributors! Feel free to contribute to this project but **please read
 the [Contributing Guidelines](CONTRIBUTING.md) before opening an issue or PR**
 so you understand the branching strategy and local development environment.
 
-<a href="https://github.com/slickyeet/create-tnt-stack/graphs/contributors">
+<a href="https://github.com/slickyeet/create-lx2-app/graphs/contributors">
   <p align="center">
-    <img src="https://contrib.rocks/image?repo=slickyeet/create-tnt-stack" />
+    <img src="https://contrib.rocks/image?repo=slickyeet/create-lx2-app" />
   </p>
 </a>
 
@@ -128,23 +128,23 @@ so you understand the branching strategy and local development environment.
 
 [contribute-image]: https://img.shields.io/badge/PRs-welcome-blue.svg
 [contribute-url]:
-  https://github.com/SlickYeet/create-tnt-stack/blob/main/CONTRIBUTING.md
+  https://github.com/SlickYeet/create-lx2-app/blob/main/CONTRIBUTING.md
 [npm-image]:
-  https://img.shields.io/npm/v/create-tnt-stack?color=0b7285&logoColor=0b7285
-[npm-url]: https://www.npmjs.com/package/create-tnt-stack
+  https://img.shields.io/npm/v/create-lx2-app?color=0b7285&logoColor=0b7285
+[npm-url]: https://www.npmjs.com/package/create-lx2-app
 [npm-beta-image]:
-  https://img.shields.io/npm/v/create-tnt-stack/beta?color=orange&logoColor=orange
-[npm-beta-url]: https://www.npmjs.com/package/create-tnt-stack
+  https://img.shields.io/npm/v/create-lx2-app/beta?color=orange&logoColor=orange
+[npm-beta-url]: https://www.npmjs.com/package/create-lx2-app
 [license-image]:
-  https://img.shields.io/github/license/SlickYeet/create-tnt-stack?color=red
-[license-url]: https://github.com/SlickYeet/create-tnt-stack/blob/main/LICENSE
+  https://img.shields.io/github/license/SlickYeet/create-lx2-app?color=red
+[license-url]: https://github.com/SlickYeet/create-lx2-app/blob/main/LICENSE
 [downloads-image]:
-  https://img.shields.io/npm/dm/create-tnt-stack?color=364fc7&logoColor=364fc7
+  https://img.shields.io/npm/dm/create-lx2-app?color=364fc7&logoColor=364fc7
 [release-image]:
-  https://github.com/SlickYeet/create-tnt-stack/actions/workflows/release.yml/badge.svg
+  https://github.com/SlickYeet/create-lx2-app/actions/workflows/release.yml/badge.svg
 [release-url]:
-  https://github.com/SlickYeet/create-tnt-stack/actions/workflows/release.yml
+  https://github.com/SlickYeet/create-lx2-app/actions/workflows/release.yml
 [prerelease-image]:
-  https://github.com/SlickYeet/create-tnt-stack/actions/workflows/prerelease.yml/badge.svg
+  https://github.com/SlickYeet/create-lx2-app/actions/workflows/prerelease.yml/badge.svg
 [prerelease-url]:
-  https://github.com/SlickYeet/create-tnt-stack/actions/workflows/prerelease.yml
+  https://github.com/SlickYeet/create-lx2-app/actions/workflows/prerelease.yml

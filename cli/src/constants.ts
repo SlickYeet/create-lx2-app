@@ -12,5 +12,5 @@ export const TITLE_TEXT = `   ___ ___ ___   _ _____ ___   _____ _  _ _____   ___
   \\___|_|_\\___/_/ \\_\\_| |___|   |_| |_|\\_| |_|   |___/ |_/_/ \\_\\___|_|\\_\\
 `
 
-export const DEFAULT_APP_NAME = "my-tnt-app"
-export const CREATE_TNT_STACK = "create-tnt-stack"
+export const DEFAULT_APP_NAME = "my-lx2-app"
+export const CREATE_LX2_APP = "create-lx2-app"

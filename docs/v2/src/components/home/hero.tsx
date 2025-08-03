@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils"
 
 export function Hero({ npmVersion }: { npmVersion?: string }) {
   return (
-    <section id="create-tnt-stack" className="relative py-8 md:py-16">
+    <section id="create-lx2-app" className="relative py-8 md:py-16">
       <div className="from-muted/30 absolute bottom-0 left-0 h-25 w-full bg-linear-0 to-transparent" />
 
       <div className="z-10 container px-4">
@@ -25,7 +25,7 @@ export function Hero({ npmVersion }: { npmVersion?: string }) {
             className="mb-6"
           >
             <a
-              href={`https://www.npmjs.com/package/create-tnt-stack/v/${npmVersion}`}
+              href={`https://www.npmjs.com/package/create-lx2-app/v/${npmVersion}`}
               target="_blank"
             >
               <Badge

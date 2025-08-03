@@ -15,7 +15,7 @@ export async function getNpmVersion(
   // Fetch the latest version of the package from npm
   // If the beta flag is true, fetch the beta version
 
-  const response = await fetch("https://registry.npmjs.org/create-tnt-stack", {
+  const response = await fetch("https://registry.npmjs.org/create-lx2-app", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

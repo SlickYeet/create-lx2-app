@@ -8,10 +8,10 @@ export function renderVersionWarning(npmVersion: string) {
   const currentVersion = getVersion()
 
   if (currentVersion.includes("beta")) {
-    logger.warn("  You are using a beta version of create-tnt-stack.")
+    logger.warn("  You are using a beta version of create-lx2-app.")
     logger.warn("  Please report any bugs you encounter.")
   } else if (currentVersion !== npmVersion) {
-    logger.warn("  You are using an outdated version of create-tnt-stack.")
+    logger.warn("  You are using an outdated version of create-lx2-app.")
     logger.warn(
       "  Your version:",
       currentVersion + ".",
@@ -64,7 +64,7 @@ export const getNpmVersion = () =>
   // `fetch` to the registry is faster than `npm view` so we try that first
   checkForLatestVersion().catch(() => {
     try {
-      return execSync("npm view create-tnt-stack version").toString().trim()
+      return execSync("npm view create-lx2-app version").toString().trim()
     } catch {
       return null
     }

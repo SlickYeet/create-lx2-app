@@ -18,11 +18,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/slickyeet/create-tnt-stack"
+    "url": "https://github.com/slickyeet/create-lx2-app"
   },
   "keywords": [
-    "create-tnt-stack",
-    "tnt-stack",
+    "create-lx2-app",
+    "lx2-app",
     "typescript",
     "next.js",
     "tailwind"
@@ -33,15 +33,15 @@
   "packageManager": "pnpm@10.12.1",
   "scripts": {
     "dev": "turbo dev",
-    "dev:cli": "turbo --filter=create-tnt-stack dev",
+    "dev:cli": "turbo --filter=create-lx2-app dev",
     "dev:docs:v1": "turbo --filter=docsv1 dev",
     "dev:docs": "turbo --filter=docsv2 dev",
     "build": "turbo run build",
-    "build:cli": "turbo --filter=create-tnt-stack build",
+    "build:cli": "turbo --filter=create-lx2-app build",
     "build:docs:v1": "turbo --filter=docsv1 build",
     "build:docs": "turbo --filter=docsv2 build",
     "start": "turbo start",
-    "start:cli": "turbo --filter=create-tnt-stack start",
+    "start:cli": "turbo --filter=create-lx2-app start",
     "start:docs:v1": "turbo --filter=docsv1 start",
     "start:docs": "turbo --filter=docsv2 start",
     "lint": "turbo run lint",
@@ -53,7 +53,7 @@
     "clean": "turbo clean && rm -rf node_modules .turbo pnpm-lock.yaml",
     "shadcn:docs:v1": "pnpm run --filter=docsv1 shadcn",
     "shadcn": "pnpm run --filter=docsv2 shadcn",
-    "link": "pnpm run --filter=create-tnt-stack link",
+    "link": "pnpm run --filter=create-lx2-app link",
     "release": "changeset version",
     "pub:beta": "cd cli && pnpm run pub:beta",
     "pub:release": "cd cli && pnpm run pub:release"

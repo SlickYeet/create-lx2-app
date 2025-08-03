@@ -16,7 +16,7 @@ export const siteConfig = {
   ogImage:
     "https://opengraph.b-cdn.net/production/images/3db2fef4-89b2-482a-bf11-29259d3f1bda.png?token=9qAl6n5l1iI8IaST_CyAfcGDnPbQNM-mk-7PxwveB2Q&height=675&width=1200&expires=33287835224",
   links: {
-    github: "https://github.com/SlickYeet/create-tnt-stack",
+    github: "https://github.com/SlickYeet/create-lx2-app",
     discord: "https://tntstack.org/discord",
   },
   navItems: [

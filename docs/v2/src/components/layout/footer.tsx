@@ -145,14 +145,14 @@ export async function Footer() {
           <div className="mt-4 flex flex-col items-center text-center max-sm:space-y-4 sm:flex-row sm:gap-4 sm:text-left md:mt-0">
             <div className="flex flex-wrap items-center justify-center gap-1.5">
               <a
-                href={`https://www.npmjs.com/package/create-tnt-stack/v/${npmVersionLatest}`}
+                href={`https://www.npmjs.com/package/create-lx2-app/v/${npmVersionLatest}`}
                 target="_blank"
                 className="text-muted-foreground text-sm hover:underline"
               >
                 Latest: v{npmVersionLatest}
               </a>
               <a
-                href={`https://www.npmjs.com/package/create-tnt-stack/v/${npmVersionBeta}`}
+                href={`https://www.npmjs.com/package/create-lx2-app/v/${npmVersionBeta}`}
                 target="_blank"
                 className="text-muted-foreground text-sm hover:underline"
               >

@@ -1,15 +1,15 @@
 {
-  "name": "create-tnt-stack",
+  "name": "create-lx2-app",
   "version": "0.6.1",
   "description": "Create web application with the TNT-Powered stack",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/slickyeet/create-tnt-stack",
+    "url": "https://github.com/slickyeet/create-lx2-app",
     "directory": "cli"
   },
   "keywords": [
-    "create-tnt-stack",
+    "create-lx2-app",
     "tnt-stack",
     "typescript",
     "next.js",
@@ -18,7 +18,7 @@
   "type": "module",
   "exports": "./dist/index.js",
   "bin": {
-    "create-tnt-stack": "./dist/index.js"
+    "create-lx2-app": "./dist/index.js"
   },
   "files": [
     "dist",

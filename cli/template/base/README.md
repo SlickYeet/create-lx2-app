@@ -1,7 +1,7 @@
 # Create TNT Stack
 
 This is a [TNT-Powered Stack](https://create.tntstack.org/) project bootstrapped
-with `create-tnt-stack`.
+with `create-lx2-app`.
 
 ## Where do I go from here?
 
@@ -39,7 +39,7 @@ please refer to the respective docs.
 - [Tailwind CSS](https://tailwindcss.com)
 
 You can check out the
-[create-tnt-stack GitHub repository](https://github.com/SlickYeet/create-tnt-stack)
+[create-lx2-app GitHub repository](https://github.com/SlickYeet/create-lx2-app)
 — your feedback and contributions are welcome!
 
 ## How do I deploy this?
