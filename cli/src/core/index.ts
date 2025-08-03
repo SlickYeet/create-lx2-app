@@ -14,7 +14,7 @@ import {
   type Formatter,
   type Linter,
 } from "@/installers/index.js"
-import { getVersion } from "@/utils/get-tnt-version.js"
+import { getVersion } from "@/utils/get-lx2-version.js"
 import { getUserPkgManager } from "@/utils/get-user-pkg-manager.js"
 import { IsTTYError } from "@/utils/Is-tty-error.js"
 import { logger } from "@/utils/logger.js"
@@ -414,7 +414,7 @@ export async function runCli(): Promise<CliResults> {
         process.exit(0)
       }
 
-      logger.info(`Scaffolding default tnt app in ./${cliResults.appName}`)
+      logger.info(`Scaffolding default lx2 app in ./${cliResults.appName}`)
     } else {
       throw error
     }

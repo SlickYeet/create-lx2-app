@@ -22,7 +22,7 @@ export function TerminalDemo() {
         preload: true,
         loop: true,
         speed: 1.2,
-        theme: "ctnts",
+        theme: "clx2a",
         fit: "width",
         controls: "auto",
         terminalFontSize: "large",

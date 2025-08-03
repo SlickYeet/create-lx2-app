@@ -1,7 +1,7 @@
 "📌 area: cli":
   - any: ["cli/**/*"]
 
-"📌 area: tnt-app":
+"📌 area: lx2-app":
   - any: ["cli/template/**/*"]
 
 "📚 site":

@@ -1,7 +1,7 @@
 import { execSync } from "child_process"
 import https from "https"
 
-import { getVersion } from "./get-tnt-version.js"
+import { getVersion } from "./get-lx2-version.js"
 import { logger } from "./logger.js"
 
 export function renderVersionWarning(npmVersion: string) {

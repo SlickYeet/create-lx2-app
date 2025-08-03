@@ -11,7 +11,7 @@ import { installDependencies } from "@/helpers/install-dependencies.js"
 import { logNextSteps } from "@/helpers/log-next-steps.js"
 import { setImportAlias } from "@/helpers/set-import-alias.js"
 import { buildPkgInstallerMap } from "@/installers/index.js"
-import { getVersion } from "@/utils/get-tnt-version.js"
+import { getVersion } from "@/utils/get-lx2-version.js"
 import { getUserPkgManager } from "@/utils/get-user-pkg-manager.js"
 import { logger } from "@/utils/logger.js"
 import { parseNameAndPath } from "@/utils/parse-name-and-path.js"
@@ -21,8 +21,8 @@ import {
   renderVersionWarning,
 } from "@/utils/render-version-warning.js"
 
-type CTNTAPackageJSON = PackageJson & {
-  ctntaMetadata?: {
+type CLx2APackageJSON = PackageJson & {
+  clx2aMetadata?: {
     initVersion: string
   }
 }
@@ -59,9 +59,9 @@ async function main() {
   // Write name to package.json
   const pkgJson = fs.readJsonSync(
     path.join(projectDir, "package.json")
-  ) as CTNTAPackageJSON
+  ) as CLx2APackageJSON
   pkgJson.name = scopedAppName
-  pkgJson.ctntaMetadata = {
+  pkgJson.clx2aMetadata = {
     initVersion: getVersion(),
   }
 
