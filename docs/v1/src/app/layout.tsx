@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     siteName: SITE_TITLE,
     description: SITE_DESCRIPTION,
     type: "website",
-    url: "https://create.tntstack.org",
+    url: "https://v1.tntstack.org",
     images: [
       {
         url: SITE_IMAGE,
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    site: "create.tntstack.org",
+    site: "v1.tntstack.org",
     creator: "@slickyeet",
     images: [SITE_IMAGE],
   },

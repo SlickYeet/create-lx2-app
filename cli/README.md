@@ -2,20 +2,20 @@
 <picture>
   <source
     media="(prefers-color-scheme: dark)"
-    srcset="https://github.com/SlickYeet/create-tnt-stack/blob/1a2dc7b99935663b2caf1a88de04e1edeac94a89/docs/public/logo.light.png"
+    srcset="https://github.com/SlickYeet/create-lx2-app/blob/1d4a2538aeddf0dc9184c984e5384ed089392b9e/docs/v2/public/android-chrome-512x512.png"
   />
   <img
-    src="https://github.com/SlickYeet/create-tnt-stack/blob/1a2dc7b99935663b2caf1a88de04e1edeac94a89/docs/public/logo.dark.png"
+    src="https://github.com/SlickYeet/create-lx2-app/blob/1d4a2538aeddf0dc9184c984e5384ed089392b9e/docs/v2/public/android-chrome-512x512.png"
     width="130"
-    alt="TNT-Powered logo"
+    alt="Lx2 logo"
   />
 </picture>
 
-# 🚀 TNT-Powered
+# 🚀 Create Lx2 App
 
-**The easiest way to scaffold a modern web app using the TNT-Powered stack.**
+**The easiest way to scaffold a modern web app using the Lx2 stack.**
 
-Simply run `npm create tnt-stack@latest` to get started!
+Simply run `npm create lx2-app@latest` to get started!
 
 [![PRs-Welcome][contribute-image]][contribute-url]
 [![NPM version][npm-image]][npm-url]
@@ -38,7 +38,7 @@ Simply run `npm create tnt-stack@latest` to get started!
 
 <h2 id="whats-included">📦 What's Included</h2>
 
-TNT-Powered installs **TypeScript, Next.js, Tailwind CSS**, along with:
+Create Lx2 App installs **TypeScript, Next.js, Tailwind CSS**, along with:
 
 - ✅ **Payload CMS** - A powerful headless CMS
 - ✅ **Auth.js** - Authentication made easy
@@ -54,29 +54,29 @@ To create a new project, run the following command:
 ### npm
 
 ```bash
-npm create tnt-stack@latest
+npm create lx2-app@latest
 ```
 
 ### yarn
 
 ```bash
-yarn create tnt-stack
+yarn create lx2-app
 ```
 
 ### pnpm
 
 ```bash
-pnpm create tnt-stack@latest
+pnpm create lx2-app@latest
 ```
 
 ### bun
 
 ```bash
-bun create tnt-stack@latest
+bun create lx2-app@latest
 ```
 
 For more information, visit the
-[docs](https://create.tntstack.org/docs/getting-started).
+[docs](https://create.lx2.dev/docs/getting-started).
 
 <h2 id="features">🛠 Features</h2>
 
@@ -87,12 +87,13 @@ For more information, visit the
 <h2 id="documentation">📖 Documentation</h2>
 
 Full documentation is available at
-[create.tntstack.org](https://create.tntstack.org/docs).
+[create.lx2.dev](https://create.lx2.dev/docs).
 
 <h2 id="credits">❤️ Credits</h2>
 
-Huge thanks to [Theo]() and the [T3 Stack]() for their amazing work. TNT-Powered
-builds on the principles of create-t3-app, bringing even more flexibility.
+Huge thanks to [Theo](https://t3.gg) and the [T3 Stack](https://create.t3.gg)
+for their amazing work. The Lx2 stack builds on the principles of create-t3-app,
+bringing even more flexibility.
 
 If you like this project, giving it a ⭐ on GitHub!
 
@@ -102,9 +103,9 @@ We 💖 contributors! Feel free to contribute to this project but **please read
 the [Contributing Guidelines](CONTRIBUTING.md) before opening an issue or PR**
 so you understand the branching strategy and local development environment.
 
-<a href="https://github.com/slickyeet/create-tnt-stack/graphs/contributors">
+<a href="https://github.com/slickyeet/create-lx2-app/graphs/contributors">
   <p align="center">
-    <img src="https://contrib.rocks/image?repo=slickyeet/create-tnt-stack" />
+    <img src="https://contrib.rocks/image?repo=slickyeet/create-lx2-app" />
   </p>
 </a>
 
@@ -128,23 +129,23 @@ so you understand the branching strategy and local development environment.
 
 [contribute-image]: https://img.shields.io/badge/PRs-welcome-blue.svg
 [contribute-url]:
-  https://github.com/SlickYeet/create-tnt-stack/blob/main/CONTRIBUTING.md
+  https://github.com/SlickYeet/create-lx2-app/blob/main/CONTRIBUTING.md
 [npm-image]:
-  https://img.shields.io/npm/v/create-tnt-stack?color=0b7285&logoColor=0b7285
-[npm-url]: https://www.npmjs.com/package/create-tnt-stack
+  https://img.shields.io/npm/v/create-lx2-app?color=0b7285&logoColor=0b7285
+[npm-url]: https://www.npmjs.com/package/create-lx2-app
 [npm-beta-image]:
-  https://img.shields.io/npm/v/create-tnt-stack/beta?color=orange&logoColor=orange
-[npm-beta-url]: https://www.npmjs.com/package/create-tnt-stack
+  https://img.shields.io/npm/v/create-lx2-app/beta?color=orange&logoColor=orange
+[npm-beta-url]: https://www.npmjs.com/package/create-lx2-app
 [license-image]:
-  https://img.shields.io/github/license/SlickYeet/create-tnt-stack?color=red
-[license-url]: https://github.com/SlickYeet/create-tnt-stack/blob/main/LICENSE
+  https://img.shields.io/github/license/SlickYeet/create-lx2-app?color=red
+[license-url]: https://github.com/SlickYeet/create-lx2-app/blob/main/LICENSE
 [downloads-image]:
-  https://img.shields.io/npm/dm/create-tnt-stack?color=364fc7&logoColor=364fc7
+  https://img.shields.io/npm/dm/create-lx2-app?color=364fc7&logoColor=364fc7
 [release-image]:
-  https://github.com/SlickYeet/create-tnt-stack/actions/workflows/release.yml/badge.svg
+  https://github.com/SlickYeet/create-lx2-app/actions/workflows/release.yml/badge.svg
 [release-url]:
-  https://github.com/SlickYeet/create-tnt-stack/actions/workflows/release.yml
+  https://github.com/SlickYeet/create-lx2-app/actions/workflows/release.yml
 [prerelease-image]:
-  https://github.com/SlickYeet/create-tnt-stack/actions/workflows/prerelease.yml/badge.svg
+  https://github.com/SlickYeet/create-lx2-app/actions/workflows/prerelease.yml/badge.svg
 [prerelease-url]:
-  https://github.com/SlickYeet/create-tnt-stack/actions/workflows/prerelease.yml
+  https://github.com/SlickYeet/create-lx2-app/actions/workflows/prerelease.yml

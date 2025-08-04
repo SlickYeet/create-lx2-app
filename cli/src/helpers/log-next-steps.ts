@@ -37,12 +37,12 @@ export const logNextSteps = async ({
 
   if (packages?.authjs.inUse) {
     logger.info(
-      `  Fill in your .env with necessary values. See https://create.tntstack.org/first-steps for more info.`
+      `  Fill in your .env with necessary values. See https://create.lx2.dev/docs/first-steps for more info.`
     )
   }
   if (packages?.betterAuth.inUse) {
     logger.info(
-      `  Fill in your .env with necessary values. See https://create.tntstack.org/first-steps for more info.`
+      `  Fill in your .env with necessary values. See https://create.lx2.dev/docs/first-steps for more info.`
     )
   }
   if (packages?.prisma.inUse) {

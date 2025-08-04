@@ -32,8 +32,8 @@ learning how to use the TNT-Powered stack to build modern web applications.
 To run the documentation site locally, follow these steps:
 
 ```bash
-git clone https://github.com/SlickYeet/create-tnt-stack.git
-cd create-tnt-stack/docs/v1
+git clone https://github.com/SlickYeet/create-lx2-app.git
+cd create-lx2-app/docs/v1
 pnpm install
 pnpm dev
 ```
@@ -155,10 +155,10 @@ example:
 
 We 💖 contributors! If you’d like to contribute to the documentation, please
 refer to the
-[Contribution Guidelines](https://github.com/SlickYeet/create-tnt-stack/blob/main/CONTRIBUTING.md).
+[Contribution Guidelines](https://github.com/SlickYeet/create-lx2-app/blob/main/CONTRIBUTING.md).
 It includes detailed instructions on setting up your environment, making
 changes, and submitting pull requests.
 
 Thank you for visiting the Create TNT Stack documentation site! If you have any
 questions or feedback, feel free to open an issue or join the discussion on
-[GitHub](https://github.com/SlickYeet/create-tnt-stack).
+[GitHub](https://github.com/SlickYeet/create-lx2-app).

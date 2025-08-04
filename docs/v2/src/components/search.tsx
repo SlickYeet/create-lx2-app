@@ -201,21 +201,21 @@ export function Search(props: SearchProps) {
               className="!p-0 [&_[cmdk-group-heading]]:scroll-mt-16 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1"
             >
               <CommandMenuItem
-                value={`${packageManager} create tnt-stack@latest`}
+                value={`${packageManager} create lx2-app@latest`}
                 keywords={["install", "package", "dlx"]}
                 onHighlight={() =>
-                  handlePageHighlight(true, "create tnt-stack@latest")
+                  handlePageHighlight(true, "create lx2-app@latest")
                 }
                 onSelect={() =>
                   runCommand(async () => {
                     setSelectedType("command")
-                    setCopyPayload(`${packageManager} create tnt-stack@latest`)
+                    setCopyPayload(`${packageManager} create lx2-app@latest`)
                     await navigator.clipboard.writeText(copyPayload)
                   })
                 }
               >
                 <Code />
-                {packageManager} create tnt-stack@latest
+                {packageManager} create lx2-app@latest
               </CommandMenuItem>
             </CommandGroup>
 

@@ -9,15 +9,15 @@ import {
 } from "lucide-react"
 
 export const siteConfig = {
-  name: "Create TNT Stack",
+  name: "Create Lx2 App",
   description:
     "Build modern web applications with today's most popular tools. Launch your TypeScript, Next.js, and Tailwind CSS projects with a bang.",
-  url: "https://create.tntstack.org",
+  url: "https://create.lx2.dev",
   ogImage:
     "https://opengraph.b-cdn.net/production/images/3db2fef4-89b2-482a-bf11-29259d3f1bda.png?token=9qAl6n5l1iI8IaST_CyAfcGDnPbQNM-mk-7PxwveB2Q&height=675&width=1200&expires=33287835224",
   links: {
-    github: "https://github.com/SlickYeet/create-tnt-stack",
-    discord: "https://tntstack.org/discord",
+    github: "https://github.com/SlickYeet/create-lx2-app",
+    discord: "https://link.lx2.dev/discord",
   },
   navItems: [
     {
@@ -40,7 +40,7 @@ export type FeatureType = {
 
 export const FEATURES: FeatureType[] = [
   {
-    title: "TNT Stack",
+    title: "Lx2 App",
     description:
       "Full-stack typesafe boilerplate with TypeScript, Next.js, and Tailwind CSS",
     icon: Rocket,
@@ -63,14 +63,14 @@ export const FEATURES: FeatureType[] = [
   {
     title: "Developer Experience",
     description:
-      "Well-documented and easy to use, TNT Stack is designed from the ground up to make your life easier.",
+      "Well-documented and easy to use, Lx2 App is designed from the ground up to make your life easier.",
     icon: Code,
     color: "amber",
   },
   {
     title: "Performance Optimized",
     description:
-      "With Next.js at its core, TNT Stack is optimized for performance and SEO out of the box.",
+      "With Next.js at its core, Lx2 App is optimized for performance and SEO out of the box.",
     icon: Zap,
     color: "emerald",
   },

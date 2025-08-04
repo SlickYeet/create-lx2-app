@@ -28,7 +28,7 @@ export function CTA() {
             Your Development?
           </h2>
           <p className="text-muted-foreground mb-8 max-w-3xl text-xl">
-            Start building with the TNT stack today and experience the power of
+            Start building with the Lx2 App today and experience the power of
             TypeScript, Next.js, and Tailwind CSS combined with today&apos;s
             most popular tools.
           </p>

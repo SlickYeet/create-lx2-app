@@ -1,17 +1,17 @@
 import { execSync } from "child_process"
 import https from "https"
 
-import { getVersion } from "./get-tnt-version.js"
+import { getVersion } from "./get-lx2-version.js"
 import { logger } from "./logger.js"
 
 export function renderVersionWarning(npmVersion: string) {
   const currentVersion = getVersion()
 
   if (currentVersion.includes("beta")) {
-    logger.warn("  You are using a beta version of create-tnt-stack.")
+    logger.warn("  You are using a beta version of create-lx2-app.")
     logger.warn("  Please report any bugs you encounter.")
   } else if (currentVersion !== npmVersion) {
-    logger.warn("  You are using an outdated version of create-tnt-stack.")
+    logger.warn("  You are using an outdated version of create-lx2-app.")
     logger.warn(
       "  Your version:",
       currentVersion + ".",
@@ -38,7 +38,7 @@ function checkForLatestVersion(): Promise<string> {
   return new Promise((resolve, reject) => {
     https
       .get(
-        "https://registry.npmjs.org/-/package/tnt-stack/dist-tags",
+        "https://registry.npmjs.org/-/package/create-lx2-app/dist-tags",
         (res) => {
           if (res.statusCode === 200) {
             let body = ""
@@ -64,7 +64,7 @@ export const getNpmVersion = () =>
   // `fetch` to the registry is faster than `npm view` so we try that first
   checkForLatestVersion().catch(() => {
     try {
-      return execSync("npm view create-tnt-stack version").toString().trim()
+      return execSync("npm view create-lx2-app version").toString().trim()
     } catch {
       return null
     }

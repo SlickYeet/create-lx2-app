@@ -11,7 +11,7 @@ declare module "asciinema-player" {
     | "solarized-dark"
     | "solarized-light"
     | "tango"
-    | "ctnts"
+    | "clx2a"
 
   /**
    * Asciinema Player Options

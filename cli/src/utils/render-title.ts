@@ -5,21 +5,18 @@ import { getUserPkgManager } from "@/utils/get-user-pkg-manager.js"
 
 // Colors brought in from vscode poimandres theme
 const poimandresTheme = {
-  magenta: "#765bc8",
-  pink: "#a48897",
-  yellow: "#c7b561",
-  green: "#8bb8a0",
-  blue: "#4b97d5",
-  cyan: "#22b6d2",
+  primary: "#bf95f9",
+  accent: "#6071a4",
+  secondary: "#ff7ac5",
 }
 
 export function renderTitle() {
-  const tntGradient = gradient(Object.values(poimandresTheme))
+  const lx2Gradient = gradient(Object.values(poimandresTheme))
 
   // Resolves weird behavior where the ascii is offset
   const pkgManager = getUserPkgManager()
   if (pkgManager === "yarn" || pkgManager === "pnpm") {
     console.log("")
   }
-  console.log(tntGradient.multiline(TITLE_TEXT))
+  console.log(lx2Gradient.multiline(TITLE_TEXT))
 }

@@ -11,7 +11,7 @@ body:
         ```bash
         npx envinfo --system --binaries
         ```
-        If the issue is regarding a scaffolded app, please include the version used to scaffold that app which you can find in the `package.json` under `ctntaMetadata.initVersion`.
+        If the issue is regarding a scaffolded app, please include the version used to scaffold that app which you can find in the `package.json` under `clx2aMetadata.initVersion`.
     validations:
       required: true
   - type: textarea

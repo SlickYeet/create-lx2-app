@@ -1,34 +1,34 @@
 ---
 title: Getting Started
 description:
-  Get started with the TNT-Powered Stack, the best way to build your next web
+  Get started with the Lx2 stack, the best way to build your next web
   application.
 ---
 
-It is really simple to get started with the TNT-Powered Stack. All you need to
-do is to run the following command, and answer the prompts:
+It is really simple to get started with the Lx2 stack. All you need to do is to
+run the following command, and answer the prompts:
 
 ## Installation
 
 ```bash
-npm create tnt-stack@latest
+npm create lx2-app@latest
 ```
 
 It is as simple as that. Once you have answered all the prompts, you can
 checkout the [First Steps](/docs/first-steps) section to learn more about how to
-use the TNT Stack.
+use the Lx2 App.
 
 ## Advanced Installation
 
 The CLI comes with several flags that can be used to customize the installation
 process, or skip certain prompts.
 
-| Flags             | Description                                                                             |
-| ----------------- | --------------------------------------------------------------------------------------- |
-| `[dir]`           | The name of the application, as well as the name of the directory to create.            |
-| `--noGit`         | Explicitly tell the CLI to not initialize a new git repo in the project.                |
-| `--noInstall`     | Generate project without installing dependencies.                                       |
-| `-y`, `--default` | Bypass the CLI and bootstrap a new TNT Stack project with all default options selected. |
+| Flags             | Description                                                                           |
+| ----------------- | ------------------------------------------------------------------------------------- |
+| `[dir]`           | The name of the application, as well as the name of the directory to create.          |
+| `--noGit`         | Explicitly tell the CLI to not initialize a new git repo in the project.              |
+| `--noInstall`     | Generate project without installing dependencies.                                     |
+| `-y`, `--default` | Bypass the CLI and bootstrap a new Lx2 App project with all default options selected. |
 
 ## Experimental CI flags
 
@@ -56,13 +56,13 @@ Most flags will require a value, which can be passed in after the flag. For
 example, to scaffold a project with Prisma, you would run:
 
 ```bash
-npm create tnt-stack@latest --CI --databaseORM prisma
+npm create lx2-app@latest --CI --databaseORM prisma
 ```
 
 You can use the CI flags to skip the entire prompt process like this:
 
 ```bash
-npm create tnt-stack@latest my-app \
+npm create lx2-app@latest my-app \
   --CI \
   --backend nextjs \
   --authProvider authjs \

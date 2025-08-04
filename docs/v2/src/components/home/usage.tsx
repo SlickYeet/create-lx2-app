@@ -42,7 +42,7 @@ export function Usage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <CodeBlock code="npm create tnt-stack@latest my-app" />
+              <CodeBlock code="npm create lx2-app@latest my-app" />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 25, filter: "blur(10px)" }}
@@ -58,7 +58,7 @@ export function Usage() {
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <CodeBlock code="npx create-tnt-stack@latest" />
+              <CodeBlock code="npx create-lx2-app@latest" />
             </motion.div>
           </div>
 

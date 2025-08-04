@@ -72,7 +72,7 @@ export async function scaffoldProject({
 
       if (overwriteDir === "clear") {
         spinner.info(
-          `Emptying ${chalk.cyan.bold(projectName)} and creating tnt app...\n`
+          `Emptying ${chalk.cyan.bold(projectName)} and creating lx2 app...\n`
         )
         fs.emptyDirSync(projectDir)
       }
