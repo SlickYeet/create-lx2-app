@@ -127,7 +127,7 @@ export async function runCli(): Promise<CliResults> {
     /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
     .option(
       "--linter [linter]",
-      `Choose a linter to use. Possible values: ${defaultOptions.flags.linter}`,
+      `Choose what linter and formatter to use. Possible values: ${defaultOptions.flags.linter}`,
       defaultOptions.flags.linter
     )
     /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
