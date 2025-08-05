@@ -11,7 +11,6 @@ import {
   type BackendFramework,
   type DatabaseORM,
   type DatabaseProvider,
-  type Formatter,
   type Linter,
 } from "@/installers/index.js"
 import { getVersion } from "@/utils/get-lx2-version.js"
@@ -32,8 +31,6 @@ interface CliFlags {
   authentication: AuthProvider
   /** @internal Used in CI. */
   orm: DatabaseORM
-  /** @internal Used in CI. */
-  formatter: Formatter
   /** @internal Used in CI. */
   linter: Linter
   /** @internal Used in CI. */
@@ -61,8 +58,7 @@ const defaultOptions: CliResults = {
     CI: false,
     authentication: "none",
     orm: "none",
-    formatter: "prettier",
-    linter: "eslint",
+    linter: "eslint/prettier",
     importAlias: "@/",
     dbProvider: "sqlite",
     backend: "nextjs",
@@ -130,12 +126,6 @@ export async function runCli(): Promise<CliResults> {
     )
     /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
     .option(
-      "--formatter [formatter]",
-      `Choose a formatter to use. Possible values: ${defaultOptions.flags.formatter}`,
-      defaultOptions.flags.formatter
-    )
-    /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
-    .option(
       "--linter [linter]",
       `Choose a linter to use. Possible values: ${defaultOptions.flags.linter}`,
       defaultOptions.flags.linter
@@ -199,16 +189,9 @@ export async function runCli(): Promise<CliResults> {
       default:
         break
     }
-    switch (cliResults.flags.formatter) {
-      case "prettier":
-        cliResults.packages.push("prettier")
-        break
-      default:
-        break
-    }
     switch (cliResults.flags.linter) {
-      case "eslint":
-        cliResults.packages.push("eslint")
+      case "eslint/prettier":
+        cliResults.packages.push("eslint/prettier")
         break
       default:
         break
@@ -253,7 +236,6 @@ export async function runCli(): Promise<CliResults> {
       authentication: AuthProvider
       orm: DatabaseORM
       databaseProvider?: DatabaseProvider
-      formatter: Formatter
       linter: Linter
       noGit?: boolean
       noInstall?: boolean
@@ -318,14 +300,9 @@ export async function runCli(): Promise<CliResults> {
       }
     }
 
-    project.formatter = await select({
-      message: "What formatter would you like to use?",
-      choices: [{ value: "prettier", name: "Prettier" }],
-      default: !defaultOptions.flags.formatter,
-    })
     project.linter = await select({
-      message: "What linter would you like to use?",
-      choices: [{ value: "eslint", name: "ESLint" }],
+      message: "What linter and formatter would you like to use?",
+      choices: [{ value: "eslint/prettier", name: "ESLint/Prettier" }],
       default: !defaultOptions.flags.linter,
     })
     if (!cliResults.flags.noGit) {
@@ -373,16 +350,9 @@ export async function runCli(): Promise<CliResults> {
       default:
         break
     }
-    switch (project.formatter) {
-      case "prettier":
-        packages.push("prettier")
-        break
-      default:
-        break
-    }
     switch (project.linter) {
-      case "eslint":
-        packages.push("eslint")
+      case "eslint/prettier":
+        packages.push("eslint/prettier")
         break
       default:
         break

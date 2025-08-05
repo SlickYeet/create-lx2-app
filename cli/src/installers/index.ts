@@ -6,7 +6,6 @@ import { type PackageManager } from "@/utils/get-user-pkg-manager.js"
 import { authjsInstaller } from "./authjs.js"
 import { envVariablesInstaller } from "./env-vars.js"
 import { eslintInstaller } from "./eslint.js"
-import { prettierInstaller } from "./prettier.js"
 import { prismaInstaller } from "./prisma.js"
 
 // Turning this into a const allows the list to be iterated over for programmatically creating prompt options
@@ -16,8 +15,7 @@ export const availablePackages = [
   "betterAuth",
   "prisma",
   "envVariables",
-  "prettier",
-  "eslint",
+  "eslint/prettier",
   "typescript",
   "payload",
 ] as const
@@ -35,10 +33,7 @@ export type DatabaseORM = (typeof databaseORM)[number]
 export const databaseProviders = ["sqlite", "mysql", "postgresql"] as const
 export type DatabaseProvider = (typeof databaseProviders)[number]
 
-export const formatters = ["prettier"] as const
-export type Formatter = (typeof formatters)[number]
-
-export const linters = ["eslint"] as const
+export const linters = ["eslint/prettier"] as const
 export type Linter = (typeof linters)[number]
 
 export interface InstallerOptions {
@@ -79,12 +74,8 @@ export const buildPkgInstallerMap = (
     inUse: true,
     installer: envVariablesInstaller,
   },
-  prettier: {
-    inUse: packages.includes("prettier"),
-    installer: prettierInstaller,
-  },
-  eslint: {
-    inUse: packages.includes("eslint"),
+  "eslint/prettier": {
+    inUse: packages.includes("eslint/prettier"),
     installer: eslintInstaller,
   },
   typescript: {
