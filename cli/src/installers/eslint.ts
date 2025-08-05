@@ -8,13 +8,16 @@ import { Installer } from "@/installers/index.js"
 import { addPackageDependency } from "@/utils/add-package-dependency.js"
 
 export const eslintInstaller: Installer = ({ projectDir, packages }) => {
-  const usingESLint = packages?.eslint.inUse
+  const usingESLint = packages?.["eslint/prettier"].inUse
 
   const deps: AvailableDependencies[] = []
   if (usingESLint) {
     deps.push("eslint")
     deps.push("eslint-config-next")
     deps.push("@eslint/eslintrc")
+    deps.push("prettier")
+    deps.push("prettier-plugin-tailwindcss")
+    deps.push("@ianvs/prettier-plugin-sort-imports")
   }
 
   addPackageDependency({
@@ -28,7 +31,13 @@ export const eslintInstaller: Installer = ({ projectDir, packages }) => {
     "template/packages/config",
     "eslint.config.mjs"
   )
+  const prettierConfigSrc = path.join(
+    PKG_ROOT,
+    "template/packages/config",
+    "prettier.config.mjs"
+  )
   const eslintConfigDest = path.join(projectDir, "eslint.config.mjs")
+  const prettierConfigDest = path.join(projectDir, "prettier.config.mjs")
 
   // Add lint and push script to package.json
   const packageJsonPath = path.join(projectDir, "package.json")
@@ -43,4 +52,5 @@ export const eslintInstaller: Installer = ({ projectDir, packages }) => {
   fs.writeJSONSync(packageJsonPath, packageJsonContent, {
     spaces: 2,
   })
+  fs.copyFileSync(prettierConfigSrc, prettierConfigDest)
 }
