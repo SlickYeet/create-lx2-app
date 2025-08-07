@@ -1,5 +1,32 @@
 # create-lx2-app
 
+## 0.7.2
+
+### Patch Changes
+
+- [#141](https://github.com/SlickYeet/create-lx2-app/pull/141)
+  [`4000e68`](https://github.com/SlickYeet/create-lx2-app/commit/4000e6890cd9ce28195418bec9cd3914d7c93832)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - replace template
+  next.config.mjs and env.js with .ts versions
+
+## 0.7.1
+
+### Patch Changes
+
+- [#139](https://github.com/SlickYeet/create-lx2-app/pull/139)
+  [`0369d18`](https://github.com/SlickYeet/create-lx2-app/commit/0369d181442ba0b1ff4cedb874cbe2fd907c316e)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Consolidate formatter and
+  linter options
+
+## 0.7.0
+
+### Major Changes
+
+- [#136](https://github.com/SlickYeet/create-lx2-app/pull/136)
+  [`b0c435b`](https://github.com/SlickYeet/create-lx2-app/commit/b0c435bc998e984a72ed66b48770790f4e385511)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Package rebrand to
+  create-lx2-app
+
 ## 0.6.1
 
 ### Patch Changes
