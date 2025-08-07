@@ -66,7 +66,7 @@ export const envVariablesInstaller: Installer = ({
       "template/packages/src/env",
       envFile
     )
-    const envSchemaDest = path.join(projectDir, "src/env.js")
+    const envSchemaDest = path.join(projectDir, "src/env.ts")
     fs.copyFileSync(envSchemaSrc, envSchemaDest)
   }
 
@@ -109,7 +109,7 @@ function getEnvContent(
   databaseProvider: DatabaseProvider
 ) {
   let content = `
-# When adding additional environment variables, the schema in "/src/env.js"
+# When adding additional environment variables, the schema in "/src/env.ts"
 # should be updated accordingly.
   `
     .trim()
