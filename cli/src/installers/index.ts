@@ -1,4 +1,5 @@
 import { betterAuthInstaller } from "@/installers/better-auth.js"
+import { drizzleInstaller } from "@/installers/drizzle.js"
 import { payloadCMSInstaller } from "@/installers/payloadcms.js"
 import { typescriptInstaller } from "@/installers/typescript.js"
 import { type PackageManager } from "@/utils/get-user-pkg-manager.js"
@@ -14,6 +15,7 @@ export const availablePackages = [
   "authjs",
   "betterAuth",
   "prisma",
+  "drizzle",
   "envVariables",
   "eslint/prettier",
   "typescript",
@@ -27,7 +29,7 @@ export type BackendFramework = (typeof backendFrameworks)[number]
 export const authProviders = ["none", "authjs", "betterAuth"] as const
 export type AuthProvider = (typeof authProviders)[number]
 
-export const databaseORM = ["none", "prisma"] as const
+export const databaseORM = ["none", "prisma", "drizzle"] as const
 export type DatabaseORM = (typeof databaseORM)[number]
 
 export const databaseProviders = ["sqlite", "mysql", "postgres"] as const
@@ -69,6 +71,10 @@ export const buildPkgInstallerMap = (
   prisma: {
     inUse: packages.includes("prisma"),
     installer: prismaInstaller,
+  },
+  drizzle: {
+    inUse: packages.includes("drizzle"),
+    installer: drizzleInstaller,
   },
   envVariables: {
     inUse: true,

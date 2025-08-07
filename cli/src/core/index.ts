@@ -186,6 +186,9 @@ export async function runCli(): Promise<CliResults> {
       case "prisma":
         cliResults.packages.push("prisma")
         break
+      case "drizzle":
+        cliResults.packages.push("drizzle")
+        break
       default:
         break
     }
@@ -284,6 +287,7 @@ export async function runCli(): Promise<CliResults> {
         choices: [
           { value: "none", name: "None" },
           { value: "prisma", name: "Prisma" },
+          { value: "drizzle", name: "Drizzle" },
         ],
         default: !defaultOptions.flags.orm,
       })
@@ -346,6 +350,9 @@ export async function runCli(): Promise<CliResults> {
     switch (project.orm) {
       case "prisma":
         packages.push("prisma")
+        break
+      case "drizzle":
+        packages.push("drizzle")
         break
       default:
         break
