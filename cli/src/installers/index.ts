@@ -30,7 +30,7 @@ export type AuthProvider = (typeof authProviders)[number]
 export const databaseORM = ["none", "prisma"] as const
 export type DatabaseORM = (typeof databaseORM)[number]
 
-export const databaseProviders = ["sqlite", "mysql", "postgresql"] as const
+export const databaseProviders = ["sqlite", "mysql", "postgres"] as const
 export type DatabaseProvider = (typeof databaseProviders)[number]
 
 export const linters = ["eslint/prettier"] as const

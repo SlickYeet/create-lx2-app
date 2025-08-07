@@ -124,8 +124,7 @@ function getEnvContent(
   if (usingPrisma) {
     if (databaseProvider === "mysql") {
       content += `DATABASE_URL="mysql://root:password@localhost:3306/${scopedAppName}"`
-    } else if (databaseProvider === "postgresql") {
-      // postgres user is default for postgresql
+    } else if (databaseProvider === "postgres") {
       content += `DATABASE_URL="postgresql://postgres:password@localhost:5432/${scopedAppName}"`
     } else if (databaseProvider === "sqlite") {
       content += 'DATABASE_URL="file:./db.sqlite"'
@@ -139,8 +138,7 @@ function getEnvContent(
 # https://payloadcms.com/docs/database/overview
 `
     content += `PAYLOAD_SECRET=""\n`
-    if (databaseProvider === "postgresql") {
-      // postgres user is default for postgresql
+    if (databaseProvider === "postgres") {
       content += `DATABASE_URL="postgresql://postgres:password@localhost:5432/${scopedAppName}"`
     } else if (databaseProvider === "sqlite") {
       content += 'DATABASE_URL="file:./db.sqlite"'

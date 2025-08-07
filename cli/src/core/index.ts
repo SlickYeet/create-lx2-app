@@ -263,7 +263,7 @@ export async function runCli(): Promise<CliResults> {
         message: "What database provider would you like to use?",
         choices: [
           { value: "sqlite", name: "SQLite" },
-          { value: "postgresql", name: "PostgreSQL" },
+          { value: "postgres", name: "PostgreSQL" },
         ],
         default: !defaultOptions.flags.dbProvider,
       })
@@ -293,7 +293,7 @@ export async function runCli(): Promise<CliResults> {
           choices: [
             { value: "sqlite", name: "SQLite" },
             { value: "mysql", name: "MySQL" },
-            { value: "postgresql", name: "PostgreSQL" },
+            { value: "postgres", name: "PostgreSQL" },
           ],
           default: !defaultOptions.flags.dbProvider,
         })

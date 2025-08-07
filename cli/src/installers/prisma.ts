@@ -39,7 +39,7 @@ export const prismaInstaller: Installer = ({
       `provider = "${
         {
           mysql: "mysql",
-          postgresql: "postgresql",
+          postgres: "postgres",
         }[databaseProvider]
       }"`
     )
