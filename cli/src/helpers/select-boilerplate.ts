@@ -4,15 +4,16 @@ import fs from "fs-extra"
 import { PKG_ROOT } from "@/constants.js"
 import { type InstallerOptions } from "@/installers/index.js"
 
-type SelectBoilerplateOoptions = Required<
+type SelectBoilerplateOptions = Required<
   Pick<InstallerOptions, "packages" | "projectDir">
->
+> &
+  Partial<Pick<InstallerOptions, "databaseProvider">>
 
 // Select which layout file to use based on the selected packages
 export function selectLayoutFile({
   packages,
   projectDir,
-}: SelectBoilerplateOoptions) {
+}: SelectBoilerplateOptions) {
   const layoutFileDir = path.join(PKG_ROOT, "template/packages/src/app/layout")
 
   const usingPayload = packages.payload.inUse
@@ -31,13 +32,15 @@ export function selectLayoutFile({
 export function selectPageFile({
   packages,
   projectDir,
-}: SelectBoilerplateOoptions) {
+  databaseProvider,
+}: SelectBoilerplateOptions) {
   const pageFileDir = path.join(PKG_ROOT, "template/packages/src/app/page")
 
   const usingPayload = packages.payload.inUse
   const usingAuthjs = packages.authjs.inUse
   const usingBetterAuth = packages.betterAuth.inUse
   const usingPrisma = packages.prisma.inUse
+  const usingDrizzle = packages.drizzle.inUse
 
   let pageFile = "base.tsx"
   if (usingPayload) {
@@ -51,6 +54,9 @@ export function selectPageFile({
   }
   if (usingPrisma) {
     pageFile = "with-prisma.tsx"
+  }
+  if (usingDrizzle) {
+    pageFile = `with-drizzle-${databaseProvider}.tsx`
   }
   if (usingAuthjs && usingPrisma) {
     pageFile = "with-authjs-prisma.tsx"
@@ -70,7 +76,7 @@ export function selectPageFile({
 export function selectGlobals({
   packages,
   projectDir,
-}: SelectBoilerplateOoptions) {
+}: SelectBoilerplateOptions) {
   const globalsCSSDir = path.join(PKG_ROOT, "template/packages/src/app/globals")
 
   const usingPayload = packages.payload.inUse
