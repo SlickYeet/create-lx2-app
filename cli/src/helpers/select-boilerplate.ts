@@ -6,8 +6,7 @@ import { type InstallerOptions } from "@/installers/index.js"
 
 type SelectBoilerplateOptions = Required<
   Pick<InstallerOptions, "packages" | "projectDir">
-> &
-  Partial<Pick<InstallerOptions, "databaseProvider">>
+>
 
 // Select which layout file to use based on the selected packages
 export function selectLayoutFile({
@@ -32,7 +31,6 @@ export function selectLayoutFile({
 export function selectPageFile({
   packages,
   projectDir,
-  databaseProvider,
 }: SelectBoilerplateOptions) {
   const pageFileDir = path.join(PKG_ROOT, "template/packages/src/app/page")
 
@@ -56,7 +54,7 @@ export function selectPageFile({
     pageFile = "with-prisma.tsx"
   }
   if (usingDrizzle) {
-    pageFile = `with-drizzle-${databaseProvider}.tsx`
+    pageFile = `with-drizzle.tsx`
   }
   if (usingAuthjs && usingPrisma) {
     pageFile = "with-authjs-prisma.tsx"

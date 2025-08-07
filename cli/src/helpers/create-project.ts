@@ -54,7 +54,7 @@ export async function createProject({
 
   // Copy the boilerplate files
   selectLayoutFile({ packages, projectDir })
-  selectPageFile({ packages, projectDir, databaseProvider })
+  selectPageFile({ packages, projectDir })
   selectGlobals({ packages, projectDir })
 
   return projectDir
