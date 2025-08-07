@@ -5,6 +5,10 @@ import { env } from "@/env"
 
 import * as schema from "./schema"
 
+/**
+ * This caches the database connection in development to avoid
+ * creating a new connection on every HMR update.
+ */
 const globalForDb = globalThis as unknown as {
   conn: postgres.Sql | undefined
 }
