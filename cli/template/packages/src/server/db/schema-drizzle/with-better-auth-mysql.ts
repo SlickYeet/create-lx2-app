@@ -18,10 +18,10 @@ export const post = createTable(
     id: d.bigint({ mode: "number" }).primaryKey().autoincrement(),
     name: d.varchar({ length: 255 }).notNull(),
     createdAt: d
-      .timestamp()
+      .timestamp({ mode: "date" })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: d.timestamp().$onUpdate(() => new Date()),
+    updatedAt: d.timestamp({ mode: "date" }).$onUpdate(() => new Date()),
   }),
   (t) => [index("post_name_idx").on(t.name)]
 )
@@ -38,10 +38,10 @@ export const user = createTable(
       .notNull(),
     image: d.text(),
     createdAt: d
-      .timestamp()
+      .timestamp({ mode: "date" })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: d.timestamp().$onUpdate(() => new Date()),
+    updatedAt: d.timestamp({ mode: "date" }).$onUpdate(() => new Date()),
   }),
   (t) => [
     index("user_name_idx").on(t.name),
@@ -62,10 +62,10 @@ export const session = createTable(
       .references(() => user.id, { onDelete: "cascade" }),
     expiresAt: d.timestamp().notNull(),
     createdAt: d
-      .timestamp()
+      .timestamp({ mode: "date" })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: d.timestamp().$onUpdate(() => new Date()),
+    updatedAt: d.timestamp({ mode: "date" }).$onUpdate(() => new Date()),
   }),
   (t) => [index("session_userId_idx").on(t.userId)]
 )
@@ -88,10 +88,10 @@ export const account = createTable(
       .notNull()
       .references(() => user.id, { onDelete: "cascade" }),
     createdAt: d
-      .timestamp()
+      .timestamp({ mode: "date" })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: d.timestamp().$onUpdate(() => new Date()),
+    updatedAt: d.timestamp({ mode: "date" }).$onUpdate(() => new Date()),
   }),
   (t) => [index("account_userId_idx").on(t.userId)]
 )
@@ -104,10 +104,10 @@ export const verification = createTable(
     value: d.text().notNull(),
     expiresAt: d.timestamp().notNull(),
     createdAt: d
-      .timestamp()
+      .timestamp({ mode: "date" })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: d.timestamp().$onUpdate(() => new Date()),
+    updatedAt: d.timestamp({ mode: "date" }).$onUpdate(() => new Date()),
   }),
   (t) => [index("verification_identifier_idx").on(t.identifier)]
 )

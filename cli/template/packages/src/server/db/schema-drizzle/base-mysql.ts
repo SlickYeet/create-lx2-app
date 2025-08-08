@@ -18,10 +18,10 @@ export const post = createTable(
     id: d.bigint({ mode: "number" }).primaryKey().autoincrement(),
     name: d.varchar({ length: 255 }).notNull(),
     createdAt: d
-      .timestamp()
+      .timestamp({ mode: "date" })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: d.timestamp().$onUpdate(() => new Date()),
+    updatedAt: d.timestamp({ mode: "date" }).$onUpdate(() => new Date()),
   }),
   (t) => [index("name_idx").on(t.name)]
 )
