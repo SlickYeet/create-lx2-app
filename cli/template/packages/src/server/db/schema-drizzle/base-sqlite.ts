@@ -23,5 +23,5 @@ export const post = createTable(
       .notNull(),
     updatedAt: d.integer({ mode: "timestamp" }).$onUpdate(() => new Date()),
   }),
-  (t) => [index("name_idx").on(t.name)]
+  (t) => [index("post_name_idx").on(t.name)]
 )

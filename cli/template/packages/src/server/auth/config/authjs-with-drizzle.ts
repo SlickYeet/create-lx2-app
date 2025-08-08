@@ -10,7 +10,7 @@ import {
   session,
   user,
   verificationToken,
-} from "@/server/db/schema.ts"
+} from "@/server/db/schema"
 
 /**
  * This is the Auth.js configuration for the application.
@@ -20,8 +20,9 @@ import {
 export const authConfig: NextAuthConfig = {
   adapter: DrizzleAdapter(db, {
     /**
-     * For the `createTable` function to work correctly, we need to
-     * specify the table names for Auth.js models here.
+     * The Auth.js Drizzle adapter expects plural table names in code and singular in the database.
+     * Here, for consistency, we're explicitly mapping to our singular table names.
+     * Without this mapping, it would look for tables named "users", "accounts", etc.
      * You do not need to define models here that are not used by Auth.js.
      *
      * @see https://authjs.dev/getting-started/adapters/drizzle#passing-your-own-schemas

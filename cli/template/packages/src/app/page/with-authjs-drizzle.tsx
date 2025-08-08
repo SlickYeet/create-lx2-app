@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache"
 
 import { auth, signIn, signOut } from "@/server/auth"
 import { db } from "@/server/db"
-import { post as postsTable } from "@/server/db/schema"
+import { post as postTable } from "@/server/db/schema"
 
 export default async function HomePage() {
   const session = await auth()
@@ -145,7 +145,7 @@ export default async function HomePage() {
                     formData.get("name")?.toString() ||
                     `New Post ${posts.length + 1}`
 
-                  await db.insert(postsTable).values({ name })
+                  await db.insert(postTable).values({ name })
 
                   revalidatePath("/")
                 }}
@@ -183,8 +183,8 @@ export default async function HomePage() {
                       if (!user) throw new Error("Unauthorized")
 
                       await db
-                        .delete(postsTable)
-                        .where(eq(postsTable.id, post.id))
+                        .delete(postTable)
+                        .where(eq(postTable.id, post.id))
 
                       revalidatePath("/")
                     }}

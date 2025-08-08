@@ -50,19 +50,23 @@ export const user = createTable(
   ]
 )
 
-export const session = createTable("session", (d) => ({
-  sessionToken: d.text().primaryKey(),
-  userId: d
-    .text()
-    .notNull()
-    .references(() => user.id, { onDelete: "cascade" }),
-  expires: d.timestamp({ withTimezone: true }).notNull(),
-  createdAt: d
-    .timestamp({ withTimezone: true })
-    .default(sql`CURRENT_TIMESTAMP`)
-    .notNull(),
-  updatedAt: d.timestamp({ withTimezone: true }).$onUpdate(() => new Date()),
-}))
+export const session = createTable(
+  "session",
+  (d) => ({
+    sessionToken: d.text().primaryKey(),
+    userId: d
+      .text()
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+    expires: d.timestamp({ withTimezone: true }).notNull(),
+    createdAt: d
+      .timestamp({ withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
+      .notNull(),
+    updatedAt: d.timestamp({ withTimezone: true }).$onUpdate(() => new Date()),
+  }),
+  (t) => [index("session_userId_idx").on(t.userId)]
+)
 
 export const account = createTable(
   "account",

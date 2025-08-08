@@ -132,7 +132,7 @@ export const authenticator = createTable(
       .references(() => user.id, { onDelete: "cascade" }),
   }),
   (t) => [
-    index("authenticators_userId_idx").on(t.userId),
+    index("authenticator_userId_idx").on(t.userId),
     primaryKey({ columns: [t.userId, t.credentialID] }),
   ]
 )
