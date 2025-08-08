@@ -3,8 +3,6 @@ import config from "@payload-config"
 import { headers as getHeaders } from "next/headers.js"
 import { getPayload } from "payload"
 
-import "./globals.css"
-
 export default async function HomePage() {
   const headers = await getHeaders()
   const payloadConfig = await config
