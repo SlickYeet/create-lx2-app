@@ -148,7 +148,7 @@ export default async function HomePage() {
               </span>
             </h1>
 
-            {user && (
+            {user ? (
               <form
                 action={async (formData: FormData) => {
                   "use server"
@@ -187,6 +187,10 @@ export default async function HomePage() {
                   +
                 </button>
               </form>
+            ) : (
+              <p className="text-center text-lg text-neutral-700 md:text-xl lg:mt-6 dark:text-neutral-300">
+                Sign in to create posts
+              </p>
             )}
           </div>
 
