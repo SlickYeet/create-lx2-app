@@ -6,7 +6,7 @@ import { redirect } from "next/navigation"
 
 import { auth } from "@/server/auth"
 import { db } from "@/server/db"
-import { posts as postsTable } from "@/server/db/schema"
+import { post as postsTable } from "@/server/db/schema"
 
 export default async function HomePage() {
   const session = await auth.api.getSession({

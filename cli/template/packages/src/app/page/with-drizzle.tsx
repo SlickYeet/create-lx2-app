@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
 
 import { db } from "@/server/db"
-import { posts as postsTable } from "@/server/db/schema"
+import { post as postsTable } from "@/server/db/schema"
 
 export default async function HomePage() {
   const posts = await db.query.post.findMany()
