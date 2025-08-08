@@ -3,6 +3,8 @@ import config from "@payload-config"
 import { headers as getHeaders } from "next/headers.js"
 import { getPayload } from "payload"
 
+import "./globals.css"
+
 export default async function HomePage() {
   const headers = await getHeaders()
   const payloadConfig = await config
@@ -17,9 +19,9 @@ export default async function HomePage() {
         {/* Logo */}
         <picture className="relative">
           <div className="absolute inset-0 animate-pulse rounded-xl bg-gradient-to-r from-purple-500 to-cyan-500 opacity-20 blur-xl dark:from-purple-800 dark:to-cyan-800" />
-          <source srcSet="https://github.com/SlickYeet/create-lx2-app/blob/main/docs/v1/public/logo.light.png?raw=true" />
+          <source srcSet="https://github.com/SlickYeet/create-lx2-app/blob/main/docs/public/logo.light.png?raw=true" />
           <img
-            src="https://github.com/SlickYeet/create-lx2-app/blob/main/docs/v1/public/logo.light.png?raw=true"
+            src="https://github.com/SlickYeet/create-lx2-app/blob/main/docs/public/logo.light.png?raw=true"
             alt="Logo"
             width={65}
             height={65}
