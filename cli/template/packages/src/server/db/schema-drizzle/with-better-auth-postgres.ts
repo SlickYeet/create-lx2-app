@@ -2,7 +2,7 @@
 // Learn more at https://orm.drizzle.team/docs/sql-schema-declaration
 
 import { sql } from "drizzle-orm"
-import { index, sqliteTableCreator } from "drizzle-orm/sqlite-core"
+import { index, pgTableCreator } from "drizzle-orm/pg-core"
 
 /**
  * Below is an example of how to create a table with a prefix.
@@ -10,18 +10,20 @@ import { index, sqliteTableCreator } from "drizzle-orm/sqlite-core"
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const createTable = sqliteTableCreator((name) => `project1_${name}`)
+export const createTable = pgTableCreator(
+  (name) => `drizzle-integration-2_${name}`
+)
 
 export const post = createTable(
   "post",
   (d) => ({
-    id: d.integer({ mode: "number" }).primaryKey({ autoIncrement: true }),
-    name: d.text({ length: 255 }).notNull(),
+    id: d.integer().primaryKey().generatedByDefaultAsIdentity(),
+    name: d.varchar({ length: 255 }).notNull(),
     createdAt: d
-      .integer({ mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+      .timestamp({ withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: d.integer({ mode: "timestamp" }).$onUpdate(() => new Date()),
+    updatedAt: d.timestamp({ withTimezone: true }).$onUpdate(() => new Date()),
   }),
   (t) => [index("post_name_idx").on(t.name)]
 )
@@ -33,15 +35,15 @@ export const user = createTable(
     name: d.text().notNull(),
     email: d.text().notNull().unique(),
     emailVerified: d
-      .integer({ mode: "boolean" })
+      .boolean()
       .$defaultFn(() => false)
       .notNull(),
     image: d.text(),
     createdAt: d
-      .integer({ mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+      .timestamp({ withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: d.integer({ mode: "timestamp" }).$onUpdate(() => new Date()),
+    updatedAt: d.timestamp({ withTimezone: true }).$onUpdate(() => new Date()),
   }),
   (t) => [
     index("user_name_idx").on(t.name),
@@ -60,12 +62,12 @@ export const session = createTable(
       .text()
       .notNull()
       .references(() => user.id, { onDelete: "cascade" }),
-    expiresAt: d.integer({ mode: "timestamp" }).notNull(),
+    expiresAt: d.timestamp().notNull(),
     createdAt: d
-      .integer({ mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+      .timestamp({ withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: d.integer({ mode: "timestamp" }).$onUpdate(() => new Date()),
+    updatedAt: d.timestamp({ withTimezone: true }).$onUpdate(() => new Date()),
   }),
   (t) => [index("session_userId_idx").on(t.userId)]
 )
@@ -81,17 +83,17 @@ export const account = createTable(
     password: d.text(),
     accessToken: d.text(),
     refreshToken: d.text(),
-    accessTokenExpiresAt: d.integer({ mode: "timestamp" }),
-    refreshTokenExpiresAt: d.integer({ mode: "timestamp" }),
+    accessTokenExpiresAt: d.timestamp(),
+    refreshTokenExpiresAt: d.timestamp(),
     userId: d
-      .text("user_id")
+      .text()
       .notNull()
       .references(() => user.id, { onDelete: "cascade" }),
     createdAt: d
-      .integer({ mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+      .timestamp({ withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: d.integer({ mode: "timestamp" }).$onUpdate(() => new Date()),
+    updatedAt: d.timestamp({ withTimezone: true }).$onUpdate(() => new Date()),
   }),
   (t) => [index("account_userId_idx").on(t.userId)]
 )
@@ -102,12 +104,12 @@ export const verification = createTable(
     id: d.text().primaryKey(),
     identifier: d.text().notNull(),
     value: d.text().notNull(),
-    expiresAt: d.integer({ mode: "timestamp" }).notNull(),
+    expiresAt: d.timestamp().notNull(),
     createdAt: d
-      .integer({ mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+      .timestamp({ withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: d.integer({ mode: "timestamp" }).$onUpdate(() => new Date()),
+    updatedAt: d.timestamp({ withTimezone: true }).$onUpdate(() => new Date()),
   }),
   (t) => [index("verification_identifier_idx").on(t.identifier)]
 )
