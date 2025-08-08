@@ -42,9 +42,9 @@ export default async function HomePage() {
         {/* Logo */}
         <picture className="relative">
           <div className="absolute inset-0 animate-pulse rounded-xl bg-gradient-to-r from-purple-500 to-cyan-500 opacity-20 blur-xl dark:from-purple-800 dark:to-cyan-800" />
-          <source srcSet="https://github.com/SlickYeet/create-lx2-app/blob/main/docs/v1/public/logo.light.png?raw=true" />
+          <source srcSet="https://github.com/SlickYeet/create-lx2-app/blob/main/docs/public/logo.light.png?raw=true" />
           <img
-            src="https://github.com/SlickYeet/create-lx2-app/blob/main/docs/v1/public/logo.light.png?raw=true"
+            src="https://github.com/SlickYeet/create-lx2-app/blob/main/docs/public/logo.light.png?raw=true"
             alt="Logo"
             width={65}
             height={65}
@@ -52,20 +52,12 @@ export default async function HomePage() {
           />
         </picture>
 
-        {user ? (
-          <h1 className="mt-6 bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-center text-4xl leading-10 text-transparent sm:text-5xl sm:leading-14 md:text-6xl md:leading-20 lg:mt-10 lg:text-7xl lg:font-bold">
-            Welcome, <span className="capitalize">{user.name}</span>!
-          </h1>
-        ) : (
-          <>
-            <h1 className="mt-6 bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-center text-4xl leading-10 text-transparent sm:text-5xl sm:leading-14 md:text-6xl md:leading-20 lg:mt-10 lg:text-7xl lg:font-bold">
-              Lx2 Next.js App
-            </h1>
-            <p className="mt-4 text-center text-lg text-neutral-700 md:text-xl lg:mt-6 dark:text-neutral-300">
-              Build modern web applications with today&apos;s most popular tools
-            </p>
-          </>
-        )}
+        <h1 className="mt-6 bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-center text-4xl leading-10 text-transparent sm:text-5xl sm:leading-14 md:text-6xl md:leading-20 lg:mt-10 lg:text-7xl lg:font-bold">
+          Lx2 Next.js App
+        </h1>
+        <p className="mt-4 text-center text-lg text-neutral-700 md:text-xl lg:mt-6 dark:text-neutral-300">
+          Build modern web applications with today&apos;s most popular tools
+        </p>
 
         <div className="mt-12 flex items-center gap-3">
           <a
@@ -132,7 +124,7 @@ export default async function HomePage() {
               </span>
             </h1>
 
-            {user ? (
+            {user && (
               <form
                 action={async (formData: FormData) => {
                   "use server"
@@ -171,10 +163,6 @@ export default async function HomePage() {
                   +
                 </button>
               </form>
-            ) : (
-              <p className="text-center text-lg text-neutral-700 md:text-xl lg:mt-6 dark:text-neutral-300">
-                Sign in to create posts
-              </p>
             )}
           </div>
 

@@ -16,7 +16,6 @@ export const envVariablesInstaller: Installer = ({
   const usingAuthjs = packages?.authjs.inUse
   const usingBetterAuth = packages?.betterAuth.inUse
   const usingPrisma = packages?.prisma.inUse
-  const usingDrizzle = packages?.drizzle.inUse
   const usingPayload = packages?.payload.inUse
 
   const deps: AvailableDependencies[] = []
@@ -31,13 +30,12 @@ export const envVariablesInstaller: Installer = ({
     devMode: false,
   })
 
-  const usingDb = usingPrisma || usingDrizzle || usingPayload
+  const usingDb = usingPrisma || usingPayload
 
   const envContent = getEnvContent(
     !!usingAuthjs,
     !!usingBetterAuth,
     !!usingPrisma,
-    !!usingDrizzle,
     !!usingPayload,
     scopedAppName,
     databaseProvider
@@ -106,7 +104,6 @@ function getEnvContent(
   usingAuthjs: boolean,
   usingBetterAuth: boolean,
   usingPrisma: boolean,
-  usingDrizzle: boolean,
   usingPayload: boolean,
   scopedAppName: string,
   databaseProvider: DatabaseProvider
@@ -127,24 +124,8 @@ function getEnvContent(
   if (usingPrisma) {
     if (databaseProvider === "mysql") {
       content += `DATABASE_URL="mysql://root:password@localhost:3306/${scopedAppName}"`
-    } else if (databaseProvider === "postgres") {
-      content += `DATABASE_URL="postgresql://postgres:password@localhost:5432/${scopedAppName}"`
-    } else if (databaseProvider === "sqlite") {
-      content += 'DATABASE_URL="file:./db.sqlite"'
-    }
-    content += "\n"
-  }
-
-  if (usingDrizzle)
-    content += `
-# Drizzle ORM
-# https://orm.drizzle.team/docs/connect-overview
-`
-
-  if (usingDrizzle) {
-    if (databaseProvider === "mysql") {
-      content += `DATABASE_URL="mysql://root:password@localhost:3306/${scopedAppName}"`
-    } else if (databaseProvider === "postgres") {
+    } else if (databaseProvider === "postgresql") {
+      // postgres user is default for postgresql
       content += `DATABASE_URL="postgresql://postgres:password@localhost:5432/${scopedAppName}"`
     } else if (databaseProvider === "sqlite") {
       content += 'DATABASE_URL="file:./db.sqlite"'
@@ -158,7 +139,8 @@ function getEnvContent(
 # https://payloadcms.com/docs/database/overview
 `
     content += `PAYLOAD_SECRET=""\n`
-    if (databaseProvider === "postgres") {
+    if (databaseProvider === "postgresql") {
+      // postgres user is default for postgresql
       content += `DATABASE_URL="postgresql://postgres:password@localhost:5432/${scopedAppName}"`
     } else if (databaseProvider === "sqlite") {
       content += 'DATABASE_URL="file:./db.sqlite"'
