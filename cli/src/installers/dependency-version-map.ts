@@ -6,6 +6,7 @@ export const dependencyVersionMap = {
   // Auth.js
   "next-auth": "^5.0.0-beta.25",
   "@auth/prisma-adapter": "^2.8.0",
+  "@auth/drizzle-adapter": "^1.10.0",
 
   // Better-Auth
   "better-auth": "^1.2.7",
