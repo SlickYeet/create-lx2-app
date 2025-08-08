@@ -31,7 +31,7 @@ export const logNextSteps = async ({
     }
   }
 
-  if (["postgresql", "mysql"].includes(databaseProvider)) {
+  if (["postgres", "mysql"].includes(databaseProvider)) {
     logger.info("  Add your database connection string to .env")
   }
 

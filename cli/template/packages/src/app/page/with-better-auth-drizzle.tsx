@@ -1,10 +1,20 @@
 import { fileURLToPath } from "url"
+import { eq } from "drizzle-orm"
+import { revalidatePath } from "next/cache"
+import { headers } from "next/headers"
+import { redirect } from "next/navigation"
 
-import { auth, signIn, signOut } from "@/server/auth"
+import { auth } from "@/server/auth"
+import { db } from "@/server/db"
+import { post as postTable } from "@/server/db/schema"
 
 export default async function HomePage() {
-  const session = await auth()
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  })
   const user = session?.user
+
+  const posts = await db.query.post.findMany()
 
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
@@ -15,7 +25,9 @@ export default async function HomePage() {
           <button
             onClick={async () => {
               "use server"
-              await signOut()
+              await auth.api.signOut({
+                headers: await headers(),
+              })
             }}
             className="cursor-pointer rounded-md bg-rose-400 px-4 py-2"
           >
@@ -25,7 +37,17 @@ export default async function HomePage() {
           <button
             onClick={async () => {
               "use server"
-              await signIn("discord")
+              const response = await auth.api.signInSocial({
+                body: {
+                  provider: "discord",
+                },
+              })
+              if (!response) {
+                throw new Error("Failed to sign in")
+              }
+              if (response.url) {
+                redirect(response.url)
+              }
             }}
             className="cursor-pointer rounded-md bg-purple-400 px-4 py-2"
           >
@@ -119,7 +141,85 @@ export default async function HomePage() {
             </svg>
           </a>
         </div>
+
+        <div className="mt-12 flex flex-col items-center gap-3">
+          <div className="mb-4">
+            <h1 className="mb-4 text-center">
+              <span className="text-2xl text-neutral-700 dark:text-neutral-300">
+                Posts {posts.length}
+              </span>
+            </h1>
+
+            {user ? (
+              <form
+                action={async (formData: FormData) => {
+                  "use server"
+
+                  const name =
+                    formData.get("name")?.toString() ||
+                    `New Post ${posts.length + 1}`
+
+                  await db.insert(postTable).values({ name })
+
+                  revalidatePath("/")
+                }}
+              >
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="New Post"
+                  className="h-8 rounded-md border border-neutral-300 px-2 outline-none dark:border-neutral-700 dark:bg-neutral-800"
+                />
+                <button
+                  type="submit"
+                  className="ml-2 size-8 cursor-pointer rounded-md bg-neutral-200 outline-none hover:opacity-80 focus:opacity-80 dark:bg-neutral-800"
+                >
+                  +
+                </button>
+              </form>
+            ) : (
+              <p className="text-center text-lg text-neutral-700 md:text-xl lg:mt-6 dark:text-neutral-300">
+                Sign in to create posts
+              </p>
+            )}
+          </div>
+
+          <div className="grid w-full grid-cols-1 gap-2 space-y-2 sm:grid-cols-2">
+            {posts.map((post) => (
+              <div
+                key={post.id}
+                className="flex h-10 max-w-40 items-center rounded-md bg-neutral-200 px-2 py-1 dark:bg-neutral-800"
+              >
+                <span className="truncate text-sm text-neutral-700 dark:text-neutral-300">
+                  {post.name}
+                </span>
+                {user && (
+                  <form
+                    action={async () => {
+                      "use server"
+
+                      await db
+                        .delete(postTable)
+                        .where(eq(postTable.id, post.id))
+
+                      revalidatePath("/")
+                    }}
+                    className="ml-auto"
+                  >
+                    <button
+                      type="submit"
+                      className="ml-2 cursor-pointer rounded-md text-rose-500 outline-none hover:opacity-80 focus:opacity-80"
+                    >
+                      x
+                    </button>
+                  </form>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
+
       <div className="flex flex-col items-center gap-1 text-sm text-neutral-600 lg:flex-row lg:gap-2 dark:text-neutral-400">
         <p className="m-0">Get started by editing </p>
         <a

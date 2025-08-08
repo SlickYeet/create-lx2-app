@@ -6,6 +6,7 @@ export const dependencyVersionMap = {
   // Auth.js
   "next-auth": "^5.0.0-beta.25",
   "@auth/prisma-adapter": "^2.8.0",
+  "@auth/drizzle-adapter": "^1.10.0",
 
   // Better-Auth
   "better-auth": "^1.2.7",
@@ -15,6 +16,13 @@ export const dependencyVersionMap = {
   // Prisma
   prisma: "^6.5.0",
   "@prisma/client": "^6.5.0",
+
+  // Drizzle ORM
+  "drizzle-orm": "^0.44.4",
+  "drizzle-kit": "^0.31.4",
+  "@libsql/client": "^0.15.10",
+  mysql2: "^3.14.3",
+  postgres: "^3.4.7",
 
   // Environment Variables
   "@t3-oss/env-nextjs": "^0.12.0",

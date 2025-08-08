@@ -39,7 +39,7 @@ export const prismaInstaller: Installer = ({
       `provider = "${
         {
           mysql: "mysql",
-          postgresql: "postgresql",
+          postgres: "postgres",
         }[databaseProvider]
       }"`
     )
@@ -60,6 +60,7 @@ export const prismaInstaller: Installer = ({
   const packageJsonPath = path.join(projectDir, "package.json")
 
   /**
+   * TODO: Replace with `addPackageScript`
    * TODO: Add db:seed script
    */
   const packageJsonContent = fs.readJSONSync(packageJsonPath) as PackageJson

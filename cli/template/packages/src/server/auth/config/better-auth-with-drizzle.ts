@@ -1,14 +1,12 @@
-import { PrismaClient } from "@prisma/client"
 import { betterAuth } from "better-auth"
-import { prismaAdapter } from "better-auth/adapters/prisma"
+import { drizzleAdapter } from "better-auth/adapters/drizzle"
 import { nextCookies } from "better-auth/next-js"
 
 import { env } from "@/env"
-
-const prisma = new PrismaClient()
+import { db } from "@/server/db"
 
 export const auth = betterAuth({
-  database: prismaAdapter(prisma, {
+  database: drizzleAdapter(db, {
     provider: "sqlite",
   }),
   baseURL: env.NEXT_PUBLIC_BETTER_AUTH_URL,

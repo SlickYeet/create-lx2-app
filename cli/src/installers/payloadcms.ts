@@ -25,7 +25,7 @@ export const payloadCMSInstaller: Installer = ({
       case "sqlite":
         databaseDeps.push("@payloadcms/db-sqlite")
         break
-      case "postgresql":
+      case "postgres":
         databaseDeps.push("@payloadcms/db-vercel-postgres")
         break
     }
@@ -48,7 +48,7 @@ export const payloadCMSInstaller: Installer = ({
   const configSrc = path.join(
     packagesDir,
     "config/payload",
-    `${databaseProvider === "postgresql" ? "with-postgres" : "with-sqlite"}.ts`
+    `${databaseProvider === "postgres" ? "with-postgres" : "with-sqlite"}.ts`
   )
   const configDest = path.join(projectDir, "payload.config.ts")
   fs.copyFileSync(configSrc, configDest)
