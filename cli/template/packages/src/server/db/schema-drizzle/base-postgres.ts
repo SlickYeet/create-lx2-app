@@ -12,7 +12,7 @@ import { index, pgTableCreator } from "drizzle-orm/pg-core"
  */
 export const createTable = pgTableCreator((name) => `project1_${name}`)
 
-export const posts = createTable(
+export const post = createTable(
   "post",
   (d) => ({
     id: d.integer().primaryKey().generatedByDefaultAsIdentity(),

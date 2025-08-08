@@ -12,7 +12,7 @@ import { index, sqliteTableCreator } from "drizzle-orm/sqlite-core"
  */
 export const createTable = sqliteTableCreator((name) => `project1_${name}`)
 
-export const posts = createTable(
+export const post = createTable(
   "post",
   (d) => ({
     id: d.integer({ mode: "number" }).primaryKey({ autoIncrement: true }),

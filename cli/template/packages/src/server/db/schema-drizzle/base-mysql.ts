@@ -12,7 +12,7 @@ import { index, mysqlTableCreator } from "drizzle-orm/mysql-core"
  */
 export const createTable = mysqlTableCreator((name) => `project1_${name}`)
 
-export const posts = createTable(
+export const post = createTable(
   "post",
   (d) => ({
     id: d.bigint({ mode: "number" }).primaryKey().autoincrement(),

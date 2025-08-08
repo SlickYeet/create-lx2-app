@@ -1,17 +1,61 @@
 import { fileURLToPath } from "url"
 import { eq } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
+import { headers } from "next/headers"
+import { redirect } from "next/navigation"
 
+import { auth } from "@/server/auth"
 import { db } from "@/server/db"
 import { posts as postsTable } from "@/server/db/schema"
 
 export default async function HomePage() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  })
+  const user = session?.user
+
   const posts = await db.query.post.findMany()
 
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
   return (
     <main className="mx-auto flex h-screen max-w-5xl flex-col items-center justify-between overflow-hidden p-6 sm:p-[45px]">
+      <header className="ml-auto">
+        {user ? (
+          <button
+            onClick={async () => {
+              "use server"
+              await auth.api.signOut({
+                headers: await headers(),
+              })
+            }}
+            className="cursor-pointer rounded-md bg-rose-400 px-4 py-2"
+          >
+            Sign Out
+          </button>
+        ) : (
+          <button
+            onClick={async () => {
+              "use server"
+              const response = await auth.api.signInSocial({
+                body: {
+                  provider: "discord",
+                },
+              })
+              if (!response) {
+                throw new Error("Failed to sign in")
+              }
+              if (response.url) {
+                redirect(response.url)
+              }
+            }}
+            className="cursor-pointer rounded-md bg-purple-400 px-4 py-2"
+          >
+            Sign In
+          </button>
+        )}
+      </header>
+
       <div className="flex grow flex-col items-center justify-center">
         {/* Logo */}
         <picture className="relative">
@@ -26,12 +70,20 @@ export default async function HomePage() {
           />
         </picture>
 
-        <h1 className="mt-6 bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-center text-4xl leading-10 text-transparent sm:text-5xl sm:leading-14 md:text-6xl md:leading-20 lg:mt-10 lg:text-7xl lg:font-bold">
-          Lx2 Next.js App
-        </h1>
-        <p className="mt-4 text-center text-lg text-neutral-700 md:text-xl lg:mt-6 dark:text-neutral-300">
-          Build modern web applications with today&apos;s most popular tools
-        </p>
+        {user ? (
+          <h1 className="mt-6 bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-center text-4xl leading-10 text-transparent sm:text-5xl sm:leading-14 md:text-6xl md:leading-20 lg:mt-10 lg:text-7xl lg:font-bold">
+            Welcome, <span className="capitalize">{user.name}</span>!
+          </h1>
+        ) : (
+          <>
+            <h1 className="mt-6 bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-center text-4xl leading-10 text-transparent sm:text-5xl sm:leading-14 md:text-6xl md:leading-20 lg:mt-10 lg:text-7xl lg:font-bold">
+              Lx2 Next.js App
+            </h1>
+            <p className="mt-4 text-center text-lg text-neutral-700 md:text-xl lg:mt-6 dark:text-neutral-300">
+              Build modern web applications with today&apos;s most popular tools
+            </p>
+          </>
+        )}
 
         <div className="mt-12 flex items-center gap-3">
           <a
@@ -98,32 +150,38 @@ export default async function HomePage() {
               </span>
             </h1>
 
-            <form
-              action={async (formData: FormData) => {
-                "use server"
+            {user ? (
+              <form
+                action={async (formData: FormData) => {
+                  "use server"
 
-                const name =
-                  formData.get("name")?.toString() ||
-                  `New Post ${posts.length + 1}`
+                  const name =
+                    formData.get("name")?.toString() ||
+                    `New Post ${posts.length + 1}`
 
-                await db.insert(postsTable).values({ name })
+                  await db.insert(postsTable).values({ name })
 
-                revalidatePath("/")
-              }}
-            >
-              <input
-                type="text"
-                name="name"
-                placeholder="New Post"
-                className="h-8 rounded-md border border-neutral-300 px-2 outline-none dark:border-neutral-700 dark:bg-neutral-800"
-              />
-              <button
-                type="submit"
-                className="ml-2 size-8 cursor-pointer rounded-md bg-neutral-200 outline-none hover:opacity-80 focus:opacity-80 dark:bg-neutral-800"
+                  revalidatePath("/")
+                }}
               >
-                +
-              </button>
-            </form>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="New Post"
+                  className="h-8 rounded-md border border-neutral-300 px-2 outline-none dark:border-neutral-700 dark:bg-neutral-800"
+                />
+                <button
+                  type="submit"
+                  className="ml-2 size-8 cursor-pointer rounded-md bg-neutral-200 outline-none hover:opacity-80 focus:opacity-80 dark:bg-neutral-800"
+                >
+                  +
+                </button>
+              </form>
+            ) : (
+              <p className="text-center text-lg text-neutral-700 md:text-xl lg:mt-6 dark:text-neutral-300">
+                Sign in to create posts
+              </p>
+            )}
           </div>
 
           <div className="grid w-full grid-cols-1 gap-2 space-y-2 sm:grid-cols-2">
@@ -135,25 +193,27 @@ export default async function HomePage() {
                 <span className="truncate text-sm text-neutral-700 dark:text-neutral-300">
                   {post.name}
                 </span>
-                <form
-                  action={async () => {
-                    "use server"
+                {user && (
+                  <form
+                    action={async () => {
+                      "use server"
 
-                    await db
-                      .delete(postsTable)
-                      .where(eq(postsTable.id, post.id))
+                      await db
+                        .delete(postsTable)
+                        .where(eq(postsTable.id, post.id))
 
-                    revalidatePath("/")
-                  }}
-                  className="ml-auto"
-                >
-                  <button
-                    type="submit"
-                    className="ml-2 cursor-pointer rounded-md text-rose-500 outline-none hover:opacity-80 focus:opacity-80"
+                      revalidatePath("/")
+                    }}
+                    className="ml-auto"
                   >
-                    x
-                  </button>
-                </form>
+                    <button
+                      type="submit"
+                      className="ml-2 cursor-pointer rounded-md text-rose-500 outline-none hover:opacity-80 focus:opacity-80"
+                    >
+                      x
+                    </button>
+                  </form>
+                )}
               </div>
             ))}
           </div>
