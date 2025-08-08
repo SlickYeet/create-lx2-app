@@ -57,7 +57,7 @@ export const betterAuthInstaller: Installer = ({
       `provider: "${
         {
           mysql: "mysql",
-          postgres: "postgres",
+          postgres: "pg",
         }[databaseProvider]
       }",`
     )
