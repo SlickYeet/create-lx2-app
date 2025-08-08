@@ -53,14 +53,20 @@ export function selectPageFile({
   if (usingPrisma) {
     pageFile = "with-prisma.tsx"
   }
-  if (usingDrizzle) {
-    pageFile = `with-drizzle.tsx`
-  }
   if (usingAuthjs && usingPrisma) {
     pageFile = "with-authjs-prisma.tsx"
   }
   if (usingBetterAuth && usingPrisma) {
     pageFile = "with-better-auth-prisma.tsx"
+  }
+  if (usingDrizzle) {
+    pageFile = `with-drizzle.tsx`
+  }
+  if (usingAuthjs && usingDrizzle) {
+    pageFile = "with-authjs-drizzle.tsx"
+  }
+  if (usingBetterAuth && usingDrizzle) {
+    pageFile = "with-better-auth-drizzle.tsx"
   }
 
   const pageSrc = path.join(pageFileDir, pageFile)
