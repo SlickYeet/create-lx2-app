@@ -12,8 +12,8 @@ export function absoluteUrl(path: string) {
 export async function getNpmVersion(
   version: "latest" | "beta" = "latest",
 ): Promise<string> {
-  // Fetch the latest version of the package from npm
-  // If the beta flag is true, fetch the beta version
+  // Fetch the latest release of the package from npm
+  // If the version is "beta", fetch the beta release
 
   const response = await fetch("https://registry.npmjs.org/create-lx2-app", {
     method: "GET",
@@ -31,4 +31,49 @@ export async function getNpmVersion(
   } else {
     return data["dist-tags"].beta
   }
+}
+
+export interface VersionConfig {
+  version: "latest" | "beta"
+  text: string
+  showBeta?: boolean
+}
+
+export async function getVersionConfig(): Promise<VersionConfig> {
+  try {
+    const response = await fetch(
+      "https://cdn.famlam.ca/lx2/version-config.json",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        next: { revalidate: 300 },
+      },
+    )
+    if (!response.ok) {
+      throw new Error("Failed to fetch version config")
+    }
+
+    const config = await response.json()
+    return config
+  } catch (error) {
+    console.error("Failed to fetch version config, using defaults:", error)
+    // Fallback config
+    return {
+      version: "latest",
+      text: "{{name}} v{{version}} is now available!",
+      showBeta: false,
+    }
+  }
+}
+
+export function formatVersionText(
+  template: string,
+  version: string,
+  packageName: string,
+): string {
+  return template
+    .replace(/\{\{version\}\}/g, version)
+    .replace(/\{\{name\}\}/g, packageName)
 }

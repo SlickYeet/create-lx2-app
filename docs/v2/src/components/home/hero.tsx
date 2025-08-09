@@ -9,9 +9,22 @@ import { Icons } from "@/components/icons"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { siteConfig } from "@/lib/config"
-import { cn } from "@/lib/utils"
+import { cn, formatVersionText, type VersionConfig } from "@/lib/utils"
 
-export function Hero({ npmVersion }: { npmVersion?: string }) {
+interface HeroProps {
+  npmVersion?: string
+  versionConfig?: VersionConfig
+}
+
+export function Hero({ npmVersion, versionConfig }: HeroProps) {
+  const displayText =
+    npmVersion && versionConfig
+      ? formatVersionText(versionConfig.text, npmVersion, siteConfig.name)
+      : `${siteConfig.name} v${npmVersion} is now available!`
+
+  const isBeta =
+    npmVersion?.includes("beta") || versionConfig?.version === "beta"
+
   return (
     <section id="create-lx2-app" className="relative py-8 md:py-16">
       <div className="from-muted/30 absolute bottom-0 left-0 h-25 w-full bg-linear-0 to-transparent" />
@@ -32,12 +45,11 @@ export function Hero({ npmVersion }: { npmVersion?: string }) {
                 className={cn(
                   "rounded-full border transition-colors",
                   "border-primary/50 bg-primary/10 text-primary hover:border-primary/80",
-                  npmVersion?.includes("beta") &&
-                    "border-amber-500/50 bg-amber-500/10 text-amber-500 hover:border-amber-500/80",
+                  isBeta &&
+                    "border-secondary/50 bg-secondary/10 text-secondary hover:border-secondary/80",
                 )}
               >
-                {siteConfig.name} v{npmVersion} is now available
-                {npmVersion?.includes("beta") ? " in beta" : ""}!
+                {displayText}
               </Badge>
             </a>
           </motion.div>
