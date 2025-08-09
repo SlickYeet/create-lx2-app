@@ -4,6 +4,7 @@ import { Check, Clipboard, TerminalIcon } from "lucide-react"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import type { BundledLanguage } from "shiki"
 
+import { CopyButton } from "@/components/copy-button"
 import { Code } from "@/components/mdx/code"
 import { Figure } from "@/components/mdx/figure"
 import { Pre } from "@/components/mdx/pre"
@@ -20,21 +21,33 @@ import { applyPackageManagerTransformations } from "@/lib/highlight-code"
 interface CodeBlockProps extends React.ComponentProps<"pre"> {
   code: string
   language?: BundledLanguage
+  command?: boolean
 }
 
-export function CodeBlock({ code, language = "bash" }: CodeBlockProps) {
+export function CodeBlock({
+  code,
+  language = "bash",
+  command = true,
+}: CodeBlockProps) {
   const transforms = applyPackageManagerTransformations(code)
 
   return (
     <Figure data-rehype-pretty-code-figure="">
       <Pre data-language={language}>
         <Code data-language={language}>
-          <CodeBlockCommand
-            __npm__={transforms.__npm__}
-            __yarn__={transforms.__yarn__}
-            __pnpm__={transforms.__pnpm__}
-            __bun__={transforms.__bun__}
-          />
+          {command ? (
+            <CodeBlockCommand
+              __npm__={transforms.__npm__}
+              __yarn__={transforms.__yarn__}
+              __pnpm__={transforms.__pnpm__}
+              __bun__={transforms.__bun__}
+            />
+          ) : (
+            <>
+              {transforms.__pnpm__}
+              <CopyButton value={transforms.__pnpm__} />
+            </>
+          )}
         </Code>
       </Pre>
     </Figure>
@@ -114,7 +127,7 @@ export function CodeBlockCommand(props: CodeBlockCommandProps) {
               <pre>
                 <code
                   data-language="bash"
-                  className="relative font-mono text-sm leading-none"
+                  className="relative pr-4 font-mono text-sm leading-none"
                 >
                   {value}
                 </code>
