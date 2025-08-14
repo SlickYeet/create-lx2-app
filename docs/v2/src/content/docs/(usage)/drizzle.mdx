@@ -1,0 +1,287 @@
+---
+title: Drizzle ORM
+description: Lightweight, type-safe SQL for TypeScript
+links:
+  {
+    docs: https://orm.drizzle.team/docs/overview,
+    repo: https://github.com/drizzle-team/drizzle-orm,
+    community: https://discord.gg/tCe773yFeZ,
+  }
+---
+
+[Drizzle ORM](https://orm.drizzle.team/) is a modern, type-safe SQL ORM for
+TypeScript.  
+It's built to be lightweight, explicit, and compatible with multiple
+databases,  
+while giving you full control over SQL.
+
+## Drizzle Client
+
+Drizzle doesn't generate a client like Prisma - instead, you define your schema
+in TypeScript and pass it to a `drizzle()` instance that manages queries.
+
+```ts title="src/server/db" showLineNumbers
+import { drizzle } from "drizzle-orm/postgres-js"
+import postgres from "postgres"
+
+import { env } from "@/env"
+
+import * as schema from "./schema"
+
+const globalForDb = globalThis as unknown as {
+  conn: postgres.Sql | undefined
+}
+
+const conn = globalForDb.conn ?? postgres(env.DATABASE_URL)
+if (env.NODE_ENV !== "production") globalForDb.conn = conn
+
+export const db = drizzle(conn, { schema })
+```
+
+Here:
+
+- `postgres` is the database driver
+- `schema` is imported from your Drizzle schema definition
+- `db` is your Drizzle instance - similar to Prisma's `PrismaClient`
+
+<Callout type="info">
+  Drizzle works with multiple drivers (`postgres`, `mysql`, `sqlite`, etc.)
+</Callout>
+
+## Defining a Schema
+
+Unlike Prisma's `.prisma` file, Drizzle schemas are written directly in
+TypeScript. Below is the default schema for a Lx2 application when initialized
+with Drizzle:
+
+```ts title="src/server/db/schema.ts" showLineNumbers
+import { sql } from "drizzle-orm"
+import { index, pgTableCreator } from "drizzle-orm/pg-core"
+
+export const createTable = pgTableCreator((name) => `drizzle-test_${name}`)
+
+export const post = createTable(
+  "post",
+  (d) => ({
+    id: d.integer().primaryKey().generatedByDefaultAsIdentity(),
+    name: d.varchar({ length: 255 }).notNull(),
+    createdAt: d
+      .timestamp({ withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
+      .notNull(),
+    updatedAt: d.timestamp({ withTimezone: true }).$onUpdate(() => new Date()),
+  }),
+  (t) => [index("post_name_idx").on(t.name)],
+)
+```
+
+**Key Concepts**:
+
+- `pgTableCreator` is a custom table creator function used to prefix table names
+- Column types (`integer`, `varchar`, `timestamp`) map to SQL types
+- Constraints (`primaryKey`, `notNull`) enforce rules
+- No separate migration file is required for schema definition - migrations are
+  generated from these TypeScript files
+
+## Basic CRUD Operations
+
+- **Create**:
+
+<Tabs items={["Code", "Output"]}>
+  <Tabs.Tab className="mt-[-1.5rem]">
+    ```ts showLineNumbers
+    import { post as postTable } from "@/server/db/schema"
+
+    const newPost = await db
+      .insert(postTable)
+      .values({
+        id: 1,
+        name: "New Post",
+      })
+      .returning()
+    console.log(newPost)
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab className="mt-[-1.5rem]">
+    ```json showLineNumbers
+    {
+      "id": 1,
+      "name": "New Post",
+      "createdAt": "2025-08-01T00:00:00.000Z",
+      "updatedAt": "2025-08-01T00:00:00.000Z"
+    }
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+- **Read**:
+
+<Tabs items={["Code", "Output"]}>
+  <Tabs.Tab className="mt-[-1.5rem]">
+    ```ts showLineNumbers
+    import { post as postTable } from "@/server/db/schema"
+
+    const posts = await db.query.post.findMany()
+    console.log(posts)
+
+    const post = await db.query.post.findFirst({
+      where: eq(postTable.id, 1),
+    })
+    console.log(post)
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab className="mt-[-1.5rem]">
+    ```json showLineNumbers
+    // findMany
+    [
+      {
+        "id": 1,
+        "name": "New Post",
+        "createdAt": "2025-08-01T00:00:00.000Z",
+        "updatedAt": "2025-08-01T00:00:00.000Z"
+      },
+      {
+        "id": 2,
+        "name": "Second Post",
+        "createdAt": "2025-08-02T00:00:00.000Z",
+        "updatedAt": "2025-08-02T00:00:00.000Z"
+      }
+    ]
+
+    // findFirst
+    {
+      "id": 1,
+      "title": "New Post",
+      "createdAt": "2025-08-01T00:00:00.000Z",
+      "updatedAt": "2025-08-01T00:00:00.000Z"
+    }
+    ```
+
+  </Tabs.Tab>
+</Tabs>
+
+- **Update**:
+
+<Tabs items={["Code", "Output"]}>
+  <Tabs.Tab className="mt-[-1.5rem]">
+    ```ts showLineNumbers
+    import { post as postTable } from "@/server/db/schema"
+
+    const updatedPost = await db
+      .update(postTable)
+      .set({
+        name: "Updated Post",
+      })
+      .where(eq(postTable.id, 1))
+      .returning()
+    console.log(updatedPost)
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab className="mt-[-1.5rem]">
+    ```json {3,5} showLineNumbers
+    {
+      "id": 1,
+      "name": "Updated Post",
+      "createdAt": "2025-08-01T00:00:00.000Z",
+      "updatedAt": "2025-08-05T00:00:00.000Z"
+    }
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+- **Delete**:
+
+<Tabs items={["Code", "Output"]}>
+  <Tabs.Tab className="mt-[-1.5rem]">
+    ```ts showLineNumbers
+    import { post as postTable } from "@/server/db/schema"
+
+    const deletedPost = await db
+      .delete(postTable)
+      .where(eq(postTable.id, 1))
+      .returning()
+    console.log(deletedPost)
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab className="mt-[-1.5rem]">
+    ```json showLineNumbers
+    {
+      "id": 1,
+      "name": "Updated Post",
+      "createdAt": "2025-08-01T00:00:00.000Z",
+      "updatedAt": "2025-08-05T00:00:00.000Z"
+    }
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+## Migrations
+
+Drizzle migrations are code-based and generated using the CLI.
+
+<Callout type="info">
+  Remember to swap out the below package manager for your preferred one (e.g.,
+  `npm`, `bun`, `yarn`).
+</Callout>
+
+**Common Commands**:
+
+- `pnpm db:generate` -> Generate SQL migrations from your TypeScript schema
+- `pnpm db:migrate` -> Apply pending migrations to the database
+- `pnpm db:push` -> Apply migrations directly to the database
+- `pnpm db:studio` -> Visual database browser
+
+**Workflow**:
+
+1. Modify your TypeScript schema (`schema.ts`)
+2. Run:
+
+   ```bash
+   pnpm db:generate
+   ```
+
+3. Apply the migrations:
+
+   ```bash
+   pnpm db:migrate
+   ```
+
+4. Your changes are not in sync with the database
+
+<Callout type="warning" title="Direct SQL Support">
+  Drizzle lets you write raw SQL for special cases - but it's type-checked.
+
+See
+[Raw SQL Queries](https://orm.drizzle.team/docs/goodies#raw-sql-queries-execution)
+for more information.
+
+</Callout>
+
+## Drizzle Studio
+
+Drizzle Studio is a browser UI for your database. To access it, run:
+
+```bash
+pnpm db:studio
+```
+
+The command will return a URL to access Drizzle Studio in your browser, where
+you can:
+
+- Browse tables
+- View data
+- Run queries
+- Edit records
+
+## Useful Resources
+
+| Resource                                                                 | Description                                    |
+| ------------------------------------------------------------------------ | ---------------------------------------------- |
+| [Drizzle Documentation](https://orm.drizzle.team/docs)                   | Comprehensive guide to Drizzle ORM             |
+| [Drizzle GitHub Repository](https://github.com/drizzle-team/drizzle-orm) | Source code and issues                         |
+| [Drizzle Kit](https://orm.drizzle.team/docs/kit-overview)                | CLI for migrations & DB tools                  |
+| [Drizzle Discord Community](https://discord.gg/tCe773yFeZ)               | Join the community for support and discussions |

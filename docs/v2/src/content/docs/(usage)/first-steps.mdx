@@ -24,6 +24,11 @@ You can choose to run your database locally, using a service like
 development. SQLite is the default database for Lx2 projects, and no additional
 setup is required to get started.
 
+<Callout type="warning">
+  Prisma and Drizzle cannot be used at the same time, so you will need to choose
+  one or the other.
+</Callout>
+
 ### Prisma
 
 We recommend using [Prisma](https://www.prisma.io/) to interact with your
@@ -47,11 +52,17 @@ The above command will:
 
 ### Drizzle
 
-<Callout type="warning">Drizzle is not yet available in Lx2 projects.</Callout>
+Drizzle is another ORM that you can use with your Lx2 project. It is designed to
+work seamlessly with modern JavaScript and TypeScript applications. If you chose
+to include Drizzle, make sure to check the `.env` file and fill in the
+`DATABASE_URL` variable. To push your schema to your database, run the following
+command:
 
-Drizzle will be available in the future to help you manage your database schema
-and migrations. Drizzle cannot be used at the same time as Prisma, so you will
-need to choose one or the other.
+<CodeBlock
+  code={`npm run db:push
+# or
+npm run db:generate && npm run db:migrate`}
+/>
 
 ## Authentication
 
