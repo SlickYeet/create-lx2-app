@@ -35,7 +35,7 @@ export function Usage() {
         </div>
 
         <div className="flex flex-col items-center gap-12 lg:flex-row">
-          <div className="w-full flex-1">
+          <div className="w-full flex-1 md:px-4 lg:pr-0 lg:pl-4">
             <motion.div
               initial={{ opacity: 0, y: 25, filter: "blur(10px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}

@@ -17,7 +17,7 @@ const containerVariants = {
 
 export function Features() {
   return (
-    <section id="features" className="bg-muted/30 py-20">
+    <section id="features" className="bg-muted/30 overflow-x-hidden py-20">
       <div className="container px-4">
         <div className="mb-16 text-center md:text-left">
           <motion.h2
@@ -27,7 +27,7 @@ export function Features() {
             viewport={{ once: true }}
             className="mb-4 text-3xl font-bold md:text-4xl"
           >
-            Explosive Features
+            Features
           </motion.h2>
 
           <motion.p
@@ -37,7 +37,8 @@ export function Features() {
             viewport={{ once: true }}
             className="text-muted-foreground max-w-2xl text-xl"
           >
-            Everything you need to detonate your development workflow
+            Everything you need to power your next
+            <small className="text-xs">.js</small> project.
           </motion.p>
         </div>
 

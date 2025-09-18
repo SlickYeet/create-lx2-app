@@ -21,16 +21,14 @@ export function CTA() {
           className="bg-background relative rounded-lg p-8 text-center md:p-12 md:text-left"
         >
           <h2 className="mb-6 text-3xl font-bold tracking-tight md:text-4xl">
-            Ready to{" "}
+            Your Next<small className="text-sm">.js</small> App.{" "}
             <span className="from-primary to-secondary bg-linear-to-r bg-clip-text text-transparent">
-              Ignite
-            </span>{" "}
-            Your Development?
+              Done Right.
+            </span>
           </h2>
           <p className="text-muted-foreground mb-8 max-w-3xl text-xl">
-            Start building with the Lx2 App today and experience the power of
-            TypeScript, Next.js, and Tailwind CSS combined with today&apos;s
-            most popular tools.
+            Highly opinionated defaults, TypeScript, Next.js, Tailwind, and all
+            the tools you need.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 md:justify-start">

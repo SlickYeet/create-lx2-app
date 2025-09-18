@@ -40,7 +40,7 @@ export type FeatureType = {
 
 export const FEATURES: FeatureType[] = [
   {
-    title: "Lx2 App",
+    title: "Full-Stack",
     description:
       "Full-stack typesafe boilerplate with TypeScript, Next.js, and Tailwind CSS",
     icon: Rocket,
@@ -48,22 +48,21 @@ export const FEATURES: FeatureType[] = [
   },
   {
     title: "Choose Your Backend",
-    description:
-      "Control your the entire stack and your application with your choice of backend.",
+    description: "Control your the entire stack with your choice of backend.",
     icon: Database,
     color: "purple",
   },
   {
     title: "Fully Customizable",
     description:
-      "Choose only the packages and tools you need and customize the stack to fit your needs.",
+      "Choose only the tools you need and customize the stack to fit you.",
     icon: Palette,
     color: "pink",
   },
   {
     title: "Developer Experience",
     description:
-      "Well-documented and easy to use, Lx2 App is designed from the ground up to make your life easier.",
+      "Well-documented and opinionated, Lx2 App is designed from the ground up to be developer-friendly.",
     icon: Code,
     color: "amber",
   },

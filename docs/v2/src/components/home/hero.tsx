@@ -59,28 +59,18 @@ export function Hero({ npmVersion, versionConfig }: HeroProps) {
             initial={{ opacity: 0, filter: "blur(10px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 0.2, delay: 0.1 }}
-            className="mb-6 text-6xl font-bold tracking-tight md:text-8xl"
+            className="mb-6 text-5xl font-bold tracking-tight text-balance md:text-6xl lg:text-7xl"
           >
             <span className="from-primary to-secondary bg-linear-to-r bg-clip-text text-transparent">
-              Lx2 Stack
+              The Most Opinionated <br className="hidden sm:block" /> Way to
+              Build Next.js Apps
             </span>
           </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, filter: "blur(10px)" }}
-            animate={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{ duration: 0.2, delay: 0.2 }}
-            className="text-muted-foreground mb-8 max-w-2xl text-xl"
-          >
-            Build modern web applications with today&apos;s most popular tools.
-            Launch your TypeScript, Next.js, and Tailwind CSS projects with a
-            bang.
-          </motion.p>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.2, delay: 0.3 }}
+            transition={{ duration: 0.2, delay: 0.2 }}
             className="flex w-full max-w-sm flex-col items-center justify-center"
           >
             <div className="flex w-full flex-col gap-4 @sm:flex-row @sm:items-center @sm:justify-center">
