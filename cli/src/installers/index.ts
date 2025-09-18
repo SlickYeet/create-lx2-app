@@ -4,6 +4,7 @@ import { typescriptInstaller } from "@/installers/typescript.js"
 import { type PackageManager } from "@/utils/get-user-pkg-manager.js"
 
 import { authjsInstaller } from "./authjs.js"
+import { biomeInstaller } from "./biome.js"
 import { drizzleInstaller } from "./drizzle.js"
 import { envVariablesInstaller } from "./env-vars.js"
 import { eslintInstaller } from "./eslint.js"
@@ -18,6 +19,7 @@ export const availablePackages = [
   "drizzle",
   "envVariables",
   "eslint/prettier",
+  "biome",
   "typescript",
   "payload",
 ] as const
@@ -35,7 +37,7 @@ export type DatabaseORM = (typeof databaseORM)[number]
 export const databaseProviders = ["sqlite", "mysql", "postgresql"] as const
 export type DatabaseProvider = (typeof databaseProviders)[number]
 
-export const linters = ["eslint/prettier"] as const
+export const linters = ["eslint/prettier", "biome"] as const
 export type Linter = (typeof linters)[number]
 
 export interface InstallerOptions {
@@ -83,6 +85,10 @@ export const buildPkgInstallerMap = (
   "eslint/prettier": {
     inUse: packages.includes("eslint/prettier"),
     installer: eslintInstaller,
+  },
+  biome: {
+    inUse: packages.includes("biome"),
+    installer: biomeInstaller,
   },
   typescript: {
     inUse: true,
