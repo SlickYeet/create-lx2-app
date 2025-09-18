@@ -1,5 +1,14 @@
 # create-lx2-app
 
+## 0.10.1
+
+### Patch Changes
+
+- [#159](https://github.com/SlickYeet/create-lx2-app/pull/159)
+  [`4343251`](https://github.com/SlickYeet/create-lx2-app/commit/43432511d760fc3e0ad465e25e2fb021d33fed1a)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - fix help screen not
+  listing all possible frameworks
+
 ## 0.10.0
 
 ### Minor Changes
