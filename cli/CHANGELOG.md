@@ -1,5 +1,13 @@
 # create-lx2-app
 
+## 0.9.0
+
+### Minor Changes
+
+- [#154](https://github.com/SlickYeet/create-lx2-app/pull/154)
+  [`0e2f227`](https://github.com/SlickYeet/create-lx2-app/commit/0e2f22702ebd149385a7b0f941365c9b3f911aff)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - add drizzle to cli
+
 ## 0.8.0
 
 ### Major Changes
