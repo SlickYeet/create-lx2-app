@@ -186,9 +186,6 @@ export async function runCli(): Promise<CliResults> {
       case "prisma":
         cliResults.packages.push("prisma")
         break
-      case "drizzle":
-        cliResults.packages.push("drizzle")
-        break
       default:
         break
     }
@@ -266,7 +263,7 @@ export async function runCli(): Promise<CliResults> {
         message: "What database provider would you like to use?",
         choices: [
           { value: "sqlite", name: "SQLite" },
-          { value: "postgres", name: "PostgreSQL" },
+          { value: "postgresql", name: "PostgreSQL" },
         ],
         default: !defaultOptions.flags.dbProvider,
       })
@@ -287,7 +284,6 @@ export async function runCli(): Promise<CliResults> {
         choices: [
           { value: "none", name: "None" },
           { value: "prisma", name: "Prisma" },
-          { value: "drizzle", name: "Drizzle" },
         ],
         default: !defaultOptions.flags.orm,
       })
@@ -297,7 +293,7 @@ export async function runCli(): Promise<CliResults> {
           choices: [
             { value: "sqlite", name: "SQLite" },
             { value: "mysql", name: "MySQL" },
-            { value: "postgres", name: "PostgreSQL" },
+            { value: "postgresql", name: "PostgreSQL" },
           ],
           default: !defaultOptions.flags.dbProvider,
         })
@@ -350,9 +346,6 @@ export async function runCli(): Promise<CliResults> {
     switch (project.orm) {
       case "prisma":
         packages.push("prisma")
-        break
-      case "drizzle":
-        packages.push("drizzle")
         break
       default:
         break

@@ -12,12 +12,11 @@ export const betterAuthInstaller: Installer = ({
   databaseProvider,
 }) => {
   const usingPrisma = packages?.prisma.inUse
-  const usingDrizzle = packages?.drizzle.inUse
 
   const deps: AvailableDependencies[] = ["better-auth"]
   const devDeps: AvailableDependencies[] = []
-  if (!usingPrisma || !usingDrizzle) deps.push("better-sqlite3")
-  if (!usingPrisma || !usingDrizzle) devDeps.push("@types/better-sqlite3")
+  if (!usingPrisma) deps.push("better-sqlite3")
+  if (!usingPrisma) devDeps.push("@types/better-sqlite3")
 
   addPackageDependency({
     projectDir,
@@ -44,20 +43,16 @@ export const betterAuthInstaller: Installer = ({
   const authIndexSrc = path.join(
     packagesDir,
     "src/server/auth/config",
-    usingPrisma
-      ? "better-auth-with-prisma.ts"
-      : usingDrizzle
-        ? "better-auth-with-drizzle.ts"
-        : "better-auth.ts"
+    usingPrisma ? "better-auth-with-prisma.ts" : "better-auth.ts"
   )
   let authIndexText = fs.readFileSync(authIndexSrc, "utf-8")
-  if ((usingPrisma || usingDrizzle) && databaseProvider !== "sqlite") {
+  if (usingPrisma && databaseProvider !== "sqlite") {
     authIndexText = authIndexText.replace(
       'provider: "sqlite",',
       `provider: "${
         {
           mysql: "mysql",
-          postgres: "pg",
+          postgresql: "postgresql",
         }[databaseProvider]
       }",`
     )

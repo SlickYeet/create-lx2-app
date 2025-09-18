@@ -68,9 +68,8 @@ errors and warnings by default. To enable query logs, uncomment `"query"` in the
     ```ts showLineNumbers
     const newPost = await db.post.create({
       data: {
-        id: "1",
-        title: "New Post",
-        content: "This is a new post.",
+        id: 1,
+        name: "New Post",
       },
     })
     console.log(newPost)
@@ -79,9 +78,8 @@ errors and warnings by default. To enable query logs, uncomment `"query"` in the
   <Tabs.Tab className="mt-[-1.5rem]">
     ```json showLineNumbers
     {
-      "id": "1",
-      "title": "New Post",
-      "content": "This is a new post.",
+      "id": 1,
+      "name": "New Post",
       "createdAt": "2025-07-01T00:00:00.000Z",
       "updatedAt": "2025-07-01T00:00:00.000Z"
     }
@@ -98,7 +96,7 @@ errors and warnings by default. To enable query logs, uncomment `"query"` in the
     console.log(posts)
 
     const post = await db.post.findUnique({
-      where: { id: "1" },
+      where: { id: 1 },
     })
     console.log(post)
     ```
@@ -109,16 +107,14 @@ errors and warnings by default. To enable query logs, uncomment `"query"` in the
     // findMany
     [
       {
-        "id": "1",
-        "title": "New Post",
-        "content": "This is a new post.",
+        "id": 1,
+        "name": "New Post",
         "createdAt": "2025-07-01T00:00:00.000Z",
         "updatedAt": "2025-07-01T00:00:00.000Z"
       },
       {
-        "id": "2",
-        "title": "Another Post",
-        "content": "This is another post.",
+        "id": 2,
+        "name": "Another Post",
         "createdAt": "2025-07-02T00:00:00.000Z",
         "updatedAt": "2025-07-02T00:00:00.000Z"
       }
@@ -126,9 +122,8 @@ errors and warnings by default. To enable query logs, uncomment `"query"` in the
 
     // findUnique
     {
-      "id": "1",
-      "title": "New Post",
-      "content": "This is a new post.",
+      "id": 1,
+      "name": "New Post",
       "createdAt": "2025-07-01T00:00:00.000Z",
       "updatedAt": "2025-07-01T00:00:00.000Z"
     }
@@ -143,10 +138,9 @@ errors and warnings by default. To enable query logs, uncomment `"query"` in the
   <Tabs.Tab className="mt-[-1.5rem]">
     ```ts showLineNumbers
     const updatedPost = await db.post.update({
-      where: { id: "1" },
-      data: { 
-        title: "Updated Post",
-        content: "This is an updated post.",
+      where: { id: 1 },
+      data: {
+        name: "Updated Post",
       },
     })
     console.log(updatedPost)
@@ -155,9 +149,8 @@ errors and warnings by default. To enable query logs, uncomment `"query"` in the
   <Tabs.Tab className="mt-[-1.5rem]">
     ```json {3,4,6} showLineNumbers
     {
-      "id": "1",
-      "title": "Updated Post",
-      "content": "This is an updated post.",
+      "id": 1,
+      "name": "Updated Post",
       "createdAt": "2025-07-01T00:00:00.000Z",
       "updatedAt": "2025-07-05T00:00:00.000Z"
     }
@@ -171,7 +164,7 @@ errors and warnings by default. To enable query logs, uncomment `"query"` in the
   <Tabs.Tab className="mt-[-1.5rem]">
     ```ts showLineNumbers
     const deletedPost = await db.post.delete({
-      where: { id: "1" },
+      where: { id: 1 },
     })
     console.log(deletedPost)
     ```
@@ -179,9 +172,8 @@ errors and warnings by default. To enable query logs, uncomment `"query"` in the
   <Tabs.Tab className="mt-[-1.5rem]">
     ```json showLineNumbers
     {
-      "id": "1",
-      "title": "Updated Post",
-      "content": "This is an updated post.",
+      "id": 1,
+      "name": "Updated Post",
       "createdAt": "2025-07-01T00:00:00.000Z",
       "updatedAt": "2025-07-05T00:00:00.000Z"
     }

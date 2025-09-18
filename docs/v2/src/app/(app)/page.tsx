@@ -4,16 +4,17 @@ import { Hero } from "@/components/home/hero"
 import { Usage } from "@/components/home/usage"
 import { Footer } from "@/components/layout/footer"
 import { Header } from "@/components/layout/header"
-import { getNpmVersion } from "@/lib/utils"
+import { getNpmVersion, getVersionConfig } from "@/lib/utils"
 
 export default async function HomePage() {
-  const npmVersion = await getNpmVersion("latest")
+  const versionConfig = await getVersionConfig()
+  const npmVersion = await getNpmVersion(versionConfig.version)
 
   return (
     <>
       <Header />
       <div className="flex min-h-screen flex-col">
-        <Hero npmVersion={npmVersion} />
+        <Hero npmVersion={npmVersion} versionConfig={versionConfig} />
         <Features />
         <Usage />
         <CTA />

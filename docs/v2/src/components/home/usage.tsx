@@ -58,7 +58,7 @@ export function Usage() {
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <CodeBlock code="npx create-lx2-app@latest" />
+              <CodeBlock code="npm create lx2-app@beta # To try out the latest beta features" />
             </motion.div>
           </div>
 

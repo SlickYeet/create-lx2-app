@@ -58,9 +58,9 @@ export default async function HomePage() {
         {/* Logo */}
         <picture className="relative">
           <div className="absolute inset-0 animate-pulse rounded-xl bg-gradient-to-r from-purple-500 to-cyan-500 opacity-20 blur-xl dark:from-purple-800 dark:to-cyan-800" />
-          <source srcSet="https://github.com/SlickYeet/create-lx2-app/blob/main/docs/v1/public/logo.light.png?raw=true" />
+          <source srcSet="https://github.com/SlickYeet/create-lx2-app/blob/main/docs/public/logo.light.png?raw=true" />
           <img
-            src="https://github.com/SlickYeet/create-lx2-app/blob/main/docs/v1/public/logo.light.png?raw=true"
+            src="https://github.com/SlickYeet/create-lx2-app/blob/main/docs/public/logo.light.png?raw=true"
             alt="Logo"
             width={65}
             height={65}
@@ -148,7 +148,7 @@ export default async function HomePage() {
               </span>
             </h1>
 
-            {user ? (
+            {user && (
               <form
                 action={async (formData: FormData) => {
                   "use server"
@@ -187,10 +187,6 @@ export default async function HomePage() {
                   +
                 </button>
               </form>
-            ) : (
-              <p className="text-center text-lg text-neutral-700 md:text-xl lg:mt-6 dark:text-neutral-300">
-                Sign in to create posts
-              </p>
             )}
           </div>
 
