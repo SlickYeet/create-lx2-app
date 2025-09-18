@@ -1,0 +1,94 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.2.4/schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              [":PACKAGE:", ":PACKAGE_WITH_PROTOCOL:"],
+              ":BLANK_LINE:",
+              ":ALIAS:",
+              ":BLANK_LINE:",
+              ":PATH:",
+            ],
+            "identifierOrder": "natural",
+          },
+        },
+        "useSortedAttributes": "on",
+        "useSortedKeys": "on",
+        "useSortedProperties": "on",
+      },
+    },
+    "enabled": true,
+  },
+  "files": {
+    "ignoreUnknown": true,
+    "includes": ["**", "!node_modules", "!.next", "!dist", "!build"],
+  },
+  "formatter": {
+    "bracketSpacing": true,
+    "enabled": true,
+    "expand": "auto",
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 80,
+    "useEditorconfig": true,
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "always",
+      "enabled": true,
+      "jsxQuoteStyle": "double",
+      "quoteStyle": "double",
+      "semicolons": "asNeeded",
+      "trailingCommas": "all",
+    },
+  },
+  "linter": {
+    "domains": {
+      "next": "recommended",
+      "react": "recommended",
+    },
+    "enabled": true,
+    "rules": {
+      "complexity": {
+        "noExtraBooleanCast": "warn",
+        "noUselessFragments": "warn",
+        "noUselessTernary": "warn",
+      },
+      "nursery": {
+        "useSortedClasses": {
+          "fix": "safe",
+          "level": "warn",
+          "options": {
+            "attributes": ["className", "class"],
+            "functions": ["cn", "clsx", "classnames"],
+          },
+        },
+      },
+      "recommended": true,
+      "style": {
+        "useCollapsedElseIf": "error",
+        "useCollapsedIf": "error",
+        "useConst": "error",
+        "useImportType": {
+          "level": "warn",
+          "options": {
+            "style": "separatedType",
+          },
+        },
+        "useShorthandAssign": "error",
+      },
+      "suspicious": {
+        "noUnknownAtRules": "off",
+      },
+    },
+  },
+  "vcs": {
+    "clientKind": "git",
+    "enabled": true,
+    "useIgnoreFile": true,
+  },
+}

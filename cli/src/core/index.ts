@@ -193,6 +193,9 @@ export async function runCli(): Promise<CliResults> {
       case "eslint/prettier":
         cliResults.packages.push("eslint/prettier")
         break
+      case "biome":
+        cliResults.packages.push("biome")
+        break
       default:
         break
     }
@@ -302,7 +305,10 @@ export async function runCli(): Promise<CliResults> {
 
     project.linter = await select({
       message: "What linter and formatter would you like to use?",
-      choices: [{ value: "eslint/prettier", name: "ESLint/Prettier" }],
+      choices: [
+        { value: "eslint/prettier", name: "ESLint/Prettier" },
+        { value: "biome", name: "Biome" },
+      ],
       default: !defaultOptions.flags.linter,
     })
     if (!cliResults.flags.noGit) {
@@ -353,6 +359,9 @@ export async function runCli(): Promise<CliResults> {
     switch (project.linter) {
       case "eslint/prettier":
         packages.push("eslint/prettier")
+        break
+      case "biome":
+        packages.push("biome")
         break
       default:
         break

@@ -30,6 +30,9 @@ export const dependencyVersionMap = {
   "eslint-config-next": "^15.2.4",
   "@eslint/eslintrc": "^3.3.1",
 
+  // Biome
+  "@biomejs/biome": "2.2.4",
+
   // TypeScript
   typescript: "^5.8.2",
   "@types/node": "^22",
