@@ -7,4 +7,4 @@ import { execSync } from "child_process"
 // This is a workaround until this is handled automatically by `changeset version`.
 // See https://github.com/changesets/changesets/issues/421.
 execSync("npx changeset version", { stdio: "inherit" })
-execSync("npm install", { stdio: "inherit" })
+execSync("pnpm install", { stdio: "inherit" })

@@ -16,6 +16,7 @@ export const envVariablesInstaller: Installer = ({
   const usingAuthjs = packages?.authjs.inUse
   const usingBetterAuth = packages?.betterAuth.inUse
   const usingPrisma = packages?.prisma.inUse
+  const usingDrizzle = packages?.drizzle.inUse
   const usingPayload = packages?.payload.inUse
 
   const deps: AvailableDependencies[] = []
@@ -30,12 +31,13 @@ export const envVariablesInstaller: Installer = ({
     devMode: false,
   })
 
-  const usingDb = usingPrisma || usingPayload
+  const usingDb = usingPrisma || usingDrizzle || usingPayload
 
   const envContent = getEnvContent(
     !!usingAuthjs,
     !!usingBetterAuth,
     !!usingPrisma,
+    !!usingDrizzle,
     !!usingPayload,
     scopedAppName,
     databaseProvider
@@ -104,6 +106,7 @@ function getEnvContent(
   usingAuthjs: boolean,
   usingBetterAuth: boolean,
   usingPrisma: boolean,
+  usingDrizzle: boolean,
   usingPayload: boolean,
   scopedAppName: string,
   databaseProvider: DatabaseProvider
@@ -121,7 +124,13 @@ function getEnvContent(
 # https://www.prisma.io/docs/reference/database-reference/connection-urls#env
 `
 
-  if (usingPrisma) {
+  if (usingDrizzle)
+    content += `
+# Drizzle ORM
+# https://orm.drizzle.team/docs/connect-overview
+`
+
+  if (usingPrisma || usingDrizzle) {
     if (databaseProvider === "mysql") {
       content += `DATABASE_URL="mysql://root:password@localhost:3306/${scopedAppName}"`
     } else if (databaseProvider === "postgresql") {

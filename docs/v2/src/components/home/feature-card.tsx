@@ -34,30 +34,51 @@ export function FeatureCard(props: FeatureType) {
   return (
     <motion.div
       variants={cardVariants}
-      whileHover={{ y: -5 }}
-      whileFocus={{ y: -5 }}
-      whileTap={{ y: -5 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="group bg-background relative rounded-lg border p-6 transition-shadow outline-none focus-within:shadow-lg hover:shadow-lg"
+      tabIndex={0}
+      className={cn(
+        "group bg-background @container relative h-48 cursor-default rounded-lg border p-6 transition-shadow outline-none",
+        "[--feature-icon-spacing:calc(var(--spacing)*12)]",
+        "hover:shadow-lg",
+        "focus-within:shadow-lg",
+      )}
     >
       <div
         className={cn(
-          "absolute inset-0 rounded-lg bg-linear-to-br to-transparent opacity-0 transition-opacity group-focus-within:opacity-10 group-hover:opacity-10 dark:group-focus-within:opacity-5 dark:group-hover:opacity-5",
+          "absolute inset-0 rounded-lg bg-linear-to-br to-transparent opacity-0 transition-opacity",
+          "group-focus-within:opacity-10 group-hover:opacity-10 dark:group-focus-within:opacity-5 dark:group-hover:opacity-5",
           gradientColor,
         )}
       />
-      <div
-        className={cn(
-          "mb-4 flex size-12 items-center justify-center rounded-lg",
-          iconBgColor,
-          iconColor,
-        )}
-      >
-        <Icon className="size-6" />
+      <div className="flex flex-col">
+        <div
+          className={cn(
+            "mb-4 flex size-(--feature-icon-spacing) items-center justify-center rounded-lg",
+            iconBgColor,
+            iconColor,
+          )}
+        >
+          <Icon className="size-6" />
+        </div>
+        <h3
+          className={cn(
+            "mb-2 text-base font-bold transition-all delay-50 duration-200 ease-in-out @2xs:text-lg @xs:text-xl @sm:text-2xl",
+            "group-hover:translate-x-[calc(var(--feature-icon-spacing)+var(--spacing)*2)] group-hover:-translate-y-[calc(var(--feature-icon-spacing)+var(--spacing))] @sm:group-hover:translate-x-[calc(var(--feature-icon-spacing)+var(--spacing)*4)]",
+            "group-focus-within:translate-x-[calc(var(--feature-icon-spacing)+var(--spacing)*4)] group-focus-within:-translate-y-[calc(var(--feature-icon-spacing)+var(--spacing))]",
+          )}
+        >
+          {title}
+        </h3>
       </div>
 
-      <h3 className="mb-2 text-xl font-bold">{title}</h3>
-      <p className="text-muted-foreground">{description}</p>
+      <p
+        className={cn(
+          "text-muted-foreground -translate-y-4 opacity-0 transition-all delay-100 duration-200 ease-in-out",
+          "group-hover:-translate-y-8 group-hover:opacity-100",
+          "group-focus-within:-translate-y-8 group-focus-within:opacity-100",
+        )}
+      >
+        {description}
+      </p>
     </motion.div>
   )
 }
