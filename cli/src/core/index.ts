@@ -4,6 +4,7 @@ import { Command } from "commander"
 import { CREATE_LX2_APP, DEFAULT_APP_NAME } from "@/constants.js"
 import {
   authProviders,
+  backendFrameworks,
   databaseORM,
   databaseProviders,
   type AuthProvider,
@@ -105,7 +106,7 @@ export async function runCli(): Promise<CliResults> {
     /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
     .option(
       "--backend [framework]",
-      `Choose a backend framework to use. Possible values: ${defaultOptions.flags.backend}`,
+      `Choose a backend framework to use. Possible values: ${backendFrameworks.join(", ")}`,
       defaultOptions.flags.backend
     )
     /** @experimental Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
