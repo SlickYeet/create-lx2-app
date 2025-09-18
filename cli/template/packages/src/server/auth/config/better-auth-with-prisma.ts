@@ -11,6 +11,7 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "sqlite",
   }),
+  baseURL: env.NEXT_PUBLIC_BETTER_AUTH_URL,
   socialProviders: {
     discord: {
       clientId: env.DISCORD_CLIENT_ID,
