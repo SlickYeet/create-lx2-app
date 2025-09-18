@@ -45,6 +45,7 @@ Create Lx2 App installs **TypeScript, Next.js, Tailwind CSS**, along with:
 - ✅ **Better Auth** - The most comprehensive authentication framework for
   TypeScript.
 - ✅ **Prisma ORM** - Database management with full type safety
+- ✅ **Drizzle ORM** - A next gen TypeScript ORM for you to ship (ship ship)
 - ✅ **And many more coming soon...**
 
 <h2 id="getting-started">🚀 Getting Started</h2>
@@ -115,7 +116,7 @@ so you understand the branching strategy and local development environment.
 
 <div align="center">
   <a
-    href="https://vercel.com/?utm_source=famlam&utm_campaign=oss"
+    href="https://vercel.com/?utm_source=lx2&utm_campaign=oss"
     target="_blank"
     rel="noopener noreferrer"
   >
