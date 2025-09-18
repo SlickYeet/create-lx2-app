@@ -1,5 +1,13 @@
 # create-lx2-app
 
+## 0.10.0
+
+### Minor Changes
+
+- [#157](https://github.com/SlickYeet/create-lx2-app/pull/157)
+  [`ccadb2d`](https://github.com/SlickYeet/create-lx2-app/commit/ccadb2d0016df827135081fffe12bc074463071b)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - add biome to cli
+
 ## 0.9.0
 
 ### Minor Changes
