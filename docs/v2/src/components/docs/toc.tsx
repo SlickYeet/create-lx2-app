@@ -88,11 +88,11 @@ export function TableOfContents(props: TableOfContentsProps) {
         (child) => child.type === "page" && child.url === pathname,
       ),
   )
-  const pagePath = pathname.replace("/docs/", "")
+  const pagePath = pathname.replace("/docs", "")
 
   const editUrl = `${siteConfig.links.github}/blob/main/docs/v2/src/content/docs/${
     parent?.$id
-  }/${pagePath ? `${pagePath}.mdx` : "index.md"}`
+  }${pagePath ? `${pagePath}.mdx` : "/index.mdx"}`
 
   useEffect(() => {
     function handleScroll() {
