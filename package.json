@@ -1,7 +1,7 @@
 {
   "name": "root",
   "version": "0.0.0",
-  "description": "Build modern web applications with today's most popular tools",
+  "description": "The Most Opinionated Way to Build Next.js Apps",
   "author": {
     "name": "Lasse Lammers",
     "emial": "lasse@famlam.ca",
