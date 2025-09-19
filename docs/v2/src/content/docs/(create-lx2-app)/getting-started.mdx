@@ -35,6 +35,10 @@ process, or skip certain prompts.
 The CI flag can be used to scaffold a new project without prompts. This is
 useful for CI/CD pipelines.
 
+<Callout type="warning">
+  If you don't provide the CI flag, the rest of these flags have no effect.
+</Callout>
+
 | Flags                        | Description                                       |
 | ---------------------------- | ------------------------------------------------- |
 | `--CI`                       | Set the CLI to run in CI mode.                    |
@@ -45,10 +49,6 @@ useful for CI/CD pipelines.
 | `--linter [linter]`          | Specify which linter to scaffold with.            |
 | `-i, --import-alias [alias]` | Specify which import alias to scaffold with.      |
 | `--dbProvider [provider]`    | Specify which database engine to scaffold with.   |
-
-<Callout type="warning">
-  If you don't provide the CI flag, the rest of these flags have no effect.
-</Callout>
 
 ### Examples
 
