@@ -1,5 +1,14 @@
 # create-lx2-app
 
+## 0.10.4
+
+### Patch Changes
+
+- [#176](https://github.com/SlickYeet/create-lx2-app/pull/176)
+  [`21b37e7`](https://github.com/SlickYeet/create-lx2-app/commit/21b37e785a9cc929bf3f146e2503b308bea4863e)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Update CLI README.md and
+  package.json
+
 ## 0.10.3
 
 ### Patch Changes
