@@ -20,8 +20,8 @@ export async function Footer() {
 
   return (
     <footer className="mt-auto border-t py-12">
-      <div className="container">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div className="@container container">
+        <div className="grid grid-cols-1 gap-8 @2xl:grid-cols-2 @5xl:grid-cols-4">
           {/* Logo and GitHub buttons */}
           <div className="flex flex-col items-start gap-4">
             <div className="flex items-center gap-2">
@@ -31,8 +31,7 @@ export async function Footer() {
               </Link>
             </div>
             <p className="text-muted-foreground max-w-xs text-sm">
-              A powerful web application scaffolding CLI tool to jumpstart your
-              projects with explosive speed.
+              {siteConfig.description}
             </p>
 
             <div className="flex gap-1">
@@ -53,16 +52,16 @@ export async function Footer() {
 
           {/* Create Lx2 App links */}
           <div>
-            <h3 className="mb-4 text-lg font-semibold">Create Lx2 App</h3>
+            <h3 className="mb-4 text-lg font-semibold">{siteConfig.name}</h3>
             <ul className="space-y-2">
               <li>
                 <Anchor href={siteConfig.navItems[0].href}>Introduction</Anchor>
               </li>
               <li>
-                <Anchor href="/getting-started">Getting Started</Anchor>
+                <Anchor href="/docs/getting-started">Getting Started</Anchor>
               </li>
               <li>
-                <Anchor href="/why">Why?</Anchor>
+                <Anchor href="/docs/why">Why?</Anchor>
               </li>
             </ul>
           </div>
@@ -103,7 +102,7 @@ export async function Footer() {
                 <Anchor href={siteConfig.links.discord}>
                   <div className="flex items-center gap-1.5">
                     <Icons.discord className="size-4" />
-                    <span>Join our Discord</span>
+                    <span>Join the Discord</span>
                   </div>
                 </Anchor>
               </li>
@@ -115,7 +114,7 @@ export async function Footer() {
             <h3 className="mb-4 text-lg font-semibold">Resources</h3>
             <ul className="space-y-2">
               <li>
-                <Anchor href="/faq">
+                <Anchor href={siteConfig.navItems[1].href}>
                   <div className="flex items-center gap-1.5">
                     <MessageCircleQuestionIcon className="size-4" />
                     <span>FAQ</span>
@@ -123,7 +122,7 @@ export async function Footer() {
                 </Anchor>
               </li>
               <li>
-                <Anchor href="/roadmap">
+                <Anchor href="/docs/roadmap">
                   <div className="flex items-center gap-1.5">
                     <MapIcon className="size-4" />
                     <span>Roadmap</span>
@@ -131,7 +130,7 @@ export async function Footer() {
                 </Anchor>
               </li>
               <li>
-                <Anchor href="https://lasse.famlam.ca">Portfolio</Anchor>
+                <Anchor href="https://lx2.dev">Portfolio</Anchor>
               </li>
             </ul>
           </div>
