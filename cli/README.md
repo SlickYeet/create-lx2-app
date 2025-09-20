@@ -11,9 +11,9 @@
   />
 </picture>
 
-# 🚀 Create Lx2 App
+# Create Lx2 App
 
-**The easiest way to scaffold a modern web app using the Lx2 stack.**
+**The Most Opinionated Way to Build Next.js Apps.**
 
 Simply run `npm create lx2-app@latest` to get started!
 
@@ -27,28 +27,27 @@ Simply run `npm create lx2-app@latest` to get started!
 
 </div>
 
-## 📚 Table of Contents
+## Table of Contents
 
 - <a href="#whats-included">What's Included</a>
 - <a href="#getting-started">Getting Started</a>
-- <a href="#features">Features</a>
 - <a href="#documentation">Documentation</a>
 - <a href="#credits">Credits</a>
 - <a href="#contributing">Contributing</a>
 
-<h2 id="whats-included">📦 What's Included</h2>
+<h2 id="whats-included">What's Included</h2>
 
 Create Lx2 App installs **TypeScript, Next.js, Tailwind CSS**, along with:
 
-- ✅ **Payload CMS** - A powerful headless CMS
-- ✅ **Auth.js** - Authentication made easy
-- ✅ **Better Auth** - The most comprehensive authentication framework for
+- **Payload CMS** - A powerful headless CMS
+- **Auth.js** - Authentication made easy
+- **Better Auth** - The most comprehensive authentication framework for
   TypeScript.
-- ✅ **Prisma ORM** - Database management with full type safety
-- ✅ **Drizzle ORM** - A next gen TypeScript ORM for you to ship (ship ship)
-- ✅ **And many more coming soon...**
+- **Prisma ORM** - Database management with full type safety
+- **Drizzle ORM** - A next gen TypeScript ORM for you to ship (ship ship)
+- **And many more coming...**
 
-<h2 id="getting-started">🚀 Getting Started</h2>
+<h2 id="getting-started">Getting Started</h2>
 
 To create a new project, run the following command:
 
@@ -79,13 +78,7 @@ bun create lx2-app@latest
 For more information, visit the
 [docs](https://create.lx2.dev/docs/getting-started).
 
-<h2 id="features">🛠 Features</h2>
-
-- 🎯 **Easy to Use** - Interactive CLI for selecting tools
-- 📦 **Preconfigured Setup** - Comes ready with modern web dev tools
-- 🚀 **Extendable** - More packages coming soon!
-
-<h2 id="documentation">📖 Documentation</h2>
+<h2 id="documentation">Documentation</h2>
 
 Full documentation is available at
 [create.lx2.dev](https://create.lx2.dev/docs).
@@ -93,10 +86,11 @@ Full documentation is available at
 <h2 id="credits">❤️ Credits</h2>
 
 Huge thanks to [Theo](https://t3.gg) and the [T3 Stack](https://create.t3.gg)
-for their amazing work. The Lx2 stack builds on the principles of create-t3-app,
-bringing even more flexibility.
+maintainers for their amazing work on `create-t3-app`, which inspired this
+project.
 
-If you like this project, giving it a ⭐ on GitHub!
+Show them some love by giving them a ⭐ over on
+[GitHub](https://github.com/t3-oss/create-t3-app)!
 
 <h2 id="contributing">Contributing</h2>
 
