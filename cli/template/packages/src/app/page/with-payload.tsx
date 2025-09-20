@@ -16,10 +16,11 @@ export default async function HomePage() {
       <div className="flex grow flex-col items-center justify-center">
         {/* Logo */}
         <picture className="relative">
-          <div className="absolute inset-0 animate-pulse rounded-xl bg-gradient-to-r from-purple-500 to-cyan-500 opacity-20 blur-xl dark:from-purple-800 dark:to-cyan-800" />
-          <source srcSet="https://github.com/SlickYeet/create-lx2-app/blob/main/docs/v1/public/logo.light.png?raw=true" />
+          <div className="absolute inset-0 animate-pulse bg-linear-to-r from-[oklch(0.7468_0.1455_302.21)] via-[oklch(0.7345_0.0464_270.71)] to-[oklch(0.7563_0.1807_347.17)] opacity-20 blur-lg dark:via-[oklch(0.5567_0.0816_269.53)]" />
+
+          <source srcSet="https://github.com/SlickYeet/create-lx2-app/blob/f1209465d59e03e284702d9f492f1bc1cfa49c32/docs/v2/public/android-chrome-192x192.png?raw=true" />
           <img
-            src="https://github.com/SlickYeet/create-lx2-app/blob/main/docs/v1/public/logo.light.png?raw=true"
+            src="https://github.com/SlickYeet/create-lx2-app/blob/f1209465d59e03e284702d9f492f1bc1cfa49c32/docs/v2/public/android-chrome-192x192.png?raw=true"
             alt="Logo"
             width={65}
             height={65}
@@ -27,28 +28,35 @@ export default async function HomePage() {
           />
         </picture>
 
-        {!user && (
+        {/* Title & Description */}
+        {user ? (
+          <h1 className="mt-6 text-5xl font-bold tracking-tight text-balance md:text-6xl lg:text-7xl">
+            Welcome,{" "}
+            <span className="text-[oklch(0.7468_0.1455_302.21)] capitalize">
+              {user.email}
+            </span>
+            !
+          </h1>
+        ) : (
           <>
-            <h1 className="mt-6 bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-center text-4xl leading-10 text-transparent sm:text-5xl sm:leading-14 md:text-6xl md:leading-20 lg:mt-10 lg:text-7xl lg:font-bold">
-              Lx2 Next.js App
+            <h1 className="mt-6 text-5xl font-bold tracking-tight text-balance md:text-6xl lg:text-7xl">
+              Create{" "}
+              <span className="text-[oklch(0.7468_0.1455_302.21)]">Lx2</span>{" "}
+              App
             </h1>
-            <p className="mt-4 text-center text-lg text-neutral-700 md:text-xl lg:mt-6 dark:text-neutral-300">
-              Build modern web applications with today&apos;s most popular tools
+            <p className="text-center text-lg text-neutral-700 md:text-xl lg:mt-6 dark:text-neutral-300">
+              The Most Opinionated Way to Build Next.js Apps
             </p>
           </>
         )}
-        {user && (
-          <h1 className="mt-6 bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-center text-4xl leading-10 text-transparent sm:text-5xl sm:leading-14 md:text-6xl md:leading-20 lg:mt-10 lg:text-7xl lg:font-bold">
-            Welcome back, {user.email}
-          </h1>
-        )}
 
+        {/* Admin Panel & Payload Docs */}
         <div className="mt-12 flex items-center gap-3">
           <a
             href={payloadConfig.routes.admin}
             rel="noopener noreferrer"
             target="_blank"
-            className="rounded-md bg-white px-2 py-1 text-black focus:opacity-80 focus:outline-none active:opacity-70 active:outline-none"
+            className="rounded-md bg-white px-2 py-1 text-black hover:opacity-80 focus:opacity-80 focus:outline-none active:opacity-70 active:outline-none"
           >
             Go to admin panel
           </a>
@@ -56,20 +64,21 @@ export default async function HomePage() {
             href="https://payloadcms.com/docs"
             rel="noopener noreferrer"
             target="_blank"
-            className="rounded-md border border-white px-2 py-1 text-white focus:opacity-80 focus:outline-none active:opacity-70 active:outline-none"
+            className="rounded-md border border-white px-2 py-1 text-white hover:opacity-80 focus:opacity-80 focus:outline-none active:opacity-70 active:outline-none"
           >
             Payload Docs
           </a>
         </div>
 
+        {/* Links */}
         <div className="mt-12 flex items-center gap-3">
           <a
-            href="https://create.lx2.dev"
+            href="https://create.lx2.dev/docs"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center rounded-md border border-white px-2 py-1 outline-none focus:opacity-80 active:opacity-70"
+            className="flex items-center rounded-md border border-white/25 px-2 py-1 outline-none hover:opacity-80 focus:opacity-80 active:opacity-70"
           >
-            Website
+            Docs
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -82,12 +91,12 @@ export default async function HomePage() {
             </svg>
           </a>
           <a
-            href="https://create.lx2.dev/docs"
+            href="https://link.lx2.dev/discord"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center rounded-md border border-white px-2 py-1 outline-none focus:opacity-80 active:opacity-70"
+            className="flex items-center rounded-md border border-white/25 px-2 py-1 outline-none hover:opacity-80 focus:opacity-80 active:opacity-70"
           >
-            Docs
+            Discord
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -103,7 +112,7 @@ export default async function HomePage() {
             href="https://github.com/SlickYeet/create-lx2-app"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center rounded-md border border-white px-2 py-1 outline-none focus:opacity-80 active:opacity-70"
+            className="flex items-center rounded-md border border-white/25 px-2 py-1 outline-none hover:opacity-80 focus:opacity-80 active:opacity-70"
           >
             GitHub
             <svg
@@ -120,6 +129,7 @@ export default async function HomePage() {
         </div>
       </div>
 
+      {/* Footer */}
       <div className="flex flex-col items-center gap-1 text-sm text-neutral-600 lg:flex-row lg:gap-2 dark:text-neutral-400">
         <p className="m-0">Get started by editing </p>
         <a
