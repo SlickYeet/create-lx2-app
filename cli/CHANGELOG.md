@@ -1,5 +1,13 @@
 # create-lx2-app
 
+## 0.10.2
+
+### Patch Changes
+
+- [#171](https://github.com/SlickYeet/create-lx2-app/pull/171)
+  [`b0fd09b`](https://github.com/SlickYeet/create-lx2-app/commit/b0fd09b37dde99df81bda0e2a16d69f0c5a4f4ec)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - update template pages
+
 ## 0.10.1
 
 ### Patch Changes
