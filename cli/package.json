@@ -1,7 +1,7 @@
 {
   "name": "create-lx2-app",
   "version": "0.10.3",
-  "description": "Create powerful full-stack web applications with the Lx2 stack",
+  "description": "The Most Opinionated Way to Build Next.js Apps",
   "license": "MIT",
   "repository": {
     "type": "git",
