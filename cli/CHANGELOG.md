@@ -1,5 +1,14 @@
 # create-lx2-app
 
+## 0.10.3
+
+### Patch Changes
+
+- [#173](https://github.com/SlickYeet/create-lx2-app/pull/173)
+  [`98022e0`](https://github.com/SlickYeet/create-lx2-app/commit/98022e087574bcfb8ed3e60ea5fa790ba9ef59fa)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - update template app build
+  script to use turbopack
+
 ## 0.10.2
 
 ### Patch Changes
