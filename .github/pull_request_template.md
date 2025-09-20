@@ -19,5 +19,3 @@ _[Short description of what has changed]_
 ## Screenshots
 
 _[Screenshots]_
-
-💯
