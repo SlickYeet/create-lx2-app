@@ -18,7 +18,7 @@ export function CTA() {
           whileInView={{ opacity: 1, filter: "blur(0px)" }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
           viewport={{ once: true }}
-          className="bg-background relative rounded-lg p-8 text-center md:p-12 md:text-left"
+          className="bg-background relative rounded-lg p-8 text-center text-balance md:p-12 md:text-left"
         >
           <h2 className="mb-6 text-3xl font-bold tracking-tight md:text-4xl">
             Your Next<small className="text-sm">.js</small> App.{" "}
@@ -40,7 +40,7 @@ export function CTA() {
             </Button>
 
             <Button size="lg" variant="ghost" className="group" asChild>
-              <Link href={siteConfig.links.github}>
+              <Link href={siteConfig.links.github} target="_blank">
                 <Icons.github className="size-4" />
                 <span>Star on GitHub</span>
               </Link>
