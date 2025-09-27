@@ -62,7 +62,7 @@ export function Hero({ npmVersion, versionConfig }: HeroProps) {
             className="mb-6 text-5xl font-bold tracking-tight text-balance md:text-6xl lg:text-7xl"
           >
             <span className="from-primary to-secondary bg-linear-to-r bg-clip-text text-transparent">
-              The Most Opinionated <br className="hidden sm:block" /> Way to
+              The Most Opinionated <br className="hidden sm:block" /> Way To
               Build Next.js Apps
             </span>
           </motion.h1>
