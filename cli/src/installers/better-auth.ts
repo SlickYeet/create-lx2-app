@@ -43,7 +43,7 @@ export const betterAuthInstaller: Installer = ({
 
   const authIndexSrc = path.join(
     packagesDir,
-    "src/server/auth/config",
+    "src/server/auth",
     usingPrisma
       ? "better-auth-with-prisma.ts"
       : usingDrizzle
