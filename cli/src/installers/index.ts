@@ -1,14 +1,14 @@
-import { betterAuthInstaller } from "@/installers/better-auth.js"
-import { payloadCMSInstaller } from "@/installers/payloadcms.js"
-import { typescriptInstaller } from "@/installers/typescript.js"
 import { type PackageManager } from "@/utils/get-user-pkg-manager.js"
 
 import { authjsInstaller } from "./authjs.js"
+import { betterAuthInstaller } from "./better-auth.js"
 import { biomeInstaller } from "./biome.js"
 import { drizzleInstaller } from "./drizzle.js"
 import { envVariablesInstaller } from "./env-vars.js"
 import { eslintInstaller } from "./eslint.js"
+import { payloadCMSInstaller } from "./payloadcms.js"
 import { prismaInstaller } from "./prisma.js"
+import { typescriptInstaller } from "./typescript.js"
 
 // Turning this into a const allows the list to be iterated over for programmatically creating prompt options
 // Should increase extensibility in the future
