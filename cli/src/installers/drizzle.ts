@@ -44,7 +44,7 @@ export const drizzleInstaller: Installer = ({
       {
         sqlite: "with-sqlite",
         mysql: "with-mysql",
-        postgresql: "with-postgres",
+        postgresql: "with-postgresql",
       } as const
     )[databaseProvider] + ".ts"
   )
