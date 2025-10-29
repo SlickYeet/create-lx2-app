@@ -2,3 +2,4 @@ blank_issues_enabled: false
 contact_links:
   - name: Ask a question
     url: https://link.lx2.dev/discord
+    about: Reach out to the community on Discord for help
