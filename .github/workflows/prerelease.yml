@@ -7,6 +7,7 @@ on:
     types: [labeled]
     branches:
       - main
+
 jobs:
   prerelease:
     if: |
