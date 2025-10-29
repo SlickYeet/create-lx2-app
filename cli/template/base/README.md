@@ -45,7 +45,9 @@ You can check out the
 
 ## How do I deploy this?
 
-> [!NOTE] Currently, we have a guide for deploying to
+<!-- prettier-ignore -->
+> [!NOTE]
+> Currently, we have a guide for deploying to
 > [Vercel](https://create.lx2.dev/docs/vercel), with more deployment options
 > coming soon.
 
