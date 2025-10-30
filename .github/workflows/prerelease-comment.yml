@@ -20,25 +20,31 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
+            const response = await github.rest.actions.listWorkflowRunArtifacts({
               owner: context.repo.owner,
               repo: context.repo.repo,
               run_id: context.payload.workflow_run.id,
             });
 
-            for (const artifact of allArtifacts.data.artifacts) {
-              // Extract the PR number and package version from the artifact name
-              const match = /^npm-package-create-lx2-app@(.*?)-pr-(\d+)/.exec(artifact.name);
+            const artifacts = response.data?.artifacts || [];
+            console.log('Artifacts found:', artifacts.map(a => a.name));
 
+            let matched = false;
+            for (const artifact of artifacts) {
+              const match = /^npm-package-create-lx2-app@(.*?)-pr-(\d+)$/.exec(artifact.name);
               if (match) {
-                require("fs").appendFileSync(
+                require('fs').appendFileSync(
                   process.env.GITHUB_ENV,
-                  `\nBETA_PACKAGE_VERSION=${match[1]}` +
-                  `\nWORKFLOW_RUN_PR=${match[2]}` +
-                  `\nWORKFLOW_RUN_ID=${context.payload.workflow_run.id}`
+                  `BETA_PACKAGE_VERSION=${match[1]}\nWORKFLOW_RUN_PR=${match[2]}\nWORKFLOW_RUN_ID=${context.payload.workflow_run.id}\n`
                 );
+                matched = true;
+                console.log(`Matched artifact ${artifact.name}: PR=${match[2]}, version=${match[1]}`);
                 break;
               }
+            }
+
+            if (!matched) {
+              console.log('No matching artifact found; WORKFLOW_RUN_PR not set.');
             }
 
       - name: "Comment on PR with Link"
@@ -53,13 +59,21 @@ jobs:
             ```
 
       - name: "Remove the autorelease label once published"
+        if: env.WORKFLOW_RUN_PR != ''
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.rest.issues.removeLabel({
+            const pr = process.env.WORKFLOW_RUN_PR;
+            if (!pr) {
+              console.log('WORKFLOW_RUN_PR is not set; skipping label removal.');
+              return;
+            }
+
+            console.log(`Removing '🚀 autorelease' from PR ${pr}`);
+            await github.rest.issues.removeLabel({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: ${{ env.WORKFLOW_RUN_PR }},
+              issue_number: Number(pr),
               name: '🚀 autorelease',
             });
