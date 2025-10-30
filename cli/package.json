@@ -45,8 +45,6 @@
   },
   "dependencies": {
     "@inquirer/prompts": "^7.4.0",
-    "better-auth": "^1.2.7",
-    "better-sqlite3": "^11.9.1",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
     "execa": "^9.5.2",
@@ -68,13 +66,15 @@
     "@t3-oss/env-nextjs": "^0.12.0",
     "@types/better-sqlite3": "^7.6.13",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22",
+    "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "better-auth": "^1.2.7",
+    "better-sqlite3": "^11.9.1",
     "eslint": "^9.22.0",
-    "eslint-config-next": "^15.2.4",
+    "eslint-config-next": "16.0.1",
     "graphql": "^16.10.0",
-    "next": "^15.2.4",
+    "next": "^16.0.1",
     "next-auth": "^5.0.0-beta.25",
     "payload": "^3.33.0",
     "prettier": "^3.5.3",
@@ -86,7 +86,7 @@
     "tailwindcss": "^4.0.17",
     "tsup": "^8.4.0",
     "type-fest": "^4.37.0",
-    "typescript": "^5.8.2",
+    "typescript": "^5.9.3",
     "zod": "^3.24.2"
   }
 }
