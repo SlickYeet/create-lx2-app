@@ -1,4 +1,4 @@
-import { type PageTree } from "fumadocs-core/server"
+import * as PageTree from "fumadocs-core/page-tree"
 import { type PageData } from "fumadocs-core/source"
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
 import Link from "next/link"
