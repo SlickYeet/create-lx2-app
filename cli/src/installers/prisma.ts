@@ -1,10 +1,10 @@
 import path from "path"
 import fs from "fs-extra"
-import { type PackageJson } from "type-fest"
 
 import { PKG_ROOT } from "@/constants.js"
 import { type Installer } from "@/installers/index.js"
 import { addPackageDependency } from "@/utils/add-package-dependency.js"
+import { addPackageScript } from "@/utils/add-package-script.js"
 
 export const prismaInstaller: Installer = ({
   projectDir,
@@ -56,23 +56,17 @@ export const prismaInstaller: Installer = ({
   fs.mkdirSync(path.dirname(clientDest), { recursive: true })
   fs.writeFileSync(clientDest, fs.readFileSync(clientSrc, "utf-8"))
 
-  // Add postinstall and push script to package.json
-  const packageJsonPath = path.join(projectDir, "package.json")
-
   /**
    * TODO: Add db:seed script
    */
-  const packageJsonContent = fs.readJSONSync(packageJsonPath) as PackageJson
-  packageJsonContent.scripts = {
-    ...packageJsonContent.scripts,
-    postinstall: "prisma generate",
-    "db:push": "prisma db push",
-    "db:studio": "prisma studio",
-    "db:generate": "prisma migrate dev",
-    "db:migrate": "prisma migrate deploy",
-  }
-
-  fs.writeJSONSync(packageJsonPath, packageJsonContent, {
-    spaces: 2,
+  addPackageScript({
+    projectDir,
+    scripts: {
+      postinstall: "prisma generate",
+      "db:push": "prisma db push",
+      "db:studio": "prisma studio",
+      "db:generate": "prisma migrate dev",
+      "db:migrate": "prisma migrate deploy",
+    },
   })
 }
