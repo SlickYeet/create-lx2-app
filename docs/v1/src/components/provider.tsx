@@ -31,8 +31,15 @@ export function WrapLinesProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const storedValue = localStorage.getItem("data-wrap-lines") === "true"
-    setWrapLines(storedValue)
-    setIsHydrated(true)
+    function wrapLines() {
+      setWrapLines(storedValue)
+    }
+    function hydrate() {
+      setIsHydrated(true)
+    }
+
+    wrapLines()
+    hydrate()
   }, [])
 
   const toggleWrapLines = () => {

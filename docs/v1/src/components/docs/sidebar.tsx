@@ -17,7 +17,6 @@ interface DocsSidebarProps {
 
 export function DocsSidebar({ isOpen, setIsOpen }: DocsSidebarProps) {
   const pathname = usePathname()
-
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden"
@@ -31,14 +30,33 @@ export function DocsSidebar({ isOpen, setIsOpen }: DocsSidebarProps) {
     }
   }, [isOpen])
 
-  const SidebarContent = () => (
+  return (
+    <div className="bg-background sticky top-20 z-40 h-screen">
+      <div className="hidden md:block">
+        <SidebarContent pathname={pathname} setIsOpen={setIsOpen} />
+      </div>
+      <ScrollArea className="container block h-[calc(100vh-7rem)] md:hidden">
+        <SidebarContent pathname={pathname} setIsOpen={setIsOpen} />
+      </ScrollArea>
+    </div>
+  )
+}
+
+function SidebarContent({
+  pathname,
+  setIsOpen,
+}: {
+  pathname: string | null
+  setIsOpen?: () => void
+}) {
+  return (
     <aside>
       {SIDEBAR_NAVIGATION.map((page) => (
         <div key={page.title}>
           <H3 className="text-xl">{page.title}</H3>
           <ul className="my-4 ml-4">
             {page.items.map((item) => {
-              const isActive = pathname.includes(item.slug)
+              const isActive = pathname?.includes(item.slug)
 
               return (
                 <li key={item.slug}>
@@ -85,16 +103,5 @@ export function DocsSidebar({ isOpen, setIsOpen }: DocsSidebarProps) {
         </div>
       ))}
     </aside>
-  )
-
-  return (
-    <div className="bg-background sticky top-20 z-40 h-screen">
-      <div className="hidden md:block">
-        <SidebarContent />
-      </div>
-      <ScrollArea className="container block h-[calc(100vh-7rem)] md:hidden">
-        <SidebarContent />
-      </ScrollArea>
-    </div>
   )
 }

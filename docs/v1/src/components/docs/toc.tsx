@@ -36,7 +36,13 @@ export function DocsTOC() {
 
   useEffect(() => {
     const mdxContent = document.getElementById("mdx")
-    if (!mdxContent) return
+    if (!mdxContent) {
+      if (headings.length !== 0) {
+        const t = setTimeout(() => setHeadings([]), 0)
+        return () => clearTimeout(t)
+      }
+      return
+    }
 
     const headingElements = Array.from(
       mdxContent.querySelectorAll("h1, h2, h3, h4, h5, h6"),
@@ -49,8 +55,11 @@ export function DocsTOC() {
       level: parseInt(heading.tagName.charAt(1)),
     }))
 
-    setHeadings(extractedHeadings)
-  }, [pathname])
+    if (JSON.stringify(extractedHeadings) !== JSON.stringify(headings)) {
+      const t = setTimeout(() => setHeadings(extractedHeadings), 0)
+      return () => clearTimeout(t)
+    }
+  }, [pathname, headings])
 
   // Intersection Observer for active section tracking
   useEffect(() => {

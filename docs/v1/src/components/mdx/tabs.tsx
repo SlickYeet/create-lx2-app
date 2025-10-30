@@ -25,9 +25,15 @@ function Tabs({ items, defaultIndex = 0, children }: TabsProps) {
 
   useEffect(() => {
     if (defaultIndex < 0 || defaultIndex >= items.length) {
-      setActiveTab(items[0])
+      function resetActiveTab() {
+        setActiveTab(items[0])
+      }
+      resetActiveTab()
     } else {
-      setActiveTab(items[defaultIndex])
+      function setDefaultActiveTab() {
+        setActiveTab(items[defaultIndex])
+      }
+      setDefaultActiveTab()
     }
   }, [defaultIndex, items])
 
