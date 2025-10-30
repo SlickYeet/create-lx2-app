@@ -77,20 +77,12 @@ export function selectPageFile({
   fs.copySync(pageSrc, pageDest)
 }
 
-export function selectGlobals({
-  packages,
-  projectDir,
-}: SelectBoilerplateOptions) {
-  const globalsCSSDir = path.join(PKG_ROOT, "template/packages/src/app/globals")
-
-  const usingPayload = packages.payload.inUse
+export function selectGlobals({ projectDir }: SelectBoilerplateOptions) {
+  const globalsCSSDir = path.join(PKG_ROOT, "template/packages/src/styles")
 
   let globalsCSSFile = "base.css"
 
   const globalsCSSSrc = path.join(globalsCSSDir, globalsCSSFile)
-  const globalsCSSDest = path.join(
-    projectDir,
-    `src/app/${usingPayload ? "(frontend)" : ""}/globals.css`
-  )
+  const globalsCSSDest = path.join(projectDir, `src/styles/globals.css`)
   fs.copySync(globalsCSSSrc, globalsCSSDest)
 }
