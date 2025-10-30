@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from "@/components/ui/button"
+import { Button, type ButtonProps } from "@/components/ui/button"
 import { DISCORD_LINK } from "@/constants"
 import { cn } from "@/lib/utils"
 

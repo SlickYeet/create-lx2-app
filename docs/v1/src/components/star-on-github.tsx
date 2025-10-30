@@ -1,6 +1,6 @@
 import { StarIcon } from "lucide-react"
 
-import { Button, ButtonProps } from "@/components/ui/button"
+import { Button, type ButtonProps } from "@/components/ui/button"
 import { GITHUB_CREATE_TNT_APP_REPO } from "@/constants"
 import { cn } from "@/lib/utils"
 

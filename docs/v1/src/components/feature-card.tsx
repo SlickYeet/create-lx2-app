@@ -1,6 +1,6 @@
 import { motion } from "motion/react"
 
-import { FeatureType } from "@/constants"
+import type { FeatureType } from "@/constants"
 import { cn } from "@/lib/utils"
 
 const cardVariants = {
