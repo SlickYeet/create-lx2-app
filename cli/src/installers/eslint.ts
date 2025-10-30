@@ -45,7 +45,9 @@ export const eslintInstaller: Installer = ({ projectDir, packages }) => {
   const packageJsonContent = fs.readJSONSync(packageJsonPath) as PackageJson
   packageJsonContent.scripts = {
     ...packageJsonContent.scripts,
-    lint: "next lint",
+    "lint:write": "eslint --fix",
+    lint: "eslint",
+    format: "prettier --write .",
   }
 
   fs.copyFileSync(eslintConfigSrc, eslintConfigDest)
