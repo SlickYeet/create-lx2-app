@@ -25,11 +25,15 @@ function Tabs({ items, defaultIndex = 0, children }: TabsProps) {
   const [activeTab, setActiveTab] = useState<string>(items[defaultIndex] || "")
 
   useEffect(() => {
-    if (defaultIndex < 0 || defaultIndex >= items.length) {
-      setActiveTab(items[0])
-    } else {
-      setActiveTab(items[defaultIndex])
-    }
+    const t = setTimeout(() => {
+      if (defaultIndex < 0 || defaultIndex >= items.length) {
+        setActiveTab(items[0])
+      } else {
+        setActiveTab(items[defaultIndex])
+      }
+    }, 0)
+
+    return () => clearTimeout(t)
   }, [defaultIndex, items])
 
   return (
