@@ -5,6 +5,7 @@ import { PKG_ROOT } from "@/constants.js"
 import { type AvailableDependencies } from "@/installers/dependency-version-map.js"
 import { type Installer } from "@/installers/index.js"
 import { addPackageDependency } from "@/utils/add-package-dependency.js"
+import { addPackageScript } from "@/utils/add-package-script.js"
 
 export const betterAuthInstaller: Installer = ({
   projectDir,
@@ -71,6 +72,19 @@ export const betterAuthInstaller: Installer = ({
     "src/lib/auth/better-auth-client.ts"
   )
   const authClientDest = path.join(projectDir, "src/lib/auth/client.ts")
+
+  addPackageScript({
+    projectDir,
+    scripts: {
+      "auth:generate":
+        "pnpm dlx @better-auth/cli@latest generate --config ./src/server/auth/index.ts --yes",
+      ...(!usingPrisma &&
+        !usingDrizzle && {
+          "auth:migrate":
+            "pnpm dlx @better-auth/cli@latest migrate --config ./src/server/auth/index.ts --yes",
+        }),
+    },
+  })
 
   fs.copySync(apiHandlerSrc, apiHandlerDest)
   fs.copySync(authClientSrc, authClientDest)

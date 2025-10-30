@@ -1,11 +1,11 @@
 import path from "path"
 import fs from "fs-extra"
-import { type PackageJson } from "type-fest"
 
 import { PKG_ROOT } from "@/constants.js"
 import { AvailableDependencies } from "@/installers/dependency-version-map.js"
 import { type Installer } from "@/installers/index.js"
 import { addPackageDependency } from "@/utils/add-package-dependency.js"
+import { addPackageScript } from "@/utils/add-package-script.js"
 
 export const payloadCMSInstaller: Installer = ({
   projectDir,
@@ -72,18 +72,12 @@ export const payloadCMSInstaller: Installer = ({
   fs.mkdirSync(payloadDest, { recursive: true })
   fs.copySync(payloadSrc, payloadDest)
 
-  // Add payload scripts to package.json
-  const packageJsonPath = path.join(projectDir, "package.json")
-
-  const packageJsonContent = fs.readJSONSync(packageJsonPath) as PackageJson
-  packageJsonContent.scripts = {
-    ...packageJsonContent.scripts,
-    payload: "payload",
-    "generate:importmap": "payload generate:importmap",
-    "generate:types": "payload generate:types",
-  }
-
-  fs.writeJSONSync(packageJsonPath, packageJsonContent, {
-    spaces: 2,
+  addPackageScript({
+    projectDir,
+    scripts: {
+      payload: "payload",
+      "generate:importmap": "payload generate:importmap",
+      "generate:types": "payload generate:types",
+    },
   })
 }

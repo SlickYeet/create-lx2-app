@@ -1,11 +1,11 @@
 import path from "path"
 import fs from "fs-extra"
-import { type PackageJson } from "type-fest"
 
 import { PKG_ROOT } from "@/constants.js"
 import { AvailableDependencies } from "@/installers/dependency-version-map.js"
 import { Installer } from "@/installers/index.js"
 import { addPackageDependency } from "@/utils/add-package-dependency.js"
+import { addPackageScript } from "@/utils/add-package-script.js"
 
 export const eslintInstaller: Installer = ({ projectDir, packages }) => {
   const usingESLint = packages?.["eslint/prettier"].inUse
@@ -39,20 +39,15 @@ export const eslintInstaller: Installer = ({ projectDir, packages }) => {
   const eslintConfigDest = path.join(projectDir, "eslint.config.mjs")
   const prettierConfigDest = path.join(projectDir, "prettier.config.mjs")
 
-  // Add lint and push script to package.json
-  const packageJsonPath = path.join(projectDir, "package.json")
-
-  const packageJsonContent = fs.readJSONSync(packageJsonPath) as PackageJson
-  packageJsonContent.scripts = {
-    ...packageJsonContent.scripts,
-    "lint:write": "eslint --fix",
-    lint: "eslint",
-    format: "prettier --write .",
-  }
+  addPackageScript({
+    projectDir,
+    scripts: {
+      "lint:write": "eslint --fix",
+      lint: "eslint",
+      format: "prettier --write .",
+    },
+  })
 
   fs.copyFileSync(eslintConfigSrc, eslintConfigDest)
-  fs.writeJSONSync(packageJsonPath, packageJsonContent, {
-    spaces: 2,
-  })
   fs.copyFileSync(prettierConfigSrc, prettierConfigDest)
 }
