@@ -32,6 +32,11 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 })
+  const [hoverIndicatorStyle, setHoverIndicatorStyle] = useState({
+    opacity: 0,
+    left: 0,
+    width: 0,
+  })
 
   const toggleMobileMenu = () => {
     setIsOpen(!isOpen)
@@ -58,6 +63,19 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
     }
   }, [pathname])
 
+  useEffect(() => {
+    if (hoveredIndex !== null && navRefs.current[hoveredIndex]) {
+      const el = navRefs.current[hoveredIndex]!
+      setHoverIndicatorStyle({
+        opacity: 1,
+        left: el.offsetLeft,
+        width: el.offsetWidth,
+      })
+    } else {
+      setHoverIndicatorStyle({ opacity: 0, left: 0, width: 0 })
+    }
+  }, [hoveredIndex])
+
   return (
     <>
       <motion.header
@@ -80,15 +98,7 @@ export function Header({ docs }: { docs: MdxDocument[] }) {
               {/* Hover Highlight */}
               <motion.div
                 initial={{ opacity: 0 }}
-                animate={
-                  hoveredIndex !== null && navRefs.current[hoveredIndex]
-                    ? {
-                        opacity: 1,
-                        left: navRefs.current[hoveredIndex]!.offsetLeft,
-                        width: navRefs.current[hoveredIndex]!.offsetWidth,
-                      }
-                    : { opacity: 0 }
-                }
+                animate={hoverIndicatorStyle}
                 transition={{ duration: 0.15 }}
                 className="bg-muted/50 absolute flex h-[30px] items-center rounded-[6px]"
               />

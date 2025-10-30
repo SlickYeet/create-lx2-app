@@ -1,4 +1,4 @@
-import { findNeighbour } from "fumadocs-core/server"
+import { findNeighbour } from "fumadocs-core/page-tree"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
@@ -8,6 +8,10 @@ import { TableOfContents } from "@/components/docs/toc"
 import { source } from "@/lib/source"
 import { absoluteUrl } from "@/lib/utils"
 import { mdxComponents } from "@/mdx-components"
+
+export const revalidate = false
+export const dynamic = "force-static"
+export const dynamicParams = false
 
 export function generateStaticParams() {
   return source.generateParams()

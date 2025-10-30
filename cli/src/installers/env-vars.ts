@@ -2,7 +2,7 @@ import path from "path"
 import fs from "fs-extra"
 
 import { PKG_ROOT } from "@/constants.js"
-import { AvailableDependencies } from "@/installers/dependency-version-map.js"
+import type { AvailableDependencies } from "@/installers/dependency-version-map.js"
 import { type DatabaseProvider, type Installer } from "@/installers/index.js"
 import { addPackageDependency } from "@/utils/add-package-dependency.js"
 

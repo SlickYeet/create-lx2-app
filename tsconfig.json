@@ -6,6 +6,7 @@
     "module": "Node16",
     "moduleResolution": "nodenext",
     "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
     "allowJs": true,
     "checkJs": true,
 

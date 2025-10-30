@@ -1,6 +1,6 @@
 "use client"
 
-import { type PageTree } from "fumadocs-core/server"
+import * as PageTree from "fumadocs-core/page-tree"
 import {
   AlignLeft,
   ArrowUpCircle,

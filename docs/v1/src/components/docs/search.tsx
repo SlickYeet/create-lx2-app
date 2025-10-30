@@ -55,8 +55,13 @@ export function Search({ docs }: { docs: MdxDocument[] }) {
    * Fix for dialog not closing when navigating
    */
   useEffect(() => {
-    setIsOpen(false)
-  }, [pathname])
+    if (isOpen) {
+      const t = setTimeout(() => setIsOpen(false), 0)
+      return () => clearTimeout(t)
+    }
+
+    return
+  }, [pathname, isOpen])
 
   const fuse = new Fuse(docs, {
     threshold: 0.3,

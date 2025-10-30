@@ -2,8 +2,8 @@ import path from "path"
 import fs from "fs-extra"
 
 import { PKG_ROOT } from "@/constants.js"
-import { AvailableDependencies } from "@/installers/dependency-version-map.js"
-import { Installer } from "@/installers/index.js"
+import type { AvailableDependencies } from "@/installers/dependency-version-map.js"
+import type { Installer } from "@/installers/index.js"
 import { addPackageDependency } from "@/utils/add-package-dependency.js"
 
 export const typescriptInstaller: Installer = ({ projectDir, packages }) => {

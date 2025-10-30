@@ -1,4 +1,4 @@
-import { MDXComponents } from "mdx/types"
+import type { MDXComponents } from "mdx/types"
 
 import { Anchor } from "@/components/mdx/anchor"
 import { Blockquote } from "@/components/mdx/blockquote"

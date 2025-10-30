@@ -2,10 +2,10 @@ import {
   CodeIcon,
   DatabaseIcon,
   GithubIcon,
-  LucideIcon,
   PaletteIcon,
   RocketIcon,
   ZapIcon,
+  type LucideIcon,
 } from "lucide-react"
 
 export const RELATIVE_INITIAL_DOCS_PATH = "/introduction"
