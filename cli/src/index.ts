@@ -39,7 +39,7 @@ async function main() {
   const {
     appName,
     packages,
-    flags: { git, install, importAlias },
+    flags: { noGit, noInstall, importAlias },
     databaseProvider,
   } = await runCli()
 
@@ -52,7 +52,7 @@ async function main() {
     projectName: appDir,
     scopedAppName,
     packages: usePackages,
-    install,
+    noInstall,
     databaseProvider,
   })
 
@@ -79,11 +79,11 @@ async function main() {
     setImportAlias(projectDir, importAlias)
   }
 
-  if (install === true) {
+  if (!noInstall) {
     await installDependencies({ projectDir })
   }
 
-  if (git === true) {
+  if (!noGit) {
     await initializeGit(projectDir)
   }
 
@@ -91,7 +91,7 @@ async function main() {
     projectDir,
     projectName: appDir,
     packages: usePackages,
-    install,
+    noInstall,
     databaseProvider,
   })
 
