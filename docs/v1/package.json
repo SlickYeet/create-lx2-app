@@ -6,7 +6,7 @@
     "dev": "next dev --port 3000 --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "next lint --max-warnings 0",
+    "lint": "eslint --max-warnings 0",
     "format": "prettier '**/*.{cjs,mjs,ts,tsx,md,mdx,json}' --ignore-path ../../.gitignore --ignore-unknown --write",
     "format:check": "prettier '**/*.{cjs,mjs,ts,tsx,md,mdx,json}' --ignore-path ../../.gitignore --ignore-unknown --check",
     "typecheck": "tsc --noEmit",
