@@ -1,0 +1,7 @@
+{
+  "eslint.workingDirectories": [{ "pattern": "cli" }, { "pattern": "docs/*/" }],
+  "tailwindCSS.classFunctions": ["cva", "cn"],
+  "files.exclude": {
+    "deprecated": true
+  }
+}

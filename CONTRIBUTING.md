@@ -5,8 +5,8 @@ spaces:
 
 - Be respectful, civil, and open-minded.
 - Before opening a new pull request, try searching through the
-  [issue tracker](https://github.com/slickyeet/create-lx2-app/issues) for
-  known issues or fixes.
+  [issue tracker](https://github.com/slickyeet/create-lx2-app/issues) for known
+  issues or fixes.
 - If you want to make code changes based on your personal opinion(s), make sure
   you open an issue first describing the changes you want to make, and open a
   pull request only when your suggestions get approved by maintainers.
@@ -62,7 +62,7 @@ feature-area/feature/feature-description
 
 - `feature-area` should be one of the following:
   - `cli` → Changes related to the CLI
-  - `docs<v1/v2>` → Changes related to documentation
+  - `docs` → Changes related to documentation
   - `core` → Changes related to the overall repository structure or
     configurations
 - `feature` should be a short, descriptive name for the change being
@@ -72,7 +72,7 @@ feature-area/feature/feature-description
 **Example Branch Names**:
 
 - `cli/auth/add-lucia-auth`
-- `docsv2/improve-installation-guide`
+- `docs/improve-installation-guide`
 - `core/ci/update-build-scripts`
 
 This structure ensures clear organization and easier navigation through
@@ -81,26 +81,24 @@ contributions.
 ### Implement your changes
 
 This project is a [Turborepo](https://turbo.build/) monorepo. The code for the
-CLI is in the `cli` directory, and the docs is in the `docs/v1` and `docs/v2`
-directory. Now you're all setup and can start implementing your changes.
+CLI is in the `cli` directory, and the docs are in the and `docs/v2` directory.
+Now you're all setup and can start implementing your changes.
 
 Here are some useful scripts for when you are developing:
 
-| Command              | Description                                            |
-| -------------------- | ------------------------------------------------------ |
-| `pnpm dev:cli`       | Builds and starts the CLI in watch-mode                |
-| `pnpm dev:docs:v1`   | Starts the development server for the v1 docs with HMR |
-| `pnpm dev:docs`      | Starts the development server for the v2 docs with HMR |
-| `pnpm build`         | Builds all packages                                    |
-| `pnpm build:cli`     | Builds the CLI                                         |
-| `pnpm build:docs:v1` | Builds the v1 docs                                     |
-| `pnpm build:docs`    | Builds the v2 docs                                     |
-| `pnpm lint`          | Lints the code                                         |
-| `pnpm lint:fix`      | Lints the code and fixes any errors                    |
-| `pnpm format`        | Formats the code                                       |
-| `pnpm format:check`  | Check the code for formatting                          |
-| `pnpm check`         | Checks the code for typeerrors, formatting and linting |
-| `pnpm typecheck`     | Check the code for typeerrors                          |
+| Command             | Description                                            |
+| ------------------- | ------------------------------------------------------ |
+| `pnpm dev:cli`      | Builds and starts the CLI in watch-mode                |
+| `pnpm dev:docs`     | Starts the development server for the docs with HMR    |
+| `pnpm build`        | Builds all packages                                    |
+| `pnpm build:cli`    | Builds the CLI                                         |
+| `pnpm build:docs`   | Builds the docs                                        |
+| `pnpm lint`         | Lints the code                                         |
+| `pnpm lint:fix`     | Lints the code and fixes any errors                    |
+| `pnpm format`       | Formats the code                                       |
+| `pnpm format:check` | Check the code for formatting                          |
+| `pnpm check`        | Checks the code for typeerrors, formatting and linting |
+| `pnpm typecheck`    | Check the code for typeerrors                          |
 
 When making commits, make sure to follow the
 [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/)
