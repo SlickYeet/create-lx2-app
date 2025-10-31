@@ -73,9 +73,9 @@ export default async function DocsPage({ params }: DocsPageProps) {
   }
 
   const doc = page.data
-  // @ts-expect-error - revisit fumadocs types
   const MDX = doc.body
   const neighbours = findNeighbour(source.pageTree, page.url)
+  const raw = await page.data.getText("raw")
 
   return (
     <div
@@ -83,10 +83,8 @@ export default async function DocsPage({ params }: DocsPageProps) {
       className="mb-8 flex items-stretch text-[1.05rem] sm:text-[15px] xl:w-full"
     >
       <div className="relative flex min-w-0 flex-1 flex-col">
-        {/* @ts-expect-error - revisit fumadocs types. */}
         {doc.toc?.length ? (
           <TableOfContents
-            // @ts-expect-error - revisit fumadocs types.
             toc={doc.toc}
             tree={source.pageTree}
             variant="dropdown"
@@ -97,6 +95,7 @@ export default async function DocsPage({ params }: DocsPageProps) {
         <div className="mx-auto flex w-full max-w-2xl min-w-0 flex-1 flex-col gap-8 px-4 py-6 md:px-0 lg:py-8">
           <DocsHeader
             doc={doc}
+            raw={raw}
             neighbours={neighbours}
             tree={source.pageTree}
           />
@@ -109,10 +108,8 @@ export default async function DocsPage({ params }: DocsPageProps) {
         <DocsPagination neighbours={neighbours} />
       </div>
 
-      {/* @ts-expect-error - revisit fumadocs types. */}
       {doc.toc?.length ? (
         <TableOfContents
-          // @ts-expect-error - revisit fumadocs types.
           toc={doc.toc}
           tree={source.pageTree}
           variant="list"

@@ -1,7 +1,9 @@
+import fm from "front-matter"
 import * as PageTree from "fumadocs-core/page-tree"
-import { type PageData } from "fumadocs-core/source"
+import type { PageData } from "fumadocs-core/source"
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
 import Link from "next/link"
+import z from "zod"
 
 import { DocsBreadcrumb } from "@/components/docs/breadcrumb"
 import { Badge } from "@/components/ui/badge"
@@ -9,6 +11,7 @@ import { Button } from "@/components/ui/button"
 
 interface DocsHeaderProps {
   doc: PageData
+  raw: string
   tree: PageTree.Root
   neighbours: {
     previous?: Item
@@ -21,11 +24,22 @@ interface Item {
   url: string
 }
 
-export function DocsHeader(props: DocsHeaderProps) {
-  const { doc, tree, neighbours } = props
+export async function DocsHeader(props: DocsHeaderProps) {
+  const { doc, raw, tree, neighbours } = props
 
-  // @ts-expect-error - revisit fumadocs types
-  const links = doc.links
+  const { attributes } = fm(raw)
+  const { links } = z
+    .object({
+      links: z
+        .object({
+          docs: z.string().optional(),
+          api: z.string().optional(),
+          repo: z.string().optional(),
+          community: z.string().optional(),
+        })
+        .optional(),
+    })
+    .parse(attributes)
 
   return (
     <div className="flex flex-col gap-2">
