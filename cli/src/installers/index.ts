@@ -46,7 +46,7 @@ export interface InstallerOptions {
   scopedAppName: string
   pkgManager: PackageManager
   packages?: PkgInstallerMap
-  noInstall: boolean
+  install: boolean
   databaseProvider: DatabaseProvider
 }
 
