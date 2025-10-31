@@ -2,7 +2,7 @@
 import path from "path"
 import { execa } from "execa"
 import fs from "fs-extra"
-import { type PackageJson } from "type-fest"
+import type { PackageJson } from "type-fest"
 
 import { runCli } from "@/core/index.js"
 import { createProject } from "@/helpers/create-project.js"

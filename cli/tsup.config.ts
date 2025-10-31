@@ -4,7 +4,6 @@ const isDev = process.env.npm_lifecycle_event === "dev"
 
 export default defineConfig({
   clean: true,
-  external: ["type-fest"],
   entry: ["src/index.ts"],
   format: ["esm"],
   minify: !isDev,
