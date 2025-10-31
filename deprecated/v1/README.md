@@ -1,5 +1,4 @@
 > [!WARNING]
-> This directory has been depricated.
 > The new docs can be found at [create.lx2.dev](https://create.lx2.dev) and under docs/v2
 
 # Create TNT Stack Documentation Site
