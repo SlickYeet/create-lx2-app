@@ -5,11 +5,9 @@ import * as PageTree from "fumadocs-core/page-tree"
 import { ChevronDown, Home } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Fragment } from "react"
 
 import {
   Breadcrumb,
-  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
@@ -31,7 +29,7 @@ export function DocsBreadcrumb({ tree }: { tree: PageTree.Root }) {
   return (
     <Breadcrumb>
       <BreadcrumbList className="text-primary text-base">
-        <BreadcrumbItem className="hidden sm:block">
+        <BreadcrumbItem>
           <BreadcrumbLink asChild>
             <Link href="/">
               <Home className="size-4" />
@@ -39,22 +37,15 @@ export function DocsBreadcrumb({ tree }: { tree: PageTree.Root }) {
           </BreadcrumbLink>
         </BreadcrumbItem>
 
-        <BreadcrumbSeparator className="hidden sm:block" />
+        <BreadcrumbSeparator />
 
         <BreadcrumbItem>
           <DropdownMenu>
             <DropdownMenuTrigger className="hover:text-foreground flex items-center gap-1 transition-colors">
-              <span className="hidden sm:inline">{items[0].name}</span>
-              <ChevronDown className="hidden size-3 sm:inline" />
-              <BreadcrumbEllipsis className="sm:hidden" />
+              {items[0].name}
+              <ChevronDown className="size-3" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
-              <DropdownMenuItem className="sm:hidden" asChild>
-                <Link href="/" className="truncate">
-                  Home
-                </Link>
-              </DropdownMenuItem>
-
               {tree.children.map((item) => {
                 const href =
                   item.type === "folder" && item.children[0]?.type === "page"
@@ -72,28 +63,6 @@ export function DocsBreadcrumb({ tree }: { tree: PageTree.Root }) {
             </DropdownMenuContent>
           </DropdownMenu>
         </BreadcrumbItem>
-
-        <BreadcrumbSeparator />
-
-        {items.map((item, i) =>
-          item === items[0] ? null : (
-            <Fragment key={i}>
-              <BreadcrumbItem>
-                {item.url ? (
-                  <BreadcrumbLink asChild>
-                    <Link href={item.url} className="truncate">
-                      {item.name}
-                    </Link>
-                  </BreadcrumbLink>
-                ) : (
-                  <BreadcrumbLink className="truncate">
-                    {item.name}
-                  </BreadcrumbLink>
-                )}
-              </BreadcrumbItem>
-            </Fragment>
-          ),
-        )}
       </BreadcrumbList>
     </Breadcrumb>
   )

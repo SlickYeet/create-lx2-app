@@ -23,7 +23,7 @@ export function Header({ className }: { className?: string }) {
         className,
       )}
     >
-      <div className="container flex h-16 items-center gap-2 px-4 **:data-[slot=separator]:!h-4">
+      <div className="container flex h-16 items-center gap-2 px-4 **:data-[slot=separator]:h-4!">
         <MobileNav
           tree={pageTree}
           items={siteConfig.navItems}
@@ -42,7 +42,7 @@ export function Header({ className }: { className?: string }) {
         </Button>
         <MainNav items={siteConfig.navItems} className="hidden lg:flex" />
         <div className="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">
-          <div className="hidden w-full flex-1 md:flex md:w-auto md:flex-none">
+          <div className="w-full flex-1 md:flex md:w-auto md:flex-none">
             <Search tree={pageTree} />
           </div>
           <Separator orientation="vertical" className="ml-2 hidden lg:block" />
