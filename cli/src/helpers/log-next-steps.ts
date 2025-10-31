@@ -9,12 +9,12 @@ import { isInsideGitRepo, isRootGitRepo } from "./git.js"
 export const logNextSteps = async ({
   projectName = DEFAULT_APP_NAME,
   packages,
-  noInstall,
+  install,
   projectDir,
   databaseProvider,
 }: Pick<
   InstallerOptions,
-  "projectDir" | "projectName" | "packages" | "noInstall" | "databaseProvider"
+  "projectDir" | "projectName" | "packages" | "install" | "databaseProvider"
 >) => {
   const pkgManager = getUserPkgManager()
 
@@ -22,7 +22,7 @@ export const logNextSteps = async ({
   if (projectName !== ".") {
     logger.info(`  cd ${projectName}`)
   }
-  if (noInstall) {
+  if (install === true) {
     // To reflect yarn's default behavior of installing packages when no additional args provided
     if (pkgManager === "yarn") {
       logger.info(`  ${pkgManager}`)

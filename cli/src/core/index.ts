@@ -22,8 +22,8 @@ import { validateAppName } from "@/utils/validate-app-name.js"
 import { validateImportAlias } from "@/utils/validate-import-alias.js"
 
 interface CliFlags {
-  noGit: boolean
-  noInstall: boolean
+  git: boolean
+  install: boolean
   default: boolean
 
   /** @internal Used in CI. */
@@ -53,8 +53,8 @@ const defaultOptions: CliResults = {
   appName: DEFAULT_APP_NAME,
   packages: [],
   flags: {
-    noGit: false,
-    noInstall: false,
+    git: false,
+    install: false,
     default: false,
     CI: false,
     authentication: "none",
@@ -83,13 +83,13 @@ export async function runCli(): Promise<CliResults> {
       "The name of the application, as well as the name of the directory to create"
     )
     .option(
-      "--noGit",
-      "Explicitly tell the CLI to not initialize a new git repo in the project",
+      "--git",
+      "Boolean flag to explicitly tell the CLI to initialize a new git repo in the project",
       false
     )
     .option(
-      "--noInstall",
-      "Explicitly tell the CLI to not run the package manager's install command",
+      "--install",
+      "Boolean flag to explicitly tell the CLI to run the package manager's install command",
       false
     )
     .option(
@@ -244,8 +244,8 @@ export async function runCli(): Promise<CliResults> {
       orm: DatabaseORM
       databaseProvider?: DatabaseProvider
       linter: Linter
-      noGit?: boolean
-      noInstall?: boolean
+      git?: boolean
+      install?: boolean
       importAlias: string
     }
 
@@ -316,18 +316,18 @@ export async function runCli(): Promise<CliResults> {
       ],
       default: !defaultOptions.flags.linter,
     })
-    if (!cliResults.flags.noGit) {
-      project.noGit = await confirm({
+    if (!cliResults.flags.git) {
+      project.git = await confirm({
         message: "Should we initialize a Git repository and stage the changes?",
-        default: !defaultOptions.flags.noGit,
+        default: !defaultOptions.flags.git,
       })
     }
-    if (!cliResults.flags.noInstall) {
-      project.noInstall = await confirm({
+    if (!cliResults.flags.install) {
+      project.install = await confirm({
         message:
           `Should we run '${pkgManager}` +
           (pkgManager === "yarn" ? `'?` : ` install' for you?`),
-        default: !defaultOptions.flags.noInstall,
+        default: !defaultOptions.flags.install,
       })
     }
     project.importAlias = await input({
@@ -380,8 +380,8 @@ export async function runCli(): Promise<CliResults> {
       packages,
       flags: {
         ...cliResults.flags,
-        noGit: !project.noGit || cliResults.flags.noGit,
-        noInstall: !project.noInstall || cliResults.flags.noInstall,
+        git: project.git || cliResults.flags.git,
+        install: project.install || cliResults.flags.install,
         importAlias: project.importAlias ?? cliResults.flags.importAlias,
       },
       databaseProvider: project.databaseProvider || "sqlite",

@@ -13,11 +13,11 @@ export async function scaffoldProject({
   projectName,
   projectDir,
   pkgManager,
-  noInstall,
+  install,
 }: InstallerOptions) {
   const srcDir = path.join(PKG_ROOT, "template/base")
 
-  if (!noInstall) {
+  if (!install) {
     logger.info(`\nUsing: ${chalk.cyan.bold(pkgManager)}\n`)
   } else {
     logger.info("")

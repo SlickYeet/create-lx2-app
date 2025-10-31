@@ -17,7 +17,7 @@ interface CreateProjectOptions {
   projectName: string
   scopedAppName: string
   packages: PkgInstallerMap
-  noInstall: boolean
+  install: boolean
   databaseProvider: DatabaseProvider
 }
 
@@ -25,7 +25,7 @@ export async function createProject({
   projectName,
   scopedAppName,
   packages,
-  noInstall,
+  install,
   databaseProvider,
 }: CreateProjectOptions) {
   const pkgManager = getUserPkgManager()
@@ -37,7 +37,7 @@ export async function createProject({
     projectDir,
     pkgManager,
     scopedAppName,
-    noInstall,
+    install,
     databaseProvider,
   })
 
@@ -48,7 +48,7 @@ export async function createProject({
     projectDir,
     pkgManager,
     packages,
-    noInstall,
+    install,
     databaseProvider,
   })
 
