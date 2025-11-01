@@ -4,14 +4,14 @@
   "description": "The Most Opinionated Way to Build Next.js Apps",
   "author": {
     "name": "Lasse Lammers",
-    "emial": "lasse@famlam.ca",
-    "url": "https://lasse.famlam.ca"
+    "email": "lasse@lx2.dev",
+    "url": "https://lx2.dev"
   },
   "maintainers": [
     {
       "name": "Lasse Lammers",
-      "emial": "lasse@famlam.ca",
-      "url": "https://lasse.famlam.ca"
+      "email": "lasse@lx2.dev",
+      "url": "https://lx2.dev"
     }
   ],
   "type": "module",
