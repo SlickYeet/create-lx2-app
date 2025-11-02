@@ -1,16 +1,18 @@
 import fm from "front-matter"
 import * as PageTree from "fumadocs-core/page-tree"
-import type { PageData } from "fumadocs-core/source"
+import type { Page } from "fumadocs-core/source"
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 import z from "zod"
 
 import { DocsBreadcrumb } from "@/components/docs/breadcrumb"
+import { CopyPageButton } from "@/components/docs/copy-page"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { absoluteUrl } from "@/lib/utils"
 
 interface DocsHeaderProps {
-  doc: PageData
+  page: Page
   raw: string
   tree: PageTree.Root
   neighbours: {
@@ -25,7 +27,9 @@ interface Item {
 }
 
 export async function DocsHeader(props: DocsHeaderProps) {
-  const { doc, raw, tree, neighbours } = props
+  const { page, raw, tree, neighbours } = props
+
+  const doc = page.data
 
   const { attributes } = fm(raw)
   const { links } = z
@@ -53,6 +57,7 @@ export async function DocsHeader(props: DocsHeaderProps) {
           </div>
 
           <div className="flex items-center gap-2 pt-1.5">
+            <CopyPageButton page={raw} url={absoluteUrl(page.url)} />
             {neighbours.previous && (
               <Button
                 size="icon"
