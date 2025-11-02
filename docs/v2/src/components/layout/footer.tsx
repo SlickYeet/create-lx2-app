@@ -15,8 +15,8 @@ import { siteConfig } from "@/lib/config"
 import { getNpmVersion } from "@/lib/utils"
 
 export async function Footer() {
-  const npmVersionLatest = await getNpmVersion("latest")
-  const npmVersionBeta = await getNpmVersion("beta")
+  const npmVersionLatest = await getNpmVersion(false)
+  const npmVersionBeta = await getNpmVersion(true)
 
   return (
     <footer className="mt-auto border-t py-12">
