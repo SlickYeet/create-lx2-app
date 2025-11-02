@@ -24,7 +24,7 @@ export function Hero({ npmVersion, versionConfig }: HeroProps) {
       : `${siteConfig.name} v${npmVersion} is now available!`
 
   const isBeta =
-    npmVersion?.includes("beta") || versionConfig?.version === "beta"
+    npmVersion?.includes("beta") || versionConfig?.showBeta === true
 
   return (
     <section id="create-lx2-app" className="relative py-8 md:py-16">

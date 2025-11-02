@@ -9,11 +9,9 @@ export function absoluteUrl(path: string) {
   return `${process.env.NEXT_PUBLIC_URL}${path}`
 }
 
-export async function getNpmVersion(
-  version: "latest" | "beta" = "latest",
-): Promise<string> {
+export async function getNpmVersion(beta: boolean = false): Promise<string> {
   // Fetch the latest release of the package from npm
-  // If the version is "beta", fetch the beta release
+  // If beta is true, fetch the beta release
 
   const response = await fetch("https://registry.npmjs.org/create-lx2-app", {
     method: "GET",
@@ -26,7 +24,7 @@ export async function getNpmVersion(
   }
   const data = await response.json()
 
-  if (version === "latest") {
+  if (beta === false) {
     return data["dist-tags"].latest
   } else {
     return data["dist-tags"].beta
@@ -34,7 +32,6 @@ export async function getNpmVersion(
 }
 
 export interface VersionConfig {
-  version: "latest" | "beta"
   text: string
   showBeta?: boolean
 }
@@ -61,7 +58,6 @@ export async function getVersionConfig(): Promise<VersionConfig> {
     console.error("Failed to fetch version config, using defaults:", error)
     // Fallback config
     return {
-      version: "latest",
       text: "{{name}} v{{version}} is now available!",
       showBeta: false,
     }

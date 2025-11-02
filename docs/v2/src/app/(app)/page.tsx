@@ -8,7 +8,7 @@ import { getNpmVersion, getVersionConfig } from "@/lib/utils"
 
 export default async function HomePage() {
   const versionConfig = await getVersionConfig()
-  const npmVersion = await getNpmVersion(versionConfig.version)
+  const npmVersion = await getNpmVersion(versionConfig.showBeta)
 
   return (
     <>
