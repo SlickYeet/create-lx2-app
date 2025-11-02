@@ -1,16 +1,18 @@
 import fm from "front-matter"
 import * as PageTree from "fumadocs-core/page-tree"
-import type { PageData } from "fumadocs-core/source"
+import type { Page } from "fumadocs-core/source"
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 import z from "zod"
 
 import { DocsBreadcrumb } from "@/components/docs/breadcrumb"
+import { CopyPageButton } from "@/components/docs/copy-page"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { absoluteUrl } from "@/lib/utils"
 
 interface DocsHeaderProps {
-  doc: PageData
+  page: Page
   raw: string
   tree: PageTree.Root
   neighbours: {
@@ -25,7 +27,9 @@ interface Item {
 }
 
 export async function DocsHeader(props: DocsHeaderProps) {
-  const { doc, raw, tree, neighbours } = props
+  const { page, raw, tree, neighbours } = props
+
+  const doc = page.data
 
   const { attributes } = fm(raw)
   const { links } = z
@@ -44,15 +48,24 @@ export async function DocsHeader(props: DocsHeaderProps) {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex flex-col gap-2">
-        <div className="flex items-start justify-between">
-          <div className="flex flex-col">
+        <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:gap-0">
+          <div className="order-1 block sm:hidden">
             <DocsBreadcrumb tree={tree} />
+          </div>
+
+          <div className="order-3 flex flex-col sm:order-2">
+            <div className="hidden sm:block">
+              <DocsBreadcrumb tree={tree} />
+            </div>
             <h1 className="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl">
               {doc.title}
             </h1>
           </div>
 
-          <div className="flex items-center gap-2 pt-1.5">
+          <div className="order-2 flex w-full items-center gap-2 pt-1.5 sm:order-3 sm:w-auto">
+            <div className="flex-1 sm:flex-none">
+              <CopyPageButton page={raw} url={absoluteUrl(page.url)} />
+            </div>
             {neighbours.previous && (
               <Button
                 size="icon"

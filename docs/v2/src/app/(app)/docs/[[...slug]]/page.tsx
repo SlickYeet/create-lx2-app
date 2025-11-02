@@ -94,7 +94,7 @@ export default async function DocsPage({ params }: DocsPageProps) {
 
         <div className="mx-auto flex w-full max-w-2xl min-w-0 flex-1 flex-col gap-8 px-4 py-6 md:px-0 lg:py-8">
           <DocsHeader
-            doc={doc}
+            page={page}
             raw={raw}
             neighbours={neighbours}
             tree={source.pageTree}
