@@ -15,8 +15,7 @@ import { UseCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 function getPromptUrl(baseURL: string, url: string) {
   return `${baseURL}?q=${encodeURIComponent(
     `I'm looking at this create-lx2-app documentation: ${url}.
-Help me understand it and answer my questions about it. Be ready to explain concepts, give examples, or help debug based on it.
-  `,
+Help me understand it and answer my questions about it. Be ready to explain concepts, give examples, or help debug based on it.`,
   )}`
 }
 
