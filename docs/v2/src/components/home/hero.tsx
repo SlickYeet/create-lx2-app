@@ -77,7 +77,7 @@ export function Hero({ npmVersion, versionConfig }: HeroProps) {
               <Button
                 size="lg"
                 variant="default"
-                className="group min-h-[3.5rem] flex-1 text-base md:text-lg"
+                className="group min-h-14 flex-1 text-base md:text-lg"
                 asChild
               >
                 <Link href={siteConfig.navItems[0].href}>
@@ -89,7 +89,7 @@ export function Hero({ npmVersion, versionConfig }: HeroProps) {
               <Button
                 size="lg"
                 variant="outline"
-                className="group min-h-[3.5rem] flex-1 text-base md:text-lg"
+                className="group min-h-14 flex-1 text-base md:text-lg"
                 asChild
               >
                 <a href={siteConfig.links.github} target="_blank">
