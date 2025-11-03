@@ -190,6 +190,7 @@ export function Search(props: SearchProps) {
                 <CommandMenuItem
                   value="Go to Home"
                   item={{ type: "page", name: "Home" }}
+                  tag="Root"
                   keywords={["home"]}
                   onHighlight={() => handlePageHighlight("page", "Home")}
                   onSelect={() => runCommand(() => router.push("/"))}
@@ -209,7 +210,11 @@ export function Search(props: SearchProps) {
                                 : ""
                             }
                             item={child}
-                            tag={group.name}
+                            tag={
+                              group.name === "Create Lx2 App"
+                                ? "Root"
+                                : group.name
+                            }
                             keywords={["page", "docs", `${child.description}`]}
                             onHighlight={() =>
                               handlePageHighlight(
