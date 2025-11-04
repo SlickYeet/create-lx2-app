@@ -145,7 +145,7 @@ export function TableOfContents(props: TableOfContentsProps) {
         <AlignLeft className="size-4" />
         On This Page
       </p>
-      <div className="flex flex-col">
+      <div className="no-scrollbar flex max-h-[calc(100svh-16rem)] flex-col overflow-hidden overflow-y-auto overscroll-none">
         {toc.map((item) => (
           <a
             key={item.url}

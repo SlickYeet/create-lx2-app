@@ -113,7 +113,7 @@ export default async function DocsPage({ params }: DocsPageProps) {
           toc={doc.toc}
           tree={source.pageTree}
           variant="list"
-          className="no-scrollbar sticky top-8 z-30 ml-auto hidden h-full w-72 overflow-hidden overflow-y-auto overscroll-none pl-8 xl:flex"
+          className="sticky top-8 z-30 ml-auto hidden h-full w-72 pl-8 xl:flex"
         />
       ) : (
         <div className="ml-auto hidden h-full w-72 min-w-72 pl-8 xl:block" />
