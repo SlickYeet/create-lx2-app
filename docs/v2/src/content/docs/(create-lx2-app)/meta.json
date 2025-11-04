@@ -1,4 +1,12 @@
 {
   "title": "Create Lx2 App",
-  "pages": ["index", "getting-started", "why", "faq", "roadmap", "legacy-docs"]
+  "pages": [
+    "index",
+    "getting-started",
+    "why",
+    "faq",
+    "changelog",
+    "roadmap",
+    "legacy-docs"
+  ]
 }
