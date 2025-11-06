@@ -2,7 +2,7 @@
 import path from "path"
 import { execa } from "execa"
 import fs from "fs-extra"
-import type { PackageJson } from "type-fest"
+import { type PackageJson } from "type-fest"
 
 import { runCli } from "@/core/index.js"
 import { createProject } from "@/helpers/create-project.js"
@@ -65,10 +65,13 @@ async function main() {
     initVersion: getVersion(),
   }
 
-  const { stdout } = await execa(pkgManager, ["-v"], {
-    cwd: projectDir,
-  })
-  pkgJson.packageManager = `${pkgManager}@${stdout.trim()}`
+  // ? Bun doesn't support this field (yet)
+  if (pkgManager !== "bun") {
+    const { stdout } = await execa(pkgManager, ["-v"], {
+      cwd: projectDir,
+    })
+    pkgJson.packageManager = `${pkgManager}@${stdout.trim()}`
+  }
 
   fs.writeJSONSync(path.join(projectDir, "package.json"), pkgJson, {
     spaces: 2,

@@ -3,7 +3,6 @@ import gradient from "gradient-string"
 import { TITLE_TEXT } from "@/constants.js"
 import { getUserPkgManager } from "@/utils/get-user-pkg-manager.js"
 
-// Colors brought in from vscode poimandres theme
 const poimandresTheme = {
   primary: "#bf95f9",
   accent: "#6071a4",
