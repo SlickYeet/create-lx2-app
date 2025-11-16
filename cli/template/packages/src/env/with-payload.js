@@ -8,7 +8,7 @@ export const env = createEnv({
    */
   server: {
     PAYLOAD_SECRET: z.string().min(32),
-    DATABASE_URL: z.string().url(),
+    DATABASE_URL: z.url(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
