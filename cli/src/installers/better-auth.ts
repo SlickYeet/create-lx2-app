@@ -77,11 +77,11 @@ export const betterAuthInstaller: Installer = ({
     projectDir,
     scripts: {
       "auth:generate":
-        "pnpm dlx @better-auth/cli@latest generate --config ./src/server/auth/index.ts --yes",
+        "npx @better-auth/cli@latest generate --config ./src/server/auth/index.ts --yes",
       ...(!usingPrisma &&
         !usingDrizzle && {
           "auth:migrate":
-            "pnpm dlx @better-auth/cli@latest migrate --config ./src/server/auth/index.ts --yes",
+            "npx @better-auth/cli@latest migrate --config ./src/server/auth/index.ts --yes",
         }),
     },
   })
