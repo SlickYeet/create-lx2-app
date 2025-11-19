@@ -1,5 +1,105 @@
 # create-lx2-app
 
+## 0.11.0
+
+### Minor Changes
+
+- [#202](https://github.com/SlickYeet/create-lx2-app/pull/202)
+  [`a4da305`](https://github.com/SlickYeet/create-lx2-app/commit/a4da305244c58449025347b54f3006cde595ac84)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Add `addPackageScript` to
+  installers
+
+- [#201](https://github.com/SlickYeet/create-lx2-app/pull/201)
+  [`8a948e6`](https://github.com/SlickYeet/create-lx2-app/commit/8a948e6b6a99250ea5f03dfaa1c2f2625afbed97)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Update template eslint
+  lint script
+
+- [#205](https://github.com/SlickYeet/create-lx2-app/pull/205)
+  [`f4d93e0`](https://github.com/SlickYeet/create-lx2-app/commit/f4d93e0c11c642ed644e1d7a2224bd9fe4e3199f)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Change CLI noGit and
+  noInstall flags to git and install
+
+- [#203](https://github.com/SlickYeet/create-lx2-app/pull/203)
+  [`9891903`](https://github.com/SlickYeet/create-lx2-app/commit/98919038b683336ec7a4e12e3a03acfd4a0ac173)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Update package deps
+  accross repo
+
+### Patch Changes
+
+- [#195](https://github.com/SlickYeet/create-lx2-app/pull/195)
+  [`fb846a9`](https://github.com/SlickYeet/create-lx2-app/commit/fb846a919ddc4aa0fc85cb9706cd031a018f4fc5)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Fix betterauth and
+  drizzle template files and add missing better auth index for drizzle
+
+- [#194](https://github.com/SlickYeet/create-lx2-app/pull/194)
+  [`b315079`](https://github.com/SlickYeet/create-lx2-app/commit/b31507976f758d9171eabed86f82b6fb53b8e4f4)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Move betterauth template
+  indexs out of auth/config
+
+- [#203](https://github.com/SlickYeet/create-lx2-app/pull/203)
+  [`e2a9c19`](https://github.com/SlickYeet/create-lx2-app/commit/e2a9c19644a6ffc3d5740367c9125325fbb73eaf)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Enable
+  verbatimModuleSyntax in all TypeScript configs
+
+- [#208](https://github.com/SlickYeet/create-lx2-app/pull/208)
+  [`13a45e7`](https://github.com/SlickYeet/create-lx2-app/commit/13a45e7f2bd0ef1deee2e10a96e8ffb05cea37d8)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Remove `--turbopack` from
+  build and dev scripts
+
+- [#197](https://github.com/SlickYeet/create-lx2-app/pull/197)
+  [`b408440`](https://github.com/SlickYeet/create-lx2-app/commit/b4084405625dbecbf06d6d77b2f2f429e717bf8c)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Pass our db instance to
+  betterauth prisma
+
+- [#203](https://github.com/SlickYeet/create-lx2-app/pull/203)
+  [`e2a9c19`](https://github.com/SlickYeet/create-lx2-app/commit/e2a9c19644a6ffc3d5740367c9125325fbb73eaf)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Verson packages
+
+- [#203](https://github.com/SlickYeet/create-lx2-app/pull/203)
+  [`e2a9c19`](https://github.com/SlickYeet/create-lx2-app/commit/e2a9c19644a6ffc3d5740367c9125325fbb73eaf)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Externalize type-fest for
+  verbatimModuleSyntax
+
+- [#198](https://github.com/SlickYeet/create-lx2-app/pull/198)
+  [`1f7e241`](https://github.com/SlickYeet/create-lx2-app/commit/1f7e241d8dcb5d49804d47a61f25aae582875b93)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Fix betterauth installer
+  using pg with prisma
+
+- [#199](https://github.com/SlickYeet/create-lx2-app/pull/199)
+  [`ebf0441`](https://github.com/SlickYeet/create-lx2-app/commit/ebf04410a6a5eb41bc6309da9fe37aba6efc9429)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Move global styles into
+  src/styles and update layout imports
+
+- [#204](https://github.com/SlickYeet/create-lx2-app/pull/204)
+  [`7ec9e96`](https://github.com/SlickYeet/create-lx2-app/commit/7ec9e96a96319340e79ca45f144176ac1c6100b4)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Fix build errors because
+  of dropped imports
+
+- [#190](https://github.com/SlickYeet/create-lx2-app/pull/190)
+  [`9c33f60`](https://github.com/SlickYeet/create-lx2-app/commit/9c33f608b09ea941532462f941e67399bdd669c5)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Correctly format
+  deployment note callout
+
+- [#207](https://github.com/SlickYeet/create-lx2-app/pull/207)
+  [`4fccba2`](https://github.com/SlickYeet/create-lx2-app/commit/4fccba29d26154a9b01f50c70cc4999d9d192668)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Disable `-v` flag when
+  using bun
+
+- [#210](https://github.com/SlickYeet/create-lx2-app/pull/210)
+  [`32090e7`](https://github.com/SlickYeet/create-lx2-app/commit/32090e75cc159da4020c4c48b0ff8589eb22c01d)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Replace `pnpm dlx` with
+  `npx` in better-auth installer script
+
+- [#211](https://github.com/SlickYeet/create-lx2-app/pull/211)
+  [`c535e7c`](https://github.com/SlickYeet/create-lx2-app/commit/c535e7c873435232b68c872a003b9a5996ab752d)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - update `env.ts` to use
+  zod v4 `z.url()`
+
+- [#203](https://github.com/SlickYeet/create-lx2-app/pull/203)
+  [`e2a9c19`](https://github.com/SlickYeet/create-lx2-app/commit/e2a9c19644a6ffc3d5740367c9125325fbb73eaf)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Enfore
+  verbatimModuleSyntax in cli installers
+
 ## 0.10.4
 
 ### Patch Changes
