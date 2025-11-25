@@ -1,5 +1,22 @@
 # create-lx2-app
 
+## 0.11.1
+
+### Patch Changes
+
+- [#214](https://github.com/SlickYeet/create-lx2-app/pull/214)
+  [`89b970c`](https://github.com/SlickYeet/create-lx2-app/commit/89b970ceec6640b8d82d9176c016c8a6ee1ee152)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Update CLI deps
+
+- [#216](https://github.com/SlickYeet/create-lx2-app/pull/216)
+  [`89e3460`](https://github.com/SlickYeet/create-lx2-app/commit/89e3460ee84a672a699369b11a1fd624884d7395)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Flip next steps install
+  tip logic
+
+- [#216](https://github.com/SlickYeet/create-lx2-app/pull/216)
+  [`8e327b1`](https://github.com/SlickYeet/create-lx2-app/commit/8e327b1a2c6e5be2da1310a1a4f44e82892b2ca0)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Update package deps again
+
 ## 0.11.0
 
 ### Minor Changes
