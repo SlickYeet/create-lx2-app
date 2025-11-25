@@ -1,7 +1,6 @@
 import { transformerNotationDiff } from "@shikijs/transformers"
 import { defineConfig, defineDocs } from "fumadocs-mdx/config"
 import { rehypePrettyCode } from "rehype-pretty-code"
-import { z } from "zod"
 
 import { transformers } from "@/lib/highlight-code"
 
@@ -32,18 +31,4 @@ export default defineConfig({
 
 export const docs = defineDocs({
   dir: "src/content/docs",
-  docs: {
-    schema: z.object({
-      title: z.string(),
-      description: z.string().optional(),
-      links: z
-        .object({
-          docs: z.string().optional(),
-          api: z.string().optional(),
-          community: z.string().optional(),
-          repo: z.string().optional(),
-        })
-        .optional(),
-    }),
-  },
 })
