@@ -380,11 +380,11 @@ export async function runCli(): Promise<CliResults> {
       packages,
       flags: {
         ...cliResults.flags,
-        git: project.git || cliResults.flags.git,
-        install: project.install || cliResults.flags.install,
+        git: project.git ?? cliResults.flags.git,
+        install: project.install ?? cliResults.flags.install,
         importAlias: project.importAlias ?? cliResults.flags.importAlias,
       },
-      databaseProvider: project.databaseProvider || "sqlite",
+      databaseProvider: project.databaseProvider ?? "sqlite",
     }
   } catch (error) {
     // If the user is not calling create-lx2-app from an interactive terminal, inquirer will throw an IsTTYError

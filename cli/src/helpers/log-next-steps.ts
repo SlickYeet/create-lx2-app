@@ -22,7 +22,7 @@ export const logNextSteps = async ({
   if (projectName !== ".") {
     logger.info(`  cd ${projectName}`)
   }
-  if (install === true) {
+  if (install === false) {
     // To reflect yarn's default behavior of installing packages when no additional args provided
     if (pkgManager === "yarn") {
       logger.info(`  ${pkgManager}`)
