@@ -27,5 +27,5 @@ const getQueryClient = React.cache(createQueryClient)
 
 export const { trpc: api, HydrateClient } = createHydrationHelpers<AppRouter>(
   caller,
-  getQueryClient,
+  getQueryClient
 )
