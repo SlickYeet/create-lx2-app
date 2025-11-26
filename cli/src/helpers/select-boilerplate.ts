@@ -16,8 +16,10 @@ export function selectLayoutFile({
   const layoutFileDir = path.join(PKG_ROOT, "template/packages/src/app/layout")
 
   const usingPayload = packages.payload.inUse
+  const usingTRPC = packages.trpc.inUse
 
   let layoutFile = "base.tsx"
+  if (usingTRPC) layoutFile = "with-trpc.tsx"
 
   const layoutSrc = path.join(layoutFileDir, layoutFile)
   const layoutDest = path.join(
@@ -37,6 +39,7 @@ export function selectPageFile({
   const usingPayload = packages.payload.inUse
   const usingAuthjs = packages.authjs.inUse
   const usingBetterAuth = packages.betterAuth.inUse
+  const usingTRPC = packages.trpc.inUse
   const usingPrisma = packages.prisma.inUse
   const usingDrizzle = packages.drizzle.inUse
 
@@ -49,6 +52,15 @@ export function selectPageFile({
   }
   if (usingBetterAuth) {
     pageFile = "with-better-auth.tsx"
+  }
+  if (usingTRPC && usingAuthjs) {
+    pageFile = "with-trpc-authjs.tsx"
+  }
+  if (usingTRPC && usingBetterAuth) {
+    pageFile = "with-trpc-betterauth.tsx"
+  }
+  if (usingTRPC) {
+    pageFile = "with-trpc.tsx"
   }
   if (usingPrisma) {
     pageFile = "with-prisma.tsx"
