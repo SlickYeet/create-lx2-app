@@ -4,6 +4,7 @@ import { execa } from "execa"
 import fs from "fs-extra"
 import type { PackageJson } from "type-fest"
 
+import { compatibilityMatrix } from "@/constants.js"
 import { runCli } from "@/core/index.js"
 import { createProject } from "@/helpers/create-project.js"
 import { initializeGit } from "@/helpers/git.js"
@@ -15,6 +16,7 @@ import { getVersion } from "@/utils/get-lx2-version.js"
 import { getUserPkgManager } from "@/utils/get-user-pkg-manager.js"
 import { logger } from "@/utils/logger.js"
 import { parseNameAndPath } from "@/utils/parse-name-and-path.js"
+import { renderCompatibilityWarning } from "@/utils/render-compatibility-warning.js"
 import { renderTitle } from "@/utils/render-title.js"
 import {
   getNpmVersion,
@@ -34,6 +36,10 @@ async function main() {
 
   if (npmVersion) {
     renderVersionWarning(npmVersion)
+  }
+
+  if (compatibilityMatrix.length > 0) {
+    renderCompatibilityWarning()
   }
 
   const {
