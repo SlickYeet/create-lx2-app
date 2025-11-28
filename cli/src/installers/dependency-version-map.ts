@@ -24,6 +24,14 @@ export const dependencyVersionMap = {
   mysql2: "^3.15.3",
   postgres: "^3.4.7",
 
+  // tRPC
+  "@trpc/server": "^11.7.2",
+  "@trpc/client": "^11.7.2",
+  "@trpc/react-query": "^11.7.2",
+  "@tanstack/react-query": "^5.90.10",
+  "server-only": "^0.0.1",
+  superjson: "^2.2.5",
+
   // Environment Variables
   "@t3-oss/env-nextjs": "^0.13.8",
   zod: "^4.1.13",
