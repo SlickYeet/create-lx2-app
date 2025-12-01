@@ -30,6 +30,7 @@ export function Hero({ npmVersion, versionConfig }: HeroProps) {
 
   const isBeta =
     npmVersion?.includes("beta") || versionConfig?.showBeta === true
+  const overrideVersion = versionConfig?.overrideVersion != null
 
   return (
     <section id="create-lx2-app" className="relative py-8 md:py-16">
@@ -107,7 +108,7 @@ export function Hero({ npmVersion, versionConfig }: HeroProps) {
 
             <div className="w-full text-start md:px-4">
               <CodeBlock
-                code={`npm create lx2-app@${isBeta ? "beta" : "latest"}`}
+                code={`npm create lx2-app@${overrideVersion ? npmVersion : isBeta ? "beta" : "latest"}`}
                 packageManager={packageManager}
                 command={false}
               />
