@@ -1,5 +1,14 @@
 # create-lx2-app
 
+## 0.11.2
+
+### Patch Changes
+
+- [#219](https://github.com/SlickYeet/create-lx2-app/pull/219)
+  [`8e999db`](https://github.com/SlickYeet/create-lx2-app/commit/8e999db5232394f0f000a92276330145d18e1255)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Update Discord link to
+  new hub URL
+
 ## 0.11.1
 
 ### Patch Changes
