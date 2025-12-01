@@ -9,6 +9,7 @@ import { TerminalDemo } from "@/components/home/terminal-demo"
 import { Icons } from "@/components/icons"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { useConfig } from "@/hooks/use-config"
 import { siteConfig } from "@/lib/config"
 import { cn, formatVersionText, type VersionConfig } from "@/lib/utils"
 
@@ -18,6 +19,10 @@ interface HeroProps {
 }
 
 export function Hero({ npmVersion, versionConfig }: HeroProps) {
+  const [config] = useConfig()
+
+  const packageManager = config.packageManager
+
   const displayText =
     npmVersion && versionConfig
       ? formatVersionText(versionConfig.text, npmVersion, siteConfig.name)
@@ -103,6 +108,7 @@ export function Hero({ npmVersion, versionConfig }: HeroProps) {
             <div className="w-full text-start md:px-4">
               <CodeBlock
                 code={`npm create lx2-app@${isBeta ? "beta" : "latest"}`}
+                packageManager={packageManager}
                 command={false}
               />
             </div>

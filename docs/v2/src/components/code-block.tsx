@@ -15,18 +15,20 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { useConfig } from "@/hooks/use-config"
+import { useConfig, type PackageManager } from "@/hooks/use-config"
 import { applyPackageManagerTransformations } from "@/lib/highlight-code"
 
 interface CodeBlockProps extends React.ComponentProps<"pre"> {
   code: string
   language?: BundledLanguage
+  packageManager?: PackageManager
   command?: boolean
 }
 
 export function CodeBlock({
   code,
   language = "bash",
+  packageManager = "pnpm",
   command = true,
 }: CodeBlockProps) {
   const transforms = applyPackageManagerTransformations(code)
@@ -44,8 +46,8 @@ export function CodeBlock({
             />
           ) : (
             <>
-              {transforms.__pnpm__}
-              <CopyButton value={transforms.__pnpm__} />
+              {transforms[`__${packageManager}__`]}
+              <CopyButton value={transforms[`__${packageManager}__`]} />
             </>
           )}
         </Code>
@@ -100,7 +102,7 @@ export function CodeBlockCommand(props: CodeBlockCommandProps) {
         onValueChange={(value) => {
           setConfig({
             ...config,
-            packageManager: value as "npm" | "yarn" | "pnpm" | "bun",
+            packageManager: value as PackageManager,
           })
         }}
         className="gap-0"
