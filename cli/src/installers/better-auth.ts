@@ -14,11 +14,12 @@ export const betterAuthInstaller: Installer = ({
 }) => {
   const usingPrisma = packages?.prisma.inUse
   const usingDrizzle = packages?.drizzle.inUse
+  const usingDatabase = usingPrisma || usingDrizzle
 
   const deps: AvailableDependencies[] = ["better-auth"]
   const devDeps: AvailableDependencies[] = []
-  if (!usingPrisma || !usingDrizzle) deps.push("better-sqlite3")
-  if (!usingPrisma || !usingDrizzle) devDeps.push("@types/better-sqlite3")
+  if (!usingDatabase) deps.push("better-sqlite3")
+  if (!usingDatabase) devDeps.push("@types/better-sqlite3")
 
   addPackageDependency({
     projectDir,

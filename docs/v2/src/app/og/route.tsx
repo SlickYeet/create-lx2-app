@@ -43,55 +43,53 @@ export async function GET(request: Request) {
   const [fonts] = await Promise.all([loadAssets()])
 
   return new ImageResponse(
-    (
-      <div
-        tw="flex h-full w-full bg-[#272935] text-[#f8f8f2]"
-        style={{ fontFamily: "Geist Sans" }}
-      >
-        <div tw="flex border absolute border-[#44475a] border-dashed inset-y-0 left-16 w-[1px]" />
-        <div tw="flex border absolute border-[#44475a] border-dashed inset-y-0 right-16 w-[1px]" />
-        <div tw="flex border absolute border-[#44475a] inset-x-0 h-[1px] top-16" />
-        <div tw="flex border absolute border-[#44475a] inset-x-0 h-[1px] bottom-16" />
-        <div tw="flex absolute flex-row bottom-24 right-24 text-white">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width={48}
-            height={48}
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M12 19h8" />
-            <path d="m4 17 6-6-6-6" />
-          </svg>
+    <div
+      tw="flex h-full w-full bg-[#272935] text-[#f8f8f2]"
+      style={{ fontFamily: "Geist Sans" }}
+    >
+      <div tw="flex border absolute border-[#44475a] border-dashed inset-y-0 left-16 w-[1px]" />
+      <div tw="flex border absolute border-[#44475a] border-dashed inset-y-0 right-16 w-[1px]" />
+      <div tw="flex border absolute border-[#44475a] inset-x-0 h-[1px] top-16" />
+      <div tw="flex border absolute border-[#44475a] inset-x-0 h-[1px] bottom-16" />
+      <div tw="flex absolute flex-row bottom-24 right-24 text-white">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width={48}
+          height={48}
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M12 19h8" />
+          <path d="m4 17 6-6-6-6" />
+        </svg>
+      </div>
+      <div tw="flex flex-col absolute w-[896px] justify-center inset-32">
+        <div
+          tw="tracking-tight flex-grow-1 flex flex-col justify-center leading-[1.1]"
+          style={{
+            textWrap: "balance",
+            fontWeight: 600,
+            fontSize: title && title.length > 20 ? 64 : 80,
+            letterSpacing: "-0.04em",
+          }}
+        >
+          {title}
         </div>
-        <div tw="flex flex-col absolute w-[896px] justify-center inset-32">
-          <div
-            tw="tracking-tight flex-grow-1 flex flex-col justify-center leading-[1.1]"
-            style={{
-              textWrap: "balance",
-              fontWeight: 600,
-              fontSize: title && title.length > 20 ? 64 : 80,
-              letterSpacing: "-0.04em",
-            }}
-          >
-            {title}
-          </div>
-          <div
-            tw="text-[40px] leading-[1.5] flex-grow-1 text-stone-400"
-            style={{
-              fontWeight: 500,
-              textWrap: "balance",
-            }}
-          >
-            {description}
-          </div>
+        <div
+          tw="text-[40px] leading-[1.5] flex-grow-1 text-stone-400"
+          style={{
+            fontWeight: 500,
+            textWrap: "balance",
+          }}
+        >
+          {description}
         </div>
       </div>
-    ),
+    </div>,
     {
       width: 1200,
       height: 630,
