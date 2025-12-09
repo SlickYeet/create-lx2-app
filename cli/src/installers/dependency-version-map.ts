@@ -43,7 +43,7 @@ export const dependencyVersionMap = {
 
   // TypeScript
   typescript: "^5.9.3",
-  "@types/node": "^24.10.1",
+  "@types/node": "^24.10.2",
   "@types/react": "^19.2.7",
   "@types/react-dom": "^19.2.3",
 
