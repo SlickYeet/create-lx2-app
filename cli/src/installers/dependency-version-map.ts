@@ -9,7 +9,7 @@ export const dependencyVersionMap = {
   "@auth/drizzle-adapter": "^1.11.1",
 
   // Better-Auth
-  "better-auth": "^1.4.5",
+  "better-auth": "^1.4.6",
   "better-sqlite3": "^12.5.0",
   "@types/better-sqlite3": "^7.6.13",
 
@@ -18,8 +18,8 @@ export const dependencyVersionMap = {
   "@prisma/client": "^7.1.0",
 
   // Drizzle ORM
-  "drizzle-orm": "^0.44.7",
-  "drizzle-kit": "^0.31.7",
+  "drizzle-orm": "^0.45.0",
+  "drizzle-kit": "^0.31.8",
   "@libsql/client": "^0.15.15",
   mysql2: "^3.15.3",
   postgres: "^3.4.7",
@@ -35,7 +35,7 @@ export const dependencyVersionMap = {
 
   // ESLint
   eslint: "^9.39.1",
-  "eslint-config-next": "^16.0.7",
+  "eslint-config-next": "^16.0.8",
   "@eslint/eslintrc": "^3.3.3",
 
   // Biome
@@ -48,12 +48,12 @@ export const dependencyVersionMap = {
   "@types/react-dom": "^19.2.3",
 
   // Payload CMS
-  payload: "^3.66.0",
-  "@payloadcms/next": "^3.66.0",
-  "@payloadcms/payload-cloud": "^3.66.0",
-  "@payloadcms/richtext-lexical": "^3.66.0",
-  "@payloadcms/db-vercel-postgres": "^3.66.0",
-  "@payloadcms/db-sqlite": "^3.66.0",
+  payload: "^3.67.0",
+  "@payloadcms/next": "^3.67.0",
+  "@payloadcms/payload-cloud": "^3.67.0",
+  "@payloadcms/richtext-lexical": "^3.67.0",
+  "@payloadcms/db-vercel-postgres": "^3.67.0",
+  "@payloadcms/db-sqlite": "^3.67.0",
   graphql: "^16.12.0",
   sharp: "^0.34.5",
 } as const

@@ -31,12 +31,12 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "front-matter": "^4.0.2",
-    "fumadocs-core": "^16.2.2",
-    "fumadocs-mdx": "^14.0.4",
+    "fumadocs-core": "^16.2.3",
+    "fumadocs-mdx": "^14.1.0",
     "jotai": "^2.15.2",
-    "lucide-react": "^0.555.0",
+    "lucide-react": "^0.556.0",
     "motion": "^12.23.25",
-    "next": "^16.0.7",
+    "next": "^16.0.8",
     "next-themes": "^0.4.6",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
@@ -52,7 +52,7 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.1",
-    "eslint-config-next": "^16.0.7",
+    "eslint-config-next": "^16.0.8",
     "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "shiki": "^3.19.0",
@@ -63,5 +63,5 @@
   "clx2aMetadata": {
     "initVersion": "0.6.1"
   },
-  "packageManager": "pnpm@10.24.0"
+  "packageManager": "pnpm@10.25.0"
 }
