@@ -1,5 +1,14 @@
 # create-lx2-app
 
+## 0.11.3
+
+### Patch Changes
+
+- [#226](https://github.com/SlickYeet/create-lx2-app/pull/226)
+  [`0ef4ad6`](https://github.com/SlickYeet/create-lx2-app/commit/0ef4ad6b1fe642f30e956c00210e52d09dccdd3e)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - fix react vulnerability
+  ([CVE-2025-55182](https://github.com/facebook/react/security/advisories/GHSA-fv66-9v8q-g76r))
+
 ## 0.11.2
 
 ### Patch Changes
