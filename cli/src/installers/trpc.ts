@@ -134,7 +134,7 @@ export const trpcInstaller: Installer = ({ projectDir, packages }) => {
  * - [ ] with-authjs.ts
  * - [ ] with-betterauth-db.ts
  * - [ ] with-betterauth.ts
- * - [ ] with-db.ts
+ * - [x] with-db.ts
  * - [x] base.ts
  *
  * ## Root file
@@ -145,7 +145,7 @@ export const trpcInstaller: Installer = ({ projectDir, packages }) => {
  * - [ ] with-auth-drizzle.ts
  * - [ ] with-auth.ts
  * - [ ] with-prisma.ts
- * - [ ] with-drizzle.ts
+ * - [x] with-drizzle.ts
  * - [x] base.ts
  *
  * ## Lib files
