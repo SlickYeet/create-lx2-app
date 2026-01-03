@@ -427,7 +427,7 @@ export async function runCli(): Promise<CliResults> {
         break
     }
 
-    // Only allow base tRPC (no other packages) until support is added
+    // Restrict TRPC combinations for now
     const selectedPackages = [
       ...(cliResults.packages || []),
       ...(packages || []),
