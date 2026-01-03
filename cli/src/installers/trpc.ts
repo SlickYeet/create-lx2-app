@@ -127,7 +127,8 @@ export const trpcInstaller: Installer = ({ projectDir, packages }) => {
 }
 
 /**
- * tRPC files to write:
+ * TODO: Remove block once complete
+ * TODO: tRPC files to write:
  *
  * ## Init files
  * - [ ] with-authjs-db.ts
