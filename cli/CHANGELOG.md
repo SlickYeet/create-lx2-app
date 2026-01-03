@@ -1,5 +1,33 @@
 # create-lx2-app
 
+## 0.11.4
+
+### Patch Changes
+
+- [#223](https://github.com/SlickYeet/create-lx2-app/pull/223)
+  [`360e14e`](https://github.com/SlickYeet/create-lx2-app/commit/360e14eea6708bd19c075b6d782b62b8ffa9ba95)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Update default flag logic
+  in runCli function
+
+- [#223](https://github.com/SlickYeet/create-lx2-app/pull/223)
+  [`598f18d`](https://github.com/SlickYeet/create-lx2-app/commit/598f18dfb1666428c32940de2c019897cbeee695)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Version packages
+
+- [#223](https://github.com/SlickYeet/create-lx2-app/pull/223)
+  [`5fba624`](https://github.com/SlickYeet/create-lx2-app/commit/5fba624b68765892cfc4e543f9c1ef7b6fecc639)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Update package
+  dependencies and versions
+
+- [#223](https://github.com/SlickYeet/create-lx2-app/pull/223)
+  [`d155aad`](https://github.com/SlickYeet/create-lx2-app/commit/d155aad906721735cd3601eb7ce2d8ea18ea7a6c)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - fix: version pacakges
+  again
+
+- [#225](https://github.com/SlickYeet/create-lx2-app/pull/225)
+  [`aca9a13`](https://github.com/SlickYeet/create-lx2-app/commit/aca9a13af6907f625d3accab7e98138b5ace470c)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Correct dependency checks
+  for better-sqlite3 based on database usage
+
 ## 0.11.3
 
 ### Patch Changes
