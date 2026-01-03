@@ -34,6 +34,7 @@ export async function getNpmVersion(beta: boolean = false): Promise<string> {
 export interface VersionConfig {
   text: string
   showBeta?: boolean
+  overrideVersion?: string | null
 }
 
 export async function getVersionConfig(): Promise<VersionConfig> {
@@ -42,18 +43,12 @@ export async function getVersionConfig(): Promise<VersionConfig> {
       "https://cdn.famlam.ca/lx2/version-config.json",
       {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
         next: { revalidate: 300 },
       },
     )
-    if (!response.ok) {
-      throw new Error("Failed to fetch version config")
-    }
+    if (!response.ok) throw new Error("Failed to fetch version config")
 
-    const config = await response.json()
-    return config
+    return await response.json()
   } catch (error) {
     console.error("Failed to fetch version config, using defaults:", error)
     // Fallback config

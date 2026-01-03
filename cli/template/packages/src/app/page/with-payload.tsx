@@ -91,7 +91,7 @@ export default async function HomePage() {
             </svg>
           </a>
           <a
-            href="https://link.lx2.dev/discord"
+            href="https://hub.lx2.dev/discord"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center rounded-md border border-white/25 px-2 py-1 outline-none hover:opacity-80 focus:opacity-80 active:opacity-70"

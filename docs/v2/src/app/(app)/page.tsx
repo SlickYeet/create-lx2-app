@@ -10,11 +10,13 @@ export default async function HomePage() {
   const versionConfig = await getVersionConfig()
   const npmVersion = await getNpmVersion(versionConfig.showBeta)
 
+  const effectiveVersion = versionConfig.overrideVersion ?? npmVersion
+
   return (
     <>
       <Header />
       <div className="flex min-h-screen flex-col">
-        <Hero npmVersion={npmVersion} versionConfig={versionConfig} />
+        <Hero npmVersion={effectiveVersion} versionConfig={versionConfig} />
         <Features />
         <Usage />
         <CTA />
