@@ -1,7 +1,11 @@
 import { confirm, input, select } from "@inquirer/prompts"
 import { Command } from "commander"
 
-import { CREATE_LX2_APP, DEFAULT_APP_NAME } from "@/constants.js"
+import {
+  compatibilityMatrix,
+  CREATE_LX2_APP,
+  DEFAULT_APP_NAME,
+} from "@/constants.js"
 import {
   authProviders,
   backendFrameworks,
@@ -434,14 +438,23 @@ export async function runCli(): Promise<CliResults> {
     ]
     const uniquePackages = Array.from(new Set(selectedPackages))
     const hasTRPC = uniquePackages.includes("trpc")
-    const otherPackages = uniquePackages.filter(
-      (pkg) => pkg !== "trpc" && pkg !== "eslint/prettier" && pkg !== "biome"
-    )
-    if (hasTRPC && otherPackages.length > 0) {
-      logger.warn(
-        "As of right now, Create Lx2 App only supports base tRPC without any additional packages or frameworks. Exiting."
+
+    if (hasTRPC) {
+      const matrix = compatibilityMatrix.find((c) =>
+        c.packages.includes("trpc")
       )
-      process.exit(0)
+      if (matrix) {
+        const incompatiblePkgs = uniquePackages.filter(
+          (pkg) => matrix.packages.includes(pkg) && pkg !== "trpc"
+        )
+
+        if (incompatiblePkgs.length > 0) {
+          logger.warn(
+            "As of right now, Create Lx2 App only supports TRPC with certain combinations of packages. Exiting."
+          )
+          process.exit(0)
+        }
+      }
     }
 
     return {
