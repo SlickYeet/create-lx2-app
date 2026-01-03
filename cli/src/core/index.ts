@@ -263,7 +263,7 @@ export async function runCli(): Promise<CliResults> {
         { value: "nextjs", name: "Next.js" },
         { value: "payload", name: "Payload CMS" },
       ],
-      default: !defaultOptions.flags.backend,
+      default: defaultOptions.flags.backend,
     })
     if (project.backend === "payload") {
       project.databaseProvider = await select({
@@ -272,7 +272,10 @@ export async function runCli(): Promise<CliResults> {
           { value: "sqlite", name: "SQLite" },
           { value: "postgresql", name: "PostgreSQL" },
         ],
-        default: !defaultOptions.flags.dbProvider,
+        default: defaultOptions.flags.dbProvider as Exclude<
+          DatabaseProvider,
+          "mysql"
+        >,
       })
     }
 
@@ -284,7 +287,7 @@ export async function runCli(): Promise<CliResults> {
           { value: "authjs", name: "Auth.js" },
           { value: "betterAuth", name: "Better Auth" },
         ],
-        default: !defaultOptions.flags.authentication,
+        default: defaultOptions.flags.authentication,
       })
       project.orm = await select({
         message: "What database ORM would you like to use?",
@@ -293,7 +296,7 @@ export async function runCli(): Promise<CliResults> {
           { value: "prisma", name: "Prisma" },
           { value: "drizzle", name: "Drizzle" },
         ],
-        default: !defaultOptions.flags.orm,
+        default: defaultOptions.flags.orm,
       })
       if (project.orm !== "none") {
         project.databaseProvider = await select({
@@ -303,7 +306,7 @@ export async function runCli(): Promise<CliResults> {
             { value: "mysql", name: "MySQL" },
             { value: "postgresql", name: "PostgreSQL" },
           ],
-          default: !defaultOptions.flags.dbProvider,
+          default: defaultOptions.flags.dbProvider,
         })
       }
     }
@@ -314,7 +317,7 @@ export async function runCli(): Promise<CliResults> {
         { value: "eslint/prettier", name: "ESLint/Prettier" },
         { value: "biome", name: "Biome" },
       ],
-      default: !defaultOptions.flags.linter,
+      default: defaultOptions.flags.linter,
     })
     if (!cliResults.flags.git) {
       project.git = await confirm({
