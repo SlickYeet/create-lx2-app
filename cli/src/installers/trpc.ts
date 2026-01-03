@@ -131,20 +131,21 @@ export const trpcInstaller: Installer = ({ projectDir, packages }) => {
  * TODO: tRPC files to write:
  *
  * ## Init files
- * - [ ] with-authjs-db.ts
- * - [ ] with-authjs.ts
- * - [ ] with-betterauth-db.ts
- * - [ ] with-betterauth.ts
+ * - [x] with-authjs-db.ts
+ * - [x] with-authjs.ts
+ * - [x] with-betterauth-db.ts
+ * - [x] with-betterauth.ts
  * - [x] with-db.ts
  * - [x] base.ts
  *
  * ## Root file
  * - [x] root.ts
  *
+ * TODO: Add `prisma.config.ts` to complete below
  * ## Router files
  * - [ ] with-auth-prisma.ts
- * - [ ] with-auth-drizzle.ts
- * - [ ] with-auth.ts
+ * - [x] with-auth-drizzle.ts
+ * - [x] with-auth.ts
  * - [ ] with-prisma.ts
  * - [x] with-drizzle.ts
  * - [x] base.ts
@@ -156,4 +157,12 @@ export const trpcInstaller: Installer = ({ projectDir, packages }) => {
  *
  * ## Route handler file
  * - [x] route.ts
+ *
+ * ## Env files
+ * - [x] with-trpc-authjs-db.js
+ * - [x] with-trpc-authjs.js
+ * - [x] with-trpc-better-auth-db.js
+ * - [x] with-trpc-better-auth.js
+ * - [x] with-trpc-db.js
+ * - [x] with-trpc.js
  */
