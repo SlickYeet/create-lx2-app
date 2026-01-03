@@ -45,26 +45,26 @@ export const envVariablesInstaller: Installer = ({
     databaseProvider
   )
 
-  let envFile = ""
-  if (usingDb) {
-    if (usingAuthjs) {
-      envFile = "with-authjs-db.js"
-    } else if (usingBetterAuth) {
-      envFile = "with-better-auth-db.js"
-    } else if (usingPayload) {
-      envFile = "with-payload.js"
-    } else {
-      envFile = "with-db.js"
-    }
-  } else {
-    if (usingTRPC) {
-      envFile = "with-trpc.js"
-    } else if (usingAuthjs) {
-      envFile = "with-authjs.js"
-    } else if (usingBetterAuth) {
-      envFile = "with-better-auth.js"
-    }
-  }
+  const rules: { condition: boolean | undefined; file: string }[] = [
+    { condition: usingDb && usingTRPC, file: "with-trpc-db.js" },
+    {
+      condition: usingDb && usingTRPC && usingAuthjs,
+      file: "with-trpc-authjs-db.js",
+    },
+    {
+      condition: usingDb && usingTRPC && usingBetterAuth,
+      file: "with-trpc-better-auth-db.js",
+    },
+    { condition: usingDb && usingAuthjs, file: "with-authjs-db.js" },
+    { condition: usingDb && usingBetterAuth, file: "with-better-auth-db.js" },
+    { condition: usingDb && usingPayload, file: "with-payload.js" },
+    { condition: usingDb, file: "with-db.js" },
+    { condition: usingTRPC, file: "with-trpc.js" },
+    { condition: usingAuthjs, file: "with-authjs.js" },
+    { condition: usingBetterAuth, file: "with-better-auth.js" },
+  ]
+
+  const envFile = rules.find((rule) => rule.condition)?.file || ""
 
   if (envFile !== "") {
     const envSchemaSrc = path.join(

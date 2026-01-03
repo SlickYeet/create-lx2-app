@@ -84,13 +84,10 @@ export const trpcInstaller: Installer = ({ projectDir, packages }) => {
 
   const routerSrc = path.join(
     packagesDir,
-    "src/server/api/routers/hello-world",
+    "src/server/api/routers/post",
     routerFile
   )
-  const routerDest = path.join(
-    projectDir,
-    "src/server/api/routers/hello-world.ts"
-  )
+  const routerDest = path.join(projectDir, "src/server/api/routers/post.ts")
 
   const utilsSrc = path.join(packagesDir, "src/lib/utils.ts")
   const utilsDest = path.join(projectDir, "src/lib/utils.ts")

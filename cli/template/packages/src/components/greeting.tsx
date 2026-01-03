@@ -3,7 +3,7 @@
 import { api } from "@/lib/api/client"
 
 export function Greeting() {
-  const [greeting] = api.helloWorld.greeting.useSuspenseQuery({
+  const [greeting] = api.post.greeting.useSuspenseQuery({
     text: "from tRPC!",
   })
 

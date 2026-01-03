@@ -10,6 +10,8 @@ import { initTRPC } from "@trpc/server"
 import superjson from "superjson"
 import { z, ZodError } from "zod"
 
+import { db } from "@/server/db"
+
 /**
  * 1. CONTEXT
  *
@@ -24,6 +26,7 @@ import { z, ZodError } from "zod"
  */
 export async function createTRPCContext(opts: { headers: Headers }) {
   return {
+    db,
     ...opts,
   }
 }

@@ -6,7 +6,7 @@ import { api, HydrateClient } from "@/lib/api/server"
 export default async function HomePage() {
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
-  void api.helloWorld.greeting({ text: "from tRPC!" })
+  void api.post.greeting({ text: "from tRPC!" })
 
   return (
     <HydrateClient>
