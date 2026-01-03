@@ -43,43 +43,65 @@ export function selectPageFile({
   const usingPrisma = packages.prisma.inUse
   const usingDrizzle = packages.drizzle.inUse
 
-  let pageFile = "base.tsx"
-  if (usingPayload) {
-    pageFile = "with-payload.tsx"
-  }
-  if (usingAuthjs) {
-    pageFile = "with-authjs.tsx"
-  }
-  if (usingBetterAuth) {
-    pageFile = "with-better-auth.tsx"
-  }
-  if (usingTRPC && usingAuthjs) {
-    pageFile = "with-trpc-authjs.tsx"
-  }
-  if (usingTRPC && usingBetterAuth) {
-    pageFile = "with-trpc-betterauth.tsx"
-  }
-  if (usingTRPC) {
-    pageFile = "with-trpc.tsx"
-  }
-  if (usingPrisma) {
-    pageFile = "with-prisma.tsx"
-  }
-  if (usingAuthjs && usingPrisma) {
-    pageFile = "with-authjs-prisma.tsx"
-  }
-  if (usingBetterAuth && usingPrisma) {
-    pageFile = "with-better-auth-prisma.tsx"
-  }
-  if (usingDrizzle) {
-    pageFile = "with-drizzle.tsx"
-  }
-  if (usingAuthjs && usingDrizzle) {
-    pageFile = "with-authjs-drizzle.tsx"
-  }
-  if (usingBetterAuth && usingDrizzle) {
-    pageFile = "with-better-auth-drizzle.tsx"
-  }
+  const rules: { condition: boolean; file: string }[] = [
+    // TRPC + Drizzle
+    {
+      condition: usingTRPC && usingDrizzle && usingBetterAuth,
+      file: "with-trpc.tsx",
+    },
+    {
+      condition: usingTRPC && usingDrizzle && usingAuthjs,
+      file: "with-trpc.tsx",
+    },
+    { condition: usingTRPC && usingDrizzle, file: "with-trpc.tsx" },
+
+    // TRPC + Prisma
+    {
+      condition: usingTRPC && usingPrisma && usingBetterAuth,
+      file: "with-trpc.tsx",
+    },
+    {
+      condition: usingTRPC && usingPrisma && usingAuthjs,
+      file: "with-trpc.tsx",
+    },
+    { condition: usingTRPC && usingPrisma, file: "with-trpc.tsx" },
+
+    // Payload
+    { condition: usingPayload, file: "with-payload.tsx" },
+
+    // Drizzle
+    {
+      condition: usingDrizzle && usingBetterAuth,
+      file: "with-better-auth-drizzle.tsx",
+    },
+    { condition: usingDrizzle && usingAuthjs, file: "with-authjs-drizzle.tsx" },
+    { condition: usingDrizzle, file: "with-drizzle.tsx" },
+
+    // Prisma
+    {
+      condition: usingPrisma && usingBetterAuth,
+      file: "with-better-auth-prisma.tsx",
+    },
+    { condition: usingPrisma && usingAuthjs, file: "with-authjs-prisma.tsx" },
+    { condition: usingPrisma, file: "with-prisma.tsx" },
+
+    // TRPC
+    {
+      condition: usingTRPC && usingBetterAuth,
+      file: "with-trpc.tsx",
+    },
+    { condition: usingTRPC && usingAuthjs, file: "with-trpc.tsx" },
+    { condition: usingTRPC, file: "with-trpc.tsx" },
+
+    // Auth
+    { condition: usingBetterAuth, file: "with-better-auth.tsx" },
+    { condition: usingAuthjs, file: "with-authjs.tsx" },
+
+    // Base
+    { condition: true, file: "base.tsx" },
+  ]
+
+  const pageFile = rules.find((c) => c.condition)?.file || "base.tsx"
 
   const pageSrc = path.join(pageFileDir, pageFile)
   const pageDest = path.join(

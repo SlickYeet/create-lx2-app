@@ -3,6 +3,8 @@ import { fileURLToPath } from "url"
 import { Greeting } from "@/components/greeting"
 import { api, HydrateClient } from "@/lib/api/server"
 
+export const dynamic = "force-dynamic"
+
 export default async function HomePage() {
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 

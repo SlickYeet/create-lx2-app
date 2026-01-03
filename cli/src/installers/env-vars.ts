@@ -32,7 +32,7 @@ export const envVariablesInstaller: Installer = ({
     devMode: false,
   })
 
-  const usingDb = usingPrisma || usingDrizzle || usingPayload
+  const usingDb = usingPrisma || usingDrizzle
 
   const envContent = getEnvContent(
     !!usingAuthjs,
@@ -46,20 +46,36 @@ export const envVariablesInstaller: Installer = ({
   )
 
   const rules: { condition: boolean | undefined; file: string }[] = [
-    { condition: usingDb && usingTRPC, file: "with-trpc-db.js" },
-    {
-      condition: usingDb && usingTRPC && usingAuthjs,
-      file: "with-trpc-authjs-db.js",
-    },
+    // DB + TRPC + Auth
     {
       condition: usingDb && usingTRPC && usingBetterAuth,
       file: "with-trpc-better-auth-db.js",
     },
+    {
+      condition: usingDb && usingTRPC && usingAuthjs,
+      file: "with-trpc-authjs-db.js",
+    },
+    { condition: usingDb && usingTRPC, file: "with-trpc-db.js" },
     { condition: usingDb && usingAuthjs, file: "with-authjs-db.js" },
     { condition: usingDb && usingBetterAuth, file: "with-better-auth-db.js" },
-    { condition: usingDb && usingPayload, file: "with-payload.js" },
+
+    // TRPC + Auth
+    { condition: usingTRPC && usingAuthjs, file: "with-trpc-authjs.js" },
+    {
+      condition: usingTRPC && usingBetterAuth,
+      file: "with-trpc-better-auth.js",
+    },
+
+    // Payload
+    { condition: usingPayload, file: "with-payload.js" },
+
+    // DB
     { condition: usingDb, file: "with-db.js" },
+
+    // TRPC
     { condition: usingTRPC, file: "with-trpc.js" },
+
+    // Auth
     { condition: usingAuthjs, file: "with-authjs.js" },
     { condition: usingBetterAuth, file: "with-better-auth.js" },
   ]

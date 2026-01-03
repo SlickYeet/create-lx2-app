@@ -28,6 +28,6 @@ export const compatibilityMatrix: PackageCompatibility[] = [
     message: "Our Payload CMS integration does not yet support other packages.",
   },
   {
-    packages: ["trpc", "payload", "authjs", "betterAuth", "prisma"],
+    packages: ["trpc", "payload", "prisma"],
   },
 ]
