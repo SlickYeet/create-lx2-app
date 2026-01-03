@@ -1,7 +1,11 @@
 import { confirm, input, select } from "@inquirer/prompts"
 import { Command } from "commander"
 
-import { CREATE_LX2_APP, DEFAULT_APP_NAME } from "@/constants.js"
+import {
+  compatibilityMatrix,
+  CREATE_LX2_APP,
+  DEFAULT_APP_NAME,
+} from "@/constants.js"
 import {
   authProviders,
   backendFrameworks,
@@ -28,6 +32,8 @@ interface CliFlags {
 
   /** @internal Used in CI. */
   CI: boolean
+  /** @internal Used in CI. */
+  trpc: boolean
   /** @internal Used in CI. */
   authentication: AuthProvider
   /** @internal Used in CI. */
@@ -57,6 +63,7 @@ const defaultOptions: CliResults = {
     install: false,
     default: false,
     CI: false,
+    trpc: false,
     authentication: "none",
     orm: "none",
     linter: "eslint/prettier",
@@ -110,6 +117,12 @@ export async function runCli(): Promise<CliResults> {
       defaultOptions.flags.backend
     )
     /** @experimental Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
+    .option(
+      "--trpc [boolean]",
+      "Boolean flag to explicitly tell the CLI to set up tRPC in the project",
+      (value) => !!value && value !== "false"
+    )
+    /** @experimental - Used for CI E2E tests. Used in conjunction with `--CI` to skip prompting. */
     .option(
       "--authProvider [provider]",
       `Choose an authentication provider to use. Possible values: ${authProviders.join(
@@ -173,6 +186,7 @@ export async function runCli(): Promise<CliResults> {
       default:
         break
     }
+    if (cliResults.flags.trpc) cliResults.packages.push("trpc")
     switch (cliResults.flags.authentication) {
       case "authjs":
         cliResults.packages.push("authjs")
@@ -204,9 +218,27 @@ export async function runCli(): Promise<CliResults> {
         break
     }
 
+    if (
+      cliResults.packages.includes("authjs") &&
+      cliResults.packages.includes("betterAuth")
+    ) {
+      logger.warn(
+        `Incompatible authentication providers provided. Use either ${authProviders.join(", or ")}. Exiting.`
+      )
+      process.exit(0)
+    }
+    if (
+      cliResults.packages.includes("prisma") &&
+      cliResults.packages.includes("drizzle")
+    ) {
+      logger.warn(
+        `Incompatible database ORMs provided. Use either ${databaseORM.join(", or ")}. Exiting.`
+      )
+      process.exit(0)
+    }
     if (databaseProviders.includes(cliResults.flags.dbProvider) === false) {
       logger.warn(
-        `Incompatible database provided. Use: ${databaseProviders.join(", ")}. Exiting.`
+        `Incompatible database provided. Use either ${databaseProviders.join(", or ")}. Exiting.`
       )
       process.exit(0)
     }
@@ -217,6 +249,21 @@ export async function runCli(): Promise<CliResults> {
       logger.warn("Payload CMS does not support MySQL. Exiting.")
       process.exit(0)
     }
+    if (
+      cliResults.packages.includes("eslint/prettier") &&
+      cliResults.packages.includes("biome")
+    ) {
+      logger.warn(
+        `Incompatible linters provided. Use either ${defaultOptions.flags.linter}. Exiting.`
+      )
+      process.exit(0)
+    }
+
+    cliResults.databaseProvider =
+      cliResults.packages.includes("prisma") ||
+      cliResults.packages.includes("drizzle")
+        ? cliResults.flags.dbProvider
+        : "sqlite"
 
     return cliResults
   }
@@ -240,6 +287,7 @@ export async function runCli(): Promise<CliResults> {
     type ProjectConfig = {
       name?: string
       backend: BackendFramework
+      trpc: boolean
       authentication: AuthProvider
       orm: DatabaseORM
       databaseProvider?: DatabaseProvider
@@ -280,6 +328,10 @@ export async function runCli(): Promise<CliResults> {
     }
 
     if (project.backend === "nextjs") {
+      project.trpc = await confirm({
+        message: "Would you like to use tRPC?",
+        default: !defaultOptions.flags.trpc,
+      })
       project.authentication = await select({
         message: "What authentication provider would you like to use?",
         choices: [
@@ -347,6 +399,7 @@ export async function runCli(): Promise<CliResults> {
       default:
         break
     }
+    if (project.trpc) packages.push("trpc")
     switch (project.authentication) {
       case "authjs":
         packages.push("authjs")
@@ -376,6 +429,32 @@ export async function runCli(): Promise<CliResults> {
         break
       default:
         break
+    }
+
+    // Restrict TRPC combinations for now
+    const selectedPackages = [
+      ...(cliResults.packages || []),
+      ...(packages || []),
+    ]
+    const uniquePackages = Array.from(new Set(selectedPackages))
+    const hasTRPC = uniquePackages.includes("trpc")
+
+    if (hasTRPC) {
+      const matrix = compatibilityMatrix.find((c) =>
+        c.packages.includes("trpc")
+      )
+      if (matrix) {
+        const incompatiblePkgs = uniquePackages.filter(
+          (pkg) => matrix.packages.includes(pkg) && pkg !== "trpc"
+        )
+
+        if (incompatiblePkgs.length > 0) {
+          logger.warn(
+            "As of right now, Create Lx2 App only supports TRPC with certain combinations of packages. Exiting."
+          )
+          process.exit(0)
+        }
+      }
     }
 
     return {
