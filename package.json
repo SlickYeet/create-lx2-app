@@ -30,7 +30,7 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "pnpm@10.25.0",
+  "packageManager": "pnpm@10.27.0",
   "scripts": {
     "dev": "turbo dev",
     "dev:cli": "turbo --filter=create-lx2-app dev",
@@ -60,9 +60,9 @@
     "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
     "@manypkg/cli": "^0.25.1",
     "@types/eslint": "^9.6.1",
-    "@typescript-eslint/eslint-plugin": "^8.49.0",
-    "@typescript-eslint/parser": "^8.49.0",
-    "eslint": "^9.39.1",
+    "@typescript-eslint/eslint-plugin": "^8.51.0",
+    "@typescript-eslint/parser": "^8.51.0",
+    "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-isaacscript": "^4.0.0",
@@ -70,7 +70,7 @@
     "eslint-plugin-react": "^7.37.5",
     "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "turbo": "^2.6.3",
+    "turbo": "^2.7.2",
     "typescript": "^5.9.3"
   }
 }
