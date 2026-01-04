@@ -16,6 +16,10 @@ export const dependencyVersionMap = {
   // Prisma
   prisma: "^7.1.0",
   "@prisma/client": "^7.1.0",
+  "@prisma/adapter-better-sqlite3": "^7.2.0",
+  "@prisma/adapter-libsql": "^7.2.0",
+  "@prisma/adapter-mariadb": "^7.2.0",
+  "@prisma/adapter-pg": "^7.2.0",
 
   // Drizzle ORM
   "drizzle-orm": "^0.45.0",
