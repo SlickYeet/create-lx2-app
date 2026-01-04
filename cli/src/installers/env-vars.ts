@@ -197,7 +197,7 @@ DISCORD_CLIENT_SECRET=""
 # You can generate a new secret by going to the Better Auth docs:
 # https://www.better-auth.com/docs/installation#set-environment-variables
 BETTER_AUTH_SECRET=""
-NEXT_PUBLIC_BETTER_AUTH_URL="http://localhost:3000" # Base URL of your app
+NEXT_PUBLIC_URL="http://localhost:3000" # Base URL of your app
 
 # Better Auth Discord Provider
 DISCORD_CLIENT_ID=""
