@@ -20,23 +20,47 @@ export const prismaInstaller: Installer = ({
     dependencies: ["prisma"],
     devMode: true,
   })
+
+  const adapter = (
+    {
+      sqlite:
+        pkgManager === "bun"
+          ? "@prisma/adapter-libsql"
+          : "@prisma/adapter-better-sqlite3",
+      mysql: "@prisma/adapter-mariadb",
+      postgresql: "@prisma/adapter-pg",
+    } as const
+  )[databaseProvider]
+
+  const driver = (
+    {
+      sqlite: pkgManager === "bun" ? "@libsql/client" : "better-sqlite3",
+      mysql: "mariadb",
+      postgresql: "pg",
+    } as const
+  )[databaseProvider]
+
   addPackageDependency({
     projectDir,
-    dependencies: [
-      "@prisma/client",
-      (
-        {
-          sqlite:
-            pkgManager === "bun"
-              ? "@prisma/adapter-libsql"
-              : "@prisma/adapter-better-sqlite3",
-          mysql: "@prisma/adapter-mariadb",
-          postgresql: "@prisma/adapter-pg",
-        } as const
-      )[databaseProvider],
-    ],
+    dependencies: ["@prisma/client", adapter, driver],
     devMode: false,
   })
+
+  if (databaseProvider === "sqlite" && pkgManager !== "bun") {
+    addPackageDependency({
+      projectDir,
+      dependencies: ["@types/better-sqlite3"],
+      devMode: true,
+    })
+  }
+
+  if (databaseProvider === "postgresql") {
+    addPackageDependency({
+      projectDir,
+      dependencies: ["@types/pg"],
+      devMode: true,
+    })
+  }
 
   const packagesDir = path.join(PKG_ROOT, "template/packages")
 

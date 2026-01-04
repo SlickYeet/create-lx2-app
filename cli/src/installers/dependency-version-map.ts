@@ -20,6 +20,9 @@ export const dependencyVersionMap = {
   "@prisma/adapter-libsql": "^7.2.0",
   "@prisma/adapter-mariadb": "^7.2.0",
   "@prisma/adapter-pg": "^7.2.0",
+  "@types/pg": "^8.16.0",
+  mariadb: "^3.4.5",
+  pg: "^8.16.3",
 
   // Drizzle ORM
   "drizzle-orm": "^0.45.0",
