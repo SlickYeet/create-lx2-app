@@ -1,4 +1,4 @@
-import { NextAuthConfig } from "next-auth"
+import type { NextAuthConfig } from "next-auth"
 import Discord from "next-auth/providers/discord"
 
 import { env } from "@/env"
