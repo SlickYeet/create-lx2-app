@@ -1,7 +1,7 @@
 import { PrismaLibSql } from "@prisma/adapter-libsql"
 
 import { env } from "@/env"
-import { PrismaClient } from "@/generated/prisma/client"
+import { PrismaClient } from "@/generated/prisma"
 
 const adapter = new PrismaLibSql({
   url: env.DATABASE_URL,

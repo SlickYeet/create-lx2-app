@@ -1,7 +1,7 @@
 import { PrismaMariaDb } from "@prisma/adapter-mariadb"
 
 import { env } from "@/env"
-import { PrismaClient } from "@/generated/prisma/client"
+import { PrismaClient } from "@/generated/prisma"
 
 const adapter = new PrismaMariaDb(env.DATABASE_URL)
 
