@@ -4,6 +4,12 @@ import { revalidatePath } from "next/cache"
 import { auth, signIn, signOut } from "@/server/auth"
 import { db } from "@/server/db"
 
+/**
+ * Force dynamic rendering for pnpm + prisma
+ * @see https://github.com/prisma/prisma/issues/28581
+ */
+export const dynamic = "force-dynamic"
+
 export default async function HomePage() {
   const session = await auth()
   const user = session?.user

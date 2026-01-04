@@ -6,6 +6,12 @@ import { redirect } from "next/navigation"
 import { auth } from "@/server/auth"
 import { db } from "@/server/db"
 
+/**
+ * Force dynamic rendering for pnpm + prisma
+ * @see https://github.com/prisma/prisma/issues/28581
+ */
+export const dynamic = "force-dynamic"
+
 export default async function HomePage() {
   const session = await auth.api.getSession({
     headers: await headers(),

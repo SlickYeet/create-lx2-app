@@ -10,6 +10,7 @@ export const prismaInstaller: Installer = ({
   projectDir,
   packages,
   databaseProvider,
+  pkgManager,
 }) => {
   const usingAuthjs = packages?.authjs.inUse
   const usingBetterAuth = packages?.betterAuth.inUse
@@ -19,13 +20,45 @@ export const prismaInstaller: Installer = ({
     dependencies: ["prisma"],
     devMode: true,
   })
+
+  const adapter = (
+    {
+      sqlite:
+        pkgManager === "bun"
+          ? "@prisma/adapter-libsql"
+          : "@prisma/adapter-better-sqlite3",
+      mysql: "@prisma/adapter-mariadb",
+      postgresql: "@prisma/adapter-pg",
+    } as const
+  )[databaseProvider]
+
   addPackageDependency({
     projectDir,
-    dependencies: ["@prisma/client"],
+    dependencies: ["@prisma/client", adapter],
     devMode: false,
   })
 
+  if (databaseProvider === "sqlite" && pkgManager !== "bun") {
+    addPackageDependency({
+      projectDir,
+      dependencies: ["@types/better-sqlite3"],
+      devMode: true,
+    })
+  }
+
+  if (pkgManager === "pnpm") {
+    addPackageDependency({
+      projectDir,
+      dependencies: ["@prisma/client-runtime-utils"],
+      devMode: false,
+    })
+  }
+
   const packagesDir = path.join(PKG_ROOT, "template/packages")
+
+  const configSrc = path.join(packagesDir, "config/prisma.config.ts")
+  const configDest = path.join(projectDir, "prisma.config.ts")
+  fs.writeFileSync(configDest, fs.readFileSync(configSrc, "utf-8"))
 
   const schemaSrc = path.join(
     packagesDir,
@@ -51,14 +84,14 @@ export const prismaInstaller: Installer = ({
   fs.mkdirSync(path.dirname(schemaDest), { recursive: true })
   fs.writeFileSync(schemaDest, schemaText)
 
-  const clientSrc = path.join(packagesDir, "src/server/db/db-prisma.ts")
+  const clientSrc = path.join(
+    packagesDir,
+    `src/server/db/prisma/with-${databaseProvider}${pkgManager === "bun" ? "-bun" : ""}.ts`
+  )
   const clientDest = path.join(projectDir, "src/server/db/index.ts")
   fs.mkdirSync(path.dirname(clientDest), { recursive: true })
   fs.writeFileSync(clientDest, fs.readFileSync(clientSrc, "utf-8"))
 
-  /**
-   * TODO: Add db:seed script
-   */
   addPackageScript({
     projectDir,
     scripts: {
