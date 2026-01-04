@@ -32,17 +32,9 @@ export const prismaInstaller: Installer = ({
     } as const
   )[databaseProvider]
 
-  const driver = (
-    {
-      sqlite: pkgManager === "bun" ? "@libsql/client" : "better-sqlite3",
-      mysql: "mariadb",
-      postgresql: "pg",
-    } as const
-  )[databaseProvider]
-
   addPackageDependency({
     projectDir,
-    dependencies: ["@prisma/client", adapter, driver],
+    dependencies: ["@prisma/client", adapter],
     devMode: false,
   })
 
@@ -50,14 +42,6 @@ export const prismaInstaller: Installer = ({
     addPackageDependency({
       projectDir,
       dependencies: ["@types/better-sqlite3"],
-      devMode: true,
-    })
-  }
-
-  if (databaseProvider === "postgresql") {
-    addPackageDependency({
-      projectDir,
-      dependencies: ["@types/pg"],
       devMode: true,
     })
   }
