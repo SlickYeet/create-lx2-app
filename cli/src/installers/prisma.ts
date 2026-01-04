@@ -46,6 +46,14 @@ export const prismaInstaller: Installer = ({
     })
   }
 
+  if (pkgManager === "pnpm") {
+    addPackageDependency({
+      projectDir,
+      dependencies: ["@prisma/client-runtime-utils"],
+      devMode: false,
+    })
+  }
+
   const packagesDir = path.join(PKG_ROOT, "template/packages")
 
   const configSrc = path.join(packagesDir, "config/prisma.config.ts")
