@@ -22,7 +22,7 @@ export const postRouter = createTRPCRouter({
       return `Hello ${input.text}`
     }),
 
-  create: publicProcedure
+  create: protectedProcedure
     .input(
       z.object({
         name: z.string().min(1),
@@ -33,7 +33,7 @@ export const postRouter = createTRPCRouter({
       return post
     }),
 
-  getLatest: publicProcedure.query(async () => {
+  getLatest: protectedProcedure.query(async () => {
     return post
   }),
 

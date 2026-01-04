@@ -18,7 +18,7 @@ export const postRouter = createTRPCRouter({
       return `Hello ${input.text}`
     }),
 
-  create: publicProcedure
+  create: protectedProcedure
     .input(
       z.object({
         name: z.string().min(1),
@@ -30,7 +30,7 @@ export const postRouter = createTRPCRouter({
       })
     }),
 
-  getLatest: publicProcedure.query(async ({ ctx }) => {
+  getLatest: protectedProcedure.query(async ({ ctx }) => {
     const post = await ctx.db.query.post.findFirst({
       orderBy: (post, { desc }) => [desc(post.createdAt)],
     })
