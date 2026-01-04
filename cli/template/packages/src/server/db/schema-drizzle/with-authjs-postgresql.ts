@@ -3,7 +3,7 @@
 
 import { sql } from "drizzle-orm"
 import { index, pgTableCreator, primaryKey } from "drizzle-orm/pg-core"
-import { AdapterAccountType } from "next-auth/adapters"
+import type { AdapterAccountType } from "next-auth/adapters"
 
 /**
  * Below is an example of how to create a table with a prefix.

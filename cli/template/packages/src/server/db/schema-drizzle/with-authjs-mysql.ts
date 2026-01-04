@@ -3,7 +3,7 @@
 
 import { sql } from "drizzle-orm"
 import { index, mysqlTableCreator, primaryKey } from "drizzle-orm/mysql-core"
-import { type AdapterAccountType } from "next-auth/adapters"
+import type { AdapterAccountType } from "next-auth/adapters"
 
 /**
  * Below is an example of how to create a table with a prefix.
