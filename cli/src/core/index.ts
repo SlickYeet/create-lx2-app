@@ -99,6 +99,7 @@ export async function runCli(): Promise<CliResults> {
       "Boolean flag to explicitly tell the CLI to run the package manager's install command",
       false
     )
+    // TODO: change -y to -d do not create a pull request
     .option(
       "-y, --default",
       "Bypass the CLI and use all default options to bootstrap a new lx2-app",
