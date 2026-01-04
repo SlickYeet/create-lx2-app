@@ -8,6 +8,7 @@ import { envVariablesInstaller } from "./env-vars.js"
 import { eslintInstaller } from "./eslint.js"
 import { payloadCMSInstaller } from "./payloadcms.js"
 import { prismaInstaller } from "./prisma.js"
+import { trpcInstaller } from "./trpc.js"
 import { typescriptInstaller } from "./typescript.js"
 
 // Turning this into a const allows the list to be iterated over for programmatically creating prompt options
@@ -15,6 +16,7 @@ import { typescriptInstaller } from "./typescript.js"
 export const availablePackages = [
   "authjs",
   "betterAuth",
+  "trpc",
   "prisma",
   "drizzle",
   "envVariables",
@@ -69,6 +71,10 @@ export const buildPkgInstallerMap = (
   betterAuth: {
     inUse: packages.includes("betterAuth"),
     installer: betterAuthInstaller,
+  },
+  trpc: {
+    inUse: packages.includes("trpc"),
+    installer: trpcInstaller,
   },
   prisma: {
     inUse: packages.includes("prisma"),

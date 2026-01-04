@@ -9,7 +9,7 @@ export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "sqlite",
   }),
-  baseURL: env.NEXT_PUBLIC_BETTER_AUTH_URL,
+  baseURL: env.NEXT_PUBLIC_URL,
   socialProviders: {
     discord: {
       clientId: env.DISCORD_CLIENT_ID,

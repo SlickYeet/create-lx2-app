@@ -15,6 +15,7 @@ export const envVariablesInstaller: Installer = ({
   const usingEnv = packages?.envVariables.inUse
   const usingAuthjs = packages?.authjs.inUse
   const usingBetterAuth = packages?.betterAuth.inUse
+  const usingTRPC = packages?.trpc.inUse
   const usingPrisma = packages?.prisma.inUse
   const usingDrizzle = packages?.drizzle.inUse
   const usingPayload = packages?.payload.inUse
@@ -31,11 +32,12 @@ export const envVariablesInstaller: Installer = ({
     devMode: false,
   })
 
-  const usingDb = usingPrisma || usingDrizzle || usingPayload
+  const usingDb = usingPrisma || usingDrizzle
 
   const envContent = getEnvContent(
     !!usingAuthjs,
     !!usingBetterAuth,
+    !!usingTRPC,
     !!usingPrisma,
     !!usingDrizzle,
     !!usingPayload,
@@ -43,24 +45,42 @@ export const envVariablesInstaller: Installer = ({
     databaseProvider
   )
 
-  let envFile = ""
-  if (usingDb) {
-    if (usingAuthjs) {
-      envFile = "with-authjs-db.js"
-    } else if (usingBetterAuth) {
-      envFile = "with-better-auth-db.js"
-    } else if (usingPayload) {
-      envFile = "with-payload.js"
-    } else {
-      envFile = "with-db.js"
-    }
-  } else {
-    if (usingAuthjs) {
-      envFile = "with-authjs.js"
-    } else if (usingBetterAuth) {
-      envFile = "with-better-auth.js"
-    }
-  }
+  const rules: { condition: boolean | undefined; file: string }[] = [
+    // DB + TRPC + Auth
+    {
+      condition: usingDb && usingTRPC && usingBetterAuth,
+      file: "with-trpc-better-auth-db.js",
+    },
+    {
+      condition: usingDb && usingTRPC && usingAuthjs,
+      file: "with-trpc-authjs-db.js",
+    },
+    { condition: usingDb && usingTRPC, file: "with-trpc-db.js" },
+    { condition: usingDb && usingAuthjs, file: "with-authjs-db.js" },
+    { condition: usingDb && usingBetterAuth, file: "with-better-auth-db.js" },
+
+    // TRPC + Auth
+    { condition: usingTRPC && usingAuthjs, file: "with-trpc-authjs.js" },
+    {
+      condition: usingTRPC && usingBetterAuth,
+      file: "with-trpc-better-auth.js",
+    },
+
+    // Payload
+    { condition: usingPayload, file: "with-payload.js" },
+
+    // DB
+    { condition: usingDb, file: "with-db.js" },
+
+    // TRPC
+    { condition: usingTRPC, file: "with-trpc.js" },
+
+    // Auth
+    { condition: usingAuthjs, file: "with-authjs.js" },
+    { condition: usingBetterAuth, file: "with-better-auth.js" },
+  ]
+
+  const envFile = rules.find((rule) => rule.condition)?.file || ""
 
   if (envFile !== "") {
     const envSchemaSrc = path.join(
@@ -105,6 +125,7 @@ export const envVariablesInstaller: Installer = ({
 function getEnvContent(
   usingAuthjs: boolean,
   usingBetterAuth: boolean,
+  usingTRPC: boolean,
   usingPrisma: boolean,
   usingDrizzle: boolean,
   usingPayload: boolean,
@@ -176,7 +197,7 @@ DISCORD_CLIENT_SECRET=""
 # You can generate a new secret by going to the Better Auth docs:
 # https://www.better-auth.com/docs/installation#set-environment-variables
 BETTER_AUTH_SECRET=""
-NEXT_PUBLIC_BETTER_AUTH_URL="http://localhost:3000" # Base URL of your app
+NEXT_PUBLIC_URL="http://localhost:3000" # Base URL of your app
 
 # Better Auth Discord Provider
 DISCORD_CLIENT_ID=""
@@ -191,6 +212,11 @@ DISCORD_CLIENT_SECRET=""
 # NEXT_PUBLIC_CLIENTVAR="bar"
 `
   }
+
+  if (usingTRPC)
+    content += `
+NEXT_PUBLIC_URL="http://localhost:3000"
+`
 
   return content
 }

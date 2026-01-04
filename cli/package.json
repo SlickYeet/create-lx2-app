@@ -94,6 +94,7 @@
     "prisma": "^7.2.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
+    "server-only": "^0.0.1",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.1.18",
     "tsup": "^8.5.1",

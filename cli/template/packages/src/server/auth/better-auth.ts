@@ -6,6 +6,7 @@ import { env } from "@/env"
 
 export const auth = betterAuth({
   database: new Database("./db.sqlite"),
+  baseURL: env.NEXT_PUBLIC_URL,
   socialProviders: {
     discord: {
       clientId: env.DISCORD_CLIENT_ID,
