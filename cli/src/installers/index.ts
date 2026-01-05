@@ -1,3 +1,4 @@
+import { nextjsInstaller } from "@/installers/nextjs.js"
 import { type PackageManager } from "@/utils/get-user-pkg-manager.js"
 
 import { authjsInstaller } from "./authjs.js"
@@ -23,6 +24,7 @@ export const availablePackages = [
   "eslint/prettier",
   "biome",
   "typescript",
+  "nextjs",
   "payload",
 ] as const
 export type AvailablePackages = (typeof availablePackages)[number]
@@ -99,6 +101,10 @@ export const buildPkgInstallerMap = (
   typescript: {
     inUse: true,
     installer: typescriptInstaller,
+  },
+  nextjs: {
+    inUse: true,
+    installer: nextjsInstaller,
   },
   payload: {
     inUse: packages.includes("payload"),

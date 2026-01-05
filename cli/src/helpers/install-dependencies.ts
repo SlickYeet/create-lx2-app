@@ -36,12 +36,17 @@ const execWithSpinner = async (
 
 const runInstallCommand = async (
   pkgManager: PackageManager,
-  projectDir: string
+  projectDir: string,
+  withPayload: boolean
 ): Promise<Ora | null> => {
+  const installArgs = withPayload
+    ? ["install", "--legacy-peer-deps"]
+    : ["install"]
+
   switch (pkgManager) {
     // When using npm, inherit the stderr stream so that the progress bar is shown
     case "npm":
-      await execa(pkgManager, ["install"], {
+      await execa(pkgManager, installArgs, {
         cwd: projectDir,
         stderr: "inherit",
       })
@@ -50,6 +55,7 @@ const runInstallCommand = async (
     // When using yarn or pnpm, use the stdout stream and ora spinner to show the progress
     case "pnpm":
       return execWithSpinner(projectDir, pkgManager, {
+        args: installArgs,
         onDataHandle: (spinner) => (data) => {
           const text = data.toString()
 
@@ -62,25 +68,35 @@ const runInstallCommand = async (
       })
     case "yarn":
       return execWithSpinner(projectDir, pkgManager, {
+        args: installArgs,
         onDataHandle: (spinner) => (data) => {
           spinner.text = data.toString()
         },
       })
     // When using bun, the stdout stream is ignored and the spinner is shown
     case "bun":
-      return execWithSpinner(projectDir, pkgManager, { stdout: "ignore" })
+      return execWithSpinner(projectDir, pkgManager, {
+        args: installArgs,
+        stdout: "ignore",
+      })
   }
 }
 
 export const installDependencies = async ({
   projectDir,
+  withPayload = false,
 }: {
   projectDir: string
+  withPayload?: boolean
 }) => {
   logger.info("Installing dependencies...")
   const pkgManager = getUserPkgManager()
 
-  const installSpinner = await runInstallCommand(pkgManager, projectDir)
+  const installSpinner = await runInstallCommand(
+    pkgManager,
+    projectDir,
+    withPayload
+  )
 
   // If the spinner was used to show the progress, use succeed method on it
   // If not, use the succeed on a new spinner
