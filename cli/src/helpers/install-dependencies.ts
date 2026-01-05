@@ -34,14 +34,34 @@ const execWithSpinner = async (
   return spinner
 }
 
+// Get the install arguments for a package manager
+const getInstallArgs = (
+  pkgManager: PackageManager,
+  withPayload: boolean
+): string[] => {
+  if (!withPayload) {
+    return ["install"]
+  }
+
+  switch (pkgManager) {
+    case "npm":
+      return ["install", "--legacy-peer-deps"]
+    case "pnpm":
+      return ["install", "--strict-peer-dependencies=false"]
+    case "yarn":
+      // Yarn v1 uses --ignore-engines, Yarn v2+ handles peer deps differently
+      return ["install"]
+    case "bun":
+      return ["install"]
+  }
+}
+
 const runInstallCommand = async (
   pkgManager: PackageManager,
   projectDir: string,
   withPayload: boolean
 ): Promise<Ora | null> => {
-  const installArgs = withPayload
-    ? ["install", "--legacy-peer-deps"]
-    : ["install"]
+  const installArgs = getInstallArgs(pkgManager, withPayload)
 
   switch (pkgManager) {
     // When using npm, inherit the stderr stream so that the progress bar is shown
