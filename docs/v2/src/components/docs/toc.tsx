@@ -88,10 +88,11 @@ export function TableOfContents(props: TableOfContentsProps) {
         (child) => child.type === "page" && child.url === pathname,
       ),
   )
+  const parentId = parent?.$id?.replace("root:", "")
   const pagePath = pathname.replace("/docs", "")
 
   const editUrl = `${siteConfig.links.github}/blob/main/docs/v2/src/content/docs/${
-    parent?.$id
+    parentId
   }${pagePath ? `${pagePath}.mdx` : "/index.mdx"}`
 
   useEffect(() => {
