@@ -20,6 +20,7 @@ export const payloadCMSInstaller: Installer = ({
     deps.push("@payloadcms/payload-cloud")
     deps.push("@payloadcms/richtext-lexical")
     deps.push("graphql")
+    deps.push("sharp")
 
     switch (databaseProvider) {
       case "sqlite":

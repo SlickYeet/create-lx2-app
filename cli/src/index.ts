@@ -89,7 +89,10 @@ async function main() {
   }
 
   if (install) {
-    await installDependencies({ projectDir })
+    await installDependencies({
+      projectDir,
+      withPayload: usePackages.payload.inUse,
+    })
   }
 
   if (git) {
