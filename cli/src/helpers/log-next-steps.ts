@@ -18,6 +18,10 @@ export const logNextSteps = async ({
 >) => {
   const pkgManager = getUserPkgManager()
 
+  const usingNPM = ["npm"].includes(pkgManager)
+  const usingAuth = packages?.authjs.inUse || packages?.betterAuth.inUse
+  const usingDb = packages?.prisma.inUse || packages?.drizzle.inUse
+
   logger.info("Next steps:")
   if (projectName !== ".") {
     logger.info(`  cd ${projectName}`)
@@ -35,21 +39,18 @@ export const logNextSteps = async ({
     logger.info("  Add your database connection string to .env")
   }
 
-  if (packages?.authjs.inUse) {
+  if (usingAuth) {
     logger.info(
       `  Fill in your .env with necessary values. See https://create.lx2.dev/docs/first-steps for more info.`
     )
   }
-  if (packages?.betterAuth.inUse) {
+  if (usingDb) {
     logger.info(
-      `  Fill in your .env with necessary values. See https://create.lx2.dev/docs/first-steps for more info.`
+      `  Run "${pkgManager} ${usingNPM ? "run " : ""}db:push" to create you database tables.`
     )
-  }
-  if (packages?.prisma.inUse) {
-    logger.info(`  Run "${pkgManager} db:push" to create you database tables.`)
   }
 
-  if (["npm"].includes(pkgManager)) {
+  if (usingNPM) {
     logger.info(`  ${pkgManager} run dev`)
   } else {
     logger.info(`  ${pkgManager} dev`)
