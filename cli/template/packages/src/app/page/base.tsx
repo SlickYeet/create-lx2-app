@@ -4,7 +4,7 @@ export default function HomePage() {
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
   return (
-    <main className="mx-auto flex h-screen max-w-5xl flex-col items-center justify-between overflow-hidden p-6 sm:p-[45px]">
+    <main className="mx-auto flex h-screen max-w-5xl flex-col items-center justify-between overflow-hidden p-6 sm:p-11.25">
       <div className="flex grow flex-col items-center justify-center">
         {/* Logo */}
         <picture className="relative">
@@ -45,6 +45,7 @@ export default function HomePage() {
               strokeLinejoin="round"
               className="mb-1.5 size-4 fill-none stroke-current stroke-2"
             >
+              <title>Docs</title>
               <path d="M7 7h10v10" />
               <path d="M7 17 17 7" />
             </svg>
@@ -63,6 +64,7 @@ export default function HomePage() {
               strokeLinejoin="round"
               className="mb-1.5 size-4 fill-none stroke-current stroke-2"
             >
+              <title>Discord</title>
               <path d="M7 7h10v10" />
               <path d="M7 17 17 7" />
             </svg>
@@ -81,6 +83,7 @@ export default function HomePage() {
               strokeLinejoin="round"
               className="mb-1.5 size-4 fill-none stroke-current stroke-2"
             >
+              <title>GitHub</title>
               <path d="M7 7h10v10" />
               <path d="M7 17 17 7" />
             </svg>

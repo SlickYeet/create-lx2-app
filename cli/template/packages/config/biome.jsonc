@@ -1,7 +1,8 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.2.4/schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "assist": {
     "actions": {
+      "recommended": true,
       "source": {
         "organizeImports": {
           "level": "on",
@@ -16,6 +17,7 @@
             "identifierOrder": "natural",
           },
         },
+        "recommended": true,
         "useSortedAttributes": "on",
         "useSortedKeys": "on",
         "useSortedProperties": "on",
@@ -23,9 +25,35 @@
     },
     "enabled": true,
   },
+  "css": {
+    "assist": {
+      "enabled": true,
+    },
+    "formatter": {
+      "enabled": true,
+    },
+    "linter": {
+      "enabled": true,
+    },
+    "parser": {
+      "cssModules": true,
+      "tailwindDirectives": true,
+    },
+  },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!node_modules", "!.next", "!dist", "!build"],
+    "includes": [
+      "**",
+      "!node_modules",
+      "!.next",
+      "!dist",
+      "!build",
+      "!out",
+      "!package-lock.json",
+      "!pnpm-lock.yaml",
+      "!bun.lock",
+      "!yarn.lock",
+    ],
   },
   "formatter": {
     "bracketSpacing": true,
@@ -36,7 +64,15 @@
     "lineWidth": 80,
     "useEditorconfig": true,
   },
+  "html": {
+    "formatter": {
+      "enabled": true,
+    },
+  },
   "javascript": {
+    "assist": {
+      "enabled": true,
+    },
     "formatter": {
       "arrowParentheses": "always",
       "enabled": true,
@@ -45,14 +81,16 @@
       "semicolons": "asNeeded",
       "trailingCommas": "all",
     },
+    "linter": {
+      "enabled": true,
+    },
   },
   "linter": {
-    "domains": {
-      "next": "recommended",
-      "react": "recommended",
-    },
     "enabled": true,
     "rules": {
+      "a11y": {
+        "noLabelWithoutControl": "warn",
+      },
       "complexity": {
         "noExtraBooleanCast": "warn",
         "noUselessFragments": "warn",
@@ -63,8 +101,7 @@
           "fix": "safe",
           "level": "warn",
           "options": {
-            "attributes": ["className", "class"],
-            "functions": ["cn", "clsx", "classnames"],
+            "functions": ["clsx", "cva", "cn"],
           },
         },
       },
@@ -82,7 +119,7 @@
         "useShorthandAssign": "error",
       },
       "suspicious": {
-        "noUnknownAtRules": "off",
+        "noArrayIndexKey": "off",
       },
     },
   },
