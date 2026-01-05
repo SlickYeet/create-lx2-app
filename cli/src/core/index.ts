@@ -18,6 +18,10 @@ import {
   type DatabaseProvider,
   type Linter,
 } from "@/installers/index.js"
+import {
+  buildPackagesFromConfig,
+  type PackageConfig,
+} from "@/utils/build-packages-from-config.js"
 import { getVersion } from "@/utils/get-lx2-version.js"
 import { getUserPkgManager } from "@/utils/get-user-pkg-manager.js"
 import { IsTTYError } from "@/utils/Is-tty-error.js"
@@ -100,7 +104,7 @@ export async function runCli(): Promise<CliResults> {
       false
     )
     .option(
-      "-y, --default",
+      "-d, --default",
       "Bypass the CLI and use all default options to bootstrap a new lx2-app",
       false
     )
@@ -178,45 +182,16 @@ export async function runCli(): Promise<CliResults> {
 
   /** @internal Used for CI E2E tests. */
   if (cliResults.flags.CI) {
-    cliResults.packages = []
-    switch (cliResults.flags.backend) {
-      case "payload":
-        cliResults.packages.push("payload")
-        break
-      default:
-        break
-    }
-    if (cliResults.flags.trpc) cliResults.packages.push("trpc")
-    switch (cliResults.flags.authentication) {
-      case "authjs":
-        cliResults.packages.push("authjs")
-        break
-      case "betterAuth":
-        cliResults.packages.push("betterAuth")
-        break
-      default:
-        break
-    }
-    switch (cliResults.flags.orm) {
-      case "prisma":
-        cliResults.packages.push("prisma")
-        break
-      case "drizzle":
-        cliResults.packages.push("drizzle")
-        break
-      default:
-        break
-    }
-    switch (cliResults.flags.linter) {
-      case "eslint/prettier":
-        cliResults.packages.push("eslint/prettier")
-        break
-      case "biome":
-        cliResults.packages.push("biome")
-        break
-      default:
-        break
-    }
+    const { packages, databaseProvider } = buildPackagesFromConfig({
+      backend: cliResults.flags.backend,
+      trpc: cliResults.flags.trpc,
+      authentication: cliResults.flags.authentication,
+      orm: cliResults.flags.orm,
+      linter: cliResults.flags.linter,
+      dbProvider: cliResults.flags.dbProvider,
+    })
+
+    cliResults.packages = packages
 
     if (
       cliResults.packages.includes("authjs") &&
@@ -259,16 +234,24 @@ export async function runCli(): Promise<CliResults> {
       process.exit(0)
     }
 
-    cliResults.databaseProvider =
-      cliResults.packages.includes("prisma") ||
-      cliResults.packages.includes("drizzle")
-        ? cliResults.flags.dbProvider
-        : "sqlite"
+    cliResults.databaseProvider = databaseProvider
 
     return cliResults
   }
 
   if (cliResults.flags.default) {
+    const { packages, databaseProvider } = buildPackagesFromConfig({
+      backend: cliResults.flags.backend,
+      trpc: cliResults.flags.trpc,
+      authentication: cliResults.flags.authentication,
+      orm: cliResults.flags.orm,
+      linter: cliResults.flags.linter,
+      dbProvider: cliResults.flags.dbProvider,
+    })
+
+    cliResults.packages = packages
+    cliResults.databaseProvider = databaseProvider
+
     return cliResults
   }
 
@@ -284,14 +267,8 @@ export async function runCli(): Promise<CliResults> {
 
     const pkgManager = getUserPkgManager()
 
-    type ProjectConfig = {
+    type ProjectConfig = PackageConfig & {
       name?: string
-      backend: BackendFramework
-      trpc: boolean
-      authentication: AuthProvider
-      orm: DatabaseORM
-      databaseProvider?: DatabaseProvider
-      linter: Linter
       git?: boolean
       install?: boolean
       importAlias: string
@@ -314,7 +291,7 @@ export async function runCli(): Promise<CliResults> {
       default: defaultOptions.flags.backend,
     })
     if (project.backend === "payload") {
-      project.databaseProvider = await select({
+      project.dbProvider = await select({
         message: "What database provider would you like to use?",
         choices: [
           { value: "sqlite", name: "SQLite" },
@@ -351,7 +328,7 @@ export async function runCli(): Promise<CliResults> {
         default: defaultOptions.flags.orm,
       })
       if (project.orm !== "none") {
-        project.databaseProvider = await select({
+        project.dbProvider = await select({
           message: "What database provider would you like to use?",
           choices: [
             { value: "sqlite", name: "SQLite" },
@@ -391,45 +368,14 @@ export async function runCli(): Promise<CliResults> {
       validate: validateImportAlias,
     })
 
-    const packages: AvailablePackages[] = []
-    switch (project.backend) {
-      case "payload":
-        packages.push("payload")
-        break
-      default:
-        break
-    }
-    if (project.trpc) packages.push("trpc")
-    switch (project.authentication) {
-      case "authjs":
-        packages.push("authjs")
-        break
-      case "betterAuth":
-        packages.push("betterAuth")
-        break
-      default:
-        break
-    }
-    switch (project.orm) {
-      case "prisma":
-        packages.push("prisma")
-        break
-      case "drizzle":
-        packages.push("drizzle")
-        break
-      default:
-        break
-    }
-    switch (project.linter) {
-      case "eslint/prettier":
-        packages.push("eslint/prettier")
-        break
-      case "biome":
-        packages.push("biome")
-        break
-      default:
-        break
-    }
+    const { packages, databaseProvider } = buildPackagesFromConfig({
+      backend: project.backend,
+      trpc: project.trpc ?? false,
+      authentication: project.authentication ?? "none",
+      orm: project.orm ?? "none",
+      linter: project.linter,
+      dbProvider: project.dbProvider ?? "sqlite",
+    })
 
     // Restrict TRPC combinations for now
     const selectedPackages = [
@@ -466,7 +412,7 @@ export async function runCli(): Promise<CliResults> {
         install: project.install ?? cliResults.flags.install,
         importAlias: project.importAlias ?? cliResults.flags.importAlias,
       },
-      databaseProvider: project.databaseProvider ?? "sqlite",
+      databaseProvider,
     }
   } catch (error) {
     // If the user is not calling create-lx2-app from an interactive terminal, inquirer will throw an IsTTYError
