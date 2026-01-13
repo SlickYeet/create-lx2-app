@@ -27,7 +27,4 @@ export const compatibilityMatrix: PackageCompatibility[] = [
     packages: ["payload"],
     message: "Our Payload CMS integration does not yet support other packages.",
   },
-  {
-    packages: ["trpc", "payload"],
-  },
 ]
