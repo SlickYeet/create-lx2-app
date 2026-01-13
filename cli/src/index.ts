@@ -7,11 +7,12 @@ import type { PackageJson } from "type-fest"
 import { compatibilityMatrix } from "@/constants.js"
 import { runCli } from "@/core/index.js"
 import { createProject } from "@/helpers/create-project.js"
+import { formatProject } from "@/helpers/format-project.js"
 import { initializeGit } from "@/helpers/git.js"
 import { installDependencies } from "@/helpers/install-dependencies.js"
 import { logNextSteps } from "@/helpers/log-next-steps.js"
 import { setImportAlias } from "@/helpers/set-import-alias.js"
-import { buildPkgInstallerMap } from "@/installers/index.js"
+import { buildPkgInstallerMap, linters } from "@/installers/index.js"
 import { getVersion } from "@/utils/get-lx2-version.js"
 import { getUserPkgManager } from "@/utils/get-user-pkg-manager.js"
 import { logger } from "@/utils/logger.js"
@@ -92,6 +93,13 @@ async function main() {
     await installDependencies({
       projectDir,
       withPayload: usePackages.payload.inUse,
+    })
+
+    await formatProject({
+      projectDir,
+      pkgManager,
+      eslint: packages.includes("eslint/prettier"),
+      biome: packages.includes("biome"),
     })
   }
 
