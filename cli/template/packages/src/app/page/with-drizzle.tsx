@@ -17,9 +17,9 @@ export default async function HomePage() {
         <picture className="relative">
           <div className="absolute inset-0 animate-pulse bg-linear-to-r from-[oklch(0.7468_0.1455_302.21)] via-[oklch(0.7345_0.0464_270.71)] to-[oklch(0.7563_0.1807_347.17)] opacity-20 blur-lg dark:via-[oklch(0.5567_0.0816_269.53)]" />
 
-          <source srcSet="https://github.com/SlickYeet/create-lx2-app/blob/f1209465d59e03e284702d9f492f1bc1cfa49c32/docs/v2/public/android-chrome-192x192.png?raw=true" />
+          <source srcSet="https://github.com/lx2dev/create-lx2-app/blob/f1209465d59e03e284702d9f492f1bc1cfa49c32/docs/v2/public/android-chrome-192x192.png?raw=true" />
           <img
-            src="https://github.com/SlickYeet/create-lx2-app/blob/f1209465d59e03e284702d9f492f1bc1cfa49c32/docs/v2/public/android-chrome-192x192.png?raw=true"
+            src="https://github.com/lx2dev/create-lx2-app/blob/f1209465d59e03e284702d9f492f1bc1cfa49c32/docs/v2/public/android-chrome-192x192.png?raw=true"
             alt="Logo"
             width={65}
             height={65}
@@ -77,7 +77,7 @@ export default async function HomePage() {
             </svg>
           </a>
           <a
-            href="https://github.com/SlickYeet/create-lx2-app"
+            href="https://github.com/lx2dev/create-lx2-app"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center rounded-md border border-white/25 px-2 py-1 outline-none hover:opacity-80 focus:opacity-80 active:opacity-70"

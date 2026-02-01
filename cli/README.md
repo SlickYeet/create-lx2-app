@@ -2,10 +2,10 @@
 <picture>
   <source
     media="(prefers-color-scheme: dark)"
-    srcset="https://github.com/SlickYeet/create-lx2-app/blob/1d4a2538aeddf0dc9184c984e5384ed089392b9e/docs/v2/public/android-chrome-512x512.png"
+    srcset="https://github.com/lx2dev/create-lx2-app/blob/1d4a2538aeddf0dc9184c984e5384ed089392b9e/docs/v2/public/android-chrome-512x512.png"
   />
   <img
-    src="https://github.com/SlickYeet/create-lx2-app/blob/1d4a2538aeddf0dc9184c984e5384ed089392b9e/docs/v2/public/android-chrome-512x512.png"
+    src="https://github.com/lx2dev/create-lx2-app/blob/1d4a2538aeddf0dc9184c984e5384ed089392b9e/docs/v2/public/android-chrome-512x512.png"
     width="130"
     alt="Lx2 logo"
   />
@@ -98,9 +98,9 @@ We 💖 contributors! Feel free to contribute to this project but **please read
 the [Contributing Guidelines](CONTRIBUTING.md) before opening an issue or PR**
 so you understand the branching strategy and local development environment.
 
-<a href="https://github.com/slickyeet/create-lx2-app/graphs/contributors">
+<a href="https://github.com/lx2dev/create-lx2-app/graphs/contributors">
   <p align="center">
-    <img src="https://contrib.rocks/image?repo=slickyeet/create-lx2-app" />
+    <img src="https://contrib.rocks/image?repo=lx2dev/create-lx2-app" />
   </p>
 </a>
 
@@ -124,7 +124,7 @@ so you understand the branching strategy and local development environment.
 
 [contribute-image]: https://img.shields.io/badge/PRs-welcome-blue.svg
 [contribute-url]:
-  https://github.com/SlickYeet/create-lx2-app/blob/main/CONTRIBUTING.md
+  https://github.com/lx2dev/create-lx2-app/blob/main/CONTRIBUTING.md
 [npm-image]:
   https://img.shields.io/npm/v/create-lx2-app?color=0b7285&logoColor=0b7285
 [npm-url]: https://www.npmjs.com/package/create-lx2-app
@@ -132,15 +132,15 @@ so you understand the branching strategy and local development environment.
   https://img.shields.io/npm/v/create-lx2-app/beta?color=orange&logoColor=orange
 [npm-beta-url]: https://www.npmjs.com/package/create-lx2-app
 [license-image]:
-  https://img.shields.io/github/license/SlickYeet/create-lx2-app?color=red
-[license-url]: https://github.com/SlickYeet/create-lx2-app/blob/main/LICENSE
+  https://img.shields.io/github/license/lx2dev/create-lx2-app?color=red
+[license-url]: https://github.com/lx2dev/create-lx2-app/blob/main/LICENSE
 [downloads-image]:
   https://img.shields.io/npm/dm/create-lx2-app?color=364fc7&logoColor=364fc7
 [release-image]:
-  https://github.com/SlickYeet/create-lx2-app/actions/workflows/release.yml/badge.svg
+  https://github.com/lx2dev/create-lx2-app/actions/workflows/release.yml/badge.svg
 [release-url]:
-  https://github.com/SlickYeet/create-lx2-app/actions/workflows/release.yml
+  https://github.com/lx2dev/create-lx2-app/actions/workflows/release.yml
 [prerelease-image]:
-  https://github.com/SlickYeet/create-lx2-app/actions/workflows/prerelease.yml/badge.svg
+  https://github.com/lx2dev/create-lx2-app/actions/workflows/prerelease.yml/badge.svg
 [prerelease-url]:
-  https://github.com/SlickYeet/create-lx2-app/actions/workflows/prerelease.yml
+  https://github.com/lx2dev/create-lx2-app/actions/workflows/prerelease.yml

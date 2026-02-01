@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/slickyeet/create-lx2-app",
+    "url": "https://github.com/lx2dev/create-lx2-app",
     "directory": "cli"
   },
   "keywords": [

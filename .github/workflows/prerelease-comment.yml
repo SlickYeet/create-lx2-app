@@ -10,8 +10,8 @@ on:
 jobs:
   comment:
     if: |
-      github.repository_owner == 'slickyeet' &&
-      ${{ github.event.workflow_run.conclusion == 'success' }}
+      github.repository_owner == 'lx2dev' &&
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     name: Write comment to the PR
     steps:

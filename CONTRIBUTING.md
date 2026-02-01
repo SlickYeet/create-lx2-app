@@ -5,7 +5,7 @@ spaces:
 
 - Be respectful, civil, and open-minded.
 - Before opening a new pull request, try searching through the
-  [issue tracker](https://github.com/slickyeet/create-lx2-app/issues) for known
+  [issue tracker](https://github.com/lx2dev/create-lx2-app/issues) for known
   issues or fixes.
 - If you want to make code changes based on your personal opinion(s), make sure
   you open an issue first describing the changes you want to make, and open a
@@ -17,7 +17,7 @@ spaces:
 
 In order to not waste your time implementing a change that has already been
 declined, or is generally not needed, start by
-[opening an issue](https://github.com/slickyeet/create-lx2-app/issues/new/choose)
+[opening an issue](https://github.com/lx2dev/create-lx2-app/issues/new/choose)
 describing the problem you would like to solve.
 
 ### Setup your environment locally
@@ -29,7 +29,7 @@ always use the Web UI if you prefer that instead._
 In order to contribute to this project, you will need to fork the repository:
 
 ```bash
-gh repo fork slickyeet/create-lx2-app
+gh repo fork lx2dev/create-lx2-app
 ```
 
 then, clone it to your local machine:
