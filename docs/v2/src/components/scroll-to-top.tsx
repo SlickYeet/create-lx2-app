@@ -28,6 +28,8 @@ export function ScrollToTop() {
     }
 
     window.addEventListener("scroll", toggleVisibility, { passive: true })
+    // Sync initial visibility in case the page loads already scrolled
+    toggleVisibility()
 
     return () => {
       window.removeEventListener("scroll", toggleVisibility)
