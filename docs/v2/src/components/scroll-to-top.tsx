@@ -59,6 +59,8 @@ export function ScrollToTop() {
           : "pointer-events-none translate-y-4 opacity-0",
       )}
       aria-label="Scroll to top"
+      tabIndex={isVisible ? 0 : -1}
+      aria-hidden={!isVisible}
     >
       <ArrowUp className="size-5" />
     </Button>
