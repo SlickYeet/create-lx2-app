@@ -49,6 +49,9 @@ export function ScrollToTop() {
       variant="outline"
       className={cn(
         "fixed right-6 bottom-6 z-50 rounded-full shadow-lg transition-all duration-300 lg:hidden",
+        "backdrop-blur-md bg-background/80 dark:bg-card/80",
+        "hover:bg-background/90 dark:hover:bg-card/90",
+        "border-border/50 dark:border-border",
         isVisible
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-4 opacity-0",
