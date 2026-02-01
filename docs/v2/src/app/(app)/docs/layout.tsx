@@ -1,6 +1,7 @@
 import { DocsSidebar } from "@/components/docs/sidebar"
 import { Footer } from "@/components/layout/footer"
 import { Header } from "@/components/layout/header"
+import { ScrollToTop } from "@/components/scroll-to-top"
 import { SidebarProvider } from "@/components/ui/sidebar"
 import { source } from "@/lib/source"
 
@@ -21,6 +22,7 @@ export default function DocsLayout({
           </div>
         </SidebarProvider>
       </div>
+      <ScrollToTop />
     </>
   )
 }
