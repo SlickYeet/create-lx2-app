@@ -1,5 +1,63 @@
 # create-lx2-app
 
+## 0.12.0
+
+### Minor Changes
+
+- [#218](https://github.com/lx2dev/create-lx2-app/pull/218)
+  [`efff49d`](https://github.com/lx2dev/create-lx2-app/commit/efff49d9aeebfea2ee0da8e8985aac7edcfe7b58)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Add TRPC with
+  compatibility for `drizzle`, `prisma`, `authjs`, and `betterauth`.
+
+- [#233](https://github.com/lx2dev/create-lx2-app/pull/233)
+  [`ebc44c6`](https://github.com/lx2dev/create-lx2-app/commit/ebc44c6847c79301441d9d04f781d85a23d67977)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Fix scaffolding with
+  prisma v7 because missing `prisma.config.ts`
+
+### Patch Changes
+
+- [#239](https://github.com/lx2dev/create-lx2-app/pull/239)
+  [`2492fe9`](https://github.com/lx2dev/create-lx2-app/commit/2492fe94a44eb03b574ef112f19d1afd9fac3d13)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Update `tsconfig` for
+  NextJS v16
+
+- [#240](https://github.com/lx2dev/create-lx2-app/pull/240)
+  [`7f6e7ee`](https://github.com/lx2dev/create-lx2-app/commit/7f6e7ee28498646756230eb0193940d5bdeff51a)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Add `withPayload` to
+  payload Next.js config
+
+- [#242](https://github.com/lx2dev/create-lx2-app/pull/242)
+  [`598d5e3`](https://github.com/lx2dev/create-lx2-app/commit/598d5e3372bd4a29bf078def033e33a67310e50f)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Update compatibility
+  matrix
+
+- [#247](https://github.com/lx2dev/create-lx2-app/pull/247)
+  [`bdb9c07`](https://github.com/lx2dev/create-lx2-app/commit/bdb9c07375daec0fde7b772e80bae2f23229eca7)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - fix: project scaffolding
+  with duplicate NEXT_PUBLIC_URL when using trpc and better-auth
+
+- [#241](https://github.com/lx2dev/create-lx2-app/pull/241)
+  [`2f46330`](https://github.com/lx2dev/create-lx2-app/commit/2f46330f3a9db983b4bce9baec0d79d733ded122)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Add project formatter
+
+- [#236](https://github.com/lx2dev/create-lx2-app/pull/236)
+  [`1633666`](https://github.com/lx2dev/create-lx2-app/commit/1633666c4fa8c60d4b2674b278b4e69006dfab31)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Implement package builder
+  function
+
+- [#237](https://github.com/lx2dev/create-lx2-app/pull/237)
+  [`38d74fd`](https://github.com/lx2dev/create-lx2-app/commit/38d74fde1ae24f85c0ee2cfe9c6be00b4eccf54a)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Update biome config
+
+- [#238](https://github.com/lx2dev/create-lx2-app/pull/238)
+  [`25f3cc1`](https://github.com/lx2dev/create-lx2-app/commit/25f3cc1dec6b884b36dfdb333d8658f74d4c2ed9)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - Fix missing log steps for
+  drizzle
+
+- [#243](https://github.com/lx2dev/create-lx2-app/pull/243)
+  [`515d3bd`](https://github.com/lx2dev/create-lx2-app/commit/515d3bdd1f221a1e4ff5435efafde2a83f2224ca)
+  Thanks [@SlickYeet](https://github.com/SlickYeet)! - update ESLint config
+
 ## 0.11.4
 
 ### Patch Changes
