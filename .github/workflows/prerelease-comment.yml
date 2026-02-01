@@ -14,6 +14,10 @@ jobs:
       github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     name: Write comment to the PR
+    permissions:
+      pull-requests: write
+      issues: write
+      actions: read
     steps:
       - name: "Comment on PR"
         uses: actions/github-script@v7
