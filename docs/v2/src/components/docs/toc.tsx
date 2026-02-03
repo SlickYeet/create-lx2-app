@@ -202,7 +202,7 @@ export function TableOfContents(props: TableOfContentsProps) {
             "h-(--radix-popper-available-height) w-(--radix-popper-available-width) lg:w-[calc(var(--radix-popper-available-width)-var(--sidebar-width))]",
           )}
         >
-          <div className="relative flex h-full flex-col">
+          <div className="flex h-full flex-col">
             <div className="bg-background/90 sticky top-0 w-full border-b-2 px-4 py-2 backdrop-blur-sm">
               <div className="text-muted-foreground flex items-center gap-1.5 text-sm font-medium">
                 <MenuIcon className="size-3.5" /> On This Page
