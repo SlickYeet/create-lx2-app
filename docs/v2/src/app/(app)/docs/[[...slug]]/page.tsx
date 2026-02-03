@@ -77,15 +77,6 @@ export default async function DocsPage({ params }: DocsPageProps) {
       className="mb-8 flex items-stretch text-[1.05rem] sm:text-[15px] xl:w-full"
     >
       <div className="relative flex min-w-0 flex-1 flex-col">
-        {doc.toc?.length ? (
-          <TableOfContents
-            toc={doc.toc}
-            tree={source.pageTree}
-            variant="dropdown"
-            className="no-scrollbar sticky top-4 right-4 z-40 ml-auto hidden lg:flex xl:hidden"
-          />
-        ) : null}
-
         <div className="mx-auto flex w-full max-w-2xl min-w-0 flex-1 flex-col gap-8 px-4 py-6 md:px-0 lg:py-8">
           <DocsHeader
             page={page}
