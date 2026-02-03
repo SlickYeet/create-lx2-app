@@ -22,14 +22,10 @@ export async function generateMetadata({
 }: DocsPageProps): Promise<Metadata> {
   const { slug } = await params
   const page = source.getPage(slug)
-  if (!page) {
-    notFound()
-  }
+  if (!page) notFound()
 
   const doc = page.data
-  if (!doc.title || !doc.description) {
-    notFound()
-  }
+  if (!doc.title || !doc.description) notFound()
 
   return {
     title: doc.title,
@@ -68,9 +64,7 @@ interface DocsPageProps {
 export default async function DocsPage({ params }: DocsPageProps) {
   const { slug } = await params
   const page = source.getPage(slug)
-  if (!page) {
-    notFound()
-  }
+  if (!page) notFound()
 
   const doc = page.data
   const MDX = doc.body

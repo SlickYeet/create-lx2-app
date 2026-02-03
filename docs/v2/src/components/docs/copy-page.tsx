@@ -167,7 +167,7 @@ export function CopyPageButton({ page, url }: CopyPageButtonProps) {
         onClick={() => copyToClipboard(page)}
         size="sm"
         variant="outline"
-        className="h-8 shadow-none md:h-7 md:text-xs [&_svg]:size-3.5!"
+        className="h-7 shadow-none md:text-xs [&_svg]:size-3.5!"
       >
         {isCopied ? <CheckIcon /> : <CopyIcon />}
         Copy Page
@@ -177,12 +177,12 @@ export function CopyPageButton({ page, url }: CopyPageButtonProps) {
           <Button
             size="sm"
             variant="outline"
-            className="peer -ml-0.5 size-8 shadow-none md:size-7 md:text-xs"
+            className="peer -ml-0.5 size-7 shadow-none md:text-xs"
           >
             <ChevronDownIcon />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="min-w-[250px] shadow-none">
+        <DropdownMenuContent align="end" className="min-w-62.5 shadow-none">
           {Object.entries(menuItems).map(([key, element]) => (
             <DropdownMenuItem key={key} asChild>
               {element(url)}
