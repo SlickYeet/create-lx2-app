@@ -42,9 +42,7 @@ export function Header({ className }: { className?: string }) {
         </Button>
         <MainNav items={siteConfig.navItems} className="hidden lg:flex" />
         <div className="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">
-          <div className="w-full flex-1 md:flex md:w-auto md:flex-none">
-            <Search tree={pageTree} />
-          </div>
+          <Search tree={pageTree} />
           <Separator orientation="vertical" className="ml-2 hidden lg:block" />
           <GithubLink />
           <DiscordLink />
