@@ -191,7 +191,7 @@ export function TableOfContents(props: TableOfContentsProps) {
         </PopoverTrigger>
         <PopoverContent
           side="top"
-          sideOffset={2}
+          sideOffset={1}
           style={
             {
               "--sidebar-width": SIDEBAR_WIDTH,
@@ -202,30 +202,62 @@ export function TableOfContents(props: TableOfContentsProps) {
             "h-(--radix-popper-available-height) w-(--radix-popper-available-width) lg:w-[calc(var(--radix-popper-available-width)-var(--sidebar-width))]",
           )}
         >
-          <div className="flex flex-col gap-4">
+          <div className="relative flex h-full flex-col">
             <div className="bg-background/90 sticky top-0 w-full border-b-2 px-4 py-2 backdrop-blur-sm">
               <div className="text-muted-foreground flex items-center gap-1.5 text-sm font-medium">
                 <MenuIcon className="size-3.5" /> On This Page
               </div>
             </div>
 
-            <div className="flex flex-col gap-2 pb-4">
-              {toc.map((item) => (
-                <a
-                  data-active={item.url === `#${activeHeading}`}
-                  key={item.url}
-                  data-depth={item.depth}
-                  className={cn(
-                    "rounded px-4 py-1",
-                    "data-[active=true]:bg-primary/10 data-[active=true]:text-primary data-[active=true]:font-medium",
-                    "data-[depth=3]:pl-6 data-[depth=4]:pl-8",
-                  )}
-                  onClick={() => setOpen(false)}
-                  href={item.url}
-                >
-                  {item.title}
-                </a>
-              ))}
+            <div className="relative flex flex-1 flex-col overflow-y-hidden">
+              <div className="from-background pointer-events-none absolute top-0 left-0 h-8 w-full bg-linear-to-b to-transparent" />
+              <div className="from-background pointer-events-none absolute bottom-0 left-0 h-8 w-full bg-linear-to-t to-transparent" />
+
+              <div className="flex flex-col gap-2 overflow-y-scroll py-4">
+                {toc.map((item) => (
+                  <a
+                    data-active={item.url === `#${activeHeading}`}
+                    key={item.url}
+                    data-depth={item.depth}
+                    className={cn(
+                      "rounded px-4 py-1",
+                      "data-[active=true]:bg-primary/10 data-[active=true]:text-primary data-[active=true]:font-medium",
+                      "data-[depth=3]:pl-6 data-[depth=4]:pl-8",
+                    )}
+                    onClick={() => setOpen(false)}
+                    href={item.url}
+                  >
+                    {item.title}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="sticky bottom-0 w-full border-t-2 px-4 py-2">
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    href={editUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary focus:text-primary flex items-center gap-1.5 text-sm transition-colors hover:underline focus:underline focus:outline-none"
+                  >
+                    <Pen className="size-3 fill-current" />
+                    Edit this page
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={`${siteConfig.links.github}/issues/new/choose`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary focus:text-primary flex items-center gap-1.5 text-sm transition-colors hover:underline focus:underline focus:outline-none"
+                  >
+                    <MessageSquare className="size-3 fill-current" />
+                    Give feedback
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
         </PopoverContent>
