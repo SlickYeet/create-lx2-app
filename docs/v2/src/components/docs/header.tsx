@@ -105,7 +105,7 @@ export async function DocsHeader(props: DocsHeaderProps) {
             <DocsBreadcrumb tree={tree} />
           </div>
 
-          <div className="order-3 flex flex-col sm:order-2">
+          <div className="order-3 flex shrink-0 flex-col sm:order-2">
             <div className="hidden sm:block">
               <DocsBreadcrumb tree={tree} />
             </div>
