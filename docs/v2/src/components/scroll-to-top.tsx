@@ -1,18 +1,18 @@
 "use client"
 
-import { ArrowUp } from "lucide-react"
+import { ArrowUpIcon } from "lucide-react"
 import { useEffect, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 export function ScrollToTop() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState<boolean>(false)
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout | null = null
 
-    const toggleVisibility = () => {
+    function toggleVisibility() {
       // Throttle the visibility check for better performance
       if (timeoutId) return
 
@@ -37,7 +37,7 @@ export function ScrollToTop() {
     }
   }, [])
 
-  const scrollToTop = () => {
+  function scrollToTop() {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -47,11 +47,11 @@ export function ScrollToTop() {
   return (
     <Button
       onClick={scrollToTop}
-      size="icon"
+      size="icon-lg"
       variant="outline"
       className={cn(
-        "fixed right-6 bottom-6 z-50 rounded-full shadow-lg transition-all duration-300 lg:hidden",
-        "bg-background/80 dark:bg-card/80 backdrop-blur-md",
+        "fixed right-6 bottom-6 z-50 cursor-pointer rounded-full shadow-lg transition-all duration-300 lg:hidden",
+        "bg-card backdrop-blur-md",
         "hover:bg-background/90 dark:hover:bg-card/90",
         "border-border/50 dark:border-border",
         isVisible
@@ -62,7 +62,7 @@ export function ScrollToTop() {
       tabIndex={isVisible ? 0 : -1}
       aria-hidden={!isVisible}
     >
-      <ArrowUp className="size-5" />
+      <ArrowUpIcon className="size-5" />
     </Button>
   )
 }
