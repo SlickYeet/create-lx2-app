@@ -327,8 +327,13 @@ const createPost = api.post.create.useMutation({
     // Snapshot the previous value
     const previousPost = utils.post.getLatest.getData()
 
-    // Optimistically update to the new value
-    utils.post.getLatest.setData(undefined, newPost)
+    // Optimistically update with the expected result structure
+    utils.post.getLatest.setData(undefined, {
+      id: Date.now(), // temporary id
+      name: newPost.name,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    })
 
     return { previousPost }
   },
@@ -399,7 +404,7 @@ import { createTRPCContext } from "@/server/api/init"
 
 export async function GET() {
   const ctx = await createTRPCContext({ headers: new Headers() })
-  const caller = createCaller(() => ctx)
+  const caller = createCaller(ctx)
 
   const posts = await caller.post.getLatest()
 
@@ -420,3 +425,4 @@ This is a brief overview of tRPC. For more detailed information, please refer to
 | [tRPC Context](https://trpc.io/docs/server/context)               | Context guide                    |
 | [tRPC Middleware](https://trpc.io/docs/server/middlewares)        | Middleware guide                 |
 | [React Query](https://tanstack.com/query/latest)                  | React Query documentation        |
+
