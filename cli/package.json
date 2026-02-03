@@ -1,11 +1,11 @@
 {
   "name": "create-lx2-app",
-  "version": "0.11.4",
+  "version": "0.12.0",
   "description": "The Most Opinionated Way to Build Next.js Apps",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/slickyeet/create-lx2-app",
+    "url": "https://github.com/lx2dev/create-lx2-app",
     "directory": "cli"
   },
   "keywords": [

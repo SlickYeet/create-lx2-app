@@ -40,8 +40,8 @@ please refer to the respective docs.
 - [Tailwind CSS](https://tailwindcss.com)
 
 You can check out the
-[create-lx2-app GitHub repository](https://github.com/SlickYeet/create-lx2-app)
-— your feedback and contributions are welcome!
+[create-lx2-app GitHub repository](https://github.com/lx2dev/create-lx2-app) —
+your feedback and contributions are welcome!
 
 ## How do I deploy this?
 

@@ -27,6 +27,7 @@ import { Kbd, KbdGroup } from "@/components/ui/kbd"
 import { Separator } from "@/components/ui/separator"
 import { useConfig } from "@/hooks/use-config"
 import { useIsMac } from "@/hooks/use-is-mac"
+import { useIsMobile } from "@/hooks/use-mobile"
 import { useMutationObserver } from "@/hooks/use-mutation-observer"
 import { useSearch } from "@/hooks/use-search"
 import { source } from "@/lib/source"
@@ -43,6 +44,7 @@ export function Search(props: SearchProps) {
   const [config] = useConfig()
   const [open, setOpen] = useSearch()
   const { setTheme } = useTheme()
+  const isMobile = useIsMobile(640)
 
   const [selectedType, setSelectedType] = useState<
     "page" | "command" | "theme" | null
@@ -132,6 +134,7 @@ export function Search(props: SearchProps) {
           </Button>
 
           <Button
+            size={isMobile ? "icon" : "default"}
             variant="secondary"
             className="bg-card hover:bg-card/80 text-muted-foreground flex border shadow-none md:hidden"
           >
@@ -181,7 +184,7 @@ export function Search(props: SearchProps) {
             <div className="bg-popover border-input mt-2 rounded-md border pb-(--search-footer-height) shadow-xs">
               <CommandPrimitive.List
                 data-slot="command-list"
-                className="max-h-[400px] overflow-auto lg:max-h-[500px]"
+                className="max-h-100 overflow-auto lg:max-h-125"
               >
                 <CommandEmpty className="text-muted-foreground py-12 text-center text-sm">
                   No results found.

@@ -30,7 +30,7 @@ export function MobileNav(props: MobileNavProps) {
         <Button
           variant="ghost"
           className={cn(
-            "extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:bg-transparent dark:hover:bg-transparent",
+            "extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 p-0! hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:bg-transparent dark:hover:bg-transparent",
             className,
           )}
         >
@@ -61,9 +61,12 @@ export function MobileNav(props: MobileNavProps) {
         side="bottom"
         alignOffset={-16}
         sideOffset={14}
-        className="bg-background/90 no-scrollbar supports-[backdrop-filter:blur(0)]:bg-background/60 container h-(--radix-popper-available-height) w-(--radix-popper-available-width) overflow-y-auto rounded-none border-none p-0 shadow-none backdrop-blur-sm duration-100"
+        className="bg-background/90 no-scrollbar supports-[backdrop-filter:blur(0)]:bg-background/60 relative container h-(--radix-popper-available-height) w-(--radix-popper-available-width) overflow-auto rounded-none border-none p-0 shadow-none backdrop-blur-sm duration-100"
       >
-        <div className="flex flex-col gap-12 overflow-auto px-6 py-6">
+        <div className="flex h-full flex-col gap-12 overflow-auto px-6 py-6">
+          <div className="from-background/90 supports-[backdrop-filter:blur(0)]:from-background/60 pointer-events-none absolute top-0 left-0 h-8 w-full bg-linear-to-b to-transparent" />
+          <div className="from-background pointer-events-none absolute bottom-0 left-0 h-8 w-full bg-linear-to-t to-transparent" />
+
           <div className="flex flex-col gap-4">
             <div className="text-muted-foreground text-sm font-medium">
               Menu

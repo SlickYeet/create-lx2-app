@@ -1,3 +1,4 @@
+import { ScrollToTop } from "@/components/docs/scroll-to-top"
 import { DocsSidebar } from "@/components/docs/sidebar"
 import { Footer } from "@/components/layout/footer"
 import { Header } from "@/components/layout/header"
@@ -15,12 +16,13 @@ export default function DocsLayout({
       <div className="flex flex-1 flex-col">
         <SidebarProvider>
           <DocsSidebar tree={source.pageTree} />
-          <div className="size-full">
+          <div className="flex-1">
             <div className="min-h-svh">{children}</div>
             <Footer />
           </div>
         </SidebarProvider>
       </div>
+      <ScrollToTop />
     </>
   )
 }

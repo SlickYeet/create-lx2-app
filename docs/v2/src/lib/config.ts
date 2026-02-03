@@ -15,7 +15,7 @@ export const siteConfig = {
   ogImage:
     "https://opengraph.b-cdn.net/production/images/dc4fc423-b479-4749-affc-7d5cde0f5587.png?token=b2Fi8FhjWFLaTtm3lT7_CRZRMf3AjDD78LlkOStxOGk&height=675&width=1200&expires=33294259508",
   links: {
-    github: "https://github.com/SlickYeet/create-lx2-app",
+    github: "https://github.com/lx2dev/create-lx2-app",
     discord: "https://hub.lx2.dev/discord",
   },
   navItems: [

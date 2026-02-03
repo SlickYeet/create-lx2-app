@@ -67,12 +67,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "group/body overscroll-none font-sans antialiased",
-          fontVariables,
-        )}
-      >
+      <body className={cn("group/body font-sans antialiased", fontVariables)}>
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -7,9 +7,13 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   release:
-    if: ${{ github.repository_owner == 'slickyeet' }}
+    if: ${{ github.repository_owner == 'lx2dev' }}
     name: Create a PR for release workflow
     runs-on: ubuntu-latest
     steps:

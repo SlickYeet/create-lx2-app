@@ -34,7 +34,9 @@ export function DocsSidebar(props: DocsSidebarProps) {
   return (
     <Sidebar
       collapsible="none"
-      className="sticky top-0 z-30 hidden h-svh w-80 border-r bg-transparent lg:flex"
+      className={cn(
+        "sticky top-0 z-30 hidden h-svh w-(--sidebar-width) border-r bg-transparent lg:flex",
+      )}
       {...rest}
     >
       <div className="mb-4 flex flex-col gap-6 px-4 pt-4">
