@@ -116,7 +116,7 @@ export function CodeBlockCommand(props: CodeBlockCommandProps) {
               <TabsTrigger
                 key={key}
                 value={key}
-                className="data-[state=active]:bg-popover data-[state=active]:border-input h-7 border border-transparent pt-0.5 data-[state=active]:shadow-none"
+                className="data-[state=active]:border-border dark:data-[state=active]:border-accent dark:data-[state=active]:bg-input data-[state=active]:bg-input h-7 border border-transparent pt-0.5 data-[state=active]:shadow-none"
               >
                 {key}
               </TabsTrigger>
