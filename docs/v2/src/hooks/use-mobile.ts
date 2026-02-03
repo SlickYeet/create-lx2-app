@@ -14,7 +14,7 @@ export function useIsMobile(breakpoint: number = MOBILE_BREAKPOINT) {
     }
     mql.addEventListener("change", onChange)
     return () => mql.removeEventListener("change", onChange)
-  }, [])
+  }, [breakpoint])
 
   return !!isMobile
 }
