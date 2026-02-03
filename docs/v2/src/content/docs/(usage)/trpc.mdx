@@ -1,0 +1,432 @@
+---
+title: tRPC
+description: End-to-end typesafe APIs made easy
+links:
+  {
+    docs: https://trpc.io/docs,
+    repo: https://github.com/trpc/trpc,
+    community: https://trpc.io/discord,
+  }
+---
+
+[tRPC](https://trpc.io/) lets you easily build & consume fully typesafe APIs
+without schemas or code generation. By using TypeScript's inference it provides
+you end-to-end type safety between your client and server.
+
+## Client Usage
+
+The tRPC api can imported from `@/lib/api/client` for Client Components and
+`@/lib/api/server` for Server Components.
+
+**Client Components:**
+
+```tsx title="src/components/greeting.tsx" showLineNumbers
+"use client"
+
+import { api } from "@/lib/api/client"
+
+export function Greeting() {
+  const [greeting] = api.post.greeting.useSuspenseQuery({
+    text: "from tRPC",
+  })
+
+  return (
+    <div className="flex flex-col items-start justify-center gap-2">
+      <p className="text-xl font-medium">{greeting}</p>
+    </div>
+  )
+}
+```
+
+**Server Components:**
+
+```tsx title="src/app/page.tsx" showLineNumbers
+import { api, HydrateClient } from "@/lib/api/server"
+
+export default async function Home() {
+  const greeting = await api.post.greeting({
+    text: "from tRPC",
+  })
+
+  return (
+    <HydrateClient>
+      <main>
+        <h1>{greeting}</h1>
+      </main>
+    </HydrateClient>
+  )
+}
+```
+
+<Callout type="info">
+  `HydrateClient` is used to hydrate the client-side cache with data fetched on
+  the server. This is useful for prefetching on the server and then using that
+  data on the client without additional network requests, while benefiting from
+  React Query's caching mechanisms and state management.
+</Callout>
+
+## Creating Procedures
+
+Procedures are the functions you can call in your app. They are defined in
+routers, which are collections of related procedures.
+
+**Query Procedure:**
+
+```ts title="src/server/api/routers/post.ts" showLineNumbers
+import z from "zod"
+
+import { createTRPCRouter, publicProcedure } from "@/server/api/init"
+
+export const postRouter = createTRPCRouter({
+  greeting: publicProcedure
+    .input(
+      z.object({
+        text: z.string(),
+      }),
+    )
+    .query(({ input }) => {
+      return `Hello ${input.text}`
+    }),
+})
+```
+
+**Mutation Procedure:**
+
+```ts title="src/server/api/routers/post.ts" showLineNumbers
+import z from "zod"
+
+import { createTRPCRouter, publicProcedure } from "@/server/api/init"
+
+export const postRouter = createTRPCRouter({
+  create: publicProcedure
+    .input(
+      z.object({
+        name: z.string().min(1),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      // Perform database operation
+      const post = await ctx.db.post.create({
+        data: { name: input.name },
+      })
+      return post
+    }),
+})
+```
+
+<Callout type="info">
+  create-lx2-app projects use [Zod](https://zod.dev/) for input validation. All
+  inputs are validated against the schema you define.
+</Callout>
+
+## Context
+
+The context is an object that is available in all procedures. It contains
+information about the request, such as headers, session data, and database
+instances.
+
+**Accessing Context:**
+
+```ts title="src/server/api/routers/post.ts" showLineNumbers
+import { createTRPCRouter, publicProcedure } from "@/server/api/init"
+
+export const postRouter = createTRPCRouter({
+  getLatest: publicProcedure.query(async ({ ctx }) => {
+    // Access database from context
+    const post = await ctx.db.post.findFirst({
+      orderBy: { createdAt: "desc" },
+    })
+    return post
+  }),
+})
+```
+
+**Modifying Context:**
+
+The context is defined in `src/server/api/init.ts`. You can add additional
+properties to the context by modifying the `createTRPCContext` function.
+
+```ts title="src/server/api/init.ts" showLineNumbers
+export async function createTRPCContext(opts: { headers: Headers }) {
+  const session = await auth()
+
+  return {
+    ...opts,
+    session,
+    db,
+  }
+}
+```
+
+<Callout type="info" title="Database Context">
+  When using Prisma or Drizzle, the database instance is automatically added to
+  the context as `ctx.db`.
+
+The same goes for Auth.js and BetterAuth, where the session is available as
+`ctx.session` (This is only available for protectedProcedures by default).
+
+</Callout>
+
+## Middleware
+
+Middleware allows you to add logic that runs before your procedures. Common use
+cases include authentication, logging, and rate limiting.
+
+**Creating Middleware:**
+
+```ts title="src/server/api/init.ts" showLineNumbers
+const enforceUserIsAuthed = t.middleware(async ({ ctx, next }) => {
+  if (!ctx.session?.user) {
+    throw new TRPCError({ code: "UNAUTHORIZED" })
+  }
+  return next({
+    ctx: {
+      // infers the `session` as non-nullable
+      session: { ...ctx.session, user: ctx.session.user },
+    },
+  })
+})
+```
+
+**Using Middleware:**
+
+```ts title="src/server/api/init.ts" showLineNumbers
+export const protectedProcedure = t.procedure
+  .use(timingMiddleware)
+  .use(enforceUserIsAuthed)
+```
+
+**Protected Procedure Example:**
+
+```ts title="src/server/api/routers/post.ts" showLineNumbers
+import { createTRPCRouter, protectedProcedure } from "@/server/api/init"
+
+export const postRouter = createTRPCRouter({
+  create: protectedProcedure
+    .input(z.object({ name: z.string().min(1) }))
+    .mutation(async ({ ctx, input }) => {
+      // ctx.session.user is guaranteed to exist
+      const post = await ctx.db.post.create({
+        data: {
+          name: input.name,
+          userId: ctx.session.user.id,
+        },
+      })
+      return post
+    }),
+})
+```
+
+## Error Handling
+
+tRPC provides built-in error handling with specific error codes for different
+scenarios.
+
+**Throwing Errors:**
+
+```ts title="src/server/api/routers/post.ts" showLineNumbers
+import { TRPCError } from "@trpc/server"
+
+import { createTRPCRouter, publicProcedure } from "@/server/api/init"
+
+export const postRouter = createTRPCRouter({
+  getById: publicProcedure
+    .input(z.object({ id: z.number() }))
+    .query(async ({ ctx, input }) => {
+      const post = await ctx.db.post.findUnique({
+        where: { id: input.id },
+      })
+
+      if (!post) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Post not found",
+        })
+      }
+
+      return post
+    }),
+})
+```
+
+**Handling Errors on Client:**
+
+```tsx title="src/components/post.tsx" showLineNumbers
+"use client"
+
+import { api } from "@/lib/api/client"
+
+export function Post({ id }: { id: number }) {
+  const { data, error, isLoading } = api.post.getById.useQuery({ id })
+
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error: {error.message}</div>
+
+  return <div>{data.name}</div>
+}
+```
+
+## Type Inference
+
+tRPC provides type helpers to infer types from your router.
+
+**Input Types:**
+
+```ts title="src/components/create-post.tsx" showLineNumbers
+import { type RouterInputs } from "@/lib/api/client"
+
+type CreatePostInput = RouterInputs["post"]["create"]
+// { name: string }
+```
+
+**Output Types:**
+
+```ts title="src/components/post-list.tsx" showLineNumbers
+import { type RouterOutputs } from "@/lib/api/client"
+
+type Post = RouterOutputs["post"]["getLatest"]
+```
+
+## React Query Integration
+
+tRPC in Lx2 applications uses React Query under the hood, giving you access to
+powerful features like caching, refetching, and optimistic updates.
+
+### Automatic revalidation
+
+```tsx title="src/components/create-post-form.tsx" showLineNumbers
+"use client"
+
+import { api } from "@/lib/api/client"
+
+export function CreatePostForm() {
+  const utils = api.useUtils()
+
+  const createPost = api.post.create.useMutation({
+    onSuccess() {
+      // Invalidate and refetch
+      utils.post.getLatest.invalidate()
+    },
+  })
+
+  // ...form
+}
+```
+
+### Optimistic updates
+
+```tsx showLineNumbers
+"use client"
+
+import { api } from "@/lib/api/client"
+
+export function CreatePostForm() {
+  const createPost = api.post.create.useMutation({
+    async onMutate(newPost) {
+      // Cancel outgoing refetches
+      await utils.post.getLatest.cancel()
+
+      // Snapshot the previous value
+      const prevPost = utils.post.getLatest.getData()
+
+      // Optimistically update with the expected result structure
+      utils.post.getLatest.setData(undefined, (old) => { ...old, newPost })
+
+      return { prevPost }
+    },
+    async onError(err, newPost, ctx) {
+      // Rollback on error
+      utils.post.getLatest.setData(undefined, ctx?.prevPost)
+    },
+    onSettled() {
+      // Refetch after error or success
+      utils.post.getLatest.invalidate()
+    },
+  })
+
+  // ...form
+}
+```
+
+## Routers
+
+Routers organize your procedures into logical groups. You can create multiple
+routers and merge them in the root router.
+
+### Creating a Router
+
+```ts title="src/server/api/routers/user.ts" showLineNumbers
+import { createTRPCRouter } from "@/server/api/init"
+
+export const userRouter = createTRPCRouter({
+  // Define business logic here
+})
+```
+
+### Merging Routers
+
+```ts title="src/server/api/root.ts" showLineNumbers
+import { createCallerFactory, createTRPCRouter } from "@/server/api/init"
+import { postRouter } from "@/server/api/routers/post"
+import { userRouter } from "@/server/api/routers/user"
+
+export const appRouter = createTRPCRouter({
+  post: postRouter,
+  user: userRouter,
+})
+
+export type AppRouter = typeof appRouter
+
+export const createCaller = createCallerFactory(appRouter)
+```
+
+## Subscriptions
+
+tRPC supports real-time subscriptions using WebSockets. This is useful for
+features like live updates, chat applications, and notifications.
+
+<Callout type="warning">
+  Subscriptions require additional setup with a WebSocket server or Server-sent
+  Events. The default Lx2 setup uses HTTP and does not include subscriptions out
+  of the box.
+</Callout>
+
+For more information on subscriptions, see the
+[tRPC Subscriptions documentation](https://trpc.io/docs/subscriptions).
+
+## Calling tRPC
+
+### Direct Server Calls
+
+You can call tRPC procedures directly from server-side code without going
+through HTTP.
+
+```ts title="src/app/api/cron/route.ts" showLineNumbers
+import { createTRPCContext } from "@/server/api/init"
+import { createCaller } from "@/server/api/root"
+
+export async function GET() {
+  const ctx = await createTRPCContext({ headers: new Headers() })
+  const caller = createCaller(ctx)
+
+  const posts = await caller.post.getLatest()
+
+  return Response.json({ posts })
+}
+```
+
+## Useful Resources
+
+This is a brief overview of tRPC. For more detailed information, please refer to
+the official tRPC documentation:
+
+| Resource                                                                       | Description                             |
+| ------------------------------------------------------------------------------ | --------------------------------------- |
+| [tRPC Docs](https://trpc.io/docs)                                              | The official tRPC docs                  |
+| [tRPC Quickstart](https://trpc.io/docs/quickstart)                             | Getting started guide                   |
+| [tRPC with RSCs](https://trpc.io/docs/client/react/server-components)          | Using tRPC with React Server Components |
+| [tRPC Error Handling](https://trpc.io/docs/server/error-handling)              | Error handling guide                    |
+| [tRPC Procedures](https://trpc.io/docs/server/procedures)                      | Creating procedures                     |
+| [tRPC Context](https://trpc.io/docs/server/context)                            | Context guide                           |
+| [tRPC Middleware](https://trpc.io/docs/server/middlewares)                     | Middleware guide                        |
+| [React Query](https://tanstack.com/query/latest/docs/framework/react/overview) | React Query docs                        |
