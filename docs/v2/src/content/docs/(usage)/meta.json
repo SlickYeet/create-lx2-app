@@ -3,6 +3,7 @@
   "pages": [
     "first-steps",
     "next.js",
+    "trpc",
     "auth.js",
     "betterauth",
     "prisma",
