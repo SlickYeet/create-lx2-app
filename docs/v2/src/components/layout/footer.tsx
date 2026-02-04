@@ -4,6 +4,7 @@ import {
   CodeIcon,
   MapIcon,
   MessageCircleQuestionIcon,
+  ShapesIcon,
 } from "lucide-react"
 import Link from "next/link"
 
@@ -114,6 +115,14 @@ export async function Footer() {
             <h3 className="mb-4 text-lg font-semibold">Resources</h3>
             <ul className="space-y-2">
               <li>
+                <Anchor href="https://hub.lx2.dev">
+                  <div className="flex items-center gap-1.5">
+                    <ShapesIcon className="size-4" />
+                    <span>Lx2 Hub</span>
+                  </div>
+                </Anchor>
+              </li>
+              <li>
                 <Anchor href={siteConfig.navItems[1].href}>
                   <div className="flex items-center gap-1.5">
                     <MessageCircleQuestionIcon className="size-4" />
@@ -128,9 +137,6 @@ export async function Footer() {
                     <span>Roadmap</span>
                   </div>
                 </Anchor>
-              </li>
-              <li>
-                <Anchor href="https://lx2.dev">Portfolio</Anchor>
               </li>
             </ul>
           </div>
