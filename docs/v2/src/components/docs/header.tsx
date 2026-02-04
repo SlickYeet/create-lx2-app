@@ -35,7 +35,7 @@ function Controls(props: Pick<DocsHeaderProps, "page" | "raw" | "neighbours">) {
   const doc = page.data
 
   return (
-    <div className="bg-background fixed bottom-0 left-0 z-20 w-full space-y-1 border-t-2 pb-3 max-xl:ml-(--sidebar-width) max-lg:ml-0 xl:static xl:w-auto xl:space-y-0 xl:border-0 xl:pt-1.5 xl:pb-0">
+    <div className="bg-background/80 supports-[backdrop-filter:blur(0)]:bg-background/60 fixed bottom-0 left-0 z-20 w-full space-y-1 border-t-2 pb-3 backdrop-blur-sm max-xl:ml-(--sidebar-width) max-lg:ml-0 xl:static xl:w-auto xl:space-y-0 xl:border-0 xl:pt-1.5 xl:pb-0">
       <div className="xl:hidden">
         <TableOfContents
           toc={doc.toc}
