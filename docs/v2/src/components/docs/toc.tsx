@@ -121,7 +121,8 @@ export function TableOfContents(props: TableOfContentsProps) {
     () => toc.map((item) => item.url.replace("#", "")),
     [toc],
   )
-  const activeHeading = useActiveItem(itemIds) ?? firstItem?.url.replace("#", "")
+  const activeHeading =
+    useActiveItem(itemIds) ?? firstItem?.url.replace("#", "")
   const activeItem = toc.find((item) => item.url === `#${activeHeading}`)
 
   const parent = tree.children.find(
