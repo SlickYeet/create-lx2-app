@@ -68,6 +68,47 @@ function useActiveItem(itemIds: string[]) {
   return activeId
 }
 
+function ProgressCircle(props: { progress: number }) {
+  const { progress } = props
+  const radius = 8
+  const circumference = 2 * Math.PI * radius
+  const offset = circumference - (progress / 100) * circumference
+
+  return (
+    <svg className="size-4" viewBox="0 0 20 20">
+      <circle
+        className="text-primary/50"
+        stroke="currentColor"
+        strokeWidth="2"
+        fill="transparent"
+        r={radius}
+        cx="10"
+        cy="10"
+        style={{
+          strokeDasharray: circumference,
+          strokeDashoffset: 0,
+        }}
+      />
+      <circle
+        className="text-primary"
+        stroke="currentColor"
+        strokeWidth="2"
+        fill="transparent"
+        r={radius}
+        cx="10"
+        cy="10"
+        style={{
+          strokeDasharray: circumference,
+          strokeDashoffset: offset,
+          transition: "stroke-dashoffset 0.35s",
+          transform: "rotate(-90deg)",
+          transformOrigin: "50% 50%",
+        }}
+      />
+    </svg>
+  )
+}
+
 export function TableOfContents(props: TableOfContentsProps) {
   const pathname = usePathname()
   const { toc, tree, variant = "list", className } = props
@@ -75,11 +116,14 @@ export function TableOfContents(props: TableOfContentsProps) {
   const [open, setOpen] = React.useState<boolean>(false)
   const [showBackToTop, setShowBackToTop] = React.useState<boolean>(false)
 
+  const firstItem = toc[0]
   const itemIds = React.useMemo(
     () => toc.map((item) => item.url.replace("#", "")),
     [toc],
   )
-  const activeHeading = useActiveItem(itemIds)
+  const activeHeading = useActiveItem(itemIds) ?? firstItem.url.replace("#", "")
+  const activeItem =
+    toc.find((item) => item.url === `#${activeHeading}`) ?? firstItem
 
   const parent = tree.children.find(
     (item) =>
@@ -185,8 +229,38 @@ export function TableOfContents(props: TableOfContentsProps) {
     return (
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
-          <Button className="text-foreground z-10 w-full justify-start rounded-none bg-transparent px-2! transition-none hover:bg-transparent">
-            <MenuIcon className="size-4" /> On This Page
+          <Button className="text-foreground relative z-10 w-full justify-start overflow-hidden rounded-none bg-transparent px-2! transition-none hover:bg-transparent">
+            <ProgressCircle
+              progress={Math.min(
+                100,
+                Math.max(
+                  0,
+                  ((itemIds.indexOf(activeHeading) + 1) / itemIds.length) * 100,
+                ),
+              )}
+            />
+            <div className="flex -translate-y-2.5 flex-col items-start">
+              <p
+                className={cn(
+                  "transition-all duration-200",
+                  open
+                    ? "translate-y-0 opacity-0"
+                    : "translate-y-5 opacity-100",
+                )}
+              >
+                {activeItem?.title}
+              </p>
+              <p
+                className={cn(
+                  "transition-all duration-200",
+                  open
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-5 opacity-0",
+                )}
+              >
+                On This Page
+              </p>
+            </div>
           </Button>
         </PopoverTrigger>
         <PopoverContent
@@ -216,7 +290,9 @@ export function TableOfContents(props: TableOfContentsProps) {
               <div className="flex flex-col gap-2 overflow-y-scroll py-4">
                 {toc.map((item) => (
                   <a
-                    data-active={item.url === `#${activeHeading}`}
+                    data-active={
+                      item.url === `#${activeHeading || firstItem.url}`
+                    }
                     key={item.url}
                     data-depth={item.depth}
                     className={cn(
