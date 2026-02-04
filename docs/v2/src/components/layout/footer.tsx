@@ -143,7 +143,7 @@ export async function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col items-center justify-between border-t pt-8 md:flex-row">
-          <div className="text-muted-foreground text-center text-sm md:text-left">
+          <div className="text-muted-foreground text-center text-sm text-balance md:text-left">
             &copy; {new Date().getFullYear()} {siteConfig.name}. All right
             reserved.
           </div>

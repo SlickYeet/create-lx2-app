@@ -16,7 +16,7 @@ export default function DocsLayout({
       <div className="flex flex-1 flex-col">
         <SidebarProvider>
           <DocsSidebar tree={source.pageTree} />
-          <div className="flex-1">
+          <div className="size-full">
             <div className="min-h-svh">{children}</div>
             <Footer />
           </div>
