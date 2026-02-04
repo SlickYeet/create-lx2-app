@@ -35,7 +35,7 @@ function Controls(props: Pick<DocsHeaderProps, "page" | "raw" | "neighbours">) {
   const doc = page.data
 
   return (
-    <div className="bg-background fixed bottom-0 left-0 z-20 w-full space-y-1 border-t-2 pb-3 lg:ml-0 xl:static xl:order-3 xl:w-auto xl:space-y-0 xl:border-0 xl:pt-1.5 xl:pb-0">
+    <div className="bg-background fixed bottom-0 left-0 z-20 w-full space-y-1 border-t-2 pb-3 max-xl:ml-(--sidebar-width) max-lg:ml-0 xl:static xl:w-auto xl:space-y-0 xl:border-0 xl:pt-1.5 xl:pb-0">
       <div className="xl:hidden">
         <TableOfContents
           toc={doc.toc}
@@ -45,13 +45,13 @@ function Controls(props: Pick<DocsHeaderProps, "page" | "raw" | "neighbours">) {
         />
       </div>
 
-      <div className="ml-0 flex items-center gap-2 px-2 lg:ml-(--sidebar-width)">
+      <div className="flex items-center gap-2 px-2">
         <CopyPageButton page={raw} url={absoluteUrl(page.url)} />
 
         {neighbours.previous && (
           <Button
             size="icon"
-            className="extend-touch-target size-7 shadow-none"
+            className="extend-touch-target size-8 shadow-none lg:size-7"
             asChild
           >
             <Link href={neighbours.previous.url}>
@@ -64,7 +64,7 @@ function Controls(props: Pick<DocsHeaderProps, "page" | "raw" | "neighbours">) {
         {neighbours.next && (
           <Button
             size="icon"
-            className="extend-touch-target size-7 shadow-none"
+            className="extend-touch-target size-8 shadow-none lg:size-7"
             asChild
           >
             <Link href={neighbours.next.url}>
@@ -100,15 +100,9 @@ export async function DocsHeader(props: DocsHeaderProps) {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex flex-col gap-2">
-        <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:gap-0">
-          <div className="order-1 block sm:hidden">
+        <div className="flex items-start justify-between">
+          <div className="flex flex-col gap-2">
             <DocsBreadcrumb tree={tree} />
-          </div>
-
-          <div className="order-3 flex shrink-0 flex-col sm:order-2">
-            <div className="hidden sm:block">
-              <DocsBreadcrumb tree={tree} />
-            </div>
             <h1 className="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl">
               {doc.title}
             </h1>
