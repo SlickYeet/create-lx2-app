@@ -121,9 +121,8 @@ export function TableOfContents(props: TableOfContentsProps) {
     () => toc.map((item) => item.url.replace("#", "")),
     [toc],
   )
-  const activeHeading = useActiveItem(itemIds) ?? firstItem.url.replace("#", "")
-  const activeItem =
-    toc.find((item) => item.url === `#${activeHeading}`) ?? firstItem
+  const activeHeading = useActiveItem(itemIds) ?? firstItem?.url.replace("#", "")
+  const activeItem = toc.find((item) => item.url === `#${activeHeading}`)
 
   const parent = tree.children.find(
     (item) =>
@@ -290,9 +289,7 @@ export function TableOfContents(props: TableOfContentsProps) {
               <div className="flex flex-col gap-2 overflow-y-scroll py-4">
                 {toc.map((item) => (
                   <a
-                    data-active={
-                      item.url === `#${activeHeading || firstItem.url}`
-                    }
+                    data-active={item.url === `#${activeHeading}`}
                     key={item.url}
                     data-depth={item.depth}
                     className={cn(
