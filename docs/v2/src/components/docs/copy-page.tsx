@@ -239,7 +239,7 @@ export function CopyPageButton({ page, url }: CopyPageButtonProps) {
         onClick={() => copyToClipboard(page)}
         size="sm"
         variant="outline"
-        className="h-7 shadow-none md:text-xs [&_svg]:size-3.5!"
+        className="h-8 shadow-none lg:h-7 lg:text-xs [&_svg]:size-3.5!"
       >
         {isCopied ? <CheckIcon /> : <CopyIcon />}
         Copy Page
@@ -249,7 +249,7 @@ export function CopyPageButton({ page, url }: CopyPageButtonProps) {
           <Button
             size="sm"
             variant="outline"
-            className="peer -ml-0.5 size-7 shadow-none md:text-xs"
+            className="peer -ml-0.5 size-8 shadow-none lg:size-7 lg:text-xs"
           >
             <ChevronDownIcon />
           </Button>
