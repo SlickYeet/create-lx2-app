@@ -77,7 +77,7 @@ function ProgressCircle(props: { progress: number }) {
   return (
     <svg className="size-4" viewBox="0 0 20 20">
       <circle
-        className="text-primary/50"
+        className="text-primary/30 dark:text-primary/50"
         stroke="currentColor"
         strokeWidth="2"
         fill="transparent"
