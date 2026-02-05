@@ -19,7 +19,7 @@ export function Code(props: ShadcnCodeProps) {
     return (
       <code
         className={cn(
-          "bg-card dark:bg-muted relative rounded-md px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] break-words outline-none",
+          "bg-card dark:bg-muted relative rounded-md px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] wrap-break-word outline-none",
           className,
         )}
         {...rest}
