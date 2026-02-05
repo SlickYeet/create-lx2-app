@@ -50,10 +50,10 @@ export function ScrollToTop() {
       size="icon-lg"
       variant="outline"
       className={cn(
-        "fixed right-4 bottom-4.5 z-50 cursor-pointer rounded-full shadow-lg transition-all duration-300 xl:hidden",
-        "bg-card backdrop-blur-md",
-        "hover:bg-background/90 dark:hover:bg-card/90",
-        "border-border/50 dark:border-border",
+        "fixed right-4 bottom-25.5 z-50 cursor-pointer rounded-full shadow-lg transition-all duration-300 xl:hidden",
+        "text-background bg-foreground dark:bg-foreground dark:text-background",
+        "hover:bg-foreground/90 hover:text-background dark:hover:bg-foreground/90 dark:hover:text-background",
+        "border-0",
         isVisible
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-4 opacity-0",

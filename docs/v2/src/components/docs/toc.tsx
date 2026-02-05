@@ -4,7 +4,7 @@ import * as PageTree from "fumadocs-core/page-tree"
 import {
   AlignLeft,
   ArrowUpCircle,
-  MenuIcon,
+  ChevronUpIcon,
   MessageSquare,
   Pen,
 } from "lucide-react"
@@ -261,6 +261,12 @@ export function TableOfContents(props: TableOfContentsProps) {
                 On This Page
               </p>
             </div>
+            <ChevronUpIcon
+              className={cn(
+                "ml-auto size-5 transition-transform duration-200 lg:size-4",
+                open ? "rotate-180" : "rotate-0",
+              )}
+            />
           </Button>
         </PopoverTrigger>
         <PopoverContent
@@ -279,7 +285,7 @@ export function TableOfContents(props: TableOfContentsProps) {
           <div className="flex h-full flex-col">
             <div className="bg-background/90 sticky top-0 w-full border-b-2 px-4 py-2 backdrop-blur-sm">
               <div className="text-muted-foreground flex items-center gap-1.5 text-sm font-medium">
-                <MenuIcon className="size-4" /> On This Page
+                On This Page
               </div>
             </div>
 
