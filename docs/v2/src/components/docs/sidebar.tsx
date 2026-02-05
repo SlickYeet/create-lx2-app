@@ -70,9 +70,9 @@ export function DocsSidebar(props: DocsSidebarProps) {
                               className={cn(
                                 "h-10 rounded-l-none rounded-r-lg border-l-2 pl-4 text-base transition-colors",
                                 "text-muted-foreground hover:text-foreground",
-                                "hover:text-primary hover:border-primary/50 hover:bg-primary/5",
-                                "focus-visible:text-primary focus-visible:border-primary/50 focus-visible:bg-primary/5 focus-visible:ring-0 focus-visible:outline-none",
-                                "data-[active=true]:text-primary data-[active=true]:border-primary data-[active=true]:bg-primary/10 data-[active=true]:font-medium",
+                                "hover:text-primary hover:border-primary/50 hover:bg-primary/15",
+                                "focus-visible:text-primary focus-visible:border-primary/50 focus-visible:bg-primary/15 focus-visible:ring-0 focus-visible:outline-none",
+                                "data-[active=true]:text-primary data-[active=true]:border-primary data-[active=true]:bg-primary/25 data-[active=true]:font-medium",
                               )}
                               asChild
                             >
@@ -95,8 +95,8 @@ export function DocsSidebar(props: DocsSidebarProps) {
             <SidebarMenuButton
               className={cn(
                 "rounded-none px-4 py-5 transition-colors",
-                "hover:text-primary hover:bg-primary/5",
-                "focus-visible:text-primary focus-visible:bg-primary/5 focus-visible:ring-0 focus-visible:outline-none",
+                "hover:text-primary hover:bg-primary/15",
+                "focus-visible:text-primary focus-visible:bg-primary/15 focus-visible:ring-0 focus-visible:outline-none",
               )}
               asChild
             >
@@ -109,8 +109,8 @@ export function DocsSidebar(props: DocsSidebarProps) {
             <SidebarMenuButton
               className={cn(
                 "rounded-none px-4 py-5 transition-colors",
-                "hover:text-primary hover:bg-primary/5",
-                "focus-visible:text-primary focus-visible:bg-primary/5 focus-visible:ring-0 focus-visible:outline-none",
+                "hover:text-primary hover:bg-primary/15",
+                "focus-visible:text-primary focus-visible:bg-primary/15 focus-visible:ring-0 focus-visible:outline-none",
               )}
               asChild
             >
